@@ -6,5 +6,5 @@ This repo contains teaching materials for the ten-week course in "Computational 
 
 ## Weekly seminar readings and sections
 
-1. Introduction: \[[Section](https:/raw.githack.com/cjbarrie/CTA-ED/main/CTA-ED/_book/introduction.html)\]
-2. Week 1 readings: Information retrieval and transformation \[[Section](https:/raw.githack.com/cjbarrie/CTA-ED/main/CTA-ED/_book/week-1.html)\]
+1. Introduction: \[[Section](https://raw.githack.com/cjbarrie/CTA-ED/main/_book/index.html)\]
+2. Week 1 readings: Information retrieval and transformation \[[Section](https://raw.githack.com/cjbarrie/CTA-ED/main/_book/week-1.html)\]
