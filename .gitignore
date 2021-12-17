@@ -1,5 +1,26 @@
-.Rproj.user
-.Rhistory
-.RData
-.Ruserdata
-README.md
+# Blacklist files/folders in same directory as the .gitignore file
+/*
+
+# Whitelist some files
+!.gitignore
+!README.md
+
+# Ignore all files named .DS_Store or ending with .log
+**/.DS_Store
+**.log
+
+# Whitelist folder/a/b1/ and folder/a/b2/
+# trailing "/" is optional for folders, may match file though.
+# "/" is NOT optional when followed by a *
+!_book/
+_book/*
+!_book/week-1.html
+!_book/week-2.html
+!_book/week-3.html
+!_book/week-4.html
+!_book/week-5.html
+!_book/week-6.html
+!_book/week-7.html
+!_book/week-8.html
+!_book/week-9.html
+!_book/week-10.html
