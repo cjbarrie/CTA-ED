@@ -1,3 +1,13 @@
+getting-started-with-r-at-home
+some-basic-information
+getting-started-in-rstudio
+a-simple-example
+loading-packages
+saving-your-objects-plots-and-scripts
+knowing-where-r-saves-your-documents
+practicing-in-r
+one-final-note
+references
 week-1
 information-retrieval-and-transformation
 week-2
