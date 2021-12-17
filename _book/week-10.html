@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="week-9.html"/>
-
+<link rel="next" href="exercise-1-word-frequency-analysis.html"/>
 <script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.5.1/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -221,6 +221,25 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="10.1" data-path="week-10.html"><a href="week-10.html#information-retrieval-and-transformation-8"><i class="fa fa-check"></i><b>10.1</b> Information retrieval and transformation</a></li>
 </ul></li>
+<li class="chapter" data-level="11" data-path="exercise-1-word-frequency-analysis.html"><a href="exercise-1-word-frequency-analysis.html"><i class="fa fa-check"></i><b>11</b> Exercise 1: Word frequency analysis</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="exercise-1-word-frequency-analysis.html"><a href="exercise-1-word-frequency-analysis.html#introduction"><i class="fa fa-check"></i><b>11.1</b> Introduction</a></li>
+<li class="chapter" data-level="11.2" data-path="exercise-1-word-frequency-analysis.html"><a href="exercise-1-word-frequency-analysis.html#setup"><i class="fa fa-check"></i><b>11.2</b> Setup</a></li>
+<li class="chapter" data-level="11.3" data-path="exercise-1-word-frequency-analysis.html"><a href="exercise-1-word-frequency-analysis.html#load-data-and-packages"><i class="fa fa-check"></i><b>11.3</b> Load data and packages</a></li>
+<li class="chapter" data-level="11.4" data-path="exercise-1-word-frequency-analysis.html"><a href="exercise-1-word-frequency-analysis.html#inspect-and-filter-data"><i class="fa fa-check"></i><b>11.4</b> Inspect and filter data</a></li>
+<li class="chapter" data-level="11.5" data-path="exercise-1-word-frequency-analysis.html"><a href="exercise-1-word-frequency-analysis.html#tidy-the-text"><i class="fa fa-check"></i><b>11.5</b> Tidy the text</a></li>
+<li class="chapter" data-level="11.6" data-path="exercise-1-word-frequency-analysis.html"><a href="exercise-1-word-frequency-analysis.html#regex-sidebar"><i class="fa fa-check"></i><b>11.6</b> Regex sidebar</a>
+<ul>
+<li class="chapter" data-level="11.6.1" data-path="exercise-1-word-frequency-analysis.html"><a href="exercise-1-word-frequency-analysis.html#some-more-regex-resources"><i class="fa fa-check"></i><b>11.6.1</b> Some more regex resources:</a></li>
+</ul></li>
+<li class="chapter" data-level="11.7" data-path="exercise-1-word-frequency-analysis.html"><a href="exercise-1-word-frequency-analysis.html#back-to-the-fringe"><i class="fa fa-check"></i><b>11.7</b> Back to the Fringe</a></li>
+<li class="chapter" data-level="11.8" data-path="exercise-1-word-frequency-analysis.html"><a href="exercise-1-word-frequency-analysis.html#analyze-keywords"><i class="fa fa-check"></i><b>11.8</b> Analyze keywords</a></li>
+<li class="chapter" data-level="11.9" data-path="exercise-1-word-frequency-analysis.html"><a href="exercise-1-word-frequency-analysis.html#compute-aggregate-statistics"><i class="fa fa-check"></i><b>11.9</b> Compute aggregate statistics</a></li>
+<li class="chapter" data-level="11.10" data-path="exercise-1-word-frequency-analysis.html"><a href="exercise-1-word-frequency-analysis.html#plot-time-trends"><i class="fa fa-check"></i><b>11.10</b> Plot time trends</a></li>
+<li class="chapter" data-level="11.11" data-path="exercise-1-word-frequency-analysis.html"><a href="exercise-1-word-frequency-analysis.html#bonus-gender-prediction"><i class="fa fa-check"></i><b>11.11</b> Bonus: gender prediction</a></li>
+<li class="chapter" data-level="11.12" data-path="exercise-1-word-frequency-analysis.html"><a href="exercise-1-word-frequency-analysis.html#exercises"><i class="fa fa-check"></i><b>11.12</b> Exercises</a></li>
+<li class="chapter" data-level="11.13" data-path="exercise-1-word-frequency-analysis.html"><a href="exercise-1-word-frequency-analysis.html#references-1"><i class="fa fa-check"></i><b>11.13</b> References</a></li>
+</ul></li>
 </ul>
 
       </nav>
@@ -255,38 +274,6 @@ div.csl-indent {
 <li></li>
 </ul>
 
-<div id="refs" class="references csl-bib-body hanging-indent">
-<div class="csl-entry">
-DiMaggio, Paul. 2015. <span>“Adapting Computational Text Analysis to Social Science (and Vice Versa).”</span> <em>Big Data &amp; Society</em> 2 (2): 205395171560290. <a href="https://doi.org/10.1177/2053951715602908">https://doi.org/10.1177/2053951715602908</a>.
-</div>
-<div class="csl-entry">
-Gentzkow, Matthew, Bryan Kelly, and Matt Taddy. 2019. <span>“Text as <span>Data</span>.”</span> <em>Journal of Economic Literature</em> 57 (3): 535–74. <a href="https://doi.org/10.1257/jel.20181020">https://doi.org/10.1257/jel.20181020</a>.
-</div>
-<div class="csl-entry">
-Grimmer, Justin, and Brandon M. Stewart. 2013. <span>“Text as <span>Data</span>: <span>The</span> <span>Promise</span> and <span>Pitfalls</span> of <span>Automatic</span> <span>Content</span> <span>Analysis</span> <span>Methods</span> for <span>Political</span> <span>Texts</span>.”</span> <em>Political Analysis</em> 21 (3): 267–97. <a href="https://doi.org/10.1093/pan/mps028">https://doi.org/10.1093/pan/mps028</a>.
-</div>
-<div class="csl-entry">
-Manning, Christopher D, Prabhakar Raghavan, and Hinrich Schtze. 2007. <em>Introduction to <span>Information</span> <span>Retrieval</span></em>. Cambridge: Cambridge University Press.
-</div>
-<div class="csl-entry">
-Martins, Mauricio de Jesus Dias, and Nicolas Baumard. 2020. <span>“The Rise of Prosociality in Fiction Preceded Democratic Revolutions in <span>Early</span> <span>Modern</span> <span>Europe</span>.”</span> <em>Proceedings of the National Academy of Sciences</em> 117 (46): 28684–91. <a href="https://doi.org/10.1073/pnas.2009571117">https://doi.org/10.1073/pnas.2009571117</a>.
-</div>
-<div class="csl-entry">
-Michel, J.-B., Y. K. Shen, A. P. Aiden, A. Veres, M. K. Gray, The Google Books Team, J. P. Pickett, et al. 2011. <span>“Quantitative <span>Analysis</span> of <span>Culture</span> <span>Using</span> <span>Millions</span> of <span>Digitized</span> <span>Books</span>.”</span> <em>Science</em> 331 (6014): 176–82. <a href="https://doi.org/10.1126/science.1199644">https://doi.org/10.1126/science.1199644</a>.
-</div>
-<div class="csl-entry">
-Rozado, David, Musa Al-Gharbi, and Jamin Halberstadt. 2021. <span>“Prevalence of <span>Prejudice</span>-<span>Denoting</span> <span>Words</span> in <span>News</span> <span>Media</span> <span>Discourse</span>: <span>A</span> <span>Chronological</span> <span>Analysis</span>.”</span> <em>Social Science Computer Review</em>, July, 089443932110314. <a href="https://doi.org/10.1177/08944393211031452">https://doi.org/10.1177/08944393211031452</a>.
-</div>
-<div class="csl-entry">
-Silge, Julia, and David Robinson. 2017. <em>Text <span>Mining</span> with <span>R</span>: <span>A</span> <span>Tidy</span> <span>Approach</span></em>. London: O’Reilly.
-</div>
-<div class="csl-entry">
-Wickham, Hadley, and Garrett Grolemund. 2017. <em>R for <span>Data</span> <span>Science</span></em>. London: O’Reilly Media.
-</div>
-<div class="csl-entry">
-Wilkerson, John, and Andreu Casas. 2017. <span>“Large-<span>Scale</span> <span>Computerized</span> <span>Text</span> <span>Analysis</span> in <span>Political</span> <span>Science</span>: <span>Opportunities</span> and <span>Challenges</span>.”</span> <em>Annual Review of Political Science</em> 20 (1): 529–44. <a href="https://doi.org/10.1146/annurev-polisci-052615-025542">https://doi.org/10.1146/annurev-polisci-052615-025542</a>.
-</div>
-</div>
 </div>
 </div>
 <h3>References</h3>
@@ -306,8 +293,8 @@ Rozado, David, Musa Al-Gharbi, and Jamin Halberstadt. 2021. <span>“Prevalence 
           </div>
         </div>
       </div>
-<a href="week-9.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="week-9.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="exercise-1-word-frequency-analysis.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
