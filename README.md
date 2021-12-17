@@ -8,5 +8,5 @@ This will be the main resource we use throughout the ten weeks of the course.
 
 ## Weekly seminar readings and worksheets
 
-1. Introduction: \[[Section](https://raw.githack.com/cjbarrie/CTA-ED/main/_book/index.html)\]
+1. Introduction: \[[Section](https://raw.githack.com/cjbarrie/CTA-ED/main/_book/introduction-to-r.html)\]
 2. Week 1 readings: Information retrieval and transformation \[[Section](https://raw.githack.com/cjbarrie/CTA-ED/main/_book/week-1.html)\]
