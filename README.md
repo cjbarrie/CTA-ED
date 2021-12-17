@@ -4,7 +4,7 @@
 
 This repo contains teaching materials for the ten-week course in "Computational Text Analysis" (PGSP11584), University of Edinburgh. Each chapter contains the readings for that week. The book also includes worksheets with example code for how to conduct some of the text analysis techniques we discuss each week.
 
-This will be the main resource we use throughout the ten weeks of the course. 
+This will be the main resource we use throughout the ten weeks of the course. You can access all of these materials, as well as the course overview by following [this link](https://raw.githack.com/cjbarrie/CTA-ED/main/_book/index.html). 
 
 ## Weekly seminar readings and worksheets
 
