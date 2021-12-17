@@ -4,6 +4,7 @@
 # Whitelist some files
 !.gitignore
 !README.md
+!CTA_banner.png
 
 # Ignore all files named .DS_Store or ending with .log
 **/.DS_Store
@@ -14,10 +15,10 @@
 # "/" is NOT optional when followed by a *
 !_book/
 _book/*
+!_book/index.html
 !_book/week-1.html
 !_book/week-2.html
 !_book/week-3.html
-!_book/week-4.html
 !_book/week-5.html
 !_book/week-6.html
 !_book/week-7.html
