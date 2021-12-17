@@ -1,6 +1,6 @@
 # Week 1
 
-## Information retrieval and transformation
+## Retrieving and analyzing text information
 
 **Required reading**:
 

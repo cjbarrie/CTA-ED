@@ -1,12 +1,12 @@
 # Week 4
 
-## Information retrieval and transformation
+## Scaling and similarity
 
 **Required reading**:
 
-- @michel_quantitative_2011
-- @rozado_prevalence_2021
-- @manning_introduction_2007 [ch.2: [https://nlp.stanford.edu/IR-book/information-retrieval-book.html](https://nlp.stanford.edu/IR-book/information-retrieval-book.html)]
+- @ziblatt_wealth_2020
+- @schoonvelde_liberals_2019
+- @lowe_understanding_2008
 
 **Further reading**:
 
