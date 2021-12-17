@@ -1,7 +1,4 @@
 # CTA-ED
-Repository of material for ten-week course in "Computational Text Analysis"
-
-# MMES-Ox
 
 ![Course banner](CTA_banner.png)
 
