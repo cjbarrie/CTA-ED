@@ -1,10 +1,6 @@
-# Blacklist files/folders in same directory as the .gitignore file
 .Rproj.user/*
 *.Rproj
 .Rhistory
 .RData
 .Ruserdata
 .Rproj.user
-*.Rmd
-**/.DS_Store
-**.log

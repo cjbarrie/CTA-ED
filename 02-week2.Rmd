@@ -1,0 +1,15 @@
+# Week 2
+
+## Word frequency and dictionary techniques
+
+**Required reading**:
+
+- @michel_quantitative_2011
+- @martins_rise_2020
+- @manning_introduction_2007 [chs.2, 3, and 4]: [https://nlp.stanford.edu/IR-book/information-retrieval-book.html](https://nlp.stanford.edu/IR-book/information-retrieval-book.html)]
+
+**Further reading**:
+
+- @rozado_prevalence_2021
+- 
+- 

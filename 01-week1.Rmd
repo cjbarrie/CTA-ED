@@ -1,0 +1,15 @@
+# Week 1
+
+## Information retrieval and transformation
+
+**Required reading**:
+
+- @grimmer_text_2013
+- @gentzkow_text_2019
+- @manning_introduction_2007 [chs.1 and 10]: [https://nlp.stanford.edu/IR-book/information-retrieval-book.html](https://nlp.stanford.edu/IR-book/information-retrieval-book.html)]
+
+**Further reading**:
+
+- @wilkerson_large-scale_2017
+- @dimaggio_adapting_2015
+- 
