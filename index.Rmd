@@ -1,0 +1,34 @@
+--- 
+title: "Computational Text Analysis"
+author: "Christopher Barrie"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+documentclass: book
+bibliography: [book.bib, packages.bib, CTA.bib]
+# url: your book url like https://bookdown.org/yihui/bookdown
+# cover-image: path to the social sharing image like images/cover.jpg
+description: |
+  Repository of material for ten-week course in "Computational Text Analysis" (PGSP11584)
+link-citations: yes
+github-repo: cjbarrie/CTA-ED
+---
+
+# Course overview {.unnumbered}
+
+This course will give students training in the use of computational text analysis techniques. The course will prepare students for dissertation work that uses textual data and will provide hands-on training in the use of the R and Python programming languages. The course will provide a venue for seminar discussion of examples using these methods in the empirical social sciences as well as lectures on the technical and/or statistical dimensions of their application.
+
+We will be using this online book for the ten-week course in "Computational Text Analysis" (PGSP11584). Each chapter contains the readings for that week. The book also includes worksheets with example code for how to conduct some of the text analysis techniques we discuss each week. 
+
+Each week, we will alternately be discussing the substantive and technical dimensions of published research in the empirical social sciences employing text analysis techniques. We will study first the technical aspects of analytical approaches and, second, the substantive dimensions of these applications. This means that, when discussing the readings, we will be able to discuss how satisfactory a given approach is for illuminating the question or topic at hand.
+
+**NOTE**: For the first two weeks, students will complete introductory R exercises. These will be run out of the Research Training Centre, who will be offering introductory R instruction in weeks 1 and 2 of Semesters 1 and 2. These will be formative but provide the requisite basic training in the use of R and RStudio. Lectures will still run in these weeks but there will be no tutorials.
+
+## Assessment {.unnumbered}
+
+## Fortnightly worksheets {.unnumbered}
+
+You will complete **in pairs** a coding assignment.
+
+### Final assessment {.unnumbered}
+
+The final assessmentAssessment will take the form of one major summative assessment. This will be a 4000 word essay on a subject of the studentsÂ¿ choosing (with prior approval by the instructor) using a dataset of their own choosing and applying at least one computational text analysis technique. The students will provide the code they used in reproducible format and will be assessed on both the substantive content of their essay contribution as well as their demonstrated competency in coding and text analysis. 

@@ -1,0 +1,15 @@
+# Week 5
+
+## Information retrieval and transformation
+
+**Required reading**:
+
+- @michel_quantitative_2011
+- @rozado_prevalence_2021
+- @manning_introduction_2007 [ch.2: [https://nlp.stanford.edu/IR-book/information-retrieval-book.html](https://nlp.stanford.edu/IR-book/information-retrieval-book.html)]
+
+**Further reading**:
+
+- 
+- 
+- 
