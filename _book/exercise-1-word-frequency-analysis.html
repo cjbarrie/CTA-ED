@@ -1,266 +1,72 @@
 <!DOCTYPE html>
-<html lang="" xml:lang="">
+<html lang="en">
 <head>
-
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 11 Exercise 1: Word frequency analysis | Computational Text Analysis</title>
-  <meta name="description" content="Repository of material for ten-week course in “Computational Text Analysis” (PGSP11584)" />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
-
-  <meta property="og:title" content="Chapter 11 Exercise 1: Word frequency analysis | Computational Text Analysis" />
-  <meta property="og:type" content="book" />
-  
-  
-  <meta property="og:description" content="Repository of material for ten-week course in “Computational Text Analysis” (PGSP11584)" />
-  <meta name="github-repo" content="cjbarrie/CTA-ED" />
-
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 11 Exercise 1: Word frequency analysis | Computational Text Analysis" />
-  
-  <meta name="twitter:description" content="Repository of material for ten-week course in “Computational Text Analysis” (PGSP11584)" />
-  
-
-<meta name="author" content="Christopher Barrie" />
-
-
-<meta name="date" content="2021-12-17" />
-
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-  
-  
-<link rel="prev" href="week-10.html"/>
-
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
-<script src="libs/jquery-3.5.1/jquery-3.5.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
-<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
-
-
-
-
-
-
-
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
-
-
-<style type="text/css">
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-</style>
-
-<style type="text/css">
-/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}
-</style>
-
-<link rel="stylesheet" href="style.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 11 Exercise 1: Word frequency analysis | Computational Text Analysis</title>
+<meta name="author" content="Christopher Barrie">
+<meta name="description" content="11.1 Introduction In this tutorial, you will learn how to summarise, aggregate, and analyze text in R: How to tokenize and filter text How to clean and preprocess text How to visualize results...">
+<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta property="og:title" content="Chapter 11 Exercise 1: Word frequency analysis | Computational Text Analysis">
+<meta property="og:type" content="book">
+<meta property="og:description" content="11.1 Introduction In this tutorial, you will learn how to summarise, aggregate, and analyze text in R: How to tokenize and filter text How to clean and preprocess text How to visualize results...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 11 Exercise 1: Word frequency analysis | Computational Text Analysis">
+<meta name="twitter:description" content="11.1 Introduction In this tutorial, you will learn how to summarise, aggregate, and analyze text in R: How to tokenize and filter text How to clean and preprocess text How to visualize results...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.5.1/jquery-3.5.1.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.5.3/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.5.3/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.2.4/tabs.js"></script><script src="libs/bs3compat-0.2.4/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS -->
 </head>
+<body data-spy="scroll" data-target="#toc">
 
-<body>
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
 
-
-
-  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
-
-    <div class="book-summary">
-      <nav role="navigation">
-
-<ul class="summary">
-<li><a href="./">Computational Text Analysis</a></li>
-
-<li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Course overview</a>
-<ul>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#assessment"><i class="fa fa-check"></i>Assessment</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#fortnightly-worksheets"><i class="fa fa-check"></i>Fortnightly worksheets</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#fortnightly-flash-talks"><i class="fa fa-check"></i>Fortnightly flash talks</a>
-<ul>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#final-assessment"><i class="fa fa-check"></i>Final assessment</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html"><i class="fa fa-check"></i>Introduction to R</a>
-<ul>
-<li class="chapter" data-level="0.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#getting-started-with-r-at-home"><i class="fa fa-check"></i><b>0.1</b> Getting started with R at home</a></li>
-<li class="chapter" data-level="0.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#some-basic-information"><i class="fa fa-check"></i><b>0.2</b> Some basic information</a></li>
-<li class="chapter" data-level="0.3" data-path="introduction-to-r.html"><a href="introduction-to-r.html#getting-started-in-rstudio"><i class="fa fa-check"></i><b>0.3</b> Getting Started in RStudio</a></li>
-<li class="chapter" data-level="0.4" data-path="introduction-to-r.html"><a href="introduction-to-r.html#a-simple-example"><i class="fa fa-check"></i><b>0.4</b> A simple example</a></li>
-<li class="chapter" data-level="0.5" data-path="introduction-to-r.html"><a href="introduction-to-r.html#loading-packages"><i class="fa fa-check"></i><b>0.5</b> Loading packages</a></li>
-<li class="chapter" data-level="0.6" data-path="introduction-to-r.html"><a href="introduction-to-r.html#saving-your-objects-plots-and-scripts"><i class="fa fa-check"></i><b>0.6</b> Saving your objects, plots and scripts</a></li>
-<li class="chapter" data-level="0.7" data-path="introduction-to-r.html"><a href="introduction-to-r.html#knowing-where-r-saves-your-documents"><i class="fa fa-check"></i><b>0.7</b> Knowing where R saves your documents</a></li>
-<li class="chapter" data-level="0.8" data-path="introduction-to-r.html"><a href="introduction-to-r.html#practicing-in-r"><i class="fa fa-check"></i><b>0.8</b> Practicing in R</a></li>
-<li class="chapter" data-level="0.9" data-path="introduction-to-r.html"><a href="introduction-to-r.html#one-final-note"><i class="fa fa-check"></i><b>0.9</b> One final note</a></li>
-<li class="chapter" data-level="0.10" data-path="introduction-to-r.html"><a href="introduction-to-r.html#references"><i class="fa fa-check"></i><b>0.10</b> References</a></li>
-</ul></li>
-<li class="chapter" data-level="1" data-path="week-1.html"><a href="week-1.html"><i class="fa fa-check"></i><b>1</b> Week 1</a>
-<ul>
-<li class="chapter" data-level="1.1" data-path="week-1.html"><a href="week-1.html#information-retrieval-and-transformation"><i class="fa fa-check"></i><b>1.1</b> Information retrieval and transformation</a></li>
-</ul></li>
-<li class="chapter" data-level="2" data-path="week-2.html"><a href="week-2.html"><i class="fa fa-check"></i><b>2</b> Week 2</a>
-<ul>
-<li class="chapter" data-level="2.1" data-path="week-2.html"><a href="week-2.html#word-frequency-and-dictionary-techniques"><i class="fa fa-check"></i><b>2.1</b> Word frequency and dictionary techniques</a></li>
-</ul></li>
-<li class="chapter" data-level="3" data-path="week-3.html"><a href="week-3.html"><i class="fa fa-check"></i><b>3</b> Week 3</a>
-<ul>
-<li class="chapter" data-level="3.1" data-path="week-3.html"><a href="week-3.html#information-retrieval-and-transformation-1"><i class="fa fa-check"></i><b>3.1</b> Information retrieval and transformation</a></li>
-</ul></li>
-<li class="chapter" data-level="4" data-path="week-4.html"><a href="week-4.html"><i class="fa fa-check"></i><b>4</b> Week 4</a>
-<ul>
-<li class="chapter" data-level="4.1" data-path="week-4.html"><a href="week-4.html#information-retrieval-and-transformation-2"><i class="fa fa-check"></i><b>4.1</b> Information retrieval and transformation</a></li>
-</ul></li>
-<li class="chapter" data-level="5" data-path="week-5.html"><a href="week-5.html"><i class="fa fa-check"></i><b>5</b> Week 5</a>
-<ul>
-<li class="chapter" data-level="5.1" data-path="week-5.html"><a href="week-5.html#information-retrieval-and-transformation-3"><i class="fa fa-check"></i><b>5.1</b> Information retrieval and transformation</a></li>
-</ul></li>
-<li class="chapter" data-level="6" data-path="week-6.html"><a href="week-6.html"><i class="fa fa-check"></i><b>6</b> Week 6</a>
-<ul>
-<li class="chapter" data-level="6.1" data-path="week-6.html"><a href="week-6.html#information-retrieval-and-transformation-4"><i class="fa fa-check"></i><b>6.1</b> Information retrieval and transformation</a></li>
-</ul></li>
-<li class="chapter" data-level="7" data-path="week-7.html"><a href="week-7.html"><i class="fa fa-check"></i><b>7</b> Week 7</a>
-<ul>
-<li class="chapter" data-level="7.1" data-path="week-7.html"><a href="week-7.html#information-retrieval-and-transformation-5"><i class="fa fa-check"></i><b>7.1</b> Information retrieval and transformation</a></li>
-</ul></li>
-<li class="chapter" data-level="8" data-path="week-8.html"><a href="week-8.html"><i class="fa fa-check"></i><b>8</b> Week 8</a>
-<ul>
-<li class="chapter" data-level="8.1" data-path="week-8.html"><a href="week-8.html#information-retrieval-and-transformation-6"><i class="fa fa-check"></i><b>8.1</b> Information retrieval and transformation</a></li>
-</ul></li>
-<li class="chapter" data-level="9" data-path="week-9.html"><a href="week-9.html"><i class="fa fa-check"></i><b>9</b> Week 9</a>
-<ul>
-<li class="chapter" data-level="9.1" data-path="week-9.html"><a href="week-9.html#information-retrieval-and-transformation-7"><i class="fa fa-check"></i><b>9.1</b> Information retrieval and transformation</a></li>
-</ul></li>
-<li class="chapter" data-level="10" data-path="week-10.html"><a href="week-10.html"><i class="fa fa-check"></i><b>10</b> Week 10</a>
-<ul>
-<li class="chapter" data-level="10.1" data-path="week-10.html"><a href="week-10.html#information-retrieval-and-transformation-8"><i class="fa fa-check"></i><b>10.1</b> Information retrieval and transformation</a></li>
-</ul></li>
-<li class="chapter" data-level="11" data-path="exercise-1-word-frequency-analysis.html"><a href="exercise-1-word-frequency-analysis.html"><i class="fa fa-check"></i><b>11</b> Exercise 1: Word frequency analysis</a>
-<ul>
-<li class="chapter" data-level="11.1" data-path="exercise-1-word-frequency-analysis.html"><a href="exercise-1-word-frequency-analysis.html#introduction"><i class="fa fa-check"></i><b>11.1</b> Introduction</a></li>
-<li class="chapter" data-level="11.2" data-path="exercise-1-word-frequency-analysis.html"><a href="exercise-1-word-frequency-analysis.html#setup"><i class="fa fa-check"></i><b>11.2</b> Setup</a></li>
-<li class="chapter" data-level="11.3" data-path="exercise-1-word-frequency-analysis.html"><a href="exercise-1-word-frequency-analysis.html#load-data-and-packages"><i class="fa fa-check"></i><b>11.3</b> Load data and packages</a></li>
-<li class="chapter" data-level="11.4" data-path="exercise-1-word-frequency-analysis.html"><a href="exercise-1-word-frequency-analysis.html#inspect-and-filter-data"><i class="fa fa-check"></i><b>11.4</b> Inspect and filter data</a></li>
-<li class="chapter" data-level="11.5" data-path="exercise-1-word-frequency-analysis.html"><a href="exercise-1-word-frequency-analysis.html#tidy-the-text"><i class="fa fa-check"></i><b>11.5</b> Tidy the text</a></li>
-<li class="chapter" data-level="11.6" data-path="exercise-1-word-frequency-analysis.html"><a href="exercise-1-word-frequency-analysis.html#regex-sidebar"><i class="fa fa-check"></i><b>11.6</b> Regex sidebar</a>
-<ul>
-<li class="chapter" data-level="11.6.1" data-path="exercise-1-word-frequency-analysis.html"><a href="exercise-1-word-frequency-analysis.html#some-more-regex-resources"><i class="fa fa-check"></i><b>11.6.1</b> Some more regex resources:</a></li>
-</ul></li>
-<li class="chapter" data-level="11.7" data-path="exercise-1-word-frequency-analysis.html"><a href="exercise-1-word-frequency-analysis.html#back-to-the-fringe"><i class="fa fa-check"></i><b>11.7</b> Back to the Fringe</a></li>
-<li class="chapter" data-level="11.8" data-path="exercise-1-word-frequency-analysis.html"><a href="exercise-1-word-frequency-analysis.html#analyze-keywords"><i class="fa fa-check"></i><b>11.8</b> Analyze keywords</a></li>
-<li class="chapter" data-level="11.9" data-path="exercise-1-word-frequency-analysis.html"><a href="exercise-1-word-frequency-analysis.html#compute-aggregate-statistics"><i class="fa fa-check"></i><b>11.9</b> Compute aggregate statistics</a></li>
-<li class="chapter" data-level="11.10" data-path="exercise-1-word-frequency-analysis.html"><a href="exercise-1-word-frequency-analysis.html#plot-time-trends"><i class="fa fa-check"></i><b>11.10</b> Plot time trends</a></li>
-<li class="chapter" data-level="11.11" data-path="exercise-1-word-frequency-analysis.html"><a href="exercise-1-word-frequency-analysis.html#bonus-gender-prediction"><i class="fa fa-check"></i><b>11.11</b> Bonus: gender prediction</a></li>
-<li class="chapter" data-level="11.12" data-path="exercise-1-word-frequency-analysis.html"><a href="exercise-1-word-frequency-analysis.html#exercises"><i class="fa fa-check"></i><b>11.12</b> Exercises</a></li>
-<li class="chapter" data-level="11.13" data-path="exercise-1-word-frequency-analysis.html"><a href="exercise-1-word-frequency-analysis.html#references-1"><i class="fa fa-check"></i><b>11.13</b> References</a></li>
-</ul></li>
-</ul>
-
-      </nav>
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Computational Text Analysis</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
     </div>
 
-    <div class="book-body">
-      <div class="body-inner">
-        <div class="book-header" role="navigation">
-          <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Computational Text Analysis</a>
-          </h1>
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Course overview</a></li>
+<li><a class="" href="introduction-to-r.html">Introduction to R</a></li>
+<li><a class="" href="week-1.html"><span class="header-section-number">1</span> Week 1</a></li>
+<li><a class="" href="week-2.html"><span class="header-section-number">2</span> Week 2</a></li>
+<li><a class="" href="week-3.html"><span class="header-section-number">3</span> Week 3</a></li>
+<li><a class="" href="week-4.html"><span class="header-section-number">4</span> Week 4</a></li>
+<li><a class="" href="week-5.html"><span class="header-section-number">5</span> Week 5</a></li>
+<li><a class="" href="week-6.html"><span class="header-section-number">6</span> Week 6</a></li>
+<li><a class="" href="week-7.html"><span class="header-section-number">7</span> Week 7</a></li>
+<li><a class="" href="week-8.html"><span class="header-section-number">8</span> Week 8</a></li>
+<li><a class="" href="week-9.html"><span class="header-section-number">9</span> Week 9</a></li>
+<li><a class="" href="week-10.html"><span class="header-section-number">10</span> Week 10</a></li>
+<li><a class="active" href="exercise-1-word-frequency-analysis.html"><span class="header-section-number">11</span> Exercise 1: Word frequency analysis</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/cjbarrie/CTA-ED">View book source <i class="fab fa-github"></i></a></p>
         </div>
-
-        <div class="page-wrapper" tabindex="-1" role="main">
-          <div class="page-inner">
-
-            <section class="normal" id="section-">
-<div id="exercise-1-word-frequency-analysis" class="section level1" number="11">
-<h1><span class="header-section-number">Chapter 11</span> Exercise 1: Word frequency analysis</h1>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="exercise-1-word-frequency-analysis" class="section level1" number="11">
+<h1>
+<span class="header-section-number">11</span> Exercise 1: Word frequency analysis<a class="anchor" aria-label="anchor" href="#exercise-1-word-frequency-analysis"><i class="fas fa-link"></i></a>
+</h1>
 <div id="introduction" class="section level2" number="11.1">
-<h2><span class="header-section-number">11.1</span> Introduction</h2>
+<h2>
+<span class="header-section-number">11.1</span> Introduction<a class="anchor" aria-label="anchor" href="#introduction"><i class="fas fa-link"></i></a>
+</h2>
 <p>In this tutorial, you will learn how to summarise, aggregate, and analyze text in R:</p>
 <ul>
 <li>How to tokenize and filter text</li>
@@ -270,27 +76,32 @@ div.csl-indent {
 </ul>
 </div>
 <div id="setup" class="section level2" number="11.2">
-<h2><span class="header-section-number">11.2</span> Setup</h2>
+<h2>
+<span class="header-section-number">11.2</span> Setup<a class="anchor" aria-label="anchor" href="#setup"><i class="fas fa-link"></i></a>
+</h2>
 <p>To practice these skills, we will use a dataset that I have already collected from the Edinburgh Fringe Festival website.</p>
 <p>You can try this out yourself too: to obtain these data, you must first obtain an API key. Instructions on how to do this are available at the <a href="https://api.edinburghfestivalcity.com/documentation/fringe_approval">Edinburgh Fringe API page</a>:</p>
 <div class="figure">
-<img src="data/wordfreq/fringeapi.png" alt="" />
-<p class="caption">Alt Text</p>
+<img src="data/wordfreq/fringeapi.png" alt=""><p class="caption">Alt Text</p>
 </div>
 </div>
 <div id="load-data-and-packages" class="section level2" number="11.3">
-<h2><span class="header-section-number">11.3</span> Load data and packages</h2>
+<h2>
+<span class="header-section-number">11.3</span> Load data and packages<a class="anchor" aria-label="anchor" href="#load-data-and-packages"><i class="fas fa-link"></i></a>
+</h2>
 <p>Before proceeding, we’ll load the remaining packages we will need for this tutorial.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="exercise-1-word-frequency-analysis.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) <span class="co"># loads dplyr, ggplot2, and others</span></span>
-<span id="cb16-2"><a href="exercise-1-word-frequency-analysis.html#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidytext) <span class="co"># includes set of functions useful for manipulating text</span></span>
-<span id="cb16-3"><a href="exercise-1-word-frequency-analysis.html#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggthemes) <span class="co"># includes a set of themes to make your visualizations look nice!</span></span>
-<span id="cb16-4"><a href="exercise-1-word-frequency-analysis.html#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr) <span class="co"># more informative and easy way to import data</span></span>
-<span id="cb16-5"><a href="exercise-1-word-frequency-analysis.html#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(babynames) <span class="co">#for gender predictions</span></span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span> <span class="co"># loads dplyr, ggplot2, and others</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/juliasilge/tidytext">tidytext</a></span><span class="op">)</span> <span class="co"># includes set of functions useful for manipulating text</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jrnold/ggthemes">ggthemes</a></span><span class="op">)</span> <span class="co"># includes a set of themes to make your visualizations look nice!</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readr.tidyverse.org">readr</a></span><span class="op">)</span> <span class="co"># more informative and easy way to import data</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://github.com/hadley/babynames">babynames</a></span><span class="op">)</span> <span class="co">#for gender predictions</span></code></pre></div>
 <p>For this tutorial, we will be using data that I have pre-cleaned and provided in .csv format. The data come from the Edinburgh Book Festival API, and provide data for every event that has taken place at the Edinburgh Book Festival, which runs every year in the month of August, for nine years: 2012-2020. There are many questions we might ask of these data. In this tutorial, we will investigate the contents of each event, and the speakers at each event, to determine if there are any trends in gender representation over time.</p>
-<p>The first task, then, is to read in these data. We can do this with the <code>read_csv()</code> function.</p>
-<p>The <code>read_csv()</code> function takes the .csv file and loads it into the working environment as a data frame object called “edbfdata.” We can call this object anything though. Try changing the name of the object before the &lt;- arrow. Note that R does not allow names with spaces in, however. It is also not a good idea to name the object something beginning with numbers, as this means you have to call the object within ` marks.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="exercise-1-word-frequency-analysis.html#cb17-1" aria-hidden="true" tabindex="-1"></a>edbfdata <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/wordfreq/edbookfestall.csv&quot;</span>)</span></code></pre></div>
-<pre><code>## Warning: Missing column names filled in: &#39;X1&#39; [1]</code></pre>
+<p>The first task, then, is to read in these data. We can do this with the <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code> function.</p>
+<p>The <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code> function takes the .csv file and loads it into the working environment as a data frame object called “edbfdata.” We can call this object anything though. Try changing the name of the object before the &lt;- arrow. Note that R does not allow names with spaces in, however. It is also not a good idea to name the object something beginning with numbers, as this means you have to call the object within ` marks.</p>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">edbfdata</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/wordfreq/edbookfestall.csv"</span><span class="op">)</span></code></pre></div>
+<pre><code>## Warning: Missing column names filled in: 'X1' [1]</code></pre>
 <pre><code>## 
 ## ── Column specification ───────────────────────────────────────────────────────────────────────
 ## cols(
@@ -308,161 +119,208 @@ div.csl-indent {
 ##   ID = col_character()
 ## )</code></pre>
 <p>If you’re working on this document from your own computer (“locally”) you can download the Edinburgh Fringe data in the following way:</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="exercise-1-word-frequency-analysis.html#cb20-1" aria-hidden="true" tabindex="-1"></a>edbfdata <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/cjbarrie/RDL-Ed/main/02-text-as-data/data/edbookfestall.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">edbfdata</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/cjbarrie/RDL-Ed/main/02-text-as-data/data/edbookfestall.csv"</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="inspect-and-filter-data" class="section level2" number="11.4">
-<h2><span class="header-section-number">11.4</span> Inspect and filter data</h2>
+<h2>
+<span class="header-section-number">11.4</span> Inspect and filter data<a class="anchor" aria-label="anchor" href="#inspect-and-filter-data"><i class="fas fa-link"></i></a>
+</h2>
 <p>Our next job is to cut down this dataset to size, including only those columns that we need. But first we can inspect it to see what the existing column names are, and how each variable is coded. To do this we can first call:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="exercise-1-word-frequency-analysis.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(edbfdata)</span></code></pre></div>
-<pre><code>##  [1] &quot;X1&quot;           &quot;festival_id&quot;  &quot;title&quot;        &quot;sub_title&quot;    &quot;artist&quot;       &quot;year&quot;        
-##  [7] &quot;description&quot;  &quot;genre&quot;        &quot;latitude&quot;     &quot;longitude&quot;    &quot;age_category&quot; &quot;ID&quot;</code></pre>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">edbfdata</span><span class="op">)</span></code></pre></div>
+<pre><code>##  [1] "X1"           "festival_id"  "title"        "sub_title"    "artist"       "year"        
+##  [7] "description"  "genre"        "latitude"     "longitude"    "age_category" "ID"</code></pre>
 <p>And then:</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="exercise-1-word-frequency-analysis.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(edbfdata)</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">edbfdata</span><span class="op">)</span></code></pre></div>
 <pre><code>## Rows: 5,938
 ## Columns: 12
 ## $ X1           &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 2…
-## $ festival_id  &lt;chr&gt; &quot;book&quot;, &quot;book&quot;, &quot;book&quot;, &quot;book&quot;, &quot;book&quot;, &quot;book&quot;, &quot;book&quot;, &quot;book&quot;, &quot;book&quot;, …
-## $ title        &lt;chr&gt; &quot;Denise Mina&quot;, &quot;Alex T Smith&quot;, &quot;Challenging Expectations with Peter Cock…
-## $ sub_title    &lt;chr&gt; &quot;HARD MEN AND CARDBOARD GANGSTERS&quot;, NA, NA, &quot;WHAT CAUSED THE 2011 REVOLU…
-## $ artist       &lt;chr&gt; &quot;Denise Mina&quot;, &quot;Alex T Smith&quot;, &quot;Peter Cocks&quot;, &quot;Paul Mason&quot;, &quot;Chris d&#39;Lac…
+## $ festival_id  &lt;chr&gt; "book", "book", "book", "book", "book", "book", "book", "book", "book", …
+## $ title        &lt;chr&gt; "Denise Mina", "Alex T Smith", "Challenging Expectations with Peter Cock…
+## $ sub_title    &lt;chr&gt; "HARD MEN AND CARDBOARD GANGSTERS", NA, NA, "WHAT CAUSED THE 2011 REVOLU…
+## $ artist       &lt;chr&gt; "Denise Mina", "Alex T Smith", "Peter Cocks", "Paul Mason", "Chris d'Lac…
 ## $ year         &lt;dbl&gt; 2012, 2012, 2012, 2012, 2012, 2012, 2012, 2012, 2012, 2012, 2012, 2012, …
-## $ description  &lt;chr&gt; &quot;&lt;p&gt;\n\tAs the grande dame of Scottish crime fiction, Denise Mina places…
-## $ genre        &lt;chr&gt; &quot;Literature&quot;, &quot;Children&quot;, &quot;Children&quot;, &quot;Literature&quot;, &quot;Children&quot;, &quot;Childre…
+## $ description  &lt;chr&gt; "&lt;p&gt;\n\tAs the grande dame of Scottish crime fiction, Denise Mina places…
+## $ genre        &lt;chr&gt; "Literature", "Children", "Children", "Literature", "Children", "Childre…
 ## $ latitude     &lt;dbl&gt; 55.9519, 55.9519, 55.9519, 55.9519, 55.9519, 55.9519, 55.9519, 55.9519, …
 ## $ longitude    &lt;dbl&gt; -3.206913, -3.206913, -3.206913, -3.206913, -3.206913, -3.206913, -3.206…
-## $ age_category &lt;chr&gt; NA, &quot;AGE 4 - 7&quot;, &quot;AGE 11 - 14&quot;, NA, &quot;AGE 10 - 14&quot;, &quot;AGE 6 - 10&quot;, &quot;AGE 6 …
-## $ ID           &lt;chr&gt; &quot;Denise Mina2012&quot;, &quot;Alex T Smith2012&quot;, &quot;Peter Cocks2012&quot;, &quot;Paul Mason201…</code></pre>
+## $ age_category &lt;chr&gt; NA, "AGE 4 - 7", "AGE 11 - 14", NA, "AGE 10 - 14", "AGE 6 - 10", "AGE 6 …
+## $ ID           &lt;chr&gt; "Denise Mina2012", "Alex T Smith2012", "Peter Cocks2012", "Paul Mason201…</code></pre>
 <p>We can see that the description of each event is included in a column named “description” and the year of that event as “year.” So for now we’ll just keep these two. Remember: we’re interested in this tutorial firstly in the representation of gender and feminism in forms of cultural production given a platform at the Edinburgh International Book Festival. Given this, we are first and foremost interested in the reported content of each artist’s event.</p>
 <p>We use pipe <code>%&gt;%</code> functions in the tidyverse package to quickly and efficiently select the columns we want from the edbfdata data.frame object. We pass this data to a new data.frame object, which we call “evdes.”</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="exercise-1-word-frequency-analysis.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get simplified dataset with only event contents and year</span></span>
-<span id="cb25-2"><a href="exercise-1-word-frequency-analysis.html#cb25-2" aria-hidden="true" tabindex="-1"></a>evdes <span class="ot">&lt;-</span> edbfdata <span class="sc">%&gt;%</span></span>
-<span id="cb25-3"><a href="exercise-1-word-frequency-analysis.html#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(description, year)</span>
-<span id="cb25-4"><a href="exercise-1-word-frequency-analysis.html#cb25-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-5"><a href="exercise-1-word-frequency-analysis.html#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(evdes)</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># get simplified dataset with only event contents and year</span>
+<span class="va">evdes</span> <span class="op">&lt;-</span> <span class="va">edbfdata</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">description</span>, <span class="va">year</span><span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">evdes</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 2
 ##   description                                                                              year
 ##   &lt;chr&gt;                                                                                   &lt;dbl&gt;
-## 1 &quot;&lt;p&gt;\n\tAs the grande dame of Scottish crime fiction, Denise Mina places a deep unders…  2012
-## 2 &quot;&lt;p&gt;\n\tWhen Alex T Smith was a little boy he wanted to be a chef, a rabbit or a child…  2012
-## 3 &quot;&lt;p&gt;\n\tPeter Cocks is known for his fantasy series Triskellion written with Mark Bill…  2012
-## 4 &quot;&lt;p&gt;\n\tTwo books by influential journalists are among the first to look at the factor…  2012
-## 5 &quot;&lt;p&gt;\n\tChris d&amp;rsquo;Lacey tells you all about The Fire Ascending, the next exciting …  2012
-## 6 &quot;&lt;p&gt;\n\tIt&amp;rsquo;s time for the honourable, feisty and courageous young hero, Sir Char…  2012</code></pre>
+## 1 "&lt;p&gt;\n\tAs the grande dame of Scottish crime fiction, Denise Mina places a deep unders…  2012
+## 2 "&lt;p&gt;\n\tWhen Alex T Smith was a little boy he wanted to be a chef, a rabbit or a child…  2012
+## 3 "&lt;p&gt;\n\tPeter Cocks is known for his fantasy series Triskellion written with Mark Bill…  2012
+## 4 "&lt;p&gt;\n\tTwo books by influential journalists are among the first to look at the factor…  2012
+## 5 "&lt;p&gt;\n\tChris d&amp;rsquo;Lacey tells you all about The Fire Ascending, the next exciting …  2012
+## 6 "&lt;p&gt;\n\tIt&amp;rsquo;s time for the honourable, feisty and courageous young hero, Sir Char…  2012</code></pre>
 <p>And let’s take a quick look at how many events there were over time at the festival. To do this, we first calculate the number of individual events (row observations) by year (column variable).</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="exercise-1-word-frequency-analysis.html#cb27-1" aria-hidden="true" tabindex="-1"></a>evtsperyr <span class="ot">&lt;-</span> evdes <span class="sc">%&gt;%</span></span>
-<span id="cb27-2"><a href="exercise-1-word-frequency-analysis.html#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">obs=</span><span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb27-3"><a href="exercise-1-word-frequency-analysis.html#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year) <span class="sc">%&gt;%</span></span>
-<span id="cb27-4"><a href="exercise-1-word-frequency-analysis.html#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">sum_events =</span> <span class="fu">sum</span>(obs))</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">evtsperyr</span> <span class="op">&lt;-</span> <span class="va">evdes</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>obs<span class="op">=</span><span class="fl">1</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">year</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>sum_events <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">obs</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>And then we can plot this using ggplot!</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="exercise-1-word-frequency-analysis.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(evtsperyr) <span class="sc">+</span></span>
-<span id="cb28-2"><a href="exercise-1-word-frequency-analysis.html#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(year, sum_events)) <span class="sc">+</span></span>
-<span id="cb28-3"><a href="exercise-1-word-frequency-analysis.html#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_tufte</span>(<span class="at">base_family =</span> <span class="st">&quot;Helvetica&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb28-4"><a href="exercise-1-word-frequency-analysis.html#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>), <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="cn">NA</span>))</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">evtsperyr</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">year</span>, <span class="va">sum_events</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_tufte.html">theme_tufte</a></span><span class="op">(</span>base_family <span class="op">=</span> <span class="st">"Helvetica"</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>expand <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span>, limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="cn">NA</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-20-1.png" width="672"></div>
 <p>Perhaps unsurprisingly, in the context of the pandemic, the number of recorded bookings for the 2020 Festival is drastically reduced.</p>
 </div>
 <div id="tidy-the-text" class="section level2" number="11.5">
-<h2><span class="header-section-number">11.5</span> Tidy the text</h2>
+<h2>
+<span class="header-section-number">11.5</span> Tidy the text<a class="anchor" aria-label="anchor" href="#tidy-the-text"><i class="fas fa-link"></i></a>
+</h2>
 <p>Given that these data were obtained from an API that outputs data originally in HTML format, some of the text still contains some HTML and PHP encodings for e.g. bold font or paragraphs. We’ll need to get rid of this, as well as other punctuation before analyzing these data.</p>
 <p>The below set of commands takes the event descriptions, extracts individual words, and counts the number of times they appear in each of the years covered by our book festival data.</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="exercise-1-word-frequency-analysis.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co">#get year and word for every word and date pair in the dataset</span></span>
-<span id="cb29-2"><a href="exercise-1-word-frequency-analysis.html#cb29-2" aria-hidden="true" tabindex="-1"></a>tidy_des <span class="ot">&lt;-</span> evdes <span class="sc">%&gt;%</span> </span>
-<span id="cb29-3"><a href="exercise-1-word-frequency-analysis.html#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">desc =</span> <span class="fu">tolower</span>(description)) <span class="sc">%&gt;%</span></span>
-<span id="cb29-4"><a href="exercise-1-word-frequency-analysis.html#cb29-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_tokens</span>(word, desc) <span class="sc">%&gt;%</span></span>
-<span id="cb29-5"><a href="exercise-1-word-frequency-analysis.html#cb29-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(word, <span class="st">&quot;[a-z]&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#get year and word for every word and date pair in the dataset</span>
+<span class="va">tidy_des</span> <span class="op">&lt;-</span> <span class="va">evdes</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>desc <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/chartr.html">tolower</a></span><span class="op">(</span><span class="va">description</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://rdrr.io/pkg/tidytext/man/unnest_tokens.html">unnest_tokens</a></span><span class="op">(</span><span class="va">word</span>, <span class="va">desc</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="va">word</span>, <span class="st">"[a-z]"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="regex-sidebar" class="section level2" number="11.6">
-<h2><span class="header-section-number">11.6</span> Regex sidebar</h2>
-<p>You’ll notice that in the parentheses after <code>str_detect()</code> we have the string “[a-z].” This is called a <strong>character class</strong> and these use square brackets like <code>[]</code>.</p>
+<h2>
+<span class="header-section-number">11.6</span> Regex sidebar<a class="anchor" aria-label="anchor" href="#regex-sidebar"><i class="fas fa-link"></i></a>
+</h2>
+<p>You’ll notice that in the parentheses after <code><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect()</a></code> we have the string “[a-z].” This is called a <strong>character class</strong> and these use square brackets like <code>[]</code>.</p>
 <p>Other character classes include, as helpfully listed in this <a href="https://cran.r-project.org/web/packages/stringr/vignettes/regular-expressions.html">vignette</a> for the <tt>stringr</tt> package. What follows is adapted from these materials.</p>
 <ul>
-<li><code>[abc]</code>: matches a, b, or c.</li>
-<li><code>[a-z]</code>: matches every character between a and z
+<li>
+<code>[abc]</code>: matches a, b, or c.</li>
+<li>
+<code>[a-z]</code>: matches every character between a and z
 (in Unicode code point order).</li>
-<li><code>[^abc]</code>: matches anything except a, b, or c.</li>
-<li><code>[\^\-]</code>: matches <code>^</code> or <code>-</code>.</li>
+<li>
+<code>[^abc]</code>: matches anything except a, b, or c.</li>
+<li>
+<code>[\^\-]</code>: matches <code>^</code> or <code>-</code>.</li>
 </ul>
 <p>Several other patterns match multiple characters. These include:</p>
 <ul>
-<li><code>\d</code>: matches any digit; the opposite of this is <code>\D</code>, which matches any character that
+<li>
+<code>\d</code>: matches any digit; the opposite of this is <code>\D</code>, which matches any character that
 is not a decimal digit.</li>
 </ul>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="exercise-1-word-frequency-analysis.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract_all</span>(<span class="st">&quot;1 + 2 = 3&quot;</span>, <span class="st">&quot;</span><span class="sc">\\</span><span class="st">d+&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_extract.html">str_extract_all</a></span><span class="op">(</span><span class="st">"1 + 2 = 3"</span>, <span class="st">"\\d+"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [[1]]
-## [1] &quot;1&quot; &quot;2&quot; &quot;3&quot;</code></pre>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="exercise-1-word-frequency-analysis.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract_all</span>(<span class="st">&quot;1 + 2 = 3&quot;</span>, <span class="st">&quot;</span><span class="sc">\\</span><span class="st">D+&quot;</span>)</span></code></pre></div>
+## [1] "1" "2" "3"</code></pre>
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_extract.html">str_extract_all</a></span><span class="op">(</span><span class="st">"1 + 2 = 3"</span>, <span class="st">"\\D+"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [[1]]
-## [1] &quot; + &quot; &quot; = &quot;</code></pre>
+## [1] " + " " = "</code></pre>
 <ul>
-<li><code>\s</code>: matches any whitespace; its opposite is <code>\S</code></li>
+<li>
+<code>\s</code>: matches any whitespace; its opposite is <code>\S</code>
+</li>
 </ul>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="exercise-1-word-frequency-analysis.html#cb34-1" aria-hidden="true" tabindex="-1"></a>(text <span class="ot">&lt;-</span> <span class="st">&quot;Some  </span><span class="sc">\t</span><span class="st"> badly</span><span class="sc">\n\t\t</span><span class="st">spaced </span><span class="sc">\f</span><span class="st"> text&quot;</span>)</span></code></pre></div>
-<pre><code>## [1] &quot;Some  \t badly\n\t\tspaced \f text&quot;</code></pre>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="exercise-1-word-frequency-analysis.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_replace_all</span>(text, <span class="st">&quot;</span><span class="sc">\\</span><span class="st">s+&quot;</span>, <span class="st">&quot; &quot;</span>)</span></code></pre></div>
-<pre><code>## [1] &quot;Some badly spaced text&quot;</code></pre>
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="op">(</span><span class="va">text</span> <span class="op">&lt;-</span> <span class="st">"Some  \t badly\n\t\tspaced \f text"</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] "Some  \t badly\n\t\tspaced \f text"</code></pre>
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_replace.html">str_replace_all</a></span><span class="op">(</span><span class="va">text</span>, <span class="st">"\\s+"</span>, <span class="st">" "</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] "Some badly spaced text"</code></pre>
 <ul>
-<li><code>^</code>: matches start of the string</li>
+<li>
+<code>^</code>: matches start of the string</li>
 </ul>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="exercise-1-word-frequency-analysis.html#cb38-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;apple&quot;</span>, <span class="st">&quot;banana&quot;</span>, <span class="st">&quot;pear&quot;</span>)</span>
-<span id="cb38-2"><a href="exercise-1-word-frequency-analysis.html#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(x, <span class="st">&quot;^a&quot;</span>)</span></code></pre></div>
-<pre><code>## [1] &quot;a&quot; NA  NA</code></pre>
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"apple"</span>, <span class="st">"banana"</span>, <span class="st">"pear"</span><span class="op">)</span>
+<span class="fu"><a href="https://stringr.tidyverse.org/reference/str_extract.html">str_extract</a></span><span class="op">(</span><span class="va">x</span>, <span class="st">"^a"</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] "a" NA  NA</code></pre>
 <ul>
-<li><code>$</code>: matches end of the string</li>
+<li>
+<code>$</code>: matches end of the string</li>
 </ul>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="exercise-1-word-frequency-analysis.html#cb40-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;apple&quot;</span>, <span class="st">&quot;banana&quot;</span>, <span class="st">&quot;pear&quot;</span>)</span>
-<span id="cb40-2"><a href="exercise-1-word-frequency-analysis.html#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(x, <span class="st">&quot;^a$&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"apple"</span>, <span class="st">"banana"</span>, <span class="st">"pear"</span><span class="op">)</span>
+<span class="fu"><a href="https://stringr.tidyverse.org/reference/str_extract.html">str_extract</a></span><span class="op">(</span><span class="va">x</span>, <span class="st">"^a$"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] NA NA NA</code></pre>
 <ul>
-<li><code>^</code> then <code>$</code>: exact string match</li>
+<li>
+<code>^</code> then <code>$</code>: exact string match</li>
 </ul>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="exercise-1-word-frequency-analysis.html#cb42-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;apple&quot;</span>, <span class="st">&quot;banana&quot;</span>, <span class="st">&quot;pear&quot;</span>)</span>
-<span id="cb42-2"><a href="exercise-1-word-frequency-analysis.html#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(x, <span class="st">&quot;^apple$&quot;</span>)</span></code></pre></div>
-<pre><code>## [1] &quot;apple&quot; NA      NA</code></pre>
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"apple"</span>, <span class="st">"banana"</span>, <span class="st">"pear"</span><span class="op">)</span>
+<span class="fu"><a href="https://stringr.tidyverse.org/reference/str_extract.html">str_extract</a></span><span class="op">(</span><span class="va">x</span>, <span class="st">"^apple$"</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] "apple" NA      NA</code></pre>
 <p>Hold up: what do the plus signs etc. mean?</p>
 <ul>
-<li><code>+</code>: 1 or more.</li>
-<li><code>*</code>: 0 or more.</li>
-<li><code>?</code>: 0 or 1.</li>
+<li>
+<code>+</code>: 1 or more.</li>
+<li>
+<code>*</code>: 0 or more.</li>
+<li>
+<code>?</code>: 0 or 1.</li>
 </ul>
 <p>So if you can tell me why this output makes sense, you’re getting there!</p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="exercise-1-word-frequency-analysis.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract_all</span>(<span class="st">&quot;1 + 2 = 3&quot;</span>, <span class="st">&quot;</span><span class="sc">\\</span><span class="st">d+&quot;</span>)[[<span class="dv">1</span>]]</span></code></pre></div>
-<pre><code>## [1] &quot;1&quot; &quot;2&quot; &quot;3&quot;</code></pre>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="exercise-1-word-frequency-analysis.html#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract_all</span>(<span class="st">&quot;1 + 2 = 3&quot;</span>, <span class="st">&quot;</span><span class="sc">\\</span><span class="st">D+&quot;</span>)[[<span class="dv">1</span>]]</span></code></pre></div>
-<pre><code>## [1] &quot; + &quot; &quot; = &quot;</code></pre>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="exercise-1-word-frequency-analysis.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract_all</span>(<span class="st">&quot;1 + 2 = 3&quot;</span>, <span class="st">&quot;</span><span class="sc">\\</span><span class="st">d*&quot;</span>)[[<span class="dv">1</span>]]</span></code></pre></div>
-<pre><code>##  [1] &quot;1&quot; &quot;&quot;  &quot;&quot;  &quot;&quot;  &quot;2&quot; &quot;&quot;  &quot;&quot;  &quot;&quot;  &quot;3&quot; &quot;&quot;</code></pre>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="exercise-1-word-frequency-analysis.html#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract_all</span>(<span class="st">&quot;1 + 2 = 3&quot;</span>, <span class="st">&quot;</span><span class="sc">\\</span><span class="st">D*&quot;</span>)[[<span class="dv">1</span>]]</span></code></pre></div>
-<pre><code>## [1] &quot;&quot;    &quot; + &quot; &quot;&quot;    &quot; = &quot; &quot;&quot;    &quot;&quot;</code></pre>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="exercise-1-word-frequency-analysis.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract_all</span>(<span class="st">&quot;1 + 2 = 3&quot;</span>, <span class="st">&quot;</span><span class="sc">\\</span><span class="st">d?&quot;</span>)[[<span class="dv">1</span>]]</span></code></pre></div>
-<pre><code>##  [1] &quot;1&quot; &quot;&quot;  &quot;&quot;  &quot;&quot;  &quot;2&quot; &quot;&quot;  &quot;&quot;  &quot;&quot;  &quot;3&quot; &quot;&quot;</code></pre>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="exercise-1-word-frequency-analysis.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract_all</span>(<span class="st">&quot;1 + 2 = 3&quot;</span>, <span class="st">&quot;</span><span class="sc">\\</span><span class="st">D?&quot;</span>)[[<span class="dv">1</span>]]</span></code></pre></div>
-<pre><code>##  [1] &quot;&quot;  &quot; &quot; &quot;+&quot; &quot; &quot; &quot;&quot;  &quot; &quot; &quot;=&quot; &quot; &quot; &quot;&quot;  &quot;&quot;</code></pre>
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_extract.html">str_extract_all</a></span><span class="op">(</span><span class="st">"1 + 2 = 3"</span>, <span class="st">"\\d+"</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></code></pre></div>
+<pre><code>## [1] "1" "2" "3"</code></pre>
+<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_extract.html">str_extract_all</a></span><span class="op">(</span><span class="st">"1 + 2 = 3"</span>, <span class="st">"\\D+"</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></code></pre></div>
+<pre><code>## [1] " + " " = "</code></pre>
+<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_extract.html">str_extract_all</a></span><span class="op">(</span><span class="st">"1 + 2 = 3"</span>, <span class="st">"\\d*"</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></code></pre></div>
+<pre><code>##  [1] "1" ""  ""  ""  "2" ""  ""  ""  "3" ""</code></pre>
+<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_extract.html">str_extract_all</a></span><span class="op">(</span><span class="st">"1 + 2 = 3"</span>, <span class="st">"\\D*"</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></code></pre></div>
+<pre><code>## [1] ""    " + " ""    " = " ""    ""</code></pre>
+<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_extract.html">str_extract_all</a></span><span class="op">(</span><span class="st">"1 + 2 = 3"</span>, <span class="st">"\\d?"</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></code></pre></div>
+<pre><code>##  [1] "1" ""  ""  ""  "2" ""  ""  ""  "3" ""</code></pre>
+<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_extract.html">str_extract_all</a></span><span class="op">(</span><span class="st">"1 + 2 = 3"</span>, <span class="st">"\\D?"</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></code></pre></div>
+<pre><code>##  [1] ""  " " "+" " " ""  " " "=" " " ""  ""</code></pre>
 <div id="some-more-regex-resources" class="section level3" number="11.6.1">
-<h3><span class="header-section-number">11.6.1</span> Some more regex resources:</h3>
+<h3>
+<span class="header-section-number">11.6.1</span> Some more regex resources:<a class="anchor" aria-label="anchor" href="#some-more-regex-resources"><i class="fas fa-link"></i></a>
+</h3>
 <ol style="list-style-type: decimal">
 <li>Regex crossword: <a href="https://regexcrossword.com/">https://regexcrossword.com/</a>.</li>
-<li>Regexone: <a href="https://regexone.com/">https://regexone.com/</a></li>
-<li>R4DS <a href="https://r4ds.had.co.nz/strings.html#matching-patterns-with-regular-expressions">chapter 14</a></li>
+<li>Regexone: <a href="https://regexone.com/">https://regexone.com/</a>
+</li>
+<li>R4DS <a href="https://r4ds.had.co.nz/strings.html#matching-patterns-with-regular-expressions">chapter 14</a>
+</li>
 </ol>
 </div>
 </div>
 <div id="back-to-the-fringe" class="section level2" number="11.7">
-<h2><span class="header-section-number">11.7</span> Back to the Fringe</h2>
+<h2>
+<span class="header-section-number">11.7</span> Back to the Fringe<a class="anchor" aria-label="anchor" href="#back-to-the-fringe"><i class="fas fa-link"></i></a>
+</h2>
 <p>We see that the resulting dataset is large (~293k rows). This is because the above commands have first taken the pamphlet text, and has “mutated” it into a set of lower case character string. With the “unnest_tokens” function it has then taken each individual string and create a new column called “word” that contains each individual word contained in the pamphlet texts.</p>
 <p>Some terminology is also appropriate here. When we tidy our text into this format, we often refer to these data structures as consisting of “documents” and “terms.” This is because by “tokenizing” our text with the “unnest_tokens” functions we are generating a dataset with one term per row.</p>
 <p>Here, our “documents” are the collection of descriptions for all events in each year at the Edinburgh Book Festival. The way in which we sort our text into “documents” depends on the choice of the individual researcher.</p>
 <p>Instead of by year, we might have wanted to sort our text into “genre.” Here, we have two genres: “Literature” and “Children.” Had we done so, we would then have only two “documents,” which contained all of the words included in the event descriptions for each genre.</p>
 <p>Alternatively, we might be interested in the contributions of individual authors over time. Were this the case, we could have sorted our text into documents by author. In this case, each “document” would represent all the words included in event descriptions for events by the given author (many of whom do have multiple appearances over time or in the same festival for a given year).</p>
 <p>We can yet tidy this further, though. First we’ll remove all stop words and then we’ll remove all apostrophes:</p>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="exercise-1-word-frequency-analysis.html#cb56-1" aria-hidden="true" tabindex="-1"></a>tidy_des <span class="ot">&lt;-</span> tidy_des <span class="sc">%&gt;%</span></span>
-<span id="cb56-2"><a href="exercise-1-word-frequency-analysis.html#cb56-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(<span class="sc">!</span>word <span class="sc">%in%</span> stop_words<span class="sc">$</span>word)</span></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">tidy_des</span> <span class="op">&lt;-</span> <span class="va">tidy_des</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="va">word</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">stop_words</span><span class="op">$</span><span class="va">word</span><span class="op">)</span></code></pre></div>
 <p>We see that the number of rows in our dataset reduces by about half to ~223k rows. This is natural since a large proportion of any string will contain many so-called “stop words.” We can see what these stop words are by typing:</p>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="exercise-1-word-frequency-analysis.html#cb57-1" aria-hidden="true" tabindex="-1"></a>stop_words</span></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">stop_words</span></code></pre></div>
 <pre><code>## # A tibble: 1,149 x 2
 ##    word        lexicon
 ##    &lt;chr&gt;       &lt;chr&gt;  
 ##  1 a           SMART  
-##  2 a&#39;s         SMART  
+##  2 a's         SMART  
 ##  3 able        SMART  
 ##  4 about       SMART  
 ##  5 above       SMART  
@@ -474,8 +332,9 @@ is not a decimal digit.</li>
 ## # … with 1,139 more rows</code></pre>
 <p>This is a lexicon (list of words) included in the <tt>tidytext</tt> package produced by Julia Silge and David Robinson (see <a href="https://cran.r-project.org/web/packages/tidytext/vignettes/tidytext.html">here</a>). We see it contains over 1000 such words. We remove them here because they are not very informative if we are interested in the substantive content of text (rather than, say, its grammatical content).</p>
 <p>Now let’s have a look at the most common words in these data:</p>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="exercise-1-word-frequency-analysis.html#cb59-1" aria-hidden="true" tabindex="-1"></a>tidy_des <span class="sc">%&gt;%</span></span>
-<span id="cb59-2"><a href="exercise-1-word-frequency-analysis.html#cb59-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(word, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">tidy_des</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">word</span>, sort <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 24,995 x 2
 ##    word       n
 ##    &lt;chr&gt;  &lt;int&gt;
@@ -491,13 +350,15 @@ is not a decimal digit.</li>
 ## 10 strong   864
 ## # … with 24,985 more rows</code></pre>
 <p>We can see that one of the most common words is “rsquo,” which is an HTML encoding for an apostrophe. Clearly we need to clean the data a bit more. This is a common issue in large-n text analysis and is a key step if you want to conduct reliably robust forms of text analysis. We’ll have another go using the the filter command, specifying that we only keep the words that are not included in the string of words rsquo, em, ndash, nbsp, lsquo.</p>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="exercise-1-word-frequency-analysis.html#cb61-1" aria-hidden="true" tabindex="-1"></a>remove_reg <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;&amp;amp;&quot;</span>,<span class="st">&quot;&amp;lt;&quot;</span>,<span class="st">&quot;&amp;gt;&quot;</span>,<span class="st">&quot;&lt;p&gt;&quot;</span>, <span class="st">&quot;&lt;/p&gt;&quot;</span>,<span class="st">&quot;&amp;rsquo&quot;</span>, <span class="st">&quot;&amp;lsquo;&quot;</span>,  <span class="st">&quot;&amp;#39;&quot;</span>, <span class="st">&quot;&lt;strong&gt;&quot;</span>, <span class="st">&quot;&lt;/strong&gt;&quot;</span>, <span class="st">&quot;rsquo&quot;</span>, <span class="st">&quot;em&quot;</span>, <span class="st">&quot;ndash&quot;</span>, <span class="st">&quot;nbsp&quot;</span>, <span class="st">&quot;lsquo&quot;</span>, <span class="st">&quot;strong&quot;</span>)</span>
-<span id="cb61-2"><a href="exercise-1-word-frequency-analysis.html#cb61-2" aria-hidden="true" tabindex="-1"></a>reg_match <span class="ot">&lt;-</span> <span class="fu">paste0</span>(remove_reg, <span class="at">collapse =</span> <span class="st">&quot;|&quot;</span>)</span>
-<span id="cb61-3"><a href="exercise-1-word-frequency-analysis.html#cb61-3" aria-hidden="true" tabindex="-1"></a>                  </span>
-<span id="cb61-4"><a href="exercise-1-word-frequency-analysis.html#cb61-4" aria-hidden="true" tabindex="-1"></a>tidy_des <span class="ot">&lt;-</span> tidy_des <span class="sc">%&gt;%</span></span>
-<span id="cb61-5"><a href="exercise-1-word-frequency-analysis.html#cb61-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>word <span class="sc">%in%</span> remove_reg)</span></code></pre></div>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="exercise-1-word-frequency-analysis.html#cb62-1" aria-hidden="true" tabindex="-1"></a>tidy_des <span class="sc">%&gt;%</span></span>
-<span id="cb62-2"><a href="exercise-1-word-frequency-analysis.html#cb62-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(word, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">remove_reg</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"&amp;amp;"</span>,<span class="st">"&amp;lt;"</span>,<span class="st">"&amp;gt;"</span>,<span class="st">"&lt;p&gt;"</span>, <span class="st">"&lt;/p&gt;"</span>,<span class="st">"&amp;rsquo"</span>, <span class="st">"&amp;lsquo;"</span>,  <span class="st">"&amp;#39;"</span>, <span class="st">"&lt;strong&gt;"</span>, <span class="st">"&lt;/strong&gt;"</span>, <span class="st">"rsquo"</span>, <span class="st">"em"</span>, <span class="st">"ndash"</span>, <span class="st">"nbsp"</span>, <span class="st">"lsquo"</span>, <span class="st">"strong"</span><span class="op">)</span>
+<span class="va">reg_match</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">remove_reg</span>, collapse <span class="op">=</span> <span class="st">"|"</span><span class="op">)</span>
+                  
+<span class="va">tidy_des</span> <span class="op">&lt;-</span> <span class="va">tidy_des</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="va">word</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">remove_reg</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">tidy_des</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">word</span>, sort <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 24,989 x 2
 ##    word        n
 ##    &lt;chr&gt;   &lt;int&gt;
@@ -514,10 +375,12 @@ is not a decimal digit.</li>
 ## # … with 24,979 more rows</code></pre>
 <p>That’s more like it! The words that feature most seem to make sense now (and are actual words rather than random HTML and UTF-8 encodings).</p>
 <p>Let’s now collect these words into a data.frame object, which we’ll call edbf_term_counts:</p>
-<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="exercise-1-word-frequency-analysis.html#cb64-1" aria-hidden="true" tabindex="-1"></a>edbf_term_counts <span class="ot">&lt;-</span> tidy_des <span class="sc">%&gt;%</span> </span>
-<span id="cb64-2"><a href="exercise-1-word-frequency-analysis.html#cb64-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year) <span class="sc">%&gt;%</span></span>
-<span id="cb64-3"><a href="exercise-1-word-frequency-analysis.html#cb64-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(word, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="exercise-1-word-frequency-analysis.html#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(edbf_term_counts)</span></code></pre></div>
+<div class="sourceCode" id="cb64"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">edbf_term_counts</span> <span class="op">&lt;-</span> <span class="va">tidy_des</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">year</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">word</span>, sort <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb65"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">edbf_term_counts</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 3
 ## # Groups:   year [6]
 ##    year word      n
@@ -531,11 +394,15 @@ is not a decimal digit.</li>
 <p>For each year, we see that “book” is the most common word… perhaps no surprises here. But this is some evidence that we’re properly pre-processing and cleaning the data. Cleaning text data is an important element of preparing for any text analysis. It is often a process of trial and error as not all text data looks alike, may come from e.g. webpages with HTML encoding, unrecognized fonts or unicode, and all of these have the potential to cause issues! But finding these errors is also a chance to get to know your data…</p>
 </div>
 <div id="analyze-keywords" class="section level2" number="11.8">
-<h2><span class="header-section-number">11.8</span> Analyze keywords</h2>
-<p>Okay, now we have our list of words, and the number of times they appear, we can tag those words we think might be related to issues of gender inequality and sexism. You may decide that this list is imprecise or inexhaustive. If so, then feel free to change the terms we are including after the <code>grepl()</code> function.</p>
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="exercise-1-word-frequency-analysis.html#cb67-1" aria-hidden="true" tabindex="-1"></a>edbf_term_counts<span class="sc">$</span>womword <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(<span class="fu">grepl</span>(<span class="st">&quot;women|feminist|feminism|gender|harassment|sexism|sexist&quot;</span>, </span>
-<span id="cb67-2"><a href="exercise-1-word-frequency-analysis.html#cb67-2" aria-hidden="true" tabindex="-1"></a>                                            <span class="at">x =</span> edbf_term_counts<span class="sc">$</span>word))</span></code></pre></div>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="exercise-1-word-frequency-analysis.html#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(edbf_term_counts)</span></code></pre></div>
+<h2>
+<span class="header-section-number">11.8</span> Analyze keywords<a class="anchor" aria-label="anchor" href="#analyze-keywords"><i class="fas fa-link"></i></a>
+</h2>
+<p>Okay, now we have our list of words, and the number of times they appear, we can tag those words we think might be related to issues of gender inequality and sexism. You may decide that this list is imprecise or inexhaustive. If so, then feel free to change the terms we are including after the <code><a href="https://rdrr.io/r/base/grep.html">grepl()</a></code> function.</p>
+<div class="sourceCode" id="cb67"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">edbf_term_counts</span><span class="op">$</span><span class="va">womword</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html">grepl</a></span><span class="op">(</span><span class="st">"women|feminist|feminism|gender|harassment|sexism|sexist"</span>, 
+                                            x <span class="op">=</span> <span class="va">edbf_term_counts</span><span class="op">$</span><span class="va">word</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">edbf_term_counts</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 4
 ## # Groups:   year [6]
 ##    year word      n womword
@@ -548,20 +415,24 @@ is not a decimal digit.</li>
 ## 6  2015 book    239       0</code></pre>
 </div>
 <div id="compute-aggregate-statistics" class="section level2" number="11.9">
-<h2><span class="header-section-number">11.9</span> Compute aggregate statistics</h2>
+<h2>
+<span class="header-section-number">11.9</span> Compute aggregate statistics<a class="anchor" aria-label="anchor" href="#compute-aggregate-statistics"><i class="fas fa-link"></i></a>
+</h2>
 <p>Now that we have tagged individual words relating to gender inequality and feminism, we can sum up the number of times these words appear each year and then denominate them by the total number of words in the event descriptions.</p>
 <p>The intuition here is that any increase or decrease in the percentage of words relating to these issues is capturing a substantive change in the representation of issues related to sex and gender.</p>
 <p>What do we think of this measure? Is this an adequate measure of representation for such issues in the cultural sphere?</p>
 <p>Are the keywords we used precise enough? If not, what would you change?</p>
-<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="exercise-1-word-frequency-analysis.html#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="co">#get counts by year and word</span></span>
-<span id="cb70-2"><a href="exercise-1-word-frequency-analysis.html#cb70-2" aria-hidden="true" tabindex="-1"></a>edbf_counts <span class="ot">&lt;-</span> edbf_term_counts <span class="sc">%&gt;%</span></span>
-<span id="cb70-3"><a href="exercise-1-word-frequency-analysis.html#cb70-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">complete</span>(year, word, <span class="at">fill =</span> <span class="fu">list</span>(<span class="at">n =</span> <span class="dv">0</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb70-4"><a href="exercise-1-word-frequency-analysis.html#cb70-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year) <span class="sc">%&gt;%</span></span>
-<span id="cb70-5"><a href="exercise-1-word-frequency-analysis.html#cb70-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">year_total =</span> <span class="fu">sum</span>(n)) <span class="sc">%&gt;%</span></span>
-<span id="cb70-6"><a href="exercise-1-word-frequency-analysis.html#cb70-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(womword<span class="sc">==</span><span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb70-7"><a href="exercise-1-word-frequency-analysis.html#cb70-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">sum_wom =</span> <span class="fu">sum</span>(n),</span>
-<span id="cb70-8"><a href="exercise-1-word-frequency-analysis.html#cb70-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">year_total=</span> <span class="fu">min</span>(year_total))</span></code></pre></div>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="exercise-1-word-frequency-analysis.html#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(edbf_counts)</span></code></pre></div>
+<div class="sourceCode" id="cb70"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#get counts by year and word</span>
+<span class="va">edbf_counts</span> <span class="op">&lt;-</span> <span class="va">edbf_term_counts</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/complete.html">complete</a></span><span class="op">(</span><span class="va">year</span>, <span class="va">word</span>, fill <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">0</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">year</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>year_total <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">womword</span><span class="op">==</span><span class="fl">1</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>sum_wom <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span>,
+            year_total<span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">year_total</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb71"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">edbf_counts</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 3
 ##    year sum_wom year_total
 ##   &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;
@@ -573,56 +444,65 @@ is not a decimal digit.</li>
 ## 6  2017      55      27602</code></pre>
 </div>
 <div id="plot-time-trends" class="section level2" number="11.10">
-<h2><span class="header-section-number">11.10</span> Plot time trends</h2>
+<h2>
+<span class="header-section-number">11.10</span> Plot time trends<a class="anchor" aria-label="anchor" href="#plot-time-trends"><i class="fas fa-link"></i></a>
+</h2>
 <p>So what do we see? Let’s take the count of words relating to gender in this dataset, and denominate them by the total number of words in these data per year.</p>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="exercise-1-word-frequency-analysis.html#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(edbf_counts, <span class="fu">aes</span>(year, sum_wom <span class="sc">/</span> year_total, <span class="at">group=</span><span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb73-2"><a href="exercise-1-word-frequency-analysis.html#cb73-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb73-3"><a href="exercise-1-word-frequency-analysis.html#cb73-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Year&quot;</span>) <span class="sc">+</span></span>
-<span id="cb73-4"><a href="exercise-1-word-frequency-analysis.html#cb73-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;% gender-related words&quot;</span>) <span class="sc">+</span></span>
-<span id="cb73-5"><a href="exercise-1-word-frequency-analysis.html#cb73-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">percent_format</span>(),</span>
-<span id="cb73-6"><a href="exercise-1-word-frequency-analysis.html#cb73-6" aria-hidden="true" tabindex="-1"></a>                     <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>), <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="cn">NA</span>)) <span class="sc">+</span></span>
-<span id="cb73-7"><a href="exercise-1-word-frequency-analysis.html#cb73-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_tufte</span>(<span class="at">base_family =</span> <span class="st">&quot;Helvetica&quot;</span>) </span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-39-1.png" width="672" /></p>
+<div class="sourceCode" id="cb73"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">edbf_counts</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">year</span>, <span class="va">sum_wom</span> <span class="op">/</span> <span class="va">year_total</span>, group<span class="op">=</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="st">"Year"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">"% gender-related words"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/scales/man/label_percent.html">percent_format</a></span><span class="op">(</span><span class="op">)</span>,
+                     expand <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span>, limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="cn">NA</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_tufte.html">theme_tufte</a></span><span class="op">(</span>base_family <span class="op">=</span> <span class="st">"Helvetica"</span><span class="op">)</span> </code></pre></div>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-39-1.png" width="672"></div>
 <p>We can add visual guides to draw attention to apparent changes in these data. Here, we might wish to signal the year of the #MeToo movement in 2017.</p>
-<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="exercise-1-word-frequency-analysis.html#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(edbf_counts, <span class="fu">aes</span>(year, sum_wom <span class="sc">/</span> year_total, <span class="at">group=</span><span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb74-2"><a href="exercise-1-word-frequency-analysis.html#cb74-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb74-3"><a href="exercise-1-word-frequency-analysis.html#cb74-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">2017</span>, <span class="at">col=</span><span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
-<span id="cb74-4"><a href="exercise-1-word-frequency-analysis.html#cb74-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Year&quot;</span>) <span class="sc">+</span></span>
-<span id="cb74-5"><a href="exercise-1-word-frequency-analysis.html#cb74-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;% gender-related words&quot;</span>) <span class="sc">+</span></span>
-<span id="cb74-6"><a href="exercise-1-word-frequency-analysis.html#cb74-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">percent_format</span>(),</span>
-<span id="cb74-7"><a href="exercise-1-word-frequency-analysis.html#cb74-7" aria-hidden="true" tabindex="-1"></a>                     <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>), <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="cn">NA</span>)) <span class="sc">+</span></span>
-<span id="cb74-8"><a href="exercise-1-word-frequency-analysis.html#cb74-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_tufte</span>(<span class="at">base_family =</span> <span class="st">&quot;Helvetica&quot;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-40-1.png" width="672" /></p>
+<div class="sourceCode" id="cb74"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">edbf_counts</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">year</span>, <span class="va">sum_wom</span> <span class="op">/</span> <span class="va">year_total</span>, group<span class="op">=</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span><span class="op">(</span>xintercept <span class="op">=</span> <span class="fl">2017</span>, col<span class="op">=</span><span class="st">"red"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="st">"Year"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">"% gender-related words"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/scales/man/label_percent.html">percent_format</a></span><span class="op">(</span><span class="op">)</span>,
+                     expand <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span>, limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="cn">NA</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_tufte.html">theme_tufte</a></span><span class="op">(</span>base_family <span class="op">=</span> <span class="st">"Helvetica"</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-40-1.png" width="672"></div>
 <p>And we could label why we are highlighting the year of 2017 by including a text label along the vertical line.</p>
-<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="exercise-1-word-frequency-analysis.html#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(edbf_counts, <span class="fu">aes</span>(year, sum_wom <span class="sc">/</span> year_total, <span class="at">group=</span><span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb75-2"><a href="exercise-1-word-frequency-analysis.html#cb75-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb75-3"><a href="exercise-1-word-frequency-analysis.html#cb75-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">2017</span>, <span class="at">col=</span><span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
-<span id="cb75-4"><a href="exercise-1-word-frequency-analysis.html#cb75-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fl">2017.1</span>, <span class="at">label=</span><span class="st">&quot;#metoo year&quot;</span>, <span class="at">y=</span>.<span class="dv">0015</span>), </span>
-<span id="cb75-5"><a href="exercise-1-word-frequency-analysis.html#cb75-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">colour=</span><span class="st">&quot;black&quot;</span>, <span class="at">angle=</span><span class="dv">90</span>, <span class="at">text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">8</span>)) <span class="sc">+</span></span>
-<span id="cb75-6"><a href="exercise-1-word-frequency-analysis.html#cb75-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Year&quot;</span>) <span class="sc">+</span></span>
-<span id="cb75-7"><a href="exercise-1-word-frequency-analysis.html#cb75-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;% gender-related words&quot;</span>) <span class="sc">+</span></span>
-<span id="cb75-8"><a href="exercise-1-word-frequency-analysis.html#cb75-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">percent_format</span>(),</span>
-<span id="cb75-9"><a href="exercise-1-word-frequency-analysis.html#cb75-9" aria-hidden="true" tabindex="-1"></a>                     <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>), <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="cn">NA</span>)) <span class="sc">+</span></span>
-<span id="cb75-10"><a href="exercise-1-word-frequency-analysis.html#cb75-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_tufte</span>(<span class="at">base_family =</span> <span class="st">&quot;Helvetica&quot;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-41-1.png" width="672" /></p>
+<div class="sourceCode" id="cb75"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">edbf_counts</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">year</span>, <span class="va">sum_wom</span> <span class="op">/</span> <span class="va">year_total</span>, group<span class="op">=</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span><span class="op">(</span>xintercept <span class="op">=</span> <span class="fl">2017</span>, col<span class="op">=</span><span class="st">"red"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="fl">2017.1</span>, label<span class="op">=</span><span class="st">"#metoo year"</span>, y<span class="op">=</span><span class="fl">.0015</span><span class="op">)</span>, 
+            colour<span class="op">=</span><span class="st">"black"</span>, angle<span class="op">=</span><span class="fl">90</span>, text<span class="op">=</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size<span class="op">=</span><span class="fl">8</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="st">"Year"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">"% gender-related words"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/scales/man/label_percent.html">percent_format</a></span><span class="op">(</span><span class="op">)</span>,
+                     expand <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span>, limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="cn">NA</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_tufte.html">theme_tufte</a></span><span class="op">(</span>base_family <span class="op">=</span> <span class="st">"Helvetica"</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-41-1.png" width="672"></div>
 </div>
 <div id="bonus-gender-prediction" class="section level2" number="11.11">
-<h2><span class="header-section-number">11.11</span> Bonus: gender prediction</h2>
+<h2>
+<span class="header-section-number">11.11</span> Bonus: gender prediction<a class="anchor" aria-label="anchor" href="#bonus-gender-prediction"><i class="fas fa-link"></i></a>
+</h2>
 <p>We might decide that this measure is inadequate or too expansive to answer the question at hand. Another way of measuring representation in cultural production is to measure the gender of the authors who spoke at these events.</p>
 <p>Of course, this would take quite some time if we were to individually code each of the approximately 6000 events included in this dataset.</p>
 <p>But there do exist alternative techniques for imputing gender based on the name of an individual.</p>
 <p>We first create a new data.frame object, selecting just the columns for artist name and year. Then we generate a new column containing just the artist’s (author’s) first name:</p>
-<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="exercise-1-word-frequency-analysis.html#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get columns for artist name and year, omitting NAs</span></span>
-<span id="cb76-2"><a href="exercise-1-word-frequency-analysis.html#cb76-2" aria-hidden="true" tabindex="-1"></a>gendes <span class="ot">&lt;-</span> edbfdata <span class="sc">%&gt;%</span></span>
-<span id="cb76-3"><a href="exercise-1-word-frequency-analysis.html#cb76-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(artist, year) <span class="sc">%&gt;%</span></span>
-<span id="cb76-4"><a href="exercise-1-word-frequency-analysis.html#cb76-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">na.omit</span>()</span>
-<span id="cb76-5"><a href="exercise-1-word-frequency-analysis.html#cb76-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb76-6"><a href="exercise-1-word-frequency-analysis.html#cb76-6" aria-hidden="true" tabindex="-1"></a><span class="co"># generate new column with just the artist&#39;s (author&#39;s) first name</span></span>
-<span id="cb76-7"><a href="exercise-1-word-frequency-analysis.html#cb76-7" aria-hidden="true" tabindex="-1"></a>gendes<span class="sc">$</span>name <span class="ot">&lt;-</span> <span class="fu">sub</span>(<span class="st">&quot; .*&quot;</span>, <span class="st">&quot;&quot;</span>, gendes<span class="sc">$</span>artist)</span></code></pre></div>
+<div class="sourceCode" id="cb76"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># get columns for artist name and year, omitting NAs</span>
+<span class="va">gendes</span> <span class="op">&lt;-</span> <span class="va">edbfdata</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">artist</span>, <span class="va">year</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://rdrr.io/r/stats/na.fail.html">na.omit</a></span><span class="op">(</span><span class="op">)</span>
+
+<span class="co"># generate new column with just the artist's (author's) first name</span>
+<span class="va">gendes</span><span class="op">$</span><span class="va">name</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html">sub</a></span><span class="op">(</span><span class="st">" .*"</span>, <span class="st">""</span>, <span class="va">gendes</span><span class="op">$</span><span class="va">artist</span><span class="op">)</span></code></pre></div>
 <p>A set of packages called <tt>gender</tt> and <tt>genderdata</tt> used to make the process of predicting gender based on a given individual’s name pretty straightforward. This technique worked with reference to U.S. Social Security Administration baby name data.</p>
 <p>Given that the most common gender associated with a given name changes over time, the function also allows us to specify the range of years for the cohort in question whose gender we are inferring. Given that we don’t know how wide the cohort of artists is that we have here, we could specify a broad range of 1920-2000.</p>
-<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="exercise-1-word-frequency-analysis.html#cb77-1" aria-hidden="true" tabindex="-1"></a>genpred <span class="ot">&lt;-</span> <span class="fu">gender</span>(gendes<span class="sc">$</span>name,</span>
-<span id="cb77-2"><a href="exercise-1-word-frequency-analysis.html#cb77-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">years =</span> <span class="fu">c</span>(<span class="dv">1920</span>, <span class="dv">2000</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb77"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">genpred</span> <span class="op">&lt;-</span> <span class="fu">gender</span><span class="op">(</span><span class="va">gendes</span><span class="op">$</span><span class="va">name</span>,
+       years <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1920</span>, <span class="fl">2000</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>Unfortunately, this package no longer works with newer versions of R; fortunately, I have recreated it using the original “babynames” data, which comes bundled in the <tt>babynames</tt> package.</p>
 <p>You don’t necessarily have to follow each step of how I have done this—I include this information for the sake of completeness.</p>
 <p>The <tt>babynames</tt> package. contains, for each year, the number of children born with a given name, as well as their sex. With this information, we can then calculate the total number of individuals with a given name born for each sex in a given year.</p>
@@ -630,8 +510,9 @@ is not a decimal digit.</li>
 <p>More information on the <tt>babynames</tt> package can be found <a href="https://www.ssa.gov/oact/babynames/limits.html">here</a>.</p>
 <p>We first load the babynames package into the R environment as a data.frame object. Because the data.frame “babynames” is contained in the <tt>babynames</tt> package we can just call it as an object and store it with .</p>
 <p>This dataset contains names for all years over a period 1800–2019. The variable “n” represents the number of babies born with the given name and sex in that year, and the “prop” represents, according to the package materials accessible <a href="https://cran.r-project.org/web/packages/babynames/babynames.pdf">here</a>, “n divided by total number of applicants in that year, which means proportions are of people of that gender with that name born in that year.”</p>
-<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="exercise-1-word-frequency-analysis.html#cb78-1" aria-hidden="true" tabindex="-1"></a>babynames <span class="ot">&lt;-</span> babynames</span>
-<span id="cb78-2"><a href="exercise-1-word-frequency-analysis.html#cb78-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(babynames)</span></code></pre></div>
+<div class="sourceCode" id="cb78"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">babynames</span> <span class="op">&lt;-</span> <span class="va">babynames</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">babynames</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 5
 ##    year sex   name          n   prop
 ##   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;     &lt;int&gt;  &lt;dbl&gt;
@@ -642,20 +523,21 @@ is not a decimal digit.</li>
 ## 5  1880 F     Minnie     1746 0.0179
 ## 6  1880 F     Margaret   1578 0.0162</code></pre>
 <p>We then calculate the total number of babies of female and male sex born in each year. Then we merge these to get a combined dataset of male and female baby names by year. We then merge this information back into the original babynames data.frame object.</p>
-<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="exercise-1-word-frequency-analysis.html#cb80-1" aria-hidden="true" tabindex="-1"></a>totals_female <span class="ot">&lt;-</span> babynames <span class="sc">%&gt;%</span></span>
-<span id="cb80-2"><a href="exercise-1-word-frequency-analysis.html#cb80-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(sex<span class="sc">==</span><span class="st">&quot;F&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb80-3"><a href="exercise-1-word-frequency-analysis.html#cb80-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year) <span class="sc">%&gt;%</span></span>
-<span id="cb80-4"><a href="exercise-1-word-frequency-analysis.html#cb80-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">total_female =</span> <span class="fu">sum</span>(n))</span>
-<span id="cb80-5"><a href="exercise-1-word-frequency-analysis.html#cb80-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-6"><a href="exercise-1-word-frequency-analysis.html#cb80-6" aria-hidden="true" tabindex="-1"></a>totals_male <span class="ot">&lt;-</span> babynames <span class="sc">%&gt;%</span></span>
-<span id="cb80-7"><a href="exercise-1-word-frequency-analysis.html#cb80-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(sex<span class="sc">==</span><span class="st">&quot;M&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb80-8"><a href="exercise-1-word-frequency-analysis.html#cb80-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year) <span class="sc">%&gt;%</span></span>
-<span id="cb80-9"><a href="exercise-1-word-frequency-analysis.html#cb80-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">total_male =</span> <span class="fu">sum</span>(n))</span>
-<span id="cb80-10"><a href="exercise-1-word-frequency-analysis.html#cb80-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-11"><a href="exercise-1-word-frequency-analysis.html#cb80-11" aria-hidden="true" tabindex="-1"></a>totals <span class="ot">&lt;-</span> <span class="fu">merge</span>(totals_female, totals_male)</span>
-<span id="cb80-12"><a href="exercise-1-word-frequency-analysis.html#cb80-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-13"><a href="exercise-1-word-frequency-analysis.html#cb80-13" aria-hidden="true" tabindex="-1"></a>totsm <span class="ot">&lt;-</span> <span class="fu">merge</span>(babynames, totals, <span class="at">by =</span> <span class="st">&quot;year&quot;</span>)</span>
-<span id="cb80-14"><a href="exercise-1-word-frequency-analysis.html#cb80-14" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(totsm)</span></code></pre></div>
+<div class="sourceCode" id="cb80"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">totals_female</span> <span class="op">&lt;-</span> <span class="va">babynames</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">sex</span><span class="op">==</span><span class="st">"F"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">year</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>total_female <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span>
+
+<span class="va">totals_male</span> <span class="op">&lt;-</span> <span class="va">babynames</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">sex</span><span class="op">==</span><span class="st">"M"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">year</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>total_male <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span>
+
+<span class="va">totals</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/merge.html">merge</a></span><span class="op">(</span><span class="va">totals_female</span>, <span class="va">totals_male</span><span class="op">)</span>
+
+<span class="va">totsm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/merge.html">merge</a></span><span class="op">(</span><span class="va">babynames</span>, <span class="va">totals</span>, by <span class="op">=</span> <span class="st">"year"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">totsm</span><span class="op">)</span></code></pre></div>
 <pre><code>##   year sex      name    n       prop total_female total_male
 ## 1 1880   F      Mary 7065 0.07238359        90993     110491
 ## 2 1880   F      Anna 2604 0.02667896        90993     110491
@@ -665,21 +547,22 @@ is not a decimal digit.</li>
 ## 6 1880   F  Margaret 1578 0.01616720        90993     110491</code></pre>
 <p>We can then calculate, for all babies born on or after 1920, the number of babies born with that name and sex. With this information, we can then get the proportion of all babies with a given name that were of a particular sex. For example, if 92% of babies born with the name “Mary” were female, this would give us a .92 probability that an individual with the name “Mary” is female.</p>
 <p>We do this for every name in the dataset, excluding names for which the proportion is equal to .5; i.e., for names that we cannot adjudicate between whether they are more or less likely male or female.</p>
-<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="exercise-1-word-frequency-analysis.html#cb82-1" aria-hidden="true" tabindex="-1"></a>totprops <span class="ot">&lt;-</span> totsm <span class="sc">%&gt;%</span></span>
-<span id="cb82-2"><a href="exercise-1-word-frequency-analysis.html#cb82-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">&gt;=</span> <span class="dv">1920</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb82-3"><a href="exercise-1-word-frequency-analysis.html#cb82-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(name, year) <span class="sc">%&gt;%</span></span>
-<span id="cb82-4"><a href="exercise-1-word-frequency-analysis.html#cb82-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">sumname =</span> <span class="fu">sum</span>(n),</span>
-<span id="cb82-5"><a href="exercise-1-word-frequency-analysis.html#cb82-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">prop =</span> <span class="fu">ifelse</span>(sumname<span class="sc">==</span>n, <span class="dv">1</span>,</span>
-<span id="cb82-6"><a href="exercise-1-word-frequency-analysis.html#cb82-6" aria-hidden="true" tabindex="-1"></a>                       n<span class="sc">/</span>sumname)) <span class="sc">%&gt;%</span></span>
-<span id="cb82-7"><a href="exercise-1-word-frequency-analysis.html#cb82-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(prop<span class="sc">!=</span>.<span class="dv">5</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb82-8"><a href="exercise-1-word-frequency-analysis.html#cb82-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(name) <span class="sc">%&gt;%</span></span>
-<span id="cb82-9"><a href="exercise-1-word-frequency-analysis.html#cb82-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="fu">which.max</span>(prop)) <span class="sc">%&gt;%</span></span>
-<span id="cb82-10"><a href="exercise-1-word-frequency-analysis.html#cb82-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">prop =</span> <span class="fu">max</span>(prop),</span>
-<span id="cb82-11"><a href="exercise-1-word-frequency-analysis.html#cb82-11" aria-hidden="true" tabindex="-1"></a>            <span class="at">totaln =</span> <span class="fu">sum</span>(n),</span>
-<span id="cb82-12"><a href="exercise-1-word-frequency-analysis.html#cb82-12" aria-hidden="true" tabindex="-1"></a>            <span class="at">name =</span> <span class="fu">max</span>(name),</span>
-<span id="cb82-13"><a href="exercise-1-word-frequency-analysis.html#cb82-13" aria-hidden="true" tabindex="-1"></a>            <span class="at">sex =</span> <span class="fu">unique</span>(sex))</span>
-<span id="cb82-14"><a href="exercise-1-word-frequency-analysis.html#cb82-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb82-15"><a href="exercise-1-word-frequency-analysis.html#cb82-15" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(totprops)</span></code></pre></div>
+<div class="sourceCode" id="cb82"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">totprops</span> <span class="op">&lt;-</span> <span class="va">totsm</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">year</span> <span class="op">&gt;=</span> <span class="fl">1920</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">name</span>, <span class="va">year</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>sumname <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span>,
+         prop <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">sumname</span><span class="op">==</span><span class="va">n</span>, <span class="fl">1</span>,
+                       <span class="va">n</span><span class="op">/</span><span class="va">sumname</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">prop</span><span class="op">!=</span><span class="fl">.5</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">name</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/which.min.html">which.max</a></span><span class="op">(</span><span class="va">prop</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>prop <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">prop</span><span class="op">)</span>,
+            totaln <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span>,
+            name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">name</span><span class="op">)</span>,
+            sex <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">sex</span><span class="op">)</span><span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">totprops</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 4
 ##   name       prop totaln sex  
 ##   &lt;chr&gt;     &lt;dbl&gt;  &lt;int&gt; &lt;chr&gt;
@@ -690,165 +573,158 @@ is not a decimal digit.</li>
 ## 5 Aabriella     1      5 F    
 ## 6 Aada          1      5 F</code></pre>
 <p>Once we have our proportions for all names, we can then merge these back with the names of our artists from the Edinburgh Fringe Book Festival. We can then easily plot the proportion of artists at the Festival who are male versus female in each year of the Festival.</p>
-<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="exercise-1-word-frequency-analysis.html#cb84-1" aria-hidden="true" tabindex="-1"></a>ednameprops <span class="ot">&lt;-</span> <span class="fu">merge</span>(totprops, gendes, <span class="at">by =</span> <span class="st">&quot;name&quot;</span>)</span>
-<span id="cb84-2"><a href="exercise-1-word-frequency-analysis.html#cb84-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-3"><a href="exercise-1-word-frequency-analysis.html#cb84-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(ednameprops, <span class="fu">aes</span>(<span class="at">x=</span>year, <span class="at">fill =</span> <span class="fu">factor</span>(sex))) <span class="sc">+</span></span>
-<span id="cb84-4"><a href="exercise-1-word-frequency-analysis.html#cb84-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">&quot;fill&quot;</span>) <span class="sc">+</span></span>
-<span id="cb84-5"><a href="exercise-1-word-frequency-analysis.html#cb84-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Year&quot;</span>) <span class="sc">+</span></span>
-<span id="cb84-6"><a href="exercise-1-word-frequency-analysis.html#cb84-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;% women authors&quot;</span>) <span class="sc">+</span></span>
-<span id="cb84-7"><a href="exercise-1-word-frequency-analysis.html#cb84-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill=</span><span class="st">&quot;&quot;</span>) <span class="sc">+</span></span>
-<span id="cb84-8"><a href="exercise-1-word-frequency-analysis.html#cb84-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">percent_format</span>(<span class="at">accuracy =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb84-9"><a href="exercise-1-word-frequency-analysis.html#cb84-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_tufte</span>(<span class="at">base_family =</span> <span class="st">&quot;Helvetica&quot;</span>) <span class="sc">+</span></span>
-<span id="cb84-10"><a href="exercise-1-word-frequency-analysis.html#cb84-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope=</span><span class="dv">0</span>, <span class="at">intercept=</span><span class="fl">0.5</span>,  <span class="at">col =</span> <span class="st">&quot;black&quot;</span>,<span class="at">lty=</span><span class="dv">2</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-47-1.png" width="672" /></p>
+<div class="sourceCode" id="cb84"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">ednameprops</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/merge.html">merge</a></span><span class="op">(</span><span class="va">totprops</span>, <span class="va">gendes</span>, by <span class="op">=</span> <span class="st">"name"</span><span class="op">)</span>
+
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">ednameprops</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">year</span>, fill <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">sex</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span>position <span class="op">=</span> <span class="st">"fill"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="st">"Year"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">"% women authors"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>fill<span class="op">=</span><span class="st">""</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/scales/man/label_percent.html">percent_format</a></span><span class="op">(</span>accuracy <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_tufte.html">theme_tufte</a></span><span class="op">(</span>base_family <span class="op">=</span> <span class="st">"Helvetica"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_abline</a></span><span class="op">(</span>slope<span class="op">=</span><span class="fl">0</span>, intercept<span class="op">=</span><span class="fl">0.5</span>,  col <span class="op">=</span> <span class="st">"black"</span>,lty<span class="op">=</span><span class="fl">2</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-47-1.png" width="672"></div>
 <p>What can we conclude form this graph?</p>
 <p>Note that when we merged the proportions from th “babynames” data with our Edinburgh Fringe data we lost some observations. This is because some names in the Edinburgh Fringe data had no match in the “babynames” data. Let’s look at the names that had no match:</p>
-<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="exercise-1-word-frequency-analysis.html#cb85-1" aria-hidden="true" tabindex="-1"></a>names1 <span class="ot">&lt;-</span> ednameprops<span class="sc">$</span>name</span>
-<span id="cb85-2"><a href="exercise-1-word-frequency-analysis.html#cb85-2" aria-hidden="true" tabindex="-1"></a>names2 <span class="ot">&lt;-</span> gendes<span class="sc">$</span>name</span>
-<span id="cb85-3"><a href="exercise-1-word-frequency-analysis.html#cb85-3" aria-hidden="true" tabindex="-1"></a>diffs <span class="ot">&lt;-</span> <span class="fu">setdiff</span>(names2, names1)</span>
-<span id="cb85-4"><a href="exercise-1-word-frequency-analysis.html#cb85-4" aria-hidden="true" tabindex="-1"></a>diffs</span></code></pre></div>
-<pre><code>##   [1] &quot;L&quot;             &quot;Kapka&quot;         &quot;Menzies&quot;       &quot;Ros&quot;           &quot;G&quot;            
-##   [6] &quot;Pankaj&quot;        &quot;Uzodinma&quot;      &quot;Rodge&quot;         &quot;A&quot;             &quot;Zoë&quot;          
-##  [11] &quot;László&quot;        &quot;Sadakat&quot;       &quot;Michèle&quot;       &quot;Maajid&quot;        &quot;Yrsa&quot;         
-##  [16] &quot;Ahdaf&quot;         &quot;Noo&quot;           &quot;Dilip&quot;         &quot;Sjón&quot;          &quot;François&quot;     
-##  [21] &quot;J&quot;             &quot;K&quot;             &quot;Aonghas&quot;       &quot;S&quot;             &quot;Bashabi&quot;      
-##  [26] &quot;Kjartan&quot;       &quot;Romesh&quot;        &quot;T&quot;             &quot;Chibundu&quot;      &quot;Yiyun&quot;        
-##  [31] &quot;Fiammetta&quot;     &quot;W&quot;             &quot;Sindiwe&quot;       &quot;Cat&quot;           &quot;Jez&quot;          
-##  [36] &quot;Fi&quot;            &quot;Sunder&quot;        &quot;Saci&quot;          &quot;C.J&quot;           &quot;Halik&quot;        
-##  [41] &quot;Niccolò&quot;       &quot;Sifiso&quot;        &quot;C.S.&quot;          &quot;DBC&quot;           &quot;Phyllida&quot;     
-##  [46] &quot;R&quot;             &quot;Struan&quot;        &quot;C.J.&quot;          &quot;SF&quot;            &quot;Nadifa&quot;       
-##  [51] &quot;Jérome&quot;        &quot;D&quot;             &quot;Xiaolu&quot;        &quot;Ramita&quot;        &quot;John-Paul&quot;    
-##  [56] &quot;Ha-Joon&quot;       &quot;Niq&quot;           &quot;Andrés&quot;        &quot;Sasenarine&quot;    &quot;Frane&quot;        
-##  [61] &quot;Alev&quot;          &quot;Gruff&quot;         &quot;Line&quot;          &quot;Zakes&quot;         &quot;Pip&quot;          
-##  [66] &quot;Witi&quot;          &quot;Halsted&quot;       &quot;Ziauddin&quot;      &quot;J.&quot;            &quot;Åsne&quot;         
-##  [71] &quot;Alecos&quot;        &quot;.&quot;             &quot;Julián&quot;        &quot;Sunjeev&quot;       &quot;A.C.S&quot;        
-##  [76] &quot;Etgar&quot;         &quot;Hyeonseo&quot;      &quot;Jaume&quot;         &quot;A.&quot;            &quot;Jesús&quot;        
-##  [81] &quot;Jón&quot;           &quot;Helle&quot;         &quot;M&quot;             &quot;Jussi&quot;         &quot;Aarathi&quot;      
-##  [86] &quot;Shappi&quot;        &quot;Macastory&quot;     &quot;Odafe&quot;         &quot;Chimwemwe&quot;     &quot;Hrefna&quot;       
-##  [91] &quot;Bidisha&quot;       &quot;Packie&quot;        &quot;Tahmima&quot;       &quot;Sara-Jane&quot;     &quot;Tahar&quot;        
-##  [96] &quot;Lemn&quot;          &quot;Neu!&quot;          &quot;Jürgen&quot;        &quot;Barroux&quot;       &quot;Jan-Philipp&quot;  
-## [101] &quot;Non&quot;           &quot;Metaphrog&quot;     &quot;Wilko&quot;         &quot;Álvaro&quot;        &quot;Stef&quot;         
-## [106] &quot;Erlend&quot;        &quot;Grinagog&quot;      &quot;Norma-Ann&quot;     &quot;Fuchsia&quot;       &quot;Giddy&quot;        
-## [111] &quot;Joudie&quot;        &quot;Sav&quot;           &quot;Liu&quot;           &quot;Jayne-Anne&quot;    &quot;Wioletta&quot;     
-## [116] &quot;Sinéad&quot;        &quot;Katherena&quot;     &quot;Siân&quot;          &quot;Dervla&quot;        &quot;Teju&quot;         
-## [121] &quot;Iosi&quot;          &quot;Daša&quot;          &quot;Cosey&quot;         &quot;Bettany&quot;       &quot;Thordis&quot;      
-## [126] &quot;Uršuľa&quot;        &quot;Limmy&quot;         &quot;Meik&quot;          &quot;Zindzi&quot;        &quot;Dougie&quot;       
-## [131] &quot;Ngugi&quot;         &quot;Inua&quot;          &quot;Ottessa&quot;       &quot;Bjørn&quot;         &quot;Novuyo&quot;       
-## [136] &quot;Rhidian&quot;       &quot;Sibéal&quot;        &quot;Hsiao-Hung&quot;    &quot;Audur&quot;         &quot;Sadek&quot;        
-## [141] &quot;Özlem&quot;         &quot;Zaffar&quot;        &quot;Jean-Pierre&quot;   &quot;Lalage&quot;        &quot;Yaba&quot;         
-## [146] &quot;H&quot;             &quot;DJ&quot;            &quot;Sigitas&quot;       &quot;Clémentine&quot;    &quot;Celeste-Marie&quot;
-## [151] &quot;Marawa&quot;        &quot;Ghillie&quot;       &quot;Ahdam&quot;         &quot;Suketu&quot;        &quot;Goenawan&quot;     
-## [156] &quot;Niviaq&quot;        &quot;Steinunn&quot;      &quot;Shoo&quot;          &quot;Ibram&quot;         &quot;Venki&quot;        
-## [161] &quot;DeRay&quot;         &quot;Diarmaid&quot;      &quot;Serhii&quot;        &quot;Harkaitz&quot;      &quot;Adélaïde&quot;     
-## [166] &quot;Agustín&quot;       &quot;Jérôme&quot;        &quot;Siobhán&quot;       &quot;Nesrine&quot;       &quot;Jokha&quot;        
-## [171] &quot;Gulnar&quot;        &quot;Uxue&quot;          &quot;Taqralik&quot;      &quot;Tayi&quot;          &quot;E&quot;            
-## [176] &quot;Dapo&quot;          &quot;Dunja&quot;         &quot;Maaza&quot;         &quot;Wayétu&quot;        &quot;Shokoofeh&quot;</code></pre>
+<div class="sourceCode" id="cb85"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">names1</span> <span class="op">&lt;-</span> <span class="va">ednameprops</span><span class="op">$</span><span class="va">name</span>
+<span class="va">names2</span> <span class="op">&lt;-</span> <span class="va">gendes</span><span class="op">$</span><span class="va">name</span>
+<span class="va">diffs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://generics.r-lib.org/reference/setops.html">setdiff</a></span><span class="op">(</span><span class="va">names2</span>, <span class="va">names1</span><span class="op">)</span>
+<span class="va">diffs</span></code></pre></div>
+<pre><code>##   [1] "L"             "Kapka"         "Menzies"       "Ros"           "G"            
+##   [6] "Pankaj"        "Uzodinma"      "Rodge"         "A"             "Zoë"          
+##  [11] "László"        "Sadakat"       "Michèle"       "Maajid"        "Yrsa"         
+##  [16] "Ahdaf"         "Noo"           "Dilip"         "Sjón"          "François"     
+##  [21] "J"             "K"             "Aonghas"       "S"             "Bashabi"      
+##  [26] "Kjartan"       "Romesh"        "T"             "Chibundu"      "Yiyun"        
+##  [31] "Fiammetta"     "W"             "Sindiwe"       "Cat"           "Jez"          
+##  [36] "Fi"            "Sunder"        "Saci"          "C.J"           "Halik"        
+##  [41] "Niccolò"       "Sifiso"        "C.S."          "DBC"           "Phyllida"     
+##  [46] "R"             "Struan"        "C.J."          "SF"            "Nadifa"       
+##  [51] "Jérome"        "D"             "Xiaolu"        "Ramita"        "John-Paul"    
+##  [56] "Ha-Joon"       "Niq"           "Andrés"        "Sasenarine"    "Frane"        
+##  [61] "Alev"          "Gruff"         "Line"          "Zakes"         "Pip"          
+##  [66] "Witi"          "Halsted"       "Ziauddin"      "J."            "Åsne"         
+##  [71] "Alecos"        "."             "Julián"        "Sunjeev"       "A.C.S"        
+##  [76] "Etgar"         "Hyeonseo"      "Jaume"         "A."            "Jesús"        
+##  [81] "Jón"           "Helle"         "M"             "Jussi"         "Aarathi"      
+##  [86] "Shappi"        "Macastory"     "Odafe"         "Chimwemwe"     "Hrefna"       
+##  [91] "Bidisha"       "Packie"        "Tahmima"       "Sara-Jane"     "Tahar"        
+##  [96] "Lemn"          "Neu!"          "Jürgen"        "Barroux"       "Jan-Philipp"  
+## [101] "Non"           "Metaphrog"     "Wilko"         "Álvaro"        "Stef"         
+## [106] "Erlend"        "Grinagog"      "Norma-Ann"     "Fuchsia"       "Giddy"        
+## [111] "Joudie"        "Sav"           "Liu"           "Jayne-Anne"    "Wioletta"     
+## [116] "Sinéad"        "Katherena"     "Siân"          "Dervla"        "Teju"         
+## [121] "Iosi"          "Daša"          "Cosey"         "Bettany"       "Thordis"      
+## [126] "Uršuľa"        "Limmy"         "Meik"          "Zindzi"        "Dougie"       
+## [131] "Ngugi"         "Inua"          "Ottessa"       "Bjørn"         "Novuyo"       
+## [136] "Rhidian"       "Sibéal"        "Hsiao-Hung"    "Audur"         "Sadek"        
+## [141] "Özlem"         "Zaffar"        "Jean-Pierre"   "Lalage"        "Yaba"         
+## [146] "H"             "DJ"            "Sigitas"       "Clémentine"    "Celeste-Marie"
+## [151] "Marawa"        "Ghillie"       "Ahdam"         "Suketu"        "Goenawan"     
+## [156] "Niviaq"        "Steinunn"      "Shoo"          "Ibram"         "Venki"        
+## [161] "DeRay"         "Diarmaid"      "Serhii"        "Harkaitz"      "Adélaïde"     
+## [166] "Agustín"       "Jérôme"        "Siobhán"       "Nesrine"       "Jokha"        
+## [171] "Gulnar"        "Uxue"          "Taqralik"      "Tayi"          "E"            
+## [176] "Dapo"          "Dunja"         "Maaza"         "Wayétu"        "Shokoofeh"</code></pre>
 <p>Do we notice anything about these names? What does this tell us about the potential biases of using such sources as US baby names data as a foundation for gender prediction? What are alternative ways we might go about this task?</p>
 </div>
 <div id="exercises" class="section level2" number="11.12">
-<h2><span class="header-section-number">11.12</span> Exercises</h2>
+<h2>
+<span class="header-section-number">11.12</span> Exercises<a class="anchor" aria-label="anchor" href="#exercises"><i class="fas fa-link"></i></a>
+</h2>
 <ol style="list-style-type: decimal">
 <li>Filter the books by genre (selecting e.g., “Literature” or “Children”) and plot frequency of women-related words over time.</li>
 <li>Choose another set of terms by which to filter (e.g., race-related words) and plot their frequency over time.</li>
 </ol>
 </div>
 <div id="references-1" class="section level2" number="11.13">
-<h2><span class="header-section-number">11.13</span> References</h2>
+<h2>
+<span class="header-section-number">11.13</span> References<a class="anchor" aria-label="anchor" href="#references-1"><i class="fas fa-link"></i></a>
+</h2>
 
 <div id="refs" class="references csl-bib-body hanging-indent">
-<div class="csl-entry">
+<div id="ref-dimaggio_adapting_2015" class="csl-entry">
 DiMaggio, Paul. 2015. <span>“Adapting Computational Text Analysis to Social Science (and Vice Versa).”</span> <em>Big Data &amp; Society</em> 2 (2): 205395171560290. <a href="https://doi.org/10.1177/2053951715602908">https://doi.org/10.1177/2053951715602908</a>.
 </div>
-<div class="csl-entry">
+<div id="ref-gentzkow_text_2019" class="csl-entry">
 Gentzkow, Matthew, Bryan Kelly, and Matt Taddy. 2019. <span>“Text as <span>Data</span>.”</span> <em>Journal of Economic Literature</em> 57 (3): 535–74. <a href="https://doi.org/10.1257/jel.20181020">https://doi.org/10.1257/jel.20181020</a>.
 </div>
-<div class="csl-entry">
+<div id="ref-grimmer_text_2013" class="csl-entry">
 Grimmer, Justin, and Brandon M. Stewart. 2013. <span>“Text as <span>Data</span>: <span>The</span> <span>Promise</span> and <span>Pitfalls</span> of <span>Automatic</span> <span>Content</span> <span>Analysis</span> <span>Methods</span> for <span>Political</span> <span>Texts</span>.”</span> <em>Political Analysis</em> 21 (3): 267–97. <a href="https://doi.org/10.1093/pan/mps028">https://doi.org/10.1093/pan/mps028</a>.
 </div>
-<div class="csl-entry">
+<div id="ref-manning_introduction_2007" class="csl-entry">
 Manning, Christopher D, Prabhakar Raghavan, and Hinrich Schtze. 2007. <em>Introduction to <span>Information</span> <span>Retrieval</span></em>. Cambridge: Cambridge University Press.
 </div>
-<div class="csl-entry">
+<div id="ref-martins_rise_2020" class="csl-entry">
 Martins, Mauricio de Jesus Dias, and Nicolas Baumard. 2020. <span>“The Rise of Prosociality in Fiction Preceded Democratic Revolutions in <span>Early</span> <span>Modern</span> <span>Europe</span>.”</span> <em>Proceedings of the National Academy of Sciences</em> 117 (46): 28684–91. <a href="https://doi.org/10.1073/pnas.2009571117">https://doi.org/10.1073/pnas.2009571117</a>.
 </div>
-<div class="csl-entry">
+<div id="ref-michel_quantitative_2011" class="csl-entry">
 Michel, J.-B., Y. K. Shen, A. P. Aiden, A. Veres, M. K. Gray, The Google Books Team, J. P. Pickett, et al. 2011. <span>“Quantitative <span>Analysis</span> of <span>Culture</span> <span>Using</span> <span>Millions</span> of <span>Digitized</span> <span>Books</span>.”</span> <em>Science</em> 331 (6014): 176–82. <a href="https://doi.org/10.1126/science.1199644">https://doi.org/10.1126/science.1199644</a>.
 </div>
-<div class="csl-entry">
+<div id="ref-rozado_prevalence_2021" class="csl-entry">
 Rozado, David, Musa Al-Gharbi, and Jamin Halberstadt. 2021. <span>“Prevalence of <span>Prejudice</span>-<span>Denoting</span> <span>Words</span> in <span>News</span> <span>Media</span> <span>Discourse</span>: <span>A</span> <span>Chronological</span> <span>Analysis</span>.”</span> <em>Social Science Computer Review</em>, July, 089443932110314. <a href="https://doi.org/10.1177/08944393211031452">https://doi.org/10.1177/08944393211031452</a>.
 </div>
-<div class="csl-entry">
+<div id="ref-silge_text_2017" class="csl-entry">
 Silge, Julia, and David Robinson. 2017. <em>Text <span>Mining</span> with <span>R</span>: <span>A</span> <span>Tidy</span> <span>Approach</span></em>. London: O’Reilly.
 </div>
-<div class="csl-entry">
+<div id="ref-wickham_r_2017" class="csl-entry">
 Wickham, Hadley, and Garrett Grolemund. 2017. <em>R for <span>Data</span> <span>Science</span></em>. London: O’Reilly Media.
 </div>
-<div class="csl-entry">
+<div id="ref-wilkerson_large-scale_2017" class="csl-entry">
 Wilkerson, John, and Andreu Casas. 2017. <span>“Large-<span>Scale</span> <span>Computerized</span> <span>Text</span> <span>Analysis</span> in <span>Political</span> <span>Science</span>: <span>Opportunities</span> and <span>Challenges</span>.”</span> <em>Annual Review of Political Science</em> 20 (1): 529–44. <a href="https://doi.org/10.1146/annurev-polisci-052615-025542">https://doi.org/10.1146/annurev-polisci-052615-025542</a>.
 </div>
 </div>
 </div>
 </div>
-            </section>
+  <div class="chapter-nav">
+<div class="prev"><a href="week-10.html"><span class="header-section-number">10</span> Week 10</a></div>
+<div class="empty"></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#exercise-1-word-frequency-analysis"><span class="header-section-number">11</span> Exercise 1: Word frequency analysis</a></li>
+<li><a class="nav-link" href="#introduction"><span class="header-section-number">11.1</span> Introduction</a></li>
+<li><a class="nav-link" href="#setup"><span class="header-section-number">11.2</span> Setup</a></li>
+<li><a class="nav-link" href="#load-data-and-packages"><span class="header-section-number">11.3</span> Load data and packages</a></li>
+<li><a class="nav-link" href="#inspect-and-filter-data"><span class="header-section-number">11.4</span> Inspect and filter data</a></li>
+<li><a class="nav-link" href="#tidy-the-text"><span class="header-section-number">11.5</span> Tidy the text</a></li>
+<li>
+<a class="nav-link" href="#regex-sidebar"><span class="header-section-number">11.6</span> Regex sidebar</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#some-more-regex-resources"><span class="header-section-number">11.6.1</span> Some more regex resources:</a></li></ul>
+</li>
+<li><a class="nav-link" href="#back-to-the-fringe"><span class="header-section-number">11.7</span> Back to the Fringe</a></li>
+<li><a class="nav-link" href="#analyze-keywords"><span class="header-section-number">11.8</span> Analyze keywords</a></li>
+<li><a class="nav-link" href="#compute-aggregate-statistics"><span class="header-section-number">11.9</span> Compute aggregate statistics</a></li>
+<li><a class="nav-link" href="#plot-time-trends"><span class="header-section-number">11.10</span> Plot time trends</a></li>
+<li><a class="nav-link" href="#bonus-gender-prediction"><span class="header-section-number">11.11</span> Bonus: gender prediction</a></li>
+<li><a class="nav-link" href="#exercises"><span class="header-section-number">11.12</span> Exercises</a></li>
+<li><a class="nav-link" href="#references-1"><span class="header-section-number">11.13</span> References</a></li>
+</ul>
 
-          </div>
-        </div>
-      </div>
-<a href="week-10.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/cjbarrie/CTA-ED/blob/master/11-word-freq.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/cjbarrie/CTA-ED/edit/master/11-word-freq.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
 
-    </div>
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Computational Text Analysis</strong>" was written by Christopher Barrie. It was last built on 2021-12-17.</p>
   </div>
-<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
-<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
-<script>
-gitbook.require(["gitbook"], function(gitbook) {
-gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": "https://github.com/cjbarrie/CTA-ED/edit/master/11-word-freq.Rmd",
-"text": "Edit"
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": ["_main.pdf", "_main.epub"],
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "subsection"
-}
-});
-});
-</script>
 
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer>
 </body>
-
 </html>

@@ -1,3 +1,7 @@
+bookdown::bs4_book:
+  theme:
+    primary: "#8b0000"
+  repo: https://github.com/cjbarrie/CTA-ED
 bookdown::gitbook:
   css: style.css
   config:
