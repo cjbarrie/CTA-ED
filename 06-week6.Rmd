@@ -1,15 +1,15 @@
 # Week 6
 
-## Information retrieval and transformation
+## Unupervised learning
 
 **Required reading**:
 
-- @michel_quantitative_2011
-- @rozado_prevalence_2021
-- @manning_introduction_2007 [ch.2: [https://nlp.stanford.edu/IR-book/information-retrieval-book.html](https://nlp.stanford.edu/IR-book/information-retrieval-book.html)]
+- @slapin_scaling_2008
+- @boyd_characterizing_2018
+- @grimmer_general_2011
 
 **Further reading**:
 
-- 
-- 
+- @chang_reading_2009
+-
 - 

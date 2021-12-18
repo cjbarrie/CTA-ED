@@ -1,6 +1,6 @@
 # Week 4
 
-## Scaling and similarity
+## Linguistic features, complexity, and similarity
 
 **Required reading**:
 

@@ -1,12 +1,13 @@
 # Week 9
 
-## Information retrieval and transformation
+## Word embedding
 
 **Required reading**:
 
-- @michel_quantitative_2011
-- @rozado_prevalence_2021
-- @manning_introduction_2007 [ch.2: [https://nlp.stanford.edu/IR-book/information-retrieval-book.html](https://nlp.stanford.edu/IR-book/information-retrieval-book.html)]
+- @garg_word_2018
+- @kozlowski_geometry_2019
+- @rodriguez_word_2021
+- @jurafsky_speech_2021 [ch.6]: [https://web.stanford.edu/~jurafsky/slp3/](https://web.stanford.edu/~jurafsky/slp3/)]
 
 **Further reading**:
 

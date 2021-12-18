@@ -1,12 +1,12 @@
 # Week 5
 
-## Unupervised learning
+## Scaling techniques
 
 **Required reading**:
 
-- @slapin_scaling_2008
-- @chang_reading_2009
-- @grimmer_general_2011
+- @ziblatt_wealth_2020
+- @schoonvelde_liberals_2019
+- @lowe_understanding_2008
 
 **Further reading**:
 
