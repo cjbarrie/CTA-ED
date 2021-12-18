@@ -15,7 +15,7 @@ tokenization-and-word-frequencies
 week-3
 dictionary-based-techniques
 week-4
-linguistic-features-complexity-and-similarity
+natural-language-complexity-and-similarity
 week-5
 scaling-techniques
 week-6

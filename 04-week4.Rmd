@@ -1,6 +1,6 @@
 # Week 4
 
-## Linguistic features, complexity, and similarity
+## Natural language, complexity, and similarity
 
 **Required reading**:
 
@@ -10,6 +10,6 @@
 
 **Further reading**:
 
-- 
+- @voigt_language_2017
 - 
 - 

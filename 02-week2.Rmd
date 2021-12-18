@@ -12,5 +12,5 @@
 **Further reading**:
 
 - @rozado_prevalence_2021
-- 
+- @alshaabi_storywrangler_2021
 - 
