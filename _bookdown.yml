@@ -1,4 +1,5 @@
 delete_merged_file: true
+book_filename: "main.Rmd"
 output_dir: "docs"
 language:
   ui:
