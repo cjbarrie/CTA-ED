@@ -2,14 +2,22 @@
 
 ## Natural language, complexity, and similarity
 
+This week we will be delving more deeply into how language is used in text. In previous weeks, we have tried out two main techniques both of which rely on counting words. This week, we will be thinking about some more sophisticated techniques to identify and measure language use, as well as how to compare texts to each other. The article by @gomaa_survey_2013 provides an overview of different approaches. 
+
+The article by @urman_matter_2021 investigates a key question in contemporary communications research---what information we are exposed to online---and shows how we might compare between web search results using similarity measures. The @schoonvelde_liberals_2019 article, on the other hand, looks at the "complexity" of texts, and compares how politicians of different ideological stripes communicate.
+
+For those who find the time, the further reading article by @ziblatt_wealth_2020, meanwhile, shows how we might measure so-called "dialectal distance" or the difference between how German is spoken in one region versus 'standard' German.
+
 **Required reading**:
 
-- @ziblatt_wealth_2020
+- @urman_matter_2021
 - @schoonvelde_liberals_2019
-- @lowe_understanding_2008
+- @gomaa_survey_2013
 
 **Further reading**:
 
 - @voigt_language_2017
-- 
-- 
+- @peng_quantitative_2002
+- @lowe_understanding_2008
+- @bail_fringe_2012
+- @ziblatt_wealth_2020

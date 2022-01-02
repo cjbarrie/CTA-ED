@@ -16,4 +16,5 @@ We will also be reading two examples of the application of these techniques by @
 
 **Further reading**:
 
+- @brier_computer_2011
 - @barbera_automated_2021
