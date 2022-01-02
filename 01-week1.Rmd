@@ -18,8 +18,10 @@ Questions for seminar:
 - @pechenick_characterizing_2015
 
 - @manning_introduction_2007 [chs.1 and 10]: [https://nlp.stanford.edu/IR-book/information-retrieval-book.html](https://nlp.stanford.edu/IR-book/information-retrieval-book.html)]
+- @krippendorff_content_2004 [ch. 6]
 
 **Further reading**:
 
 - @olteanu_social_2019
 - @biber_using_1993
+- @barbera_understanding_2015

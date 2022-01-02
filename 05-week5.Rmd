@@ -19,6 +19,5 @@ Here we begin thinking about more automated techniques for analyzing texts. And 
 
 **Further reading**:
 
-- 
-- 
-- 
+- @benoit_crowd-sourced_2016
+- @laver_extracting_2003

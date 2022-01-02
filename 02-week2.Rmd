@@ -20,7 +20,8 @@ Questions:
   - @schmidt_uncontrolled_2021
   - @bollen_reply_2021
   
-- @manning_introduction_2007 [chs.2, 3, and 4]: [https://nlp.stanford.edu/IR-book/information-retrieval-book.html](https://nlp.stanford.edu/IR-book/information-retrieval-book.html)]
+- @manning_introduction_2007 [ch. 2]: [https://nlp.stanford.edu/IR-book/information-retrieval-book.html](https://nlp.stanford.edu/IR-book/information-retrieval-book.html)]
+- @krippendorff_content_2004 [ch. 5]
 
 **Further reading**:
 

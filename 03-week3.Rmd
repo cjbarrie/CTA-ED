@@ -2,14 +2,18 @@
 
 ## Dictionary-based techniques
 
+An extension of word frequency analyses, which we covered last week, are so-called "dictionary-based" techniques. In their most basic form, these analyses use an index of target terms and classify the corpus of interest based on their presence or absence. The technical dimensions of this type of analysis are covered in the chapter section by @krippendorff_content_2004, and some of the issues attending them in the article by - @loughran_when_2011.
+
+We will also be reading two examples of the application of these techniques by @martins_rise_2020 and @young_affective_2012. Here, we will be discussing how successful the authors are in measuring the phenomenon of interest ("prosociality" and "tone" respectively). Questions about sampling and representativeness will again be relevant here, and will naturally inform our assessments of this work. 
+
 **Required reading**:
 
 - @martins_rise_2020
 - @young_affective_2012
-- @manning_introduction_2007 [ch.2: [https://nlp.stanford.edu/IR-book/information-retrieval-book.html](https://nlp.stanford.edu/IR-book/information-retrieval-book.html)]
+
+- @loughran_when_2011
+- @krippendorff_content_2004 [pp.283-289]
 
 **Further reading**:
 
-- 
-- 
-- 
+- @barbera_automated_2021
