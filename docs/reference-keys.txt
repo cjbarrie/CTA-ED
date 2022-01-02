@@ -7,7 +7,6 @@ saving-your-objects-plots-and-scripts
 knowing-where-r-saves-your-documents
 practicing-in-r
 one-final-note
-references
 week-1
 retrieving-and-analyzing-text-information
 week-2
@@ -29,7 +28,7 @@ word-embedding
 week-10
 validation
 exercise-1-word-frequency-analysis
-introduction
+introduction-1
 setup
 load-data-and-packages
 inspect-and-filter-data
@@ -42,5 +41,5 @@ compute-aggregate-statistics
 plot-time-trends
 bonus-gender-prediction
 exercises
+references
 references-1
-references-2

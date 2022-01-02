@@ -6,7 +6,9 @@ This section is designed to ensure you are familiar with the <tt>R</tt> environm
 
 Given that we're all working from home these days, you'll need to download R and RStudio onto your own devices. R is the name of the programming language that we'll be using for coding exercises; RStudio is the IDE ("Integrated Development Environment"), i.e., the piece of software that almost everyone uses when working in R. 
 
-You can download both of these on Windows and Mac easily and for free. This is one of the first reasons to use an "open-source" programming language: it's free! And this means everyone has access to it. 
+You can download both of these on Windows and Mac easily and for free. This is one of the first reasons to use an "open-source" programming language: it's free and everyone can contribute!
+
+IT Services at the University of Edinburgh have provided a [walkthrough](https://uoe.sharepoint.com/sites/hss/sps/itservices/SPSShareSpaceManagement/Moblabdoc/SitePages/Computational-Text-Analysis.aspx?cid=59b29656-3df8-4c19-9423-24765076e742) of what is needed for you to get started. I also break this down below:
 
 1. Install R for Mac from here: https://cran.r-project.org/bin/macosx/. Install R for Windows from here: https://cran.r-project.org/bin/windows/base/.
 
@@ -54,14 +56,16 @@ The Script (top left) is where we write our commands for R. You can try this out
 
 ```{r, eval=TRUE}
 
-x <- "I can't wait to learn Quantitative Research Methods" #Note the quotation marks!
+x <- "I can't wait to learn Computational Text Analysis" #Note the quotation marks!
 
 ```
+
 To tell R to run the command, highlight the relevant row in your script and click the <tt>Run</tt> button (top right of the Script) - or hold down <tt>ctrl+enter</tt> on Windows or <tt>cmd+enter</tt> on Mac - to send the command to the Console (bottom left), where the actual evaluation and calculations are taking place. These shortcut keys will become very familiar to you very quickly!
 
 Running the command above creates an object named ‘x’, that contains the words of your message.
 
 You can now see ‘x’ in the Environment (top right). To view what is contained in x, type in the Console (bottom left):
+
 ```{r eval=TRUE}
 
 print(x)
@@ -73,17 +77,20 @@ x
 ```
 
 ## Loading packages 
+
 The 'base' version of <tt>R</tt> is very powerful but it will not be able to do everything on its own, at least not with ease. For more technical or specialized forms of analysis, we will need to load new packages. 
 
-This is when we will need to install a so-called ‘package’---a program that includes new tools (i.e., functions) to carry out specific tasks. You can think of them as 'extensions' enhancing <tt>R</tt>'s capacities. To take one example, we might want to do something a little more exciting than print how excited we are about this course. Let's make a map instead.
+This is when we will need to install a so-called ‘package’---a program that includes new tools (i.e., functions) to carry out specific tasks. You can think of them as 'extensions' enhancing <tt>R</tt>'s capacities. 
 
-This might sound technical. But the beauty of the packaged extensions of <tt>R</tt> is that they contain functions to perform specialized types of analysis with ease. We'll first need to install one of these packages, which you can do as below:
+To take one example, we might want to do something a little more exciting than print how excited we are about this course. Let's make a map instead.
+
+This might sound technical. But the beauty of the packaged extensions of <tt>R</tt> is that they contain functions to perform specialized types of analysis with ease. 
+
+We'll first need to install one of these packages, which you can do as below:
 
 ```{r, eval=FALSE}
 install.packages("tidyverse")
 ```
-
-You can load the most recent version of packages using RStudio (by clicking <tt>Install</tt> under the packages tab of the bottom right pane and typing the name of your desired package) and ensuring the top drop down menu says install from Repository (CRAN). Keep <tt>Install dependencies</tt> ticked.
 
 After the package is installed, we then need to load it into our environment by typing <tt>library(<insert name of package here>)</tt>. Note that, here, you don't need to wrap the name of the package in quotation marks. So this will do the trick:
 
@@ -125,6 +132,8 @@ save.image(file="myfilname.RData")
 load(file="myfilename.RData")
 ```
 
+There are many other file formats you might use to save any output. We will encounter these as the course progresses.
+
 ## Knowing where R saves your documents 
 
 If you are at home, when you open a new script make sure to check and set your working directory (i.e. the folder where the files you create will be saved). To check your working directory use the getwd() command (type it into the Console or write it in your script in the Source Editor):
@@ -144,7 +153,9 @@ setwd("c:/docs/mydir")
 
 ## Practicing in R 
 
-The best way to learn <tt>R</tt> is to use it. These workshops on text analysis will not be the place to become fully proficient in <tt>R</tt>. They will, however, be a chance to conduct some hands-on analysis with applied examples in a fast-expanding field. And the best way to learn is through doing. So give it a shot! For some further practice in the R programming language, look no further than @wickham_r_2017 and, for tidy text analysis, @silge_text_2017.
+The best way to learn <tt>R</tt> is to use it. These workshops on text analysis will not be the place to become fully proficient in <tt>R</tt>. They will, however, be a chance to conduct some hands-on analysis with applied examples in a fast-expanding field. And the best way to learn is through doing. So give it a shot! 
+
+For some further practice in the R programming language, look no further than @wickham_r_2017 and, for tidy text analysis, @silge_text_2017.
 
 - The free online book by Hadley Wickham "R for Data Science" is available [here](https://r4ds.had.co.nz/)
 
@@ -167,7 +178,4 @@ Once you've dipped into the "R for Data Science" book you'll hear a lot about th
 
 The main difference you'll notice here is that, instead of having separate lines for each function we want to run, or wrapping functions inside functions, sets of functions are "piped" into each other using "pipe" functions, which look have the appearance: `%>%`. 
 
-I will be using "tidy" syntax in the weekly exercises for these computational text analysis workshops. If anything is unclear, I can provide the equivalents in "base" R too. but a lot of the useful text analysis packages are composed with tidy syntax.
-
-
-## References
+I will be using "tidy" syntax in the weekly exercises for these computational text analysis workshops. If anything is unclear, I can provide the equivalents in "base" R too. But a lot of the useful text analysis packages are now composed with 'tidy' syntax.

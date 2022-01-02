@@ -6,14 +6,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Chapter 1 Week 1 | Computational Text Analysis</title>
 <meta name="author" content="Christopher Barrie">
-<meta name="description" content="1.1 Retrieving and analyzing text information Required reading: Justin Grimmer and Stewart (2013) Gentzkow, Kelly, and Taddy (2019) Manning, Raghavan, and Schtze (2007, chs.1 and 10):...">
+<meta name="description" content="1.1 Retrieving and analyzing text information Our first task when conducting large-scale text analyses is gathering and curating the text information itself. This is the focus of the chapters by...">
 <meta name="generator" content="bookdown 0.24 with bs4_book()">
 <meta property="og:title" content="Chapter 1 Week 1 | Computational Text Analysis">
 <meta property="og:type" content="book">
-<meta property="og:description" content="1.1 Retrieving and analyzing text information Required reading: Justin Grimmer and Stewart (2013) Gentzkow, Kelly, and Taddy (2019) Manning, Raghavan, and Schtze (2007, chs.1 and 10):...">
+<meta property="og:description" content="1.1 Retrieving and analyzing text information Our first task when conducting large-scale text analyses is gathering and curating the text information itself. This is the focus of the chapters by...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Chapter 1 Week 1 | Computational Text Analysis">
-<meta name="twitter:description" content="1.1 Retrieving and analyzing text information Required reading: Justin Grimmer and Stewart (2013) Gentzkow, Kelly, and Taddy (2019) Manning, Raghavan, and Schtze (2007, chs.1 and 10):...">
+<meta name="twitter:description" content="1.1 Retrieving and analyzing text information Our first task when conducting large-scale text analyses is gathering and curating the text information itself. This is the focus of the chapters by...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.5.1/jquery-3.5.1.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.5.3/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.5.3/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.2.4/tabs.js"></script><script src="libs/bs3compat-0.2.4/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
@@ -52,7 +52,7 @@
 <li><a class="" href="week-9.html"><span class="header-section-number">9</span> Week 9</a></li>
 <li><a class="" href="week-10.html"><span class="header-section-number">10</span> Week 10</a></li>
 <li><a class="" href="exercise-1-word-frequency-analysis.html"><span class="header-section-number">11</span> Exercise 1: Word frequency analysis</a></li>
-<li><a class="" href="references-2.html"><span class="header-section-number">12</span> References</a></li>
+<li><a class="" href="references-1.html"><span class="header-section-number">12</span> References</a></li>
 </ul>
 
         <div class="book-extra">
@@ -68,18 +68,34 @@
 <h2>
 <span class="header-section-number">1.1</span> Retrieving and analyzing text information<a class="anchor" aria-label="anchor" href="#retrieving-and-analyzing-text-information"><i class="fas fa-link"></i></a>
 </h2>
+<p>Our first task when conducting large-scale text analyses is gathering and curating the text information itself. This is the focus of the chapters by <span class="citation"><a href="references-1.html#ref-manning_introduction_2007" role="doc-biblioref">Manning, Raghavan, and Schtze</a> (<a href="references-1.html#ref-manning_introduction_2007" role="doc-biblioref">2007</a>)</span> listed below. Here, you’ll find an introduction to different ways in which we can reformat and ‘query’ text data in order to begin asking questions of it.</p>
+<p>The articles by <span class="citation"><a href="references-1.html#ref-grimmer_text_2013" role="doc-biblioref">Justin Grimmer and Stewart</a> (<a href="references-1.html#ref-grimmer_text_2013" role="doc-biblioref">2013</a>)</span> and <span class="citation"><a href="references-1.html#ref-liu_reading_2013" role="doc-biblioref">Liu</a> (<a href="references-1.html#ref-liu_reading_2013" role="doc-biblioref">2013</a>)</span> will be the focus of our seminar (Q&amp;A). Here, the authors introduce several debates concerning the use of text data in the empirical social sciences (or, in the case of the article by Nan Da, Digital Humanities).</p>
+<p>Questions:</p>
+<ol style="list-style-type: decimal">
+<li>Can computational tools capture meaning?</li>
+<li>Where do we access text? What do we need to consider when doing so?</li>
+<li>Inductive versus deductive reasoning, or embracing a recursive approach.;</li>
+</ol>
+<ul>
+<li>Or “Structural” versus “agnostic” approaches a la GRS book</li>
+</ul>
+<ol start="4" style="list-style-type: decimal">
+<li>Tokenizing and counting: what does this capture?</li>
+</ol>
 <p><strong>Required reading</strong>:</p>
 <ul>
-<li><span class="citation"><a href="references-2.html#ref-grimmer_text_2013" role="doc-biblioref">Justin Grimmer and Stewart</a> (<a href="references-2.html#ref-grimmer_text_2013" role="doc-biblioref">2013</a>)</span></li>
-<li><span class="citation"><a href="references-2.html#ref-gentzkow_text_2019" role="doc-biblioref">Gentzkow, Kelly, and Taddy</a> (<a href="references-2.html#ref-gentzkow_text_2019" role="doc-biblioref">2019</a>)</span></li>
+<li><span class="citation"><a href="references-1.html#ref-grimmer_text_2013" role="doc-biblioref">Justin Grimmer and Stewart</a> (<a href="references-1.html#ref-grimmer_text_2013" role="doc-biblioref">2013</a>)</span></li>
+<li><span class="citation"><a href="references-1.html#ref-bearman_becoming_2000" role="doc-biblioref">Bearman and Stovel</a> (<a href="references-1.html#ref-bearman_becoming_2000" role="doc-biblioref">2000</a>)</span></li>
+<li><span class="citation"><a href="references-1.html#ref-liu_reading_2013" role="doc-biblioref">Liu</a> (<a href="references-1.html#ref-liu_reading_2013" role="doc-biblioref">2013</a>)</span></li>
 <li>
-<span class="citation"><a href="references-2.html#ref-manning_introduction_2007" role="doc-biblioref">Manning, Raghavan, and Schtze</a> (<a href="references-2.html#ref-manning_introduction_2007" role="doc-biblioref">2007, chs.1</a> and 10)</span>: <a href="https://nlp.stanford.edu/IR-book/information-retrieval-book.html">https://nlp.stanford.edu/IR-book/information-retrieval-book.html</a>]</li>
+<span class="citation"><a href="references-1.html#ref-manning_introduction_2007" role="doc-biblioref">Manning, Raghavan, and Schtze</a> (<a href="references-1.html#ref-manning_introduction_2007" role="doc-biblioref">2007, chs.1</a> and 10)</span>: <a href="https://nlp.stanford.edu/IR-book/information-retrieval-book.html">https://nlp.stanford.edu/IR-book/information-retrieval-book.html</a>]</li>
 </ul>
 <p><strong>Further reading</strong>:</p>
 <ul>
-<li><span class="citation"><a href="references-2.html#ref-wilkerson_large-scale_2017" role="doc-biblioref">Wilkerson and Casas</a> (<a href="references-2.html#ref-wilkerson_large-scale_2017" role="doc-biblioref">2017</a>)</span></li>
-<li><span class="citation"><a href="references-2.html#ref-dimaggio_adapting_2015" role="doc-biblioref">DiMaggio</a> (<a href="references-2.html#ref-dimaggio_adapting_2015" role="doc-biblioref">2015</a>)</span></li>
-<li>
+<li><span class="citation"><a href="references-1.html#ref-dimaggio_adapting_2015" role="doc-biblioref">DiMaggio</a> (<a href="references-1.html#ref-dimaggio_adapting_2015" role="doc-biblioref">2015</a>)</span></li>
+<li><span class="citation"><a href="references-1.html#ref-gentzkow_text_2019" role="doc-biblioref">Gentzkow, Kelly, and Taddy</a> (<a href="references-1.html#ref-gentzkow_text_2019" role="doc-biblioref">2019</a>)</span></li>
+<li><span class="citation"><a href="references-1.html#ref-grimmer_machine_2021" role="doc-biblioref">Justin Grimmer, Roberts, and Stewart</a> (<a href="references-1.html#ref-grimmer_machine_2021" role="doc-biblioref">2021</a>)</span></li>
+<li><span class="citation"><a href="references-1.html#ref-wilkerson_large-scale_2017" role="doc-biblioref">Wilkerson and Casas</a> (<a href="references-1.html#ref-wilkerson_large-scale_2017" role="doc-biblioref">2017</a>)</span></li>
 </ul>
 </div>
 </div>
@@ -108,7 +124,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Computational Text Analysis</strong>" was written by Christopher Barrie. It was last built on 2021-12-21.</p>
+    <p>"<strong>Computational Text Analysis</strong>" was written by Christopher Barrie. It was last built on 2021-12-23.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

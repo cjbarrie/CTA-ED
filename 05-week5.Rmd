@@ -2,6 +2,15 @@
 
 ## Scaling techniques
 
+Here we begin thinking about more automated techniques for analyzing texts. And there are a bunch of additional considerations we now need to bring to mind. These considerations have sparked significant debates... and the matter is by no means settled. 
+
+- @grimmer_machine_2021
+- @denny_text_2018
+
+- @goldenstein_analyzing_2019
+- @nelson_measure_2019
+- @goldenstein_quest_2019
+
 **Required reading**:
 
 - @ziblatt_wealth_2020
