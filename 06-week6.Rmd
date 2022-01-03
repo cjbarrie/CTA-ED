@@ -4,7 +4,6 @@
 
 **Required reading**:
 
-- @slapin_scaling_2008
 - @boyd_characterizing_2018
 - @grimmer_general_2011
 
@@ -12,4 +11,3 @@
 
 - @chang_reading_2009
 - @denny_text_2018
-- 
