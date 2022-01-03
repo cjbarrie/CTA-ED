@@ -46,7 +46,7 @@ There are several other reference texts that will be of use during this course:
   - For learning <tt>tidytext</tt>, this online tutorial will be used: [https://juliasilge.shinyapps.io/learntidytext/](https://juliasilge.shinyapps.io/learntidytext/)
 - (later in the course) Hvitfelft, Emil and Julia Silge. Supervised Machine Learning for Text Analysis in R: [https://smltar.com/](https://smltar.com/)
 
-In the first weeks, we will also be referring to two other textbooks, available online, on information retrieval and text processing. These are:
+In several weeks, we will also be referring to two other textbooks, available online, on information retrieval and text processing. These are:
 
 - Jurafsky, Dan and James H. Martin. Speech and Language Processing (3rd ed. draft): [https://nlp.stanford.edu/IR-book/information-retrieval-book.html](https://nlp.stanford.edu/IR-book/information-retrieval-book.html)
 - Manning, Christopher D.,Prabhakar Raghavan, and Hinrich Schütze. Introduction to Information Retrieval: [https://nlp.stanford.edu/IR-book/information-retrieval-book.html](https://nlp.stanford.edu/IR-book/information-retrieval-book.html)
