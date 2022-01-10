@@ -1,5 +1,3 @@
-course-pre-preparation
-reference-sources
 getting-started-with-r-at-home
 some-basic-information
 getting-started-in-rstudio
