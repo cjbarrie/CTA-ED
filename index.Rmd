@@ -16,4 +16,10 @@ github-repo: cjbarrie/CTA-ED
 
 # "Computational Text Analysis" (PGSP11584) {.unnumbered}
 
-[![cover](coverb.png){.cover width="250"}] This is the dedicated webpage for the course Computational Text Analysis" [(PGSP11584)](http://www.drps.ed.ac.uk/21-22/dpt/cxpgsp11584.htm) at the University of Edinburgh, taught by Christopher Barrie. Go to the Course Overview and Introduction tabs for a course overview and introduction to R.
+![cover](coverb.png){.cover width="250"} This is the dedicated webpage for the course Computational Text Analysis" [(PGSP11584)](http://www.drps.ed.ac.uk/21-22/dpt/cxpgsp11584.htm) at the University of Edinburgh, taught by Christopher Barrie. Go to the Course Overview and Introduction tabs for a course overview and introduction to R. 
+
+We will be using this online book thorughout the course. Each week has a set of essential and recommended readings. The essential readings must be consulted in full prior to the Lecture and Seminar for that week. In addition, you will find online worksheets and examples written in R. This is a "live" book and will be amended and updated during the course itself.
+
+## Acknowledgments {.unnumbered}
+
+When compiling this course, I benefited from syllabus materials shared online by Margaret Roberts, Alexandra Siegel, and Arthur Spirling. Thanks also to Justin Grimmer, Margaret Roberts, and Brandon Stewart for providing early view access to their forthcoming [*Text as Data*](https://press.princeton.edu/books/hardcover/9780691207544/text-as-data) book.
