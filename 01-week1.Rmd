@@ -17,7 +17,7 @@ Questions for seminar:
 - @tatman_gender_2017
 - @pechenick_characterizing_2015
 
-- @manning_introduction_2007 [chs.1 and 10]: [https://nlp.stanford.edu/IR-book/information-retrieval-book.html](https://nlp.stanford.edu/IR-book/information-retrieval-book.html)]
+- @manning_introduction_2007 [chs.1 and 10]: [https://nlp.stanford.edu/IR-book/information-retrieval-book.html](https://nlp.stanford.edu/IR-book/information-retrieval-book.html)
 - @krippendorff_content_2004 [ch. 6]
 
 **Further reading**:
