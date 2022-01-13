@@ -3,10 +3,11 @@ title: "Computational Text Analysis"
 author: "Christopher Barrie"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
+output: bookdown::bs4_book
 documentclass: book
 bibliography: [book.bib, packages.bib, CTA.bib]
 url: https://cjbarrie.github.io/CTA-ED/
-cover-image: cover.png
+cover-image: coverb.png
 description: |
   Online book for ten-week course in "Computational Text Analysis" (PGSP11584)
 link-citations: yes
