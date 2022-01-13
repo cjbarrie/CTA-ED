@@ -16,4 +16,4 @@ github-repo: cjbarrie/CTA-ED
 
 # "Computational Text Analysis" (PGSP11584) {.unnumbered}
 
-This is the dedicated webpage for the course Computational Text Analysis" [(PGSP11584)](http://www.drps.ed.ac.uk/21-22/dpt/cxpgsp11584.htm) at the University of Edinburgh, taught by Christopher Barrie. Go to the Course Overview and Introduction tabs for a course overview and introduction to R.
+[![cover](coverb.png){.cover width="250"}] This is the dedicated webpage for the course Computational Text Analysis" [(PGSP11584)](http://www.drps.ed.ac.uk/21-22/dpt/cxpgsp11584.htm) at the University of Edinburgh, taught by Christopher Barrie. Go to the Course Overview and Introduction tabs for a course overview and introduction to R.
