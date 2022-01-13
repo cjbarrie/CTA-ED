@@ -28,7 +28,7 @@ word-embedding
 week-10
 validation
 exercise-1-word-frequency-analysis
-introduction-1
+introduction
 setup
 load-data-and-packages
 inspect-and-filter-data
@@ -43,7 +43,7 @@ bonus-gender-prediction
 exercises
 references
 exercise-2-sentiment-analysis
-introduction-2
+introduction-1
 setup-1
 load-data-and-packages-1
 inspect-and-filter-data-1
