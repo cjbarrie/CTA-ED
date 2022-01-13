@@ -42,4 +42,15 @@ plot-time-trends
 bonus-gender-prediction
 exercises
 references
+exercise-2-sentiment-analysis
+introduction-2
+setup-1
+load-data-and-packages-1
+inspect-and-filter-data-1
+get-sentiment-dictionaries
+sentiment-trends-over-time
+domain-specific-lexicons
+using-lexicoder
+exercises-1
 references-1
+references-2
