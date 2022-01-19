@@ -136,23 +136,34 @@
 <div class="sourceCode" id="cb93"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">tweets</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 31
-##   tweet_id            user_username text   lang  author_id source  possibly_sensit… conversation_id created_at user_url user_location user_protected user_verified user_name user_profile_im… user_description
-##   &lt;chr&gt;               &lt;chr&gt;         &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt;   &lt;lgl&gt;            &lt;chr&gt;           &lt;chr&gt;      &lt;chr&gt;    &lt;chr&gt;         &lt;lgl&gt;          &lt;lgl&gt;         &lt;chr&gt;     &lt;chr&gt;            &lt;chr&gt;           
-## 1 1212334402266521602 DailyMirror   "Secr… en    16887175  TweetD… FALSE            12123344022665… 2020-01-0… https:/… UK            FALSE          TRUE          The Mirr… https://pbs.twi… "The official M…
-## 2 1212334169457676289 DailyMirror   "RT @… en    16887175  TweetD… FALSE            12123341694576… 2020-01-0… https:/… UK            FALSE          TRUE          The Mirr… https://pbs.twi… "The official M…
-## 3 1212333195879993344 thetimes      "A ce… en    6107422   Echobox FALSE            12123331958799… 2020-01-0… http://… London        FALSE          TRUE          The Times https://pbs.twi… "The best of ou…
-## 4 1212333194864988161 TheSun        "Wayn… en    34655603  Echobox FALSE            12123331948649… 2020-01-0… https:/… London        FALSE          TRUE          The Sun   https://pbs.twi… "Never miss a s…
-## 5 1212332920507191296 DailyMailUK   "Stud… en    111556423 Social… FALSE            12123329205071… 2020-01-0… https:/… London, UK    FALSE          TRUE          Daily Ma… https://pbs.twi… "For the latest…
-## 6 1212332640570875904 TheSun        "Dad … en    34655603  Twitte… FALSE            12123326405708… 2020-01-0… https:/… London        FALSE          TRUE          The Sun   https://pbs.twi… "Never miss a s…
-## # … with 15 more variables: user_created_at &lt;chr&gt;, user_pinned_tweet_id &lt;chr&gt;, retweet_count &lt;int&gt;, like_count &lt;int&gt;, quote_count &lt;int&gt;, user_tweet_count &lt;int&gt;, user_list_count &lt;int&gt;,
-## #   user_followers_count &lt;int&gt;, user_following_count &lt;int&gt;, sourcetweet_type &lt;chr&gt;, sourcetweet_id &lt;chr&gt;, sourcetweet_text &lt;chr&gt;, sourcetweet_lang &lt;chr&gt;, sourcetweet_author_id &lt;chr&gt;,
-## #   in_reply_to_user_id &lt;chr&gt;</code></pre>
+##   tweet_id  user_username text         lang  author_id source  possibly_sensit… conversation_id
+##   &lt;chr&gt;     &lt;chr&gt;         &lt;chr&gt;        &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt;   &lt;lgl&gt;            &lt;chr&gt;          
+## 1 12123344… DailyMirror   "Secret to … en    16887175  TweetD… FALSE            12123344022665…
+## 2 12123341… DailyMirror   "RT @Mirror… en    16887175  TweetD… FALSE            12123341694576…
+## 3 12123331… thetimes      "A celebrit… en    6107422   Echobox FALSE            12123331958799…
+## 4 12123331… TheSun        "Wayne Roon… en    34655603  Echobox FALSE            12123331948649…
+## 5 12123329… DailyMailUK   "Student, 1… en    111556423 Social… FALSE            12123329205071…
+## 6 12123326… TheSun        "Dad filmed… en    34655603  Twitte… FALSE            12123326405708…
+## # … with 23 more variables: created_at &lt;chr&gt;, user_url &lt;chr&gt;, user_location &lt;chr&gt;,
+## #   user_protected &lt;lgl&gt;, user_verified &lt;lgl&gt;, user_name &lt;chr&gt;, user_profile_image_url &lt;chr&gt;,
+## #   user_description &lt;chr&gt;, user_created_at &lt;chr&gt;, user_pinned_tweet_id &lt;chr&gt;,
+## #   retweet_count &lt;int&gt;, like_count &lt;int&gt;, quote_count &lt;int&gt;, user_tweet_count &lt;int&gt;,
+## #   user_list_count &lt;int&gt;, user_followers_count &lt;int&gt;, user_following_count &lt;int&gt;,
+## #   sourcetweet_type &lt;chr&gt;, sourcetweet_id &lt;chr&gt;, sourcetweet_text &lt;chr&gt;,
+## #   sourcetweet_lang &lt;chr&gt;, sourcetweet_author_id &lt;chr&gt;, in_reply_to_user_id &lt;chr&gt;</code></pre>
 <div class="sourceCode" id="cb95"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">tweets</span><span class="op">)</span></code></pre></div>
-<pre><code>##  [1] "tweet_id"               "user_username"          "text"                   "lang"                   "author_id"              "source"                 "possibly_sensitive"     "conversation_id"       
-##  [9] "created_at"             "user_url"               "user_location"          "user_protected"         "user_verified"          "user_name"              "user_profile_image_url" "user_description"      
-## [17] "user_created_at"        "user_pinned_tweet_id"   "retweet_count"          "like_count"             "quote_count"            "user_tweet_count"       "user_list_count"        "user_followers_count"  
-## [25] "user_following_count"   "sourcetweet_type"       "sourcetweet_id"         "sourcetweet_text"       "sourcetweet_lang"       "sourcetweet_author_id"  "in_reply_to_user_id"</code></pre>
+<pre><code>##  [1] "tweet_id"               "user_username"          "text"                  
+##  [4] "lang"                   "author_id"              "source"                
+##  [7] "possibly_sensitive"     "conversation_id"        "created_at"            
+## [10] "user_url"               "user_location"          "user_protected"        
+## [13] "user_verified"          "user_name"              "user_profile_image_url"
+## [16] "user_description"       "user_created_at"        "user_pinned_tweet_id"  
+## [19] "retweet_count"          "like_count"             "quote_count"           
+## [22] "user_tweet_count"       "user_list_count"        "user_followers_count"  
+## [25] "user_following_count"   "sourcetweet_type"       "sourcetweet_id"        
+## [28] "sourcetweet_text"       "sourcetweet_lang"       "sourcetweet_author_id" 
+## [31] "in_reply_to_user_id"</code></pre>
 <p>Each row here is a tweets produced by one of the news outlets detailed above over a five month period, January–May 2020. Note also that each tweets has a particular date. We can therefore use these to look at any over time changes.</p>
 <p>We won’t need all of these variables so let’s just keep those that are of interest to us:</p>
 <div class="sourceCode" id="cb97"><pre class="downlit sourceCode r">
@@ -655,7 +666,7 @@ The Guardian
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Computational Text Analysis</strong>" was written by Christopher Barrie. It was last built on 2022-01-13.</p>
+    <p>"<strong>Computational Text Analysis</strong>" was written by Christopher Barrie. It was last built on 2022-01-19.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

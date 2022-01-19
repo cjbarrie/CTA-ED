@@ -25,3 +25,7 @@ Questions for seminar:
 - @olteanu_social_2019
 - @biber_using_1993
 - @barbera_understanding_2015
+
+**Slides**:
+
+- Week 1 [Slides](https://docs.google.com/presentation/d/1TljlFQwyY8xoa5qr5R3EBasc0U-ixoUJx_D0RieJs_o/edit?usp=sharing)
