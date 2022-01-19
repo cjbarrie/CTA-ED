@@ -8,7 +8,7 @@ bookdown::gitbook:
     toc:
       before: |
         <li><a href="./">Computational Text Analysis</a></li>
-    edit: https://github.com/cjbarrie/CTA-ED/edit/main/%s
+    edit: https://github.com/cjbarrie/CTA-ED
     download: ["pdf", "epub"]
 bookdown::pdf_book:
   includes:
