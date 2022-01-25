@@ -11,3 +11,4 @@ This will be the main resource we use throughout the ten weeks of the course. Yo
 Slides:
 
 - Week 1 [Slides](https://docs.google.com/presentation/d/1TljlFQwyY8xoa5qr5R3EBasc0U-ixoUJx_D0RieJs_o/edit?usp=sharing)
+- Week 2 [R Slides](https://raw.githack.com/cjbarrie/CTA-ED/main/docs/slides/01-word-freq-pres.html)
