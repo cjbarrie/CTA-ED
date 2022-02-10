@@ -25,3 +25,7 @@ Questions:
 - @tausczik_psychological_2010
 - @brier_computer_2011
 - @barbera_automated_2021
+
+**Slides**:
+
+- Week 3 [Slides](https://docs.google.com/presentation/d/1rgYCYGtZ7resCd7oVsGnaCpwWKduunl8s1famjtGtBY/edit?usp=sharing)

@@ -26,3 +26,7 @@ Questions:
 - @bail_fringe_2012
 - @ziblatt_wealth_2020
 - @benoit_measuring_2019
+
+**Slides**:
+
+- Week 4 [Slides](https://docs.google.com/presentation/d/1SpEZVfejaul9dQyeaIvQlSIyLVyRJ8w5yMzr7LoVnc4/edit?usp=sharing)
