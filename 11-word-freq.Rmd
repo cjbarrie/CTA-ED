@@ -107,80 +107,6 @@ tidy_des <- evdes %>%
 
 ```
 
-## Regex sidebar 
-
-You'll notice that in the parentheses after `str_detect()` we have the string "[a-z]". This is called a __character class__ and these use square brackets like `[]`. 
-
-Other character classes include, as helpfully listed in this [vignette](https://cran.r-project.org/web/packages/stringr/vignettes/regular-expressions.html) for the <tt>stringr</tt> package. What follows is adapted from these materials. 
-
-* `[abc]`: matches a, b, or c.
-* `[a-z]`: matches every character between a and z 
-   (in Unicode code point order).
-* `[^abc]`: matches anything except a, b, or c.
-* `[\^\-]`: matches `^` or `-`.
-
-Several other patterns match multiple characters. These include:
-
-*   `\d`: matches any digit; the opposite of this is `\D`, which matches any character that 
-    is not a decimal digit.
-
-```{r}
-str_extract_all("1 + 2 = 3", "\\d+")
-str_extract_all("1 + 2 = 3", "\\D+")
-```
-    
-*   `\s`: matches any whitespace; its opposite is `\S`
-    
-```{r}
-(text <- "Some  \t badly\n\t\tspaced \f text")
-str_replace_all(text, "\\s+", " ")
-```
-
-*   `^`: matches start of the string
-    
-```{r}
-x <- c("apple", "banana", "pear")
-str_extract(x, "^a")
-```
-*   `$`: matches end of the string
-    
-```{r}
-x <- c("apple", "banana", "pear")
-str_extract(x, "^a$")
-```
-
-*   `^` then `$`: exact string match
-    
-```{r}
-x <- c("apple", "banana", "pear")
-str_extract(x, "^apple$")
-```
-
-Hold up: what do the plus signs etc. mean?
-
-* `+`: 1 or more.
-* `*`: 0 or more.
-* `?`: 0 or 1.
-
-So if you can tell me why this output makes sense, you're getting there!
-
-```{r}
-str_extract_all("1 + 2 = 3", "\\d+")[[1]]
-str_extract_all("1 + 2 = 3", "\\D+")[[1]]
-
-str_extract_all("1 + 2 = 3", "\\d*")[[1]]
-str_extract_all("1 + 2 = 3", "\\D*")[[1]]
-
-str_extract_all("1 + 2 = 3", "\\d?")[[1]]
-str_extract_all("1 + 2 = 3", "\\D?")[[1]]
-```
-
-### Some more regex resources:
-
-1. Regex crossword: [https://regexcrossword.com/](https://regexcrossword.com/).
-2. Regexone: [https://regexone.com/](https://regexone.com/)
-3. R4DS [chapter 14](https://r4ds.had.co.nz/strings.html#matching-patterns-with-regular-expressions)
-
 ## Back to the Fringe
 
 We see that the resulting dataset is large (~446k rows). This is because the above commands have first taken the events text, and has "mutated" it into a set of lower case character string. With the "unnest_tokens" function it has then taken each individual string and create a new column called "word" that contains each individual word contained in the event description texts.
@@ -273,7 +199,6 @@ Are the keywords we used precise enough? If not, what would you change?
 ```{r}
 #get counts by year and word
 edbf_counts <- edbf_term_counts %>%
-  complete(year, word, fill = list(n = 0)) %>%
   group_by(year) %>%
   mutate(year_total = sum(n)) %>%
   filter(womword==1) %>%

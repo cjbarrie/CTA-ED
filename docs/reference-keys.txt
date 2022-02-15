@@ -11,8 +11,13 @@ week-1
 retrieving-and-analyzing-text-information
 week-2
 tokenization-and-word-frequencies
+tokenizing
+regexing
+some-more-regex-resources
 week-3
 dictionary-based-techniques
+happy-words
+normalizing-sentiment
 week-4
 natural-language-complexity-and-similarity
 week-5
@@ -33,8 +38,6 @@ setup
 load-data-and-packages
 inspect-and-filter-data
 tidy-the-text
-regex-sidebar
-some-more-regex-resources
 back-to-the-fringe
 analyze-keywords
 compute-aggregate-statistics
