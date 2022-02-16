@@ -21,7 +21,7 @@ regexing-1
 some-more-regex-resources-1
 week-3
 dictionary-based-techniques
-week-3-code-demo
+week-3-demo
 setup-1
 happy-words
 normalizing-sentiment

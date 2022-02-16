@@ -50,7 +50,7 @@
 <li><a class="active" href="week-2.html"><span class="header-section-number">2</span> Week 2</a></li>
 <li><a class="" href="week-2-demo.html"><span class="header-section-number">3</span> Week 2 Demo</a></li>
 <li><a class="" href="week-3.html"><span class="header-section-number">4</span> Week 3</a></li>
-<li><a class="" href="week-3-code-demo.html"><span class="header-section-number">5</span> Week 3 Code Demo</a></li>
+<li><a class="" href="week-3-demo.html"><span class="header-section-number">5</span> Week 3 Demo</a></li>
 <li><a class="" href="week-4.html"><span class="header-section-number">6</span> Week 4</a></li>
 <li><a class="" href="week-4-demo.html"><span class="header-section-number">7</span> Week 4 Demo</a></li>
 <li><a class="" href="week-5.html"><span class="header-section-number">8</span> Week 5</a></li>
@@ -138,7 +138,7 @@
 <code class="sourceCode R"><span class="va">lipsum_text</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>text <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/stringi/man/stri_rand_lipsum.html">stri_rand_lipsum</a></span><span class="op">(</span><span class="fl">1</span>, start_lipsum <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">lipsum_text</span><span class="op">$</span><span class="va">text</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] "Lorem ipsum dolor sit amet, nisi, sapien tempor mattis cum egestas eleifend rutrum mi? Nunc risus imperdiet justo nostra congue congue. Class sapien iaculis et sed varius sed dapibus vitae orci at. Pretium lacus vel at vitae egestas a sit quam, semper et justo. Magnis diam mauris parturient neque vivamus. Proin ultrices, dolor phasellus. Condimentum finibus mi sollicitudin. Leo ex himenaeos maecenas libero ut in aliquam pharetra massa. Congue sed mattis, luctus sed, sit, justo."</code></pre>
+<pre><code>## [1] "Lorem ipsum dolor sit amet, nec vel eget, vel ac commodo amet cras, erat praesent. Nisl nisl sed malesuada nibh integer odio fames ut. Eu dis, leo nisl dis, nisl, pretium ac ac curae, ac himenaeos pretium porta. Pharetra vulputate aptent ante dictumst sed rutrum in odio malesuada. Diam consequat fringilla, sed iaculis at, metus at, quam sollicitudin nulla. A tincidunt molestie, rhoncus lectus nec iaculis et metus facilisi nisl feugiat. Tincidunt metus euismod nisi, pellentesque sit sapien id duis, amet, nullam vulputate non, aenean. Est lobortis tempor dolor cursus hendrerit nunc. Hac, nec dignissim mollis tortor. Blandit imperdiet commodo amet ac ipsum dui. Condimentum dolor sapien sed mauris eu augue pulvinar auctor nascetur eu. Et eros netus pellentesque fames vitae torquent in. Nostra in donec rhoncus ante aliquet metus, dolor est dictum ut nullam laoreet."</code></pre>
 <p>We can then tokenize with the <code><a href="https://rdrr.io/pkg/tidytext/man/unnest_tokens.html">unnest_tokens()</a></code> function in <code>tidytext</code>.</p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tokens</span> <span class="op">&lt;-</span> <span class="va">lipsum_text</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
@@ -151,7 +151,7 @@
 ## 3 dolor
 ## 4   sit
 ## 5  amet
-## 6  nisi</code></pre>
+## 6   nec</code></pre>
 <p>Now we’ll get some larger data, simulating 5000 observations (rows) of random Latin text strings.</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Varying total words example</span>
@@ -182,7 +182,7 @@
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">week</span>, <span class="va">n</span><span class="op">)</span>, stat <span class="op">=</span> <span class="st">"identity"</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Week"</span>, y <span class="op">=</span> <span class="st">"n words"</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>breaks<span class="op">=</span> <span class="fu"><a href="https://scales.r-lib.org/reference/breaks_pretty.html">pretty_breaks</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-21-1.png" width="672"></div>
+<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-19-1.png" width="672"></div>
 <p>We can then do the same but with a trend where each week sees a decreasing number of words.</p>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># simulate decreasing words trend</span>
@@ -209,7 +209,7 @@
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">week</span>, <span class="va">n</span><span class="op">)</span>, stat <span class="op">=</span> <span class="st">"identity"</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Week"</span>, y <span class="op">=</span> <span class="st">"n words"</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>breaks<span class="op">=</span> <span class="fu"><a href="https://scales.r-lib.org/reference/breaks_pretty.html">pretty_breaks</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-22-1.png" width="672"></div>
+<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-20-1.png" width="672"></div>
 <p>Now let’s check out the top frequency words in this text.</p>
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">lipsum_text</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
@@ -234,7 +234,7 @@ n
 lipsum
 </td>
 <td style="text-align:right;">
-72795
+72176
 </td>
 </tr>
 <tr>
@@ -242,7 +242,7 @@ lipsum
 more
 </td>
 <td style="text-align:right;">
-72795
+72176
 </td>
 </tr>
 <tr>
@@ -250,7 +250,7 @@ more
 words
 </td>
 <td style="text-align:right;">
-68034
+67410
 </td>
 </tr>
 <tr>
@@ -258,7 +258,7 @@ words
 sed
 </td>
 <td style="text-align:right;">
-17691
+17649
 </td>
 </tr>
 <tr>
@@ -266,7 +266,7 @@ sed
 in
 </td>
 <td style="text-align:right;">
-12339
+12279
 </td>
 </tr>
 </tbody>
@@ -299,7 +299,7 @@ in
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Week"</span>, y <span class="op">=</span> <span class="st">"
        Proportion sed word"</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>breaks<span class="op">=</span> <span class="fu"><a href="https://scales.r-lib.org/reference/breaks_pretty.html">pretty_breaks</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-26-1.png" width="672"></div>
+<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-24-1.png" width="672"></div>
 </div>
 <div id="regexing" class="section level3" number="2.1.2">
 <h3>

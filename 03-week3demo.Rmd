@@ -1,4 +1,4 @@
-# Week 3 Code Demo
+# Week 3 Demo
 
 In this section, we'll have a quick overview of how we're processing text data when conducting basic sentiment analyses.
 

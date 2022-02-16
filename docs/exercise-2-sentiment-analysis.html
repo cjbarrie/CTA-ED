@@ -50,7 +50,7 @@
 <li><a class="" href="week-2.html"><span class="header-section-number">2</span> Week 2</a></li>
 <li><a class="" href="week-2-demo.html"><span class="header-section-number">3</span> Week 2 Demo</a></li>
 <li><a class="" href="week-3.html"><span class="header-section-number">4</span> Week 3</a></li>
-<li><a class="" href="week-3-code-demo.html"><span class="header-section-number">5</span> Week 3 Code Demo</a></li>
+<li><a class="" href="week-3-demo.html"><span class="header-section-number">5</span> Week 3 Demo</a></li>
 <li><a class="" href="week-4.html"><span class="header-section-number">6</span> Week 4</a></li>
 <li><a class="" href="week-4-demo.html"><span class="header-section-number">7</span> Week 4 Demo</a></li>
 <li><a class="" href="week-5.html"><span class="header-section-number">8</span> Week 5</a></li>
@@ -445,7 +445,7 @@ The Guardian
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>alpha<span class="op">=</span><span class="fl">0.5</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method<span class="op">=</span> <span class="va">loess</span>, alpha<span class="op">=</span><span class="fl">0.25</span><span class="op">)</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula 'y ~ x'</code></pre>
-<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-123-1.png" width="672"></div>
+<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-121-1.png" width="672"></div>
 <p>How do our different sentiment dictionaries look when compared to each other? We can then plot the sentiment scores over time for each of our sentiment dictionaries like so:</p>
 <div class="sourceCode" id="cb229"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tidy_tweets</span> <span class="op"><a href="https://rdrr.io/pkg/academictwitteR/man/pipe.html">%&gt;%</a></span>
@@ -459,7 +459,7 @@ The Guardian
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">"bing sentiment"</span><span class="op">)</span></code></pre></div>
 <pre><code>## Joining, by = "word"
 ## `geom_smooth()` using formula 'y ~ x'</code></pre>
-<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-124-1.png" width="672"></div>
+<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-122-1.png" width="672"></div>
 <div class="sourceCode" id="cb231"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tidy_tweets</span> <span class="op"><a href="https://rdrr.io/pkg/academictwitteR/man/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/tidytext/man/get_sentiments.html">get_sentiments</a></span><span class="op">(</span><span class="st">"nrc"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/academictwitteR/man/pipe.html">%&gt;%</a></span>
@@ -472,7 +472,7 @@ The Guardian
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">"nrc sentiment"</span><span class="op">)</span></code></pre></div>
 <pre><code>## Joining, by = "word"
 ## `geom_smooth()` using formula 'y ~ x'</code></pre>
-<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-124-2.png" width="672"></div>
+<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-122-2.png" width="672"></div>
 <div class="sourceCode" id="cb233"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tidy_tweets</span> <span class="op"><a href="https://rdrr.io/pkg/academictwitteR/man/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/tidytext/man/get_sentiments.html">get_sentiments</a></span><span class="op">(</span><span class="st">"afinn"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/academictwitteR/man/pipe.html">%&gt;%</a></span>
@@ -485,7 +485,7 @@ The Guardian
 <pre><code>## Joining, by = "word"
 ## `summarise()` has grouped output by 'date'. You can override using the `.groups` argument.
 ## `geom_smooth()` using formula 'y ~ x'</code></pre>
-<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-124-3.png" width="672"></div>
+<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-122-3.png" width="672"></div>
 <p>We see that they do look pretty similar… and interestingly it seems that overall sentiment positivity <em>increases</em> as the pandemic breaks.</p>
 </div>
 <div id="domain-specific-lexicons" class="section level2" number="15.7">
@@ -522,7 +522,7 @@ The Guardian
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">"mortality words"</span><span class="op">)</span></code></pre></div>
 <pre><code>## Joining, by = "word"
 ## `summarise()` has grouped output by 'date'. You can override using the `.groups` argument.</code></pre>
-<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-126-1.png" width="672"></div>
+<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-124-1.png" width="672"></div>
 <p>The above simply counts the number of mortality words over time. This might be misleading if there are, for example, more or longer tweets at certain points in time; i.e., if the length or quantity of text is not time-constant.</p>
 <p>Why would this matter? Well, in the above it could just be that we have more mortality words later on because there are just more tweets earlier on. By just counting words, we are not taking into account the <em>denominator</em>.</p>
 <p>An alternative, and preferable, method here would simply take a character string of the relevant words. We would then sum the total number of words across all tweets over time. Then we would filter our tweet words by whether or not they are a mortality word or not, according to the dictionary of words we have constructed. We would then do the same again with these words, summing the number of times they appear for each date.</p>
@@ -551,7 +551,7 @@ The Guardian
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method<span class="op">=</span> <span class="va">loess</span>, alpha<span class="op">=</span><span class="fl">0.25</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="st">"Date"</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">"% mortality words"</span><span class="op">)</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula 'y ~ x'</code></pre>
-<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-127-1.png" width="672"></div>
+<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-125-1.png" width="672"></div>
 </div>
 <div id="using-lexicoder" class="section level2" number="15.8">
 <h2>
@@ -585,7 +585,7 @@ The Guardian
         ylab <span class="op">=</span> <span class="st">"Frequency"</span>, xlab <span class="op">=</span> <span class="st">""</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/grid.html">grid</a></span><span class="op">(</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/legend.html">legend</a></span><span class="op">(</span><span class="st">"topleft"</span>, col <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, legend <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">dfmat_news_lsd</span><span class="op">)</span>, lty <span class="op">=</span> <span class="fl">1</span>, bg <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-131-1.png" width="672"></div>
+<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-129-1.png" width="672"></div>
 <div class="sourceCode" id="cb246"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># plot overall sentiment (positive  - negative) over time</span>
 
@@ -593,7 +593,7 @@ The Guardian
      type <span class="op">=</span> <span class="st">"l"</span>, ylab <span class="op">=</span> <span class="st">"Sentiment"</span>, xlab <span class="op">=</span> <span class="st">""</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/grid.html">grid</a></span><span class="op">(</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/abline.html">abline</a></span><span class="op">(</span>h <span class="op">=</span> <span class="fl">0</span>, lty <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-131-2.png" width="672"></div>
+<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-129-2.png" width="672"></div>
 <p>Alternatively, we can recreate this in tidy format as follows:</p>
 <div class="sourceCode" id="cb247"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">negative</span> <span class="op">&lt;-</span> <span class="va">dfmat_news_lsd</span><span class="op">@</span><span class="va">x</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">121</span><span class="op">]</span>
@@ -612,7 +612,7 @@ The Guardian
 <code class="sourceCode R"><span class="va">tidy_sent</span> <span class="op"><a href="https://rdrr.io/pkg/academictwitteR/man/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">date</span>, <span class="va">sentiment</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-133-1.png" width="672"></div>
+<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-131-1.png" width="672"></div>
 </div>
 <div id="exercises-1" class="section level2" number="15.9">
 <h2>
