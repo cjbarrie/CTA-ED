@@ -88,14 +88,14 @@ cos.sim(test$text1, test$text2)
 ## is same as
 textstat_simil(dfmat, margin = "documents", method = "cosine")
 
-# ## jaccard
-# jaccard <- function(a, b) {
-#   intersection = length(intersect(a, b))
-#   union = length(a) + length(b) - intersection
-#   return (intersection/union)
-# }
-# 
-# jaccard(test$text1, test$text2)
+## jaccard
+jaccard <- function(a, b) {
+  intersection = length(intersect(a, b))
+  union = length(a) + length(b) - intersection
+  return (intersection/union)
+}
+
+jaccard(test$text1, test$text2)
 
 ## is same as
 textstat_simil(dfmat, margin = "documents", method = "jaccard")

@@ -1,0 +1,172 @@
+# Week 4 Demo
+
+## Setup
+First, we'll load the packages we'll be using in this week's brief demo. 
+
+```{r, message = F, warning = F}
+library(quanteda)
+library(quanteda.textstats)
+library(quanteda.textplots)
+library(tidytext)
+library(stringdist)
+library(corrplot)
+library(janeaustenr)
+```
+
+## Character-based similarity
+
+A first measure of text similarity is at the level of characters. We can look *for the last time* (I promise) at the example from the lecture and see how similarity compares. 
+
+We'll make two sentences and create two character objects from them. These are two thoughts imagined up from our classes. 
+
+```{r}
+a <- "We are all very happy to be at a lecture at 10AM"
+b <- "We are all even happier that we don’t have a lecture next week"
+```
+
+We know that the "longest common substring measure" is, according to the [stringdist](https://cran.r-project.org/web/packages/stringdist/stringdist.pdf) package documentation, "the longest string that can be obtained by pairing characters from *a* and *b* while keeping the order of characters intact."
+
+And we can easily get different distance/similarity measures by comparing our character objects `a` and `b` as so. 
+
+```{r}
+
+## longest common substring distance
+stringdist(a, b,
+           method = "lcs")
+
+## levenshtein distance
+stringdist(a, b,
+           method = "lv")
+
+## jaro distance
+stringdist(a, b,
+           method = "jw", p =0)
+
+```
+
+## Term-based similarity
+
+In this second example from the lecture, we're taking the opening line of *Pride and Prejudice* alongside my own versions of this same famous opening line. 
+
+We can get the text of Jane Austen very easily thanks to the `janeaustenr` package.
+
+```{r}
+## similarity and distance example
+
+text <- janeaustenr::prideprejudice
+
+sentences <- text[10:11]
+
+sentence1 <- paste(sentences[1], sentences[2], sep = " ")
+
+sentence1
+```
+
+We're then going to specify our alternative versions of this same sentence. 
+
+```{r}
+sentence2 <- "Everyone knows that a rich man without wife will want a wife"
+
+sentence3 <- "He's loaded so he wants to get married. Everyone knows that's what happens."
+```
+
+Finally, we're going to convert these into a document feature matrix. We're doing this with the `quanteda` package, which is a package that we'll begin using more and more over coming weeks as the analyses we're performing get gradually more technical. 
+
+```{r, warning=F}
+dfmat <- dfm(tokens(c(sentence1,
+                      sentence2,
+                      sentence3)),
+             remove_punct = TRUE, remove = stopwords("english"))
+
+dfmat
+```
+
+What do we see here?
+
+Well, it's clear that `text2` and `text3` are not very similar to `text1` at all---they share few words. But we also see that `text2` does at least contain some words that are shared with `text1`, which is the original opening line of Jane Austen's *Pride and Prejudice*. 
+
+So, how do we then measure the similarity or distance between these texts?
+
+The first way is simply by correlating the two sets of ones and zeroes. We can do this with the `quanteda.textstats` package like so.
+
+```{r}
+## correlation
+textstat_simil(dfmat, margin = "documents", method = "correlation")
+```
+
+And you'll see that this is the same as what we would get if we manipulated the data into tidy format (rows for words and columns of 1s and 0s).
+
+```{r, warning = F}
+test <- tidy(dfmat)
+test <- test %>%
+  cast_dfm(term, document, count)
+test <- as.data.frame(test)
+
+res <- cor(test[,2:4])
+res
+```
+
+And we see that as expected `text2` is more highly correlated with `text1` than is `text3`. 
+
+```{r}
+corrplot(res, type = "upper", order = "hclust", 
+         tl.col = "black", tl.srt = 45)
+```
+As for Euclidean distances, we can again use `quanteda` as so.
+
+```{r}
+textstat_dist(dfmat, margin = "documents", method = "euclidean")
+```
+
+Or we could define our own function just so we see what's going on behind the scenes.
+
+```{r}
+# function for Euclidean distance
+euclidean <- function(a,b) sqrt(sum((a - b)^2))
+# estimating the distance
+euclidean(test$text1, test$text2)
+euclidean(test$text1, test$text3)
+euclidean(test$text2, test$text3)
+
+```
+
+For Manhattan distance, we could use `quanteda` again.
+
+```{r}
+textstat_dist(dfmat, margin = "documents", method = "manhattan")
+```
+
+Or we could again define our own function.
+
+```{r}
+## manhattan
+manhattan <- function(a, b){
+  dist <- abs(a - b)
+  dist <- sum(dist)
+  return(dist)
+}
+
+manhattan(test$text1, test$text2)
+manhattan(test$text1, test$text3)
+manhattan(test$text2, test$text3)
+```
+
+And for the cosine similarity, `quanteda` again makes this straightforward.
+
+```{r}
+textstat_simil(dfmat, margin = "documents", method = "cosine")
+```
+
+But to make clear what's going on here, we could again write our own function. 
+
+```{r}
+## cosine
+cos.sim <- function(a, b) 
+{
+  return(sum(a*b)/sqrt(sum(a^2)*sum(b^2)) )
+}  
+
+cos.sim(test$text1, test$text2)
+cos.sim(test$text1, test$text3)
+cos.sim(test$text2, test$text3)
+```

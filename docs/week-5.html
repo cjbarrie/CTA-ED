@@ -4,18 +4,18 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Chapter 5 Week 5 | Computational Text Analysis</title>
+<title>Chapter 8 Week 5 | Computational Text Analysis</title>
 <meta name="author" content="Christopher Barrie">
-<meta name="description" content="5.1 Scaling techniques Here we begin thinking about more automated techniques for analyzing texts. And there are a bunch of additional considerations we now need to bring to mind. These...">
+<meta name="description" content="8.1 Scaling techniques Here we begin thinking about more automated techniques for analyzing texts. And there are a bunch of additional considerations we now need to bring to mind. These...">
 <meta name="generator" content="bookdown 0.24 with bs4_book()">
-<meta property="og:title" content="Chapter 5 Week 5 | Computational Text Analysis">
+<meta property="og:title" content="Chapter 8 Week 5 | Computational Text Analysis">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://cjbarrie.github.io/CTA-ED/week-5.html">
 <meta property="og:image" content="https://cjbarrie.github.io/CTA-ED/coverb.png">
-<meta property="og:description" content="5.1 Scaling techniques Here we begin thinking about more automated techniques for analyzing texts. And there are a bunch of additional considerations we now need to bring to mind. These...">
+<meta property="og:description" content="8.1 Scaling techniques Here we begin thinking about more automated techniques for analyzing texts. And there are a bunch of additional considerations we now need to bring to mind. These...">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Chapter 5 Week 5 | Computational Text Analysis">
-<meta name="twitter:description" content="5.1 Scaling techniques Here we begin thinking about more automated techniques for analyzing texts. And there are a bunch of additional considerations we now need to bring to mind. These...">
+<meta name="twitter:title" content="Chapter 8 Week 5 | Computational Text Analysis">
+<meta name="twitter:description" content="8.1 Scaling techniques Here we begin thinking about more automated techniques for analyzing texts. And there are a bunch of additional considerations we now need to bring to mind. These...">
 <meta name="twitter:image" content="https://cjbarrie.github.io/CTA-ED/coverb.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
@@ -48,17 +48,20 @@
 <li><a class="" href="introduction-to-r.html">Introduction to R</a></li>
 <li><a class="" href="week-1.html"><span class="header-section-number">1</span> Week 1</a></li>
 <li><a class="" href="week-2.html"><span class="header-section-number">2</span> Week 2</a></li>
-<li><a class="" href="week-3.html"><span class="header-section-number">3</span> Week 3</a></li>
-<li><a class="" href="week-4.html"><span class="header-section-number">4</span> Week 4</a></li>
-<li><a class="active" href="week-5.html"><span class="header-section-number">5</span> Week 5</a></li>
-<li><a class="" href="week-6.html"><span class="header-section-number">6</span> Week 6</a></li>
-<li><a class="" href="week-7.html"><span class="header-section-number">7</span> Week 7</a></li>
-<li><a class="" href="week-8.html"><span class="header-section-number">8</span> Week 8</a></li>
-<li><a class="" href="week-9.html"><span class="header-section-number">9</span> Week 9</a></li>
-<li><a class="" href="week-10.html"><span class="header-section-number">10</span> Week 10</a></li>
-<li><a class="" href="exercise-1-word-frequency-analysis.html"><span class="header-section-number">11</span> Exercise 1: Word frequency analysis</a></li>
-<li><a class="" href="exercise-2-sentiment-analysis.html"><span class="header-section-number">12</span> Exercise 2: Sentiment analysis</a></li>
-<li><a class="" href="references-2.html"><span class="header-section-number">13</span> References</a></li>
+<li><a class="" href="week-2-demo.html"><span class="header-section-number">3</span> Week 2 Demo</a></li>
+<li><a class="" href="week-3.html"><span class="header-section-number">4</span> Week 3</a></li>
+<li><a class="" href="week-3-code-demo.html"><span class="header-section-number">5</span> Week 3 Code Demo</a></li>
+<li><a class="" href="week-4.html"><span class="header-section-number">6</span> Week 4</a></li>
+<li><a class="" href="week-4-demo.html"><span class="header-section-number">7</span> Week 4 Demo</a></li>
+<li><a class="active" href="week-5.html"><span class="header-section-number">8</span> Week 5</a></li>
+<li><a class="" href="week-6.html"><span class="header-section-number">9</span> Week 6</a></li>
+<li><a class="" href="week-7.html"><span class="header-section-number">10</span> Week 7</a></li>
+<li><a class="" href="week-8.html"><span class="header-section-number">11</span> Week 8</a></li>
+<li><a class="" href="week-9.html"><span class="header-section-number">12</span> Week 9</a></li>
+<li><a class="" href="week-10.html"><span class="header-section-number">13</span> Week 10</a></li>
+<li><a class="" href="exercise-1-word-frequency-analysis.html"><span class="header-section-number">14</span> Exercise 1: Word frequency analysis</a></li>
+<li><a class="" href="exercise-2-sentiment-analysis.html"><span class="header-section-number">15</span> Exercise 2: Sentiment analysis</a></li>
+<li><a class="" href="references-2.html"><span class="header-section-number">16</span> References</a></li>
 </ul>
 
         <div class="book-extra">
@@ -66,13 +69,13 @@
         </div>
       </nav>
 </div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="week-5" class="section level1" number="5">
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="week-5" class="section level1" number="8">
 <h1>
-<span class="header-section-number">5</span> Week 5<a class="anchor" aria-label="anchor" href="#week-5"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8</span> Week 5<a class="anchor" aria-label="anchor" href="#week-5"><i class="fas fa-link"></i></a>
 </h1>
-<div id="scaling-techniques" class="section level2" number="5.1">
+<div id="scaling-techniques" class="section level2" number="8.1">
 <h2>
-<span class="header-section-number">5.1</span> Scaling techniques<a class="anchor" aria-label="anchor" href="#scaling-techniques"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.1</span> Scaling techniques<a class="anchor" aria-label="anchor" href="#scaling-techniques"><i class="fas fa-link"></i></a>
 </h2>
 <p>Here we begin thinking about more automated techniques for analyzing texts. And there are a bunch of additional considerations we now need to bring to mind. These considerations have sparked significant debates… and the matter is by no means settled.</p>
 <p>So what is at stake here? In weeks to come, we will be studying various techniques to ‘classify,’ ‘position’ or ‘score’ texts based on their features. The success of these techniques depends on their suitability to the question at hand but also on higher-level questions about meaning. In short, we have to ask ourselves: is there a way we can access the underlying processes governing the generation of text? Is meaning governed by a set of structural processes? And can we derive ‘objective’ measures of the contents of any given text?</p>
@@ -117,13 +120,13 @@
 </div>
 </div>
   <div class="chapter-nav">
-<div class="prev"><a href="week-4.html"><span class="header-section-number">4</span> Week 4</a></div>
-<div class="next"><a href="week-6.html"><span class="header-section-number">6</span> Week 6</a></div>
+<div class="prev"><a href="week-4-demo.html"><span class="header-section-number">7</span> Week 4 Demo</a></div>
+<div class="next"><a href="week-6.html"><span class="header-section-number">9</span> Week 6</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#week-5"><span class="header-section-number">5</span> Week 5</a></li>
-<li><a class="nav-link" href="#scaling-techniques"><span class="header-section-number">5.1</span> Scaling techniques</a></li>
+<li><a class="nav-link" href="#week-5"><span class="header-section-number">8</span> Week 5</a></li>
+<li><a class="nav-link" href="#scaling-techniques"><span class="header-section-number">8.1</span> Scaling techniques</a></li>
 </ul>
 
       <div class="book-extra">
@@ -141,7 +144,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Computational Text Analysis</strong>" was written by Christopher Barrie. It was last built on 2022-02-15.</p>
+    <p>"<strong>Computational Text Analysis</strong>" was written by Christopher Barrie. It was last built on 2022-02-16.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

@@ -4,18 +4,18 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Chapter 3 Week 3 | Computational Text Analysis</title>
+<title>Chapter 4 Week 3 | Computational Text Analysis</title>
 <meta name="author" content="Christopher Barrie">
-<meta name="description" content="3.1 Dictionary-based techniques An extension of word frequency analyses, which we covered last week, are so-called “dictionary-based” techniques. In their most basic form, these analyses use an...">
+<meta name="description" content="4.1 Dictionary-based techniques An extension of word frequency analyses, which we covered last week, are so-called “dictionary-based” techniques. In their most basic form, these analyses use an...">
 <meta name="generator" content="bookdown 0.24 with bs4_book()">
-<meta property="og:title" content="Chapter 3 Week 3 | Computational Text Analysis">
+<meta property="og:title" content="Chapter 4 Week 3 | Computational Text Analysis">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://cjbarrie.github.io/CTA-ED/week-3.html">
 <meta property="og:image" content="https://cjbarrie.github.io/CTA-ED/coverb.png">
-<meta property="og:description" content="3.1 Dictionary-based techniques An extension of word frequency analyses, which we covered last week, are so-called “dictionary-based” techniques. In their most basic form, these analyses use an...">
+<meta property="og:description" content="4.1 Dictionary-based techniques An extension of word frequency analyses, which we covered last week, are so-called “dictionary-based” techniques. In their most basic form, these analyses use an...">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Chapter 3 Week 3 | Computational Text Analysis">
-<meta name="twitter:description" content="3.1 Dictionary-based techniques An extension of word frequency analyses, which we covered last week, are so-called “dictionary-based” techniques. In their most basic form, these analyses use an...">
+<meta name="twitter:title" content="Chapter 4 Week 3 | Computational Text Analysis">
+<meta name="twitter:description" content="4.1 Dictionary-based techniques An extension of word frequency analyses, which we covered last week, are so-called “dictionary-based” techniques. In their most basic form, these analyses use an...">
 <meta name="twitter:image" content="https://cjbarrie.github.io/CTA-ED/coverb.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
@@ -48,17 +48,20 @@
 <li><a class="" href="introduction-to-r.html">Introduction to R</a></li>
 <li><a class="" href="week-1.html"><span class="header-section-number">1</span> Week 1</a></li>
 <li><a class="" href="week-2.html"><span class="header-section-number">2</span> Week 2</a></li>
-<li><a class="active" href="week-3.html"><span class="header-section-number">3</span> Week 3</a></li>
-<li><a class="" href="week-4.html"><span class="header-section-number">4</span> Week 4</a></li>
-<li><a class="" href="week-5.html"><span class="header-section-number">5</span> Week 5</a></li>
-<li><a class="" href="week-6.html"><span class="header-section-number">6</span> Week 6</a></li>
-<li><a class="" href="week-7.html"><span class="header-section-number">7</span> Week 7</a></li>
-<li><a class="" href="week-8.html"><span class="header-section-number">8</span> Week 8</a></li>
-<li><a class="" href="week-9.html"><span class="header-section-number">9</span> Week 9</a></li>
-<li><a class="" href="week-10.html"><span class="header-section-number">10</span> Week 10</a></li>
-<li><a class="" href="exercise-1-word-frequency-analysis.html"><span class="header-section-number">11</span> Exercise 1: Word frequency analysis</a></li>
-<li><a class="" href="exercise-2-sentiment-analysis.html"><span class="header-section-number">12</span> Exercise 2: Sentiment analysis</a></li>
-<li><a class="" href="references-2.html"><span class="header-section-number">13</span> References</a></li>
+<li><a class="" href="week-2-demo.html"><span class="header-section-number">3</span> Week 2 Demo</a></li>
+<li><a class="active" href="week-3.html"><span class="header-section-number">4</span> Week 3</a></li>
+<li><a class="" href="week-3-code-demo.html"><span class="header-section-number">5</span> Week 3 Code Demo</a></li>
+<li><a class="" href="week-4.html"><span class="header-section-number">6</span> Week 4</a></li>
+<li><a class="" href="week-4-demo.html"><span class="header-section-number">7</span> Week 4 Demo</a></li>
+<li><a class="" href="week-5.html"><span class="header-section-number">8</span> Week 5</a></li>
+<li><a class="" href="week-6.html"><span class="header-section-number">9</span> Week 6</a></li>
+<li><a class="" href="week-7.html"><span class="header-section-number">10</span> Week 7</a></li>
+<li><a class="" href="week-8.html"><span class="header-section-number">11</span> Week 8</a></li>
+<li><a class="" href="week-9.html"><span class="header-section-number">12</span> Week 9</a></li>
+<li><a class="" href="week-10.html"><span class="header-section-number">13</span> Week 10</a></li>
+<li><a class="" href="exercise-1-word-frequency-analysis.html"><span class="header-section-number">14</span> Exercise 1: Word frequency analysis</a></li>
+<li><a class="" href="exercise-2-sentiment-analysis.html"><span class="header-section-number">15</span> Exercise 2: Sentiment analysis</a></li>
+<li><a class="" href="references-2.html"><span class="header-section-number">16</span> References</a></li>
 </ul>
 
         <div class="book-extra">
@@ -66,13 +69,13 @@
         </div>
       </nav>
 </div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="week-3" class="section level1" number="3">
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="week-3" class="section level1" number="4">
 <h1>
-<span class="header-section-number">3</span> Week 3<a class="anchor" aria-label="anchor" href="#week-3"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4</span> Week 3<a class="anchor" aria-label="anchor" href="#week-3"><i class="fas fa-link"></i></a>
 </h1>
-<div id="dictionary-based-techniques" class="section level2" number="3.1">
+<div id="dictionary-based-techniques" class="section level2" number="4.1">
 <h2>
-<span class="header-section-number">3.1</span> Dictionary-based techniques<a class="anchor" aria-label="anchor" href="#dictionary-based-techniques"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.1</span> Dictionary-based techniques<a class="anchor" aria-label="anchor" href="#dictionary-based-techniques"><i class="fas fa-link"></i></a>
 </h2>
 <p>An extension of word frequency analyses, which we covered last week, are so-called “dictionary-based” techniques. In their most basic form, these analyses use an index of target terms and classify the corpus of interest based on their presence or absence. The technical dimensions of this type of analysis are covered in the chapter section by <span class="citation"><a href="references-2.html#ref-krippendorff_content_2004" role="doc-biblioref">Klaus Krippendorff</a> (<a href="references-2.html#ref-krippendorff_content_2004" role="doc-biblioref">2004</a>)</span>, and some of the issues attending them in the article by - <span class="citation"><a href="references-2.html#ref-loughran_when_2011" role="doc-biblioref">Loughran and Mcdonald</a> (<a href="references-2.html#ref-loughran_when_2011" role="doc-biblioref">2011</a>)</span>.</p>
 <p>We will also be reading two examples of the application of these techniques by <span class="citation"><a href="references-2.html#ref-martins_rise_2020" role="doc-biblioref">Martins and Baumard</a> (<a href="references-2.html#ref-martins_rise_2020" role="doc-biblioref">2020</a>)</span> and <span class="citation"><a href="references-2.html#ref-young_affective_2012" role="doc-biblioref">Young and Soroka</a> (<a href="references-2.html#ref-young_affective_2012" role="doc-biblioref">2012</a>)</span>. Here, we will be discussing how successful the authors are in measuring the phenomenon of interest (“prosociality” and “tone” respectively). Questions about sampling and representativeness will again be relevant here, and will naturally inform our assessments of this work.</p>
@@ -100,179 +103,16 @@
 <li>Week 3 <a href="https://docs.google.com/presentation/d/1rgYCYGtZ7resCd7oVsGnaCpwWKduunl8s1famjtGtBY/edit?usp=sharing">Slides</a>
 </li>
 </ul>
-<div id="happy-words" class="section level3" number="3.1.1">
-<h3>
-<span class="header-section-number">3.1.1</span> Happy words<a class="anchor" aria-label="anchor" href="#happy-words"><i class="fas fa-link"></i></a>
-</h3>
-<p>In this section, we’ll have a quick overview of how we’re processing text data when conducting basic sentiment analyses.</p>
-<p>We’ll first load the packages we need.</p>
-<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://stringi.gagolewski.com/">stringi</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/juliasilge/tidytext">tidytext</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://scales.r-lib.org">scales</a></span><span class="op">)</span></code></pre></div>
-<p>As we discussed in the lectures, we might find in our text of the class’s collective thoughts that there was an increase in “happy” words over time.</p>
-<p>I have simulated a dataset of text split by weeks, students, and words plus whether or not the word is the word “happy” where <code>0</code> means it is not the word “happy” and <code>1</code> means it is.</p>
-<p>We have three datasets: one with a constant number of “happy” words; one with an increasing number of “happy” words; and one with a decreasing number of “happy” words. These are called: <code>happyn</code>, <code>happyu</code>, and <code>happyd</code> respectively.</p>
-<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">happyn</span><span class="op">)</span></code></pre></div>
-<pre><code>## # A tibble: 6 × 4
-## # Groups:   week, student [1]
-##    week student word  happy
-##   &lt;int&gt;   &lt;int&gt; &lt;chr&gt; &lt;int&gt;
-## 1     1      16 lorem     0
-## 2     1      16 ipsum     0
-## 3     1      16 dolor     0
-## 4     1      16 sit       0
-## 5     1      16 amet      0
-## 6     1      16 a         0</code></pre>
-<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">happyu</span><span class="op">)</span></code></pre></div>
-<pre><code>## # A tibble: 6 × 4
-## # Groups:   week, student [1]
-##    week student word  happy
-##   &lt;int&gt;   &lt;int&gt; &lt;chr&gt; &lt;int&gt;
-## 1     1      16 lorem     0
-## 2     1      16 ipsum     0
-## 3     1      16 dolor     0
-## 4     1      16 sit       0
-## 5     1      16 amet      0
-## 6     1      16 a         0</code></pre>
-<div class="sourceCode" id="cb62"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">happyd</span><span class="op">)</span></code></pre></div>
-<pre><code>## # A tibble: 6 × 4
-## # Groups:   week, student [1]
-##    week student word  happy
-##   &lt;int&gt;   &lt;int&gt; &lt;chr&gt; &lt;int&gt;
-## 1     1      16 lorem     0
-## 2     1      16 ipsum     0
-## 3     1      16 dolor     0
-## 4     1      16 sit       0
-## 5     1      16 amet      0
-## 6     1      16 a         0</code></pre>
-<p>We can then see the trend in “happy” words over by week and student.</p>
-<p>First, the dataset where we have a constant number of happy words over time.</p>
-<div class="sourceCode" id="cb64"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">happyn</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">week</span>, <span class="va">student</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>index_total <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">happy</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>
-    sum_hap <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">happy</span><span class="op">)</span>,
-    index_total <span class="op">=</span> <span class="va">index_total</span>,
-    prop_hap <span class="op">=</span> <span class="va">sum_hap</span> <span class="op">/</span> <span class="va">index_total</span>
-  <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">week</span>, <span class="va">prop_hap</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">week</span>, <span class="va">prop_hap</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>breaks <span class="op">=</span> <span class="fu"><a href="https://scales.r-lib.org/reference/breaks_pretty.html">pretty_breaks</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code>## `summarise()` has grouped output by 'week', 'student'. You can override using the `.groups` argument.
-## `geom_smooth()` using method = 'loess' and formula 'y ~ x'</code></pre>
-<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-43-1.png" width="672"></div>
-<p>And now the simulated data with an increasing number of happy words.</p>
-<div class="sourceCode" id="cb66"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">happyu</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">week</span>, <span class="va">student</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>index_total <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">happy</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>
-    sum_hap <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">happy</span><span class="op">)</span>,
-    index_total <span class="op">=</span> <span class="va">index_total</span>,
-    prop_hap <span class="op">=</span> <span class="va">sum_hap</span> <span class="op">/</span> <span class="va">index_total</span>
-  <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">week</span>, <span class="va">prop_hap</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">week</span>, <span class="va">prop_hap</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>breaks <span class="op">=</span> <span class="fu"><a href="https://scales.r-lib.org/reference/breaks_pretty.html">pretty_breaks</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code>## `summarise()` has grouped output by 'week', 'student'. You can override using the `.groups` argument.
-## `geom_smooth()` using method = 'loess' and formula 'y ~ x'</code></pre>
-<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-44-1.png" width="672"></div>
-<p>And finally a decreasing number of happy words.</p>
-<div class="sourceCode" id="cb68"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">happyd</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">week</span>, <span class="va">student</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>index_total <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">happy</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>
-    sum_hap <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">happy</span><span class="op">)</span>,
-    index_total <span class="op">=</span> <span class="va">index_total</span>,
-    prop_hap <span class="op">=</span> <span class="va">sum_hap</span> <span class="op">/</span> <span class="va">index_total</span>
-  <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">week</span>, <span class="va">prop_hap</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">week</span>, <span class="va">prop_hap</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>breaks <span class="op">=</span> <span class="fu"><a href="https://scales.r-lib.org/reference/breaks_pretty.html">pretty_breaks</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code>## `summarise()` has grouped output by 'week', 'student'. You can override using the `.groups` argument.
-## `geom_smooth()` using method = 'loess' and formula 'y ~ x'</code></pre>
-<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-45-1.png" width="672"></div>
-</div>
-<div id="normalizing-sentiment" class="section level3" number="3.1.2">
-<h3>
-<span class="header-section-number">3.1.2</span> Normalizing sentiment<a class="anchor" aria-label="anchor" href="#normalizing-sentiment"><i class="fas fa-link"></i></a>
-</h3>
-<p>But as we discussed in the lecture, we also know that just because the total number of happy words increases, this isn’t indication on its own that we’re getting happier as a class over time.</p>
-<p>Before we can begin to make any such inference, we need to normalize by the total number of words each week.</p>
-<p>Below, I simulate data where the number of happy words is actually the same each week (our <code>happyn</code> dataset above). I join these data with three other datasets: <code>happylipsumn</code>, <code>happylipsumu</code>, and <code>happylipsumd</code>. These are datasets of random text, with the <em>same</em> number of happy words. The first of these also has the <em>same</em> number of total words each week. The second two, however, have <em>differing</em> number of <em>total</em> words each week: <code>happylipsumu</code> has an increasing number of total words each week; <code>happylipsumd</code> has a decreasing number of total words each week.</p>
-<p>Again, as you see below, we’re splitting by week, student, word, and whether or not it is a “happy” word.</p>
-<div class="sourceCode" id="cb70"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">happylipsumn</span><span class="op">)</span></code></pre></div>
-<pre><code>## # A tibble: 6 × 4
-## # Groups:   week, student [1]
-##    week student word  happy
-##   &lt;int&gt;   &lt;int&gt; &lt;chr&gt; &lt;int&gt;
-## 1     1      16 lorem     0
-## 2     1      16 ipsum     0
-## 3     1      16 dolor     0
-## 4     1      16 sit       0
-## 5     1      16 amet      0
-## 6     1      16 sit       0</code></pre>
-<div class="sourceCode" id="cb72"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">happylipsumu</span><span class="op">)</span></code></pre></div>
-<pre><code>## # A tibble: 6 × 4
-## # Groups:   week, student [1]
-##    week student word  happy
-##   &lt;int&gt;   &lt;int&gt; &lt;chr&gt; &lt;int&gt;
-## 1     1      16 lorem     0
-## 2     1      16 ipsum     0
-## 3     1      16 dolor     0
-## 4     1      16 sit       0
-## 5     1      16 amet      0
-## 6     1      16 amet      0</code></pre>
-<div class="sourceCode" id="cb74"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">happylipsumd</span><span class="op">)</span></code></pre></div>
-<pre><code>## # A tibble: 6 × 4
-## # Groups:   week, student [1]
-##    week student word   happy
-##   &lt;int&gt;   &lt;int&gt; &lt;chr&gt;  &lt;int&gt;
-## 1     1      16 lorem      0
-## 2     1      16 ipsum      0
-## 3     1      16 dolor      0
-## 4     1      16 sit        0
-## 5     1      16 amet       0
-## 6     1      16 primis     0</code></pre>
-<p>Then if we plot the number of happy words <em>divided</em> by the number of total words each week for each student in each of these datasets, we get the below.</p>
-<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-48-1.png" width="672"></div>
-
-</div>
 </div>
 </div>
   <div class="chapter-nav">
-<div class="prev"><a href="week-2.html"><span class="header-section-number">2</span> Week 2</a></div>
-<div class="next"><a href="week-4.html"><span class="header-section-number">4</span> Week 4</a></div>
+<div class="prev"><a href="week-2-demo.html"><span class="header-section-number">3</span> Week 2 Demo</a></div>
+<div class="next"><a href="week-3-code-demo.html"><span class="header-section-number">5</span> Week 3 Code Demo</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#week-3"><span class="header-section-number">3</span> Week 3</a></li>
-<li>
-<a class="nav-link" href="#dictionary-based-techniques"><span class="header-section-number">3.1</span> Dictionary-based techniques</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#happy-words"><span class="header-section-number">3.1.1</span> Happy words</a></li>
-<li><a class="nav-link" href="#normalizing-sentiment"><span class="header-section-number">3.1.2</span> Normalizing sentiment</a></li>
-</ul>
-</li>
+<li><a class="nav-link" href="#week-3"><span class="header-section-number">4</span> Week 3</a></li>
+<li><a class="nav-link" href="#dictionary-based-techniques"><span class="header-section-number">4.1</span> Dictionary-based techniques</a></li>
 </ul>
 
       <div class="book-extra">
@@ -290,7 +130,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Computational Text Analysis</strong>" was written by Christopher Barrie. It was last built on 2022-02-15.</p>
+    <p>"<strong>Computational Text Analysis</strong>" was written by Christopher Barrie. It was last built on 2022-02-16.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
