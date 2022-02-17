@@ -31,6 +31,7 @@ week-4-demo
 setup-2
 character-based-similarity
 term-based-similarity
+complexity
 week-5
 scaling-techniques
 week-6

@@ -170,3 +170,48 @@ cos.sim(test$text1, test$text2)
 cos.sim(test$text1, test$text3)
 cos.sim(test$text2, test$text3)
 ```
+
+## Complexity
+
+Note: this section borrows notation from the materials for the [`texstat_readability()` function](https://quanteda.io/reference/textstat_readability.html).
+
+We also talked about different document-level measures of text characteristics. One of these is the "complexity" or readability of a text. One of the most frequently used is Flesch's Reading Ease Score (Flesch 1948).
+
+This is computed as:
+
+
+\item{\code{"Flesch"}:}{Flesch's Reading Ease Score (Flesch 1948).
+\deqn{206.835 - (1.015 \times ASL) - (84.6 \times \frac{n_{sy}}{n_{w}})}{
+  206.835 - (1.015 * ASL) - (84.6 * (Nsy / Nw))}}
+  
+We can estimate a readability score for our respective sentences as such. The Flesch score from 1948 is the default. 
+
+```{r}
+textstat_readability(sentence1)
+textstat_readability(sentence2)
+textstat_readability(sentence3)
+```
+
+What do we see here? The original Austen opening line is marked lower in readability than our more colloquial alternatives. 
+
+But there are other alternatives measures we might use. You can check these out by clicking through the links of the function `textstat_readability()`. Below I display a few of these. 
+
+One such is the McLaughlin (1969) "Simple Measure of Gobbledygook, which is based on the recurrence of words with 3 syllables or more and is calculated as:
+
+
+\item{\code{"SMOG"}:}{Simple Measure of Gobbledygook (SMOG) (McLaughlin 1969). \deqn{ 1.043
+   \times \sqrt{n_{wsy>=3}} \times \frac{30}{n_{st}} + 3.1291}{1.043 * sqrt(Nwmin3sy
+   * 30 / Nst) + 3.1291}
+
+where \eqn{n_{wsy>=3}} = Nwmin3sy = the number of words with 3 syllables or more.
+This measure is regression equation D in McLaughlin's original paper.}
+
+We can calculate this for our three sentences as below.
+
+```{r}
+textstat_readability(sentence1, measure = "SMOG")
+textstat_readability(sentence2, measure = "SMOG")
+textstat_readability(sentence3, measure = "SMOG")
+```
+
+Here, again, we see that the original Austen sentence has a higher level of complexity (or gobbledygook!).
