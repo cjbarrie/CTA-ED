@@ -60,8 +60,9 @@
 <li><a class="" href="week-9.html"><span class="header-section-number">12</span> Week 9</a></li>
 <li><a class="" href="week-10.html"><span class="header-section-number">13</span> Week 10</a></li>
 <li><a class="" href="exercise-1-word-frequency-analysis.html"><span class="header-section-number">14</span> Exercise 1: Word frequency analysis</a></li>
-<li><a class="" href="exercise-2-sentiment-analysis.html"><span class="header-section-number">15</span> Exercise 2: Sentiment analysis</a></li>
-<li><a class="" href="references-2.html"><span class="header-section-number">16</span> References</a></li>
+<li><a class="" href="exercise-2-dictionary-based-methods.html"><span class="header-section-number">15</span> Exercise 2: Dictionary-based methods</a></li>
+<li><a class="" href="exercise-3-comparison-and-complexity.html"><span class="header-section-number">16</span> Exercise 3: Comparison and complexity</a></li>
+<li><a class="" href="references-2.html"><span class="header-section-number">17</span> References</a></li>
 </ul>
 
         <div class="book-extra">
@@ -138,7 +139,7 @@
 <span class="va">sentence3</span> <span class="op">&lt;-</span> <span class="st">"He's loaded so he wants to get married. Everyone knows that's what happens."</span></code></pre></div>
 <p>Finally, we’re going to convert these into a document feature matrix. We’re doing this with the <code>quanteda</code> package, which is a package that we’ll begin using more and more over coming weeks as the analyses we’re performing get gradually more technical.</p>
 <div class="sourceCode" id="cb128"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">dfmat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://quanteda.io/reference/dfm.html">dfm</a></span><span class="op">(</span><span class="fu"><a href="https://quanteda.io/reference/tokens.html">tokens</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">sentence1</span>,
+<code class="sourceCode R"><span class="va">dfmat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/quanteda/man/dfm.html">dfm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/quanteda/man/tokens.html">tokens</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">sentence1</span>,
                       <span class="va">sentence2</span>,
                       <span class="va">sentence3</span><span class="op">)</span><span class="op">)</span>,
              remove_punct <span class="op">=</span> <span class="cn">TRUE</span>, remove <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/stopwords/man/stopwords.html">stopwords</a></span><span class="op">(</span><span class="st">"english"</span><span class="op">)</span><span class="op">)</span>
@@ -157,7 +158,7 @@
 <p>The first way is simply by correlating the two sets of ones and zeroes. We can do this with the <code>quanteda.textstats</code> package like so.</p>
 <div class="sourceCode" id="cb130"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## correlation</span>
-<span class="fu"><a href="https://quanteda.io/reference/textstat_simil.html">textstat_simil</a></span><span class="op">(</span><span class="va">dfmat</span>, margin <span class="op">=</span> <span class="st">"documents"</span>, method <span class="op">=</span> <span class="st">"correlation"</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/pkg/quanteda.textstats/man/textstat_simil.html">textstat_simil</a></span><span class="op">(</span><span class="va">dfmat</span>, margin <span class="op">=</span> <span class="st">"documents"</span>, method <span class="op">=</span> <span class="st">"correlation"</span><span class="op">)</span></code></pre></div>
 <pre><code>## textstat_simil object; method = "correlation"
 ##         text1   text2  text3
 ## text1  1.0000 -0.0689 -0.811
@@ -166,7 +167,7 @@
 <p>And you’ll see that this is the same as what we would get if we manipulated the data into tidy format (rows for words and columns of 1s and 0s).</p>
 <div class="sourceCode" id="cb132"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">test</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="va">dfmat</span><span class="op">)</span>
-<span class="va">test</span> <span class="op">&lt;-</span> <span class="va">test</span> <span class="op"><a href="https://quanteda.io/reference/pipe.html">%&gt;%</a></span>
+<span class="va">test</span> <span class="op">&lt;-</span> <span class="va">test</span> <span class="op"><a href="https://rdrr.io/pkg/quanteda/man/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://rdrr.io/pkg/tidytext/man/document_term_casters.html">cast_dfm</a></span><span class="op">(</span><span class="va">term</span>, <span class="va">document</span>, <span class="va">count</span><span class="op">)</span>
 <span class="va">test</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">test</span><span class="op">)</span>
 
@@ -180,10 +181,10 @@
 <div class="sourceCode" id="cb134"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/corrplot/man/corrplot.html">corrplot</a></span><span class="op">(</span><span class="va">res</span>, type <span class="op">=</span> <span class="st">"upper"</span>, order <span class="op">=</span> <span class="st">"hclust"</span>, 
          tl.col <span class="op">=</span> <span class="st">"black"</span>, tl.srt <span class="op">=</span> <span class="fl">45</span><span class="op">)</span></code></pre></div>
-<p><img src="main_files/figure-html/unnamed-chunk-72-1.png" width="672">
+<p><img src="main_files/figure-html/unnamed-chunk-69-1.png" width="672">
 As for Euclidean distances, we can again use <code>quanteda</code> as so.</p>
 <div class="sourceCode" id="cb135"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://quanteda.io/reference/textstat_simil.html">textstat_dist</a></span><span class="op">(</span><span class="va">dfmat</span>, margin <span class="op">=</span> <span class="st">"documents"</span>, method <span class="op">=</span> <span class="st">"euclidean"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/quanteda.textstats/man/textstat_simil.html">textstat_dist</a></span><span class="op">(</span><span class="va">dfmat</span>, margin <span class="op">=</span> <span class="st">"documents"</span>, method <span class="op">=</span> <span class="st">"euclidean"</span><span class="op">)</span></code></pre></div>
 <pre><code>## textstat_dist object; method = "euclidean"
 ##       text1 text2 text3
 ## text1     0  3.61  4.24
@@ -204,7 +205,7 @@ As for Euclidean distances, we can again use <code>quanteda</code> as so.</p>
 <pre><code>## [1] 3.605551</code></pre>
 <p>For Manhattan distance, we could use <code>quanteda</code> again.</p>
 <div class="sourceCode" id="cb143"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://quanteda.io/reference/textstat_simil.html">textstat_dist</a></span><span class="op">(</span><span class="va">dfmat</span>, margin <span class="op">=</span> <span class="st">"documents"</span>, method <span class="op">=</span> <span class="st">"manhattan"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/quanteda.textstats/man/textstat_simil.html">textstat_dist</a></span><span class="op">(</span><span class="va">dfmat</span>, margin <span class="op">=</span> <span class="st">"documents"</span>, method <span class="op">=</span> <span class="st">"manhattan"</span><span class="op">)</span></code></pre></div>
 <pre><code>## textstat_dist object; method = "manhattan"
 ##       text1 text2 text3
 ## text1     0    13    18
@@ -229,7 +230,7 @@ As for Euclidean distances, we can again use <code>quanteda</code> as so.</p>
 <pre><code>## [1] 11</code></pre>
 <p>And for the cosine similarity, <code>quanteda</code> again makes this straightforward.</p>
 <div class="sourceCode" id="cb151"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://quanteda.io/reference/textstat_simil.html">textstat_simil</a></span><span class="op">(</span><span class="va">dfmat</span>, margin <span class="op">=</span> <span class="st">"documents"</span>, method <span class="op">=</span> <span class="st">"cosine"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/quanteda.textstats/man/textstat_simil.html">textstat_simil</a></span><span class="op">(</span><span class="va">dfmat</span>, margin <span class="op">=</span> <span class="st">"documents"</span>, method <span class="op">=</span> <span class="st">"cosine"</span><span class="op">)</span></code></pre></div>
 <pre><code>## textstat_simil object; method = "cosine"
 ##       text1 text2 text3
 ## text1 1.000 0.381     0
@@ -263,34 +264,34 @@ As for Euclidean distances, we can again use <code>quanteda</code> as so.</p>
 }</p>
 <p>We can estimate a readability score for our respective sentences as such. The Flesch score from 1948 is the default.</p>
 <div class="sourceCode" id="cb159"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://quanteda.io/reference/textstat_readability.html">textstat_readability</a></span><span class="op">(</span><span class="va">sentence1</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/quanteda.textstats/man/textstat_readability.html">textstat_readability</a></span><span class="op">(</span><span class="va">sentence1</span><span class="op">)</span></code></pre></div>
 <pre><code>##   document   Flesch
 ## 1    text1 62.10739</code></pre>
 <div class="sourceCode" id="cb161"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://quanteda.io/reference/textstat_readability.html">textstat_readability</a></span><span class="op">(</span><span class="va">sentence2</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/quanteda.textstats/man/textstat_readability.html">textstat_readability</a></span><span class="op">(</span><span class="va">sentence2</span><span class="op">)</span></code></pre></div>
 <pre><code>##   document Flesch
 ## 1    text1 88.905</code></pre>
 <div class="sourceCode" id="cb163"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://quanteda.io/reference/textstat_readability.html">textstat_readability</a></span><span class="op">(</span><span class="va">sentence3</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/quanteda.textstats/man/textstat_readability.html">textstat_readability</a></span><span class="op">(</span><span class="va">sentence3</span><span class="op">)</span></code></pre></div>
 <pre><code>##   document   Flesch
 ## 1    text1 83.09904</code></pre>
 <p>What do we see here? The original Austen opening line is marked lower in readability than our more colloquial alternatives.</p>
-<p>But there are other alternatives measures we might use. You can check these out by clicking through the links of the function <code><a href="https://quanteda.io/reference/textstat_readability.html">textstat_readability()</a></code>. Below I display a few of these.</p>
+<p>But there are other alternatives measures we might use. You can check these out by clicking through the links of the function <code><a href="https://rdrr.io/pkg/quanteda.textstats/man/textstat_readability.html">textstat_readability()</a></code>. Below I display a few of these.</p>
 <p>One such is the McLaughlin (1969) "Simple Measure of Gobbledygook, which is based on the recurrence of words with 3 syllables or more and is calculated as:</p>
 <p>{:}{Simple Measure of Gobbledygook (SMOG) (McLaughlin 1969). </p>
 <p>where  = Nwmin3sy = the number of words with 3 syllables or more.
 This measure is regression equation D in McLaughlin’s original paper.}</p>
 <p>We can calculate this for our three sentences as below.</p>
 <div class="sourceCode" id="cb165"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://quanteda.io/reference/textstat_readability.html">textstat_readability</a></span><span class="op">(</span><span class="va">sentence1</span>, measure <span class="op">=</span> <span class="st">"SMOG"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/quanteda.textstats/man/textstat_readability.html">textstat_readability</a></span><span class="op">(</span><span class="va">sentence1</span>, measure <span class="op">=</span> <span class="st">"SMOG"</span><span class="op">)</span></code></pre></div>
 <pre><code>##   document     SMOG
 ## 1    text1 13.02387</code></pre>
 <div class="sourceCode" id="cb167"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://quanteda.io/reference/textstat_readability.html">textstat_readability</a></span><span class="op">(</span><span class="va">sentence2</span>, measure <span class="op">=</span> <span class="st">"SMOG"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/quanteda.textstats/man/textstat_readability.html">textstat_readability</a></span><span class="op">(</span><span class="va">sentence2</span>, measure <span class="op">=</span> <span class="st">"SMOG"</span><span class="op">)</span></code></pre></div>
 <pre><code>##   document     SMOG
 ## 1    text1 8.841846</code></pre>
 <div class="sourceCode" id="cb169"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://quanteda.io/reference/textstat_readability.html">textstat_readability</a></span><span class="op">(</span><span class="va">sentence3</span>, measure <span class="op">=</span> <span class="st">"SMOG"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/quanteda.textstats/man/textstat_readability.html">textstat_readability</a></span><span class="op">(</span><span class="va">sentence3</span>, measure <span class="op">=</span> <span class="st">"SMOG"</span><span class="op">)</span></code></pre></div>
 <pre><code>##   document     SMOG
 ## 1    text1 7.168622</code></pre>
 <p>Here, again, we see that the original Austen sentence has a higher level of complexity (or gobbledygook!).</p>
@@ -325,7 +326,7 @@ This measure is regression equation D in McLaughlin’s original paper.}</p>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Computational Text Analysis</strong>" was written by Christopher Barrie. It was last built on 2022-02-17.</p>
+    <p>"<strong>Computational Text Analysis</strong>" was written by Christopher Barrie. It was last built on 2022-02-18.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

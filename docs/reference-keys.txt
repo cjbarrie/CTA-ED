@@ -57,7 +57,7 @@ plot-time-trends
 bonus-gender-prediction
 exercises
 references
-exercise-2-sentiment-analysis
+exercise-2-dictionary-based-methods
 introduction-1
 setup-4
 load-data-and-packages-1
@@ -68,4 +68,12 @@ domain-specific-lexicons
 using-lexicoder
 exercises-1
 references-1
+exercise-3-comparison-and-complexity
+introduction-2
+setup-5
+generate-document-feature-matrix
+compare-between-mps
+compare-between-measures
+complexity-1
+exercises-2
 references-2
