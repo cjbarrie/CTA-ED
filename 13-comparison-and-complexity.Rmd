@@ -232,7 +232,7 @@ ggplot(testdf_all) +
 
 We now move to document-level measures of text characteristics. And here we will focus on the paper by @schoonvelde_liberals_2019. 
 
-We will be using a subset of these data, taken from EU speeches given by four politicians.
+We will be using a subset of these data, taken from EU speeches given by four politicians. These are provided by the authors at [https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/S4IZ8K](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/S4IZ8K).
 
 We can load the data as follows.
 

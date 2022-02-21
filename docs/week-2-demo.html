@@ -80,7 +80,7 @@
 </h2>
 <p>In this section, we’ll have a quick overview of how we’re processing text data when conducting analyses of word frequency. We’ll be using some randomly simulated text.</p>
 <p>First we load the packages that we’ll be using:</p>
-<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://stringi.gagolewski.com/">stringi</a></span><span class="op">)</span> <span class="co">#to generate random text</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span> <span class="co">#tidyverse package for wrangling data</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/juliasilge/tidytext">tidytext</a></span><span class="op">)</span> <span class="co">#package for 'tidy' manipulation of text data</span>
@@ -88,18 +88,18 @@
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://scales.r-lib.org">scales</a></span><span class="op">)</span> <span class="co">#additional package for formatting plot axes</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://haozhu233.github.io/kableExtra/">kableExtra</a></span><span class="op">)</span> <span class="co">#package for displaying data in html format (relevant for formatting this worksheet mainly)</span></code></pre></div>
 </div>
-<div id="tokenizing-1" class="section level2" number="3.2">
+<div id="tokenizing" class="section level2" number="3.2">
 <h2>
-<span class="header-section-number">3.2</span> Tokenizing<a class="anchor" aria-label="anchor" href="#tokenizing-1"><i class="fas fa-link"></i></a>
+<span class="header-section-number">3.2</span> Tokenizing<a class="anchor" aria-label="anchor" href="#tokenizing"><i class="fas fa-link"></i></a>
 </h2>
 <p>We’ll first get some random text to see what it looks like when we’re tokenizing text.</p>
-<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">lipsum_text</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>text <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/stringi/man/stri_rand_lipsum.html">stri_rand_lipsum</a></span><span class="op">(</span><span class="fl">1</span>, start_lipsum <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">lipsum_text</span><span class="op">$</span><span class="va">text</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] "Lorem ipsum dolor sit amet, nibh lobortis lorem phasellus ac vitae duis. Leo rhoncus lobortis curae nec sapien elementum maecenas, hac. Amet primis ultrices molestie velit mi, facilisis dolor sed. Iaculis ridiculus quis nec in tempus vitae justo sociis. Habitant fermentum ut, finibus blandit torquent. Etiam, tristique blandit vehicula et metus massa metus ut. Sit ipsum laoreet volutpat. Est eleifend ut ac mauris sociosqu eros, nullam et. Dignissim donec praesent maximus donec id dui ante. Cubilia penatibus sociis tincidunt interdum tellus rutrum euismod risus iaculis tempus nunc ultricies facilisi. Vivamus, sociosqu, mauris class eu, imperdiet. Volutpat tincidunt sem pellentesque et leo accumsan in. Parturient laoreet vestibulum elit sodales faucibus integer. Nec pulvinar, nisl leo pellentesque, nec vestibulum."</code></pre>
+<pre><code>## [1] "Lorem ipsum dolor sit amet, ut ut, mi eros. Nullam condimentum, suspendisse. Sociis neque congue, ut, bibendum efficitur? In adipiscing sem conubia non mollis et luctus sed risus. Suspendisse tempor nunc cubilia nulla et euismod mauris quis, ut. Vestibulum eu dis sapien diam, eget. Sapien, blandit quisque felis nam tincidunt eu ante molestie porttitor. Lobortis placerat pellentesque ornare ornare suscipit amet eget, maximus sodales leo."</code></pre>
 <p>We can then tokenize with the <code><a href="https://rdrr.io/pkg/tidytext/man/unnest_tokens.html">unnest_tokens()</a></code> function in <code>tidytext</code>.</p>
-<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tokens</span> <span class="op">&lt;-</span> <span class="va">lipsum_text</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://rdrr.io/pkg/tidytext/man/unnest_tokens.html">unnest_tokens</a></span><span class="op">(</span><span class="va">word</span>, <span class="va">text</span><span class="op">)</span>
 
@@ -110,17 +110,17 @@
 ## 3 dolor
 ## 4   sit
 ## 5  amet
-## 6  nibh</code></pre>
+## 6    ut</code></pre>
 <p>Now we’ll get some larger data, simulating 5000 observations (rows) of random Latin text strings.</p>
-<div class="sourceCode" id="cb62"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Varying total words example</span>
 <span class="va">lipsum_text</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>text <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/stringi/man/stri_rand_lipsum.html">stri_rand_lipsum</a></span><span class="op">(</span><span class="fl">5000</span>, start_lipsum <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>We’ll then add another column and call this “weeks.” This will be our unit of analysis.</p>
-<div class="sourceCode" id="cb63"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># make some weeks one to ten</span>
 <span class="va">lipsum_text</span><span class="op">$</span><span class="va">week</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq.int</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span>, <span class="fl">5000</span><span class="op">/</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>Now we’ll simulate a trend where we see an increasing number of words as weeks go by. Don’t worry too much about this as the code is a little more complex, but I share it here in case of interest.</p>
-<div class="sourceCode" id="cb64"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">lipsum_text</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
   <span class="va">week</span> <span class="op">&lt;-</span> <span class="va">lipsum_text</span><span class="op">[</span><span class="va">i</span>, <span class="fl">2</span><span class="op">]</span>
   <span class="va">morewords</span> <span class="op">&lt;-</span>
@@ -130,7 +130,7 @@
   <span class="va">lipsum_text</span><span class="op">[</span><span class="va">i</span>, <span class="fl">1</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">new_lipsum_text</span>
 <span class="op">}</span></code></pre></div>
 <p>And we can see that as each week goes by, we have more and more text.</p>
-<div class="sourceCode" id="cb65"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">lipsum_text</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://rdrr.io/pkg/tidytext/man/unnest_tokens.html">unnest_tokens</a></span><span class="op">(</span><span class="va">word</span>, <span class="va">text</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by</a></span><span class="op">(</span><span class="va">week</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
@@ -141,9 +141,9 @@
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/geom_bar.html">geom_bar</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span><span class="va">week</span>, <span class="va">n</span><span class="op">)</span>, stat <span class="op">=</span> <span class="st">"identity"</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Week"</span>, y <span class="op">=</span> <span class="st">"n words"</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>breaks<span class="op">=</span> <span class="fu"><a href="https://scales.r-lib.org/reference/breaks_pretty.html">pretty_breaks</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-37-1.png" width="672"></div>
+<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-19-1.png" width="672"></div>
 <p>We can then do the same but with a trend where each week sees a decreasing number of words.</p>
-<div class="sourceCode" id="cb66"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># simulate decreasing words trend</span>
 <span class="va">lipsum_text</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>text <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/stringi/man/stri_rand_lipsum.html">stri_rand_lipsum</a></span><span class="op">(</span><span class="fl">5000</span>, start_lipsum <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>
 
@@ -168,9 +168,9 @@
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/geom_bar.html">geom_bar</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span><span class="va">week</span>, <span class="va">n</span><span class="op">)</span>, stat <span class="op">=</span> <span class="st">"identity"</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Week"</span>, y <span class="op">=</span> <span class="st">"n words"</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>breaks<span class="op">=</span> <span class="fu"><a href="https://scales.r-lib.org/reference/breaks_pretty.html">pretty_breaks</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-38-1.png" width="672"></div>
+<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-20-1.png" width="672"></div>
 <p>Now let’s check out the top frequency words in this text.</p>
-<div class="sourceCode" id="cb67"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">lipsum_text</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://rdrr.io/pkg/tidytext/man/unnest_tokens.html">unnest_tokens</a></span><span class="op">(</span><span class="va">word</span>, <span class="va">text</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/count.html">count</a></span><span class="op">(</span><span class="va">word</span>, sort <span class="op">=</span> <span class="cn">T</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
@@ -193,7 +193,7 @@ n
 lipsum
 </td>
 <td style="text-align:right;">
-73481
+72231
 </td>
 </tr>
 <tr>
@@ -201,7 +201,7 @@ lipsum
 more
 </td>
 <td style="text-align:right;">
-73481
+72231
 </td>
 </tr>
 <tr>
@@ -209,7 +209,7 @@ more
 words
 </td>
 <td style="text-align:right;">
-68690
+67473
 </td>
 </tr>
 <tr>
@@ -217,7 +217,7 @@ words
 sed
 </td>
 <td style="text-align:right;">
-17868
+17576
 </td>
 </tr>
 <tr>
@@ -225,21 +225,21 @@ sed
 in
 </td>
 <td style="text-align:right;">
-12418
+12610
 </td>
 </tr>
 </tbody>
 </table></div>
 <p>We’re going to check out the frequencies for the word “sed” and then we’re gonna normalize these by denominating by total word frequencies for each week.</p>
 <p>First we need to get total word frequencies for each week.</p>
-<div class="sourceCode" id="cb69"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">lipsum_totals</span> <span class="op">&lt;-</span> <span class="va">lipsum_text</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by</a></span><span class="op">(</span><span class="va">week</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://rdrr.io/pkg/tidytext/man/unnest_tokens.html">unnest_tokens</a></span><span class="op">(</span><span class="va">word</span>, <span class="va">text</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/count.html">count</a></span><span class="op">(</span><span class="va">word</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>total <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/distinct.html">distinct</a></span><span class="op">(</span><span class="va">week</span>, <span class="va">total</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb70"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># let's look for "sed"</span>
 <span class="va">lipsum_sed</span> <span class="op">&lt;-</span> <span class="va">lipsum_text</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by</a></span><span class="op">(</span><span class="va">week</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
@@ -249,7 +249,7 @@ in
   <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>total_sed <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/distinct.html">distinct</a></span><span class="op">(</span><span class="va">week</span>, <span class="va">total_sed</span><span class="op">)</span></code></pre></div>
 <p>Then we can join these two dataframes together with the <code><a href="https://rdrr.io/pkg/dplyr/man/mutate-joins.html">left_join()</a></code> function where we’re joining by the “week” column. We can then pipe the joined data into a plot.</p>
-<div class="sourceCode" id="cb71"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">lipsum_sed</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">lipsum_totals</span>, by <span class="op">=</span> <span class="st">"week"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>sed_prop <span class="op">=</span> <span class="va">total_sed</span><span class="op">/</span><span class="va">total</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
@@ -258,11 +258,11 @@ in
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Week"</span>, y <span class="op">=</span> <span class="st">"
        Proportion sed word"</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>breaks<span class="op">=</span> <span class="fu"><a href="https://scales.r-lib.org/reference/breaks_pretty.html">pretty_breaks</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-42-1.png" width="672"></div>
+<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-24-1.png" width="672"></div>
 </div>
-<div id="regexing-1" class="section level2" number="3.3">
+<div id="regexing" class="section level2" number="3.3">
 <h2>
-<span class="header-section-number">3.3</span> Regexing<a class="anchor" aria-label="anchor" href="#regexing-1"><i class="fas fa-link"></i></a>
+<span class="header-section-number">3.3</span> Regexing<a class="anchor" aria-label="anchor" href="#regexing"><i class="fas fa-link"></i></a>
 </h2>
 <p>You’ll notice that in the worksheet on word frequencies that at one point there are a set of parentheses after <code><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect()</a></code> we have the string “[a-z].” This is called a <strong>character class</strong> and these use square brackets like <code>[]</code>.</p>
 <p>Other character classes include, as helpfully listed in this <a href="https://cran.r-project.org/web/packages/stringr/vignettes/regular-expressions.html">vignette</a> for the <tt>stringr</tt> package. What follows is adapted from these materials on regular expressions.</p>
@@ -283,11 +283,11 @@ in
 <code>\d</code>: matches any digit; the opposite of this is <code>\D</code>, which matches any character that
 is not a decimal digit.</li>
 </ul>
-<div class="sourceCode" id="cb72"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_extract.html">str_extract_all</a></span><span class="op">(</span><span class="st">"1 + 2 = 3"</span>, <span class="st">"\\d+"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [[1]]
 ## [1] "1" "2" "3"</code></pre>
-<div class="sourceCode" id="cb74"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_extract.html">str_extract_all</a></span><span class="op">(</span><span class="st">"1 + 2 = 3"</span>, <span class="st">"\\D+"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [[1]]
 ## [1] " + " " = "</code></pre>
@@ -296,17 +296,17 @@ is not a decimal digit.</li>
 <code>\s</code>: matches any whitespace; its opposite is <code>\S</code>
 </li>
 </ul>
-<div class="sourceCode" id="cb76"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="op">(</span><span class="va">text</span> <span class="op">&lt;-</span> <span class="st">"Some  \t badly\n\t\tspaced \f text"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "Some  \t badly\n\t\tspaced \f text"</code></pre>
-<div class="sourceCode" id="cb78"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_replace.html">str_replace_all</a></span><span class="op">(</span><span class="va">text</span>, <span class="st">"\\s+"</span>, <span class="st">" "</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "Some badly spaced text"</code></pre>
 <ul>
 <li>
 <code>^</code>: matches start of the string</li>
 </ul>
-<div class="sourceCode" id="cb80"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"apple"</span>, <span class="st">"banana"</span>, <span class="st">"pear"</span><span class="op">)</span>
 <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_extract.html">str_extract</a></span><span class="op">(</span><span class="va">x</span>, <span class="st">"^a"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "a" NA  NA</code></pre>
@@ -314,7 +314,7 @@ is not a decimal digit.</li>
 <li>
 <code>$</code>: matches end of the string</li>
 </ul>
-<div class="sourceCode" id="cb82"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"apple"</span>, <span class="st">"banana"</span>, <span class="st">"pear"</span><span class="op">)</span>
 <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_extract.html">str_extract</a></span><span class="op">(</span><span class="va">x</span>, <span class="st">"^a$"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] NA NA NA</code></pre>
@@ -322,7 +322,7 @@ is not a decimal digit.</li>
 <li>
 <code>^</code> then <code>$</code>: exact string match</li>
 </ul>
-<div class="sourceCode" id="cb84"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"apple"</span>, <span class="st">"banana"</span>, <span class="st">"pear"</span><span class="op">)</span>
 <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_extract.html">str_extract</a></span><span class="op">(</span><span class="va">x</span>, <span class="st">"^apple$"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "apple" NA      NA</code></pre>
@@ -336,27 +336,27 @@ is not a decimal digit.</li>
 <code>?</code>: 0 or 1.</li>
 </ul>
 <p>So if you can tell me why this output makes sense, you’re getting there!</p>
-<div class="sourceCode" id="cb86"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_extract.html">str_extract_all</a></span><span class="op">(</span><span class="st">"1 + 2 = 3"</span>, <span class="st">"\\d+"</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></code></pre></div>
 <pre><code>## [1] "1" "2" "3"</code></pre>
-<div class="sourceCode" id="cb88"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_extract.html">str_extract_all</a></span><span class="op">(</span><span class="st">"1 + 2 = 3"</span>, <span class="st">"\\D+"</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></code></pre></div>
 <pre><code>## [1] " + " " = "</code></pre>
-<div class="sourceCode" id="cb90"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_extract.html">str_extract_all</a></span><span class="op">(</span><span class="st">"1 + 2 = 3"</span>, <span class="st">"\\d*"</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></code></pre></div>
 <pre><code>##  [1] "1" ""  ""  ""  "2" ""  ""  ""  "3" ""</code></pre>
-<div class="sourceCode" id="cb92"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_extract.html">str_extract_all</a></span><span class="op">(</span><span class="st">"1 + 2 = 3"</span>, <span class="st">"\\D*"</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></code></pre></div>
 <pre><code>## [1] ""    " + " ""    " = " ""    ""</code></pre>
-<div class="sourceCode" id="cb94"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_extract.html">str_extract_all</a></span><span class="op">(</span><span class="st">"1 + 2 = 3"</span>, <span class="st">"\\d?"</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></code></pre></div>
 <pre><code>##  [1] "1" ""  ""  ""  "2" ""  ""  ""  "3" ""</code></pre>
-<div class="sourceCode" id="cb96"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_extract.html">str_extract_all</a></span><span class="op">(</span><span class="st">"1 + 2 = 3"</span>, <span class="st">"\\D?"</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></code></pre></div>
 <pre><code>##  [1] ""  " " "+" " " ""  " " "=" " " ""  ""</code></pre>
-<div id="some-more-regex-resources-1" class="section level3" number="3.3.1">
+<div id="some-more-regex-resources" class="section level3" number="3.3.1">
 <h3>
-<span class="header-section-number">3.3.1</span> Some more regex resources:<a class="anchor" aria-label="anchor" href="#some-more-regex-resources-1"><i class="fas fa-link"></i></a>
+<span class="header-section-number">3.3.1</span> Some more regex resources:<a class="anchor" aria-label="anchor" href="#some-more-regex-resources"><i class="fas fa-link"></i></a>
 </h3>
 <ol style="list-style-type: decimal">
 <li>Regex crossword: <a href="https://regexcrossword.com/">https://regexcrossword.com/</a>.</li>
@@ -376,9 +376,9 @@ is not a decimal digit.</li>
       <ul class="nav navbar-nav">
 <li><a class="nav-link" href="#week-2-demo"><span class="header-section-number">3</span> Week 2 Demo</a></li>
 <li><a class="nav-link" href="#setup"><span class="header-section-number">3.1</span> Setup</a></li>
-<li><a class="nav-link" href="#tokenizing-1"><span class="header-section-number">3.2</span> Tokenizing</a></li>
+<li><a class="nav-link" href="#tokenizing"><span class="header-section-number">3.2</span> Tokenizing</a></li>
 <li>
-<a class="nav-link" href="#regexing-1"><span class="header-section-number">3.3</span> Regexing</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#some-more-regex-resources-1"><span class="header-section-number">3.3.1</span> Some more regex resources:</a></li></ul>
+<a class="nav-link" href="#regexing"><span class="header-section-number">3.3</span> Regexing</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#some-more-regex-resources"><span class="header-section-number">3.3.1</span> Some more regex resources:</a></li></ul>
 </li>
 </ul>
 
@@ -397,7 +397,7 @@ is not a decimal digit.</li>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Computational Text Analysis</strong>" was written by Christopher Barrie. It was last built on 2022-02-18.</p>
+    <p>"<strong>Computational Text Analysis</strong>" was written by Christopher Barrie. It was last built on 2022-02-21.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

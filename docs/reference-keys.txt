@@ -11,14 +11,11 @@ week-1
 retrieving-and-analyzing-text-information
 week-2
 tokenization-and-word-frequencies
+week-2-demo
+setup
 tokenizing
 regexing
 some-more-regex-resources
-week-2-demo
-setup
-tokenizing-1
-regexing-1
-some-more-regex-resources-1
 week-3
 dictionary-based-techniques
 week-3-demo
