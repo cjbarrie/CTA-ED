@@ -9,6 +9,7 @@ So what is at stake here? In weeks to come, we will be studying various techniqu
 The readings by @grimmer_machine_2021, @denny_text_2018, and @goldenstein_analyzing_2019 (as well as the response and replies by @nelson_measure_2019 and @goldenstein_quest_2019) will be required reading for Flexible Learning Week. 
 
 - @grimmer_machine_2021
+- @grimmer_text_2013
 - @denny_text_2018
 
 - @goldenstein_analyzing_2019
@@ -24,9 +25,10 @@ Questions:
 
 **Required reading**:
 
-- @lowe_understanding_2008
-- @grimmer_text_2013
 
+
+- @slapin_scaling_2008
+- @kaneko_estimating_2021
 - @kluver_measuring_2009
   - @bunea_quantitative_2015
   - @kluver_promises_2015
@@ -35,6 +37,6 @@ Questions:
 
 - @benoit_crowd-sourced_2016
 - @laver_extracting_2003
+- @lowe_understanding_2008
 - @schwemmer_methodological_2020
-- @slapin_scaling_2008
 - @kaneko_estimating_2021
