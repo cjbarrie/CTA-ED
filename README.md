@@ -15,3 +15,6 @@ Slides:
 - Week 2 [Slides](https://docs.google.com/presentation/d/1EB8l2R3aDnfabpx23qKq-dH-6HehfgDqC9n1Pc90jN8/edit?usp=sharing)
 - Week 3 [Slides](https://docs.google.com/presentation/d/1rgYCYGtZ7resCd7oVsGnaCpwWKduunl8s1famjtGtBY/edit?usp=sharing)
 - Week 4 [Slides](https://docs.google.com/presentation/d/1SpEZVfejaul9dQyeaIvQlSIyLVyRJ8w5yMzr7LoVnc4/edit?usp=sharing)
+- Week 5 [Slides](https://docs.google.com/presentation/d/1oG0JBlnRaOZ1kJIkzM13kmEpM1R29mFE_50QAZnv0bQ/edit?usp=sharing)
+- Week 6 [Slides](https://docs.google.com/presentation/d/1SeL25sA0a7OoJhPOy5lvYuvqOZAUJBkh17VRTG5_VAw/edit?usp=sharing)
+

@@ -40,3 +40,7 @@ Questions:
 - @lowe_understanding_2008
 - @schwemmer_methodological_2020
 - @kaneko_estimating_2021
+
+**Slides**:
+
+- Week 5 [Slides](https://docs.google.com/presentation/d/1oG0JBlnRaOZ1kJIkzM13kmEpM1R29mFE_50QAZnv0bQ/edit?usp=sharing)

@@ -98,38 +98,38 @@
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">happyn</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 4
 ## # Groups:   week, student [1]
-##    week student word  happy
-##   &lt;int&gt;   &lt;int&gt; &lt;chr&gt; &lt;int&gt;
-## 1     1      26 lorem     0
-## 2     1      26 ipsum     0
-## 3     1      26 dolor     0
-## 4     1      26 sit       0
-## 5     1      26 amet      0
-## 6     1      26 ante      0</code></pre>
+##    week student word       happy
+##   &lt;int&gt;   &lt;int&gt; &lt;chr&gt;      &lt;int&gt;
+## 1     1      12 lorem          0
+## 2     1      12 ipsum          0
+## 3     1      12 dolor          0
+## 4     1      12 sit            0
+## 5     1      12 amet           0
+## 6     1      12 vestibulum     0</code></pre>
 <div class="sourceCode" id="cb63"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">happyu</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 4
 ## # Groups:   week, student [1]
-##    week student word  happy
-##   &lt;int&gt;   &lt;int&gt; &lt;chr&gt; &lt;int&gt;
-## 1     1      26 lorem     0
-## 2     1      26 ipsum     0
-## 3     1      26 dolor     0
-## 4     1      26 sit       0
-## 5     1      26 amet      0
-## 6     1      26 ante      0</code></pre>
+##    week student word       happy
+##   &lt;int&gt;   &lt;int&gt; &lt;chr&gt;      &lt;int&gt;
+## 1     1      12 lorem          0
+## 2     1      12 ipsum          0
+## 3     1      12 dolor          0
+## 4     1      12 sit            0
+## 5     1      12 amet           0
+## 6     1      12 vestibulum     0</code></pre>
 <div class="sourceCode" id="cb65"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">happyd</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 4
 ## # Groups:   week, student [1]
-##    week student word  happy
-##   &lt;int&gt;   &lt;int&gt; &lt;chr&gt; &lt;int&gt;
-## 1     1      26 lorem     0
-## 2     1      26 ipsum     0
-## 3     1      26 dolor     0
-## 4     1      26 sit       0
-## 5     1      26 amet      0
-## 6     1      26 ante      0</code></pre>
+##    week student word       happy
+##   &lt;int&gt;   &lt;int&gt; &lt;chr&gt;      &lt;int&gt;
+## 1     1      12 lorem          0
+## 2     1      12 ipsum          0
+## 3     1      12 dolor          0
+## 4     1      12 sit            0
+## 5     1      12 amet           0
+## 6     1      12 vestibulum     0</code></pre>
 <p>We can then see the trend in “happy” words over by week and student.</p>
 <p>First, the dataset where we have a constant number of happy words over time.</p>
 <pre><code>## `summarise()` has grouped output by 'week', 'student'. You can override using the `.groups` argument.
@@ -160,36 +160,36 @@
 ## # Groups:   week, student [1]
 ##    week student word  happy
 ##   &lt;int&gt;   &lt;int&gt; &lt;chr&gt; &lt;int&gt;
-## 1     1      26 lorem     0
-## 2     1      26 ipsum     0
-## 3     1      26 dolor     0
-## 4     1      26 sit       0
-## 5     1      26 amet      0
-## 6     1      26 ad        0</code></pre>
+## 1     1      12 lorem     0
+## 2     1      12 ipsum     0
+## 3     1      12 dolor     0
+## 4     1      12 sit       0
+## 5     1      12 amet      0
+## 6     1      12 a         0</code></pre>
 <div class="sourceCode" id="cb72"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">happylipsumu</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 4
 ## # Groups:   week, student [1]
-##    week student word     happy
-##   &lt;int&gt;   &lt;int&gt; &lt;chr&gt;    &lt;int&gt;
-## 1     1      26 lorem        0
-## 2     1      26 ipsum        0
-## 3     1      26 dolor        0
-## 4     1      26 sit          0
-## 5     1      26 amet         0
-## 6     1      26 interdum     0</code></pre>
+##    week student word  happy
+##   &lt;int&gt;   &lt;int&gt; &lt;chr&gt; &lt;int&gt;
+## 1     1      12 lorem     0
+## 2     1      12 ipsum     0
+## 3     1      12 dolor     0
+## 4     1      12 sit       0
+## 5     1      12 amet      0
+## 6     1      12 erat      0</code></pre>
 <div class="sourceCode" id="cb74"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">happylipsumd</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 4
 ## # Groups:   week, student [1]
-##    week student word   happy
-##   &lt;int&gt;   &lt;int&gt; &lt;chr&gt;  &lt;int&gt;
-## 1     1      26 lorem      0
-## 2     1      26 ipsum      0
-## 3     1      26 dolor      0
-## 4     1      26 sit        0
-## 5     1      26 amet       0
-## 6     1      26 aptent     0</code></pre>
+##    week student word    happy
+##   &lt;int&gt;   &lt;int&gt; &lt;chr&gt;   &lt;int&gt;
+## 1     1      12 lorem       0
+## 2     1      12 ipsum       0
+## 3     1      12 dolor       0
+## 4     1      12 sit         0
+## 5     1      12 amet        0
+## 6     1      12 dapibus     0</code></pre>
 <p>Then if we plot the number of happy words <em>divided</em> by the number of total words each week for each student in each of these datasets, we get the below.</p>
 <p>To get this normalized sentiment score–or “happy” score–we need to create a variable (column) in our dataframe that is the sum of happy words divided by the total number of words in the dataframe.</p>
 <p>We can do this in the following way.</p>
@@ -207,16 +207,16 @@
 ## # Groups:   week, student [300]
 ##     week student sum_hap index_total prop_hap
 ##    &lt;int&gt;   &lt;int&gt;   &lt;int&gt;       &lt;int&gt;    &lt;dbl&gt;
-##  1     1       1     515        2690    0.191
-##  2     1       2     650        3637    0.179
-##  3     1       3     899        4400    0.204
-##  4     1       4     690        2608    0.265
-##  5     1       5    1227        4962    0.247
-##  6     1       6     750        3214    0.233
-##  7     1       7     298        1577    0.189
-##  8     1       8    1132        4624    0.245
-##  9     1       9     983        4588    0.214
-## 10     1      10     764        3475    0.220
+##  1     1       1     424        2297    0.185
+##  2     1       2     310        2333    0.133
+##  3     1       3     913        4298    0.212
+##  4     1       4    1040        4022    0.259
+##  5     1       5     831        4038    0.206
+##  6     1       6     921        4355    0.211
+##  7     1       7     319        1497    0.213
+##  8     1       8    1192        5160    0.231
+##  9     1       9    1037        4878    0.213
+## 10     1      10     792        3811    0.208
 ## # … with 290 more rows</code></pre>
 <p>Then if we repeat this for each of our datasets and plot we see the following.</p>
 <div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-42-1.png" width="672"></div>
@@ -254,7 +254,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Computational Text Analysis</strong>" was written by Christopher Barrie. It was last built on 2022-02-22.</p>
+    <p>"<strong>Computational Text Analysis</strong>" was written by Christopher Barrie. It was last built on 2022-02-23.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

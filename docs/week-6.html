@@ -6,16 +6,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Chapter 9 Week 6 | Computational Text Analysis</title>
 <meta name="author" content="Christopher Barrie">
-<meta name="description" content="9.1 Unupervised learning Required reading: Boyd et al. (2018) J. Grimmer and King (2011) Further reading: Chang et al. (2009) Denny and Spirling (2018)">
+<meta name="description" content="9.1 Unupervised learning This week builds upon past the scaling techniques we explored in Week 5 and instead turns to another form of unsupervised approach—topic modelling. The substantive...">
 <meta name="generator" content="bookdown 0.24 with bs4_book()">
 <meta property="og:title" content="Chapter 9 Week 6 | Computational Text Analysis">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://cjbarrie.github.io/CTA-ED/week-6.html">
 <meta property="og:image" content="https://cjbarrie.github.io/CTA-ED/coverb.png">
-<meta property="og:description" content="9.1 Unupervised learning Required reading: Boyd et al. (2018) J. Grimmer and King (2011) Further reading: Chang et al. (2009) Denny and Spirling (2018)">
+<meta property="og:description" content="9.1 Unupervised learning This week builds upon past the scaling techniques we explored in Week 5 and instead turns to another form of unsupervised approach—topic modelling. The substantive...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Chapter 9 Week 6 | Computational Text Analysis">
-<meta name="twitter:description" content="9.1 Unupervised learning Required reading: Boyd et al. (2018) J. Grimmer and King (2011) Further reading: Chang et al. (2009) Denny and Spirling (2018)">
+<meta name="twitter:description" content="9.1 Unupervised learning This week builds upon past the scaling techniques we explored in Week 5 and instead turns to another form of unsupervised approach—topic modelling. The substantive...">
 <meta name="twitter:image" content="https://cjbarrie.github.io/CTA-ED/coverb.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
@@ -78,15 +78,32 @@
 <h2>
 <span class="header-section-number">9.1</span> Unupervised learning<a class="anchor" aria-label="anchor" href="#unupervised-learning"><i class="fas fa-link"></i></a>
 </h2>
+<p>This week builds upon past the scaling techniques we explored in Week 5 and instead turns to another form of unsupervised approach—topic modelling.</p>
+<p>The substantive articles by <span class="citation"><a href="references-2.html#ref-boyd_characterizing_2018" role="doc-biblioref">Boyd et al.</a> (<a href="references-2.html#ref-boyd_characterizing_2018" role="doc-biblioref">2018</a>)</span> and <span class="citation"><a href="references-2.html#ref-grimmer_general_2011" role="doc-biblioref">J. Grimmer and King</a> (<a href="references-2.html#ref-grimmer_general_2011" role="doc-biblioref">2011</a>)</span> provide, in turn, illuminating insights using topic models to categorize the thematic content of text information. The article by <span class="citation"><a href="references-2.html#ref-boyd_characterizing_2018" role="doc-biblioref">Boyd et al.</a> (<a href="references-2.html#ref-boyd_characterizing_2018" role="doc-biblioref">2018</a>)</span> looks into the content shared by Russian-backed troll farms during the 2016 US Presidential election, while the article by <span class="citation"><a href="references-2.html#ref-alrababah_authoritarian_2020" role="doc-biblioref">Alrababa’h and Blaydes</a> (<a href="references-2.html#ref-alrababah_authoritarian_2020" role="doc-biblioref">2020</a>)</span> dissects the thematic information contained in state-controlled news in Syria.</p>
+<p>The article by <span class="citation"><a href="references-2.html#ref-ying_topics_2021" role="doc-biblioref">Ying, Montgomery, and Stewart</a> (<a href="references-2.html#ref-ying_topics_2021" role="doc-biblioref">2021</a>)</span> provides a valuable overview and accompaniment to the earlier work of <span class="citation"><a href="references-2.html#ref-denny_text_2018" role="doc-biblioref">Denny and Spirling</a> (<a href="references-2.html#ref-denny_text_2018" role="doc-biblioref">2018</a>)</span> when thinking about how we validate our findings and test the robustness of any inferences we make from these models.</p>
+<p>Questions:</p>
+<ol style="list-style-type: decimal">
+<li>What assumptions underlie topic modelling approaches?</li>
+<li>Can we develop structural models of text?</li>
+<li>Is topic modelling a discovery or measurement strategy?</li>
+<li>How do we validate any model?</li>
+</ol>
 <p><strong>Required reading</strong>:</p>
 <ul>
 <li><span class="citation"><a href="references-2.html#ref-boyd_characterizing_2018" role="doc-biblioref">Boyd et al.</a> (<a href="references-2.html#ref-boyd_characterizing_2018" role="doc-biblioref">2018</a>)</span></li>
-<li><span class="citation"><a href="references-2.html#ref-grimmer_general_2011" role="doc-biblioref">J. Grimmer and King</a> (<a href="references-2.html#ref-grimmer_general_2011" role="doc-biblioref">2011</a>)</span></li>
+<li><span class="citation"><a href="references-2.html#ref-alrababah_authoritarian_2020" role="doc-biblioref">Alrababa’h and Blaydes</a> (<a href="references-2.html#ref-alrababah_authoritarian_2020" role="doc-biblioref">2020</a>)</span></li>
+<li><span class="citation"><a href="references-2.html#ref-ying_topics_2021" role="doc-biblioref">Ying, Montgomery, and Stewart</a> (<a href="references-2.html#ref-ying_topics_2021" role="doc-biblioref">2021</a>)</span></li>
 </ul>
 <p><strong>Further reading</strong>:</p>
 <ul>
 <li><span class="citation"><a href="references-2.html#ref-chang_reading_2009" role="doc-biblioref">Chang et al.</a> (<a href="references-2.html#ref-chang_reading_2009" role="doc-biblioref">2009</a>)</span></li>
+<li><span class="citation"><a href="references-2.html#ref-grimmer_general_2011" role="doc-biblioref">J. Grimmer and King</a> (<a href="references-2.html#ref-grimmer_general_2011" role="doc-biblioref">2011</a>)</span></li>
 <li><span class="citation"><a href="references-2.html#ref-denny_text_2018" role="doc-biblioref">Denny and Spirling</a> (<a href="references-2.html#ref-denny_text_2018" role="doc-biblioref">2018</a>)</span></li>
+</ul>
+<p><strong>Slides</strong>:</p>
+<ul>
+<li>Week 6 <a href="https://docs.google.com/presentation/d/1SeL25sA0a7OoJhPOy5lvYuvqOZAUJBkh17VRTG5_VAw/edit?usp=sharing">Slides</a>
+</li>
 </ul>
 </div>
 </div>
@@ -115,7 +132,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Computational Text Analysis</strong>" was written by Christopher Barrie. It was last built on 2022-02-22.</p>
+    <p>"<strong>Computational Text Analysis</strong>" was written by Christopher Barrie. It was last built on 2022-02-23.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
