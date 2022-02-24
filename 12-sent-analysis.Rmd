@@ -31,7 +31,6 @@ library(quanteda) # includes functions to implement Lexicoder
 
 ```
 
-
 In this exercise we'll be using another new dataset. The data were collected from the Twitter accounts of the top eight newspapers in the UK by circulation. You can see the names of the newspapers in the code below:
 
 ```{r, eval=F}

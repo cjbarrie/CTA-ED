@@ -4,18 +4,18 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Chapter 11 Week 8 | Computational Text Analysis</title>
+<title>Chapter 12 Week 8 | Computational Text Analysis</title>
 <meta name="author" content="Christopher Barrie">
-<meta name="description" content="11.1 Supervised learning Required reading: Hopkins and King (2010) King, Pan, and Roberts (2017) Siegel et al. (2021) Yu, Kaufmann, and Diermeier (2008) Manning, Raghavan, and Schtze...">
+<meta name="description" content="12.1 Supervised learning Required reading: Hopkins and King (2010) King, Pan, and Roberts (2017) Siegel et al. (2021) Yu, Kaufmann, and Diermeier (2008) Manning, Raghavan, and Schtze...">
 <meta name="generator" content="bookdown 0.24 with bs4_book()">
-<meta property="og:title" content="Chapter 11 Week 8 | Computational Text Analysis">
+<meta property="og:title" content="Chapter 12 Week 8 | Computational Text Analysis">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://cjbarrie.github.io/CTA-ED/week-8.html">
 <meta property="og:image" content="https://cjbarrie.github.io/CTA-ED/coverb.png">
-<meta property="og:description" content="11.1 Supervised learning Required reading: Hopkins and King (2010) King, Pan, and Roberts (2017) Siegel et al. (2021) Yu, Kaufmann, and Diermeier (2008) Manning, Raghavan, and Schtze...">
+<meta property="og:description" content="12.1 Supervised learning Required reading: Hopkins and King (2010) King, Pan, and Roberts (2017) Siegel et al. (2021) Yu, Kaufmann, and Diermeier (2008) Manning, Raghavan, and Schtze...">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Chapter 11 Week 8 | Computational Text Analysis">
-<meta name="twitter:description" content="11.1 Supervised learning Required reading: Hopkins and King (2010) King, Pan, and Roberts (2017) Siegel et al. (2021) Yu, Kaufmann, and Diermeier (2008) Manning, Raghavan, and Schtze...">
+<meta name="twitter:title" content="Chapter 12 Week 8 | Computational Text Analysis">
+<meta name="twitter:description" content="12.1 Supervised learning Required reading: Hopkins and King (2010) King, Pan, and Roberts (2017) Siegel et al. (2021) Yu, Kaufmann, and Diermeier (2008) Manning, Raghavan, and Schtze...">
 <meta name="twitter:image" content="https://cjbarrie.github.io/CTA-ED/coverb.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
@@ -54,15 +54,17 @@
 <li><a class="" href="week-4.html"><span class="header-section-number">6</span> Week 4</a></li>
 <li><a class="" href="week-4-demo.html"><span class="header-section-number">7</span> Week 4 Demo</a></li>
 <li><a class="" href="week-5.html"><span class="header-section-number">8</span> Week 5</a></li>
-<li><a class="" href="week-6.html"><span class="header-section-number">9</span> Week 6</a></li>
-<li><a class="" href="week-7.html"><span class="header-section-number">10</span> Week 7</a></li>
-<li><a class="active" href="week-8.html"><span class="header-section-number">11</span> Week 8</a></li>
-<li><a class="" href="week-9.html"><span class="header-section-number">12</span> Week 9</a></li>
-<li><a class="" href="week-10.html"><span class="header-section-number">13</span> Week 10</a></li>
-<li><a class="" href="exercise-1-word-frequency-analysis.html"><span class="header-section-number">14</span> Exercise 1: Word frequency analysis</a></li>
-<li><a class="" href="exercise-2-dictionary-based-methods.html"><span class="header-section-number">15</span> Exercise 2: Dictionary-based methods</a></li>
-<li><a class="" href="exercise-3-comparison-and-complexity.html"><span class="header-section-number">16</span> Exercise 3: Comparison and complexity</a></li>
-<li><a class="" href="references-2.html"><span class="header-section-number">17</span> References</a></li>
+<li><a class="" href="week-5-demo.html"><span class="header-section-number">9</span> Week 5 Demo</a></li>
+<li><a class="" href="week-6.html"><span class="header-section-number">10</span> Week 6</a></li>
+<li><a class="" href="week-7.html"><span class="header-section-number">11</span> Week 7</a></li>
+<li><a class="active" href="week-8.html"><span class="header-section-number">12</span> Week 8</a></li>
+<li><a class="" href="week-9.html"><span class="header-section-number">13</span> Week 9</a></li>
+<li><a class="" href="week-10.html"><span class="header-section-number">14</span> Week 10</a></li>
+<li><a class="" href="exercise-1-word-frequency-analysis.html"><span class="header-section-number">15</span> Exercise 1: Word frequency analysis</a></li>
+<li><a class="" href="exercise-2-dictionary-based-methods.html"><span class="header-section-number">16</span> Exercise 2: Dictionary-based methods</a></li>
+<li><a class="" href="exercise-3-comparison-and-complexity.html"><span class="header-section-number">17</span> Exercise 3: Comparison and complexity</a></li>
+<li><a class="" href="exercise-4-scaling-techniques.html"><span class="header-section-number">18</span> Exercise 4: Scaling techniques</a></li>
+<li><a class="" href="references-2.html"><span class="header-section-number">19</span> References</a></li>
 </ul>
 
         <div class="book-extra">
@@ -70,13 +72,13 @@
         </div>
       </nav>
 </div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="week-8" class="section level1" number="11">
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="week-8" class="section level1" number="12">
 <h1>
-<span class="header-section-number">11</span> Week 8<a class="anchor" aria-label="anchor" href="#week-8"><i class="fas fa-link"></i></a>
+<span class="header-section-number">12</span> Week 8<a class="anchor" aria-label="anchor" href="#week-8"><i class="fas fa-link"></i></a>
 </h1>
-<div id="supervised-learning" class="section level2" number="11.1">
+<div id="supervised-learning" class="section level2" number="12.1">
 <h2>
-<span class="header-section-number">11.1</span> Supervised learning<a class="anchor" aria-label="anchor" href="#supervised-learning"><i class="fas fa-link"></i></a>
+<span class="header-section-number">12.1</span> Supervised learning<a class="anchor" aria-label="anchor" href="#supervised-learning"><i class="fas fa-link"></i></a>
 </h2>
 <p><strong>Required reading</strong>:</p>
 <ul>
@@ -96,13 +98,13 @@
 </div>
 </div>
   <div class="chapter-nav">
-<div class="prev"><a href="week-7.html"><span class="header-section-number">10</span> Week 7</a></div>
-<div class="next"><a href="week-9.html"><span class="header-section-number">12</span> Week 9</a></div>
+<div class="prev"><a href="week-7.html"><span class="header-section-number">11</span> Week 7</a></div>
+<div class="next"><a href="week-9.html"><span class="header-section-number">13</span> Week 9</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#week-8"><span class="header-section-number">11</span> Week 8</a></li>
-<li><a class="nav-link" href="#supervised-learning"><span class="header-section-number">11.1</span> Supervised learning</a></li>
+<li><a class="nav-link" href="#week-8"><span class="header-section-number">12</span> Week 8</a></li>
+<li><a class="nav-link" href="#supervised-learning"><span class="header-section-number">12.1</span> Supervised learning</a></li>
 </ul>
 
       <div class="book-extra">
@@ -128,6 +130,34 @@
   </div>
 
 </div></div>
-</footer>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
 </body>
 </html>

@@ -54,15 +54,17 @@
 <li><a class="" href="week-4.html"><span class="header-section-number">6</span> Week 4</a></li>
 <li><a class="" href="week-4-demo.html"><span class="header-section-number">7</span> Week 4 Demo</a></li>
 <li><a class="" href="week-5.html"><span class="header-section-number">8</span> Week 5</a></li>
-<li><a class="" href="week-6.html"><span class="header-section-number">9</span> Week 6</a></li>
-<li><a class="" href="week-7.html"><span class="header-section-number">10</span> Week 7</a></li>
-<li><a class="" href="week-8.html"><span class="header-section-number">11</span> Week 8</a></li>
-<li><a class="" href="week-9.html"><span class="header-section-number">12</span> Week 9</a></li>
-<li><a class="" href="week-10.html"><span class="header-section-number">13</span> Week 10</a></li>
-<li><a class="" href="exercise-1-word-frequency-analysis.html"><span class="header-section-number">14</span> Exercise 1: Word frequency analysis</a></li>
-<li><a class="" href="exercise-2-dictionary-based-methods.html"><span class="header-section-number">15</span> Exercise 2: Dictionary-based methods</a></li>
-<li><a class="" href="exercise-3-comparison-and-complexity.html"><span class="header-section-number">16</span> Exercise 3: Comparison and complexity</a></li>
-<li><a class="" href="references-2.html"><span class="header-section-number">17</span> References</a></li>
+<li><a class="" href="week-5-demo.html"><span class="header-section-number">9</span> Week 5 Demo</a></li>
+<li><a class="" href="week-6.html"><span class="header-section-number">10</span> Week 6</a></li>
+<li><a class="" href="week-7.html"><span class="header-section-number">11</span> Week 7</a></li>
+<li><a class="" href="week-8.html"><span class="header-section-number">12</span> Week 8</a></li>
+<li><a class="" href="week-9.html"><span class="header-section-number">13</span> Week 9</a></li>
+<li><a class="" href="week-10.html"><span class="header-section-number">14</span> Week 10</a></li>
+<li><a class="" href="exercise-1-word-frequency-analysis.html"><span class="header-section-number">15</span> Exercise 1: Word frequency analysis</a></li>
+<li><a class="" href="exercise-2-dictionary-based-methods.html"><span class="header-section-number">16</span> Exercise 2: Dictionary-based methods</a></li>
+<li><a class="" href="exercise-3-comparison-and-complexity.html"><span class="header-section-number">17</span> Exercise 3: Comparison and complexity</a></li>
+<li><a class="" href="exercise-4-scaling-techniques.html"><span class="header-section-number">18</span> Exercise 4: Scaling techniques</a></li>
+<li><a class="" href="references-2.html"><span class="header-section-number">19</span> References</a></li>
 </ul>
 
         <div class="book-extra">
@@ -97,6 +99,34 @@ the table of contents to find the page you are looking for.</p>
   </div>
 
 </div></div>
-</footer>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
 </body>
 </html>

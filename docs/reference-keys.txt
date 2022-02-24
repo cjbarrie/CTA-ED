@@ -31,6 +31,11 @@ term-based-similarity
 complexity
 week-5
 scaling-techniques
+week-5-demo
+setup-3
+wordscores
+wordfish
+using-quanteda
 week-6
 unupervised-learning-topic-models
 week-7
@@ -43,7 +48,7 @@ week-10
 validation
 exercise-1-word-frequency-analysis
 introduction
-setup-3
+setup-4
 load-data-and-packages
 inspect-and-filter-data
 tidy-the-text
@@ -56,7 +61,7 @@ exercises
 references
 exercise-2-dictionary-based-methods
 introduction-1
-setup-4
+setup-5
 load-data-and-packages-1
 inspect-and-filter-data-1
 get-sentiment-dictionaries
@@ -67,10 +72,12 @@ exercises-1
 references-1
 exercise-3-comparison-and-complexity
 introduction-2
-setup-5
+setup-6
 generate-document-feature-matrix
 compare-between-mps
 compare-between-measures
 complexity-1
 exercises-2
+exercise-4-scaling-techniques
+introduction-3
 references-2

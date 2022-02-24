@@ -6,11 +6,10 @@
 
 - @garg_word_2018
 - @kozlowski_geometry_2019
-- @rodriguez_word_2021
 - @jurafsky_speech_2021 [ch.6]: [https://web.stanford.edu/~jurafsky/slp3/](https://web.stanford.edu/~jurafsky/slp3/)]
 
 **Further reading**:
 
-- 
+- @rodriguez_word_2021
 - 
 - 

@@ -6,26 +6,24 @@ classic.wordscores
 
 data(lbg)
 ref <- getdocs(lbg, 1:5)
-ws <- classic.wordscores(ref, scores=seq(-1.5,1.5,by=0.75))
 
+ref
+ws <- classic.wordscores(ref, scores=seq(-1.5,1.5,by=0.75))
 summary(ws)
-vir <- getdocs(lbg, 'V1') 
+
+#get "virgin" documents
+vir <- getdocs(lbg, 'V1')
+vir
 predict(ws, newdata=vir)
 
+# inspect function
 wordfish
 
-wfm
-
 dd <- sim.wordfish()
+
+dd
+
 wf <- wordfish(dd$Y)
 summary(wf)
 
 wfm <- dd$Y
-
-wordfish(
-  dd$Y,
-  dir = c(1, length(docs(dd$Y))),
-  control = list(tol = 1e-06, sigma = 3, startparams = NULL, conv.check = c("ll",
-                                                                            "cor")),
-  verbose = FALSE
-)

@@ -25,8 +25,6 @@ Questions:
 
 **Required reading**:
 
-
-
 - @slapin_scaling_2008
 - @kaneko_estimating_2021
 - @kluver_measuring_2009

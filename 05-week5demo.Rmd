@@ -1,0 +1,88 @@
+# Week 5 Demo
+
+## Setup
+First, we'll load the packages we'll be using in this week's brief demo. 
+
+```{r, message = F, warning = F}
+devtools::install_github("conjugateprior/austin")
+library(austin)
+library(quanteda)
+library(quanteda.textstats)
+```
+
+## Wordscores
+
+We can inspect the function for the wordscores model by @laver_extracting_2003 in the following way:
+
+```{r}
+classic.wordscores
+```
+
+We can then take some example data included in the `austin` package.
+
+```{r}
+data(lbg)
+ref <- getdocs(lbg, 1:5)
+```
+
+And here our reference documents are all those documents marked with an "R" for reference; i.e., columns one to five.
+
+```{r}
+ref
+```
+
+This matrix is simply a series of words (here: letters) and reference texts with word counts for each of them. 
+
+We can then look at the wordscores for each of the words, calculated using the reference dimensions for each of the reference documents.
+
+```{r}
+
+ws <- classic.wordscores(ref, scores=seq(-1.5,1.5,by=0.75))
+ws
+```
+
+And here we see the thetas contained in this wordscores object, i.e., the reference dimensions for each of the reference documents and the pis, i.e., the estimated wordscores for each word. 
+
+We can now use these to score the so-called "virgin" texts as follows. 
+
+```{r}
+
+#get "virgin" documents
+vir <- getdocs(lbg, 'V1')
+vir
+
+# predict textscores for the virgin documents
+predict(ws, newdata=vir)
+```
+
+## Wordfish
+
+
+If we wish, we can inspect the function for the wordscores model by @slapin_scaling_2008 in the following way. This is a much more complex algorithm, which is not printed here, but you can inspect on your own devices. 
+
+
+```{r, eval=F}
+wordfish
+```
+
+We can then simulate some data, formatted appropriately for wordfiash estimation in the following way:
+
+```{r}
+dd <- sim.wordfish()
+
+dd
+```
+
+Here we can see the document and word-level FEs, as well as the specified range of the thetas to be estimates. 
+
+Then estimating the document positions is simply a matter of implementing this algorithm.
+
+```{r}
+wf <- wordfish(dd$Y)
+summary(wf)
+```
+
+## Using `quanteda`
+
+We can also use `quanteda` to implement the same scaling techniques, as demonstrated in Exercise 4. 
+

@@ -1,0 +1,147 @@
+# Exercise 4: Scaling techniques
+
+## Introduction
+
+The hands-on exercise for this week focuses on: 1) scaling texts ; 2) implementing scaling techniques using `quanteda`. 
+
+In this tutorial, you will learn how to:
+  
+* Scale texts using the "wordfish" algorithm
+* Scale texts gathered from online sources
+* Replicate analyses by @kaneko_estimating_2021
+
+Before proceeding, we'll load the packages we will need for this tutorial.
+
+```{r, echo=F}
+library(kableExtra)
+```
+
+```{r, message=F}
+library(dplyr)
+library(quanteda) # includes functions to implement Lexicoder
+library(quanteda.textmodels) # for estimating similarity and complexity measures
+library(quanteda.textplots) #for visualizing text modelling results
+```
+
+In this exercise we'll be using the dataset we used for the sentiment analysis exercise. The data were collected from the Twitter accounts of the top eight newspapers in the UK by circulation. The tweets include any tweets by the news outlet from their main account. 
+
+We can download the dataset with:
+
+```{r}
+tweets <- readRDS("data/sentanalysis/newstweets.rds")
+```
+
+If you're working on this document from your own computer ("locally") you can download the tweets data in the following way:
+
+```{r, eval = F}
+tweets  <- readRDS(gzcon(url("https://github.com/cjbarrie/CTA-ED/blob/main/data/sentanalysis/newstweets.rds?raw=true")))
+
+```
+
+We first take a sample from these data to speed up the runtime of some of the analyses. 
+
+```{r}
+
+tweets <- tweets %>%
+  sample_n(20000)
+
+```
+
+Then, as in the previous exercise, we create a corpus object, specify the document-level variables by which we want to group, and generate our document feature matrix. 
+
+```{r}
+
+#make corpus object, specifying tweet as text field
+tweets_corpus <- corpus(tweets, text_field = "text")
+
+#add in username document-level information
+docvars(tweets_corpus, "newspaper") <- tweets$user_username
+
+dfm_tweets <- dfm(tokens(tweets_corpus),
+                  remove_punct = TRUE, 
+                  remove = stopwords("english"))
+
+```
+
+We can then have a look at the number of documents (tweets) we have per newspaper Twitter account. 
+
+```{r}
+
+## number of tweets per newspaper
+table(docvars(dfm_tweets, "newspaper"))
+
+```
+
+And this is what our document feature matrix looks like, where each word has a count for each of our eight newspapers. 
+
+```{r}
+
+dfm_tweets
+
+```
+
+Once we have our data in this format, we are able to group and trim the document feature matrix before estimating the wordfish model.
+
+```{r}
+# compress the document-feature matrix at the newspaper level
+dfm_newstweets <- dfm_group(dfm_tweets, groups = newspaper)
+# remove words not used by two or more newspapers
+dfm_newstweets <- dfm_trim(dfm_newstweets, 
+                                min_docfreq = 2, docfreq_type = "count")
+
+## size of the document-feature matrix
+dim(dfm_newstweets)
+
+#### estimate the Wordfish model ####
+set.seed(123L)
+dfm_newstweets_results <- textmodel_wordfish(dfm_newstweets, 
+                                             sparse = TRUE)
+
+```
+
+And this is what results.
+
+```{r}
+summary(dfm_newstweets_results)
+```
+
+We can then plot our estimates of the $\theta$s---i.e., the estimates of the latent newspaper position---as so.
+
+```{r}
+
+textplot_scale1d(dfm_newstweets_results)
+```
+
+Interestingly, we seem not to have captured ideology but some other tonal dimension. We see that the tabloid newspapers are scored similarly, and grouped toward the right hand side of this latent dimension; whereas the broadsheet newspapers have an estimated theta further to the left.
+
+Plotting the "features," i.e., the word-level betas shows how words are positioned along this dimension, and which words help discriminate between news outlets.
+
+```{r}
+
+textplot_scale1d(dfm_newstweets_results, margin = "features")
+
+```
+
+And we can also look at these features.
+```{r}
+
+features <- dfm_newstweets_results[["features"]]
+
+betas <- dfm_newstweets_results[["beta"]]
+
+feat_betas <- as.data.frame(cbind(features, betas))
+feat_betas$betas <- as.numeric(feat_betas$betas)
+
+feat_betas %>%
+  arrange(desc(betas)) %>%
+  top_n(20) %>% 
+  kbl() %>%
+  kable_styling(bootstrap_options = "striped")
+
+```
+
+These words do seem to belong to more tabloid-style reportage, and include emojis relating to film, sports reporting on "cristiano" as well as more colloquial terms like "saucy." 
+
+
+
+
