@@ -4,18 +4,18 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Chapter 15 Exercise 1: Word frequency analysis | Computational Text Analysis</title>
+<title>Chapter 16 Exercise 1: Word frequency analysis | Computational Text Analysis</title>
 <meta name="author" content="Christopher Barrie">
-<meta name="description" content="15.1 Introduction In this tutorial, you will learn how to summarise, aggregate, and analyze text in R: How to tokenize and filter text How to clean and preprocess text How to visualize results...">
+<meta name="description" content="16.1 Introduction In this tutorial, you will learn how to summarise, aggregate, and analyze text in R: How to tokenize and filter text How to clean and preprocess text How to visualize results...">
 <meta name="generator" content="bookdown 0.24 with bs4_book()">
-<meta property="og:title" content="Chapter 15 Exercise 1: Word frequency analysis | Computational Text Analysis">
+<meta property="og:title" content="Chapter 16 Exercise 1: Word frequency analysis | Computational Text Analysis">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://cjbarrie.github.io/CTA-ED/exercise-1-word-frequency-analysis.html">
 <meta property="og:image" content="https://cjbarrie.github.io/CTA-ED/coverb.png">
-<meta property="og:description" content="15.1 Introduction In this tutorial, you will learn how to summarise, aggregate, and analyze text in R: How to tokenize and filter text How to clean and preprocess text How to visualize results...">
+<meta property="og:description" content="16.1 Introduction In this tutorial, you will learn how to summarise, aggregate, and analyze text in R: How to tokenize and filter text How to clean and preprocess text How to visualize results...">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Chapter 15 Exercise 1: Word frequency analysis | Computational Text Analysis">
-<meta name="twitter:description" content="15.1 Introduction In this tutorial, you will learn how to summarise, aggregate, and analyze text in R: How to tokenize and filter text How to clean and preprocess text How to visualize results...">
+<meta name="twitter:title" content="Chapter 16 Exercise 1: Word frequency analysis | Computational Text Analysis">
+<meta name="twitter:description" content="16.1 Introduction In this tutorial, you will learn how to summarise, aggregate, and analyze text in R: How to tokenize and filter text How to clean and preprocess text How to visualize results...">
 <meta name="twitter:image" content="https://cjbarrie.github.io/CTA-ED/coverb.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
@@ -56,15 +56,16 @@
 <li><a class="" href="week-5.html"><span class="header-section-number">8</span> Week 5</a></li>
 <li><a class="" href="week-5-demo.html"><span class="header-section-number">9</span> Week 5 Demo</a></li>
 <li><a class="" href="week-6.html"><span class="header-section-number">10</span> Week 6</a></li>
-<li><a class="" href="week-7.html"><span class="header-section-number">11</span> Week 7</a></li>
-<li><a class="" href="week-8.html"><span class="header-section-number">12</span> Week 8</a></li>
-<li><a class="" href="week-9.html"><span class="header-section-number">13</span> Week 9</a></li>
-<li><a class="" href="week-10.html"><span class="header-section-number">14</span> Week 10</a></li>
-<li><a class="active" href="exercise-1-word-frequency-analysis.html"><span class="header-section-number">15</span> Exercise 1: Word frequency analysis</a></li>
-<li><a class="" href="exercise-2-dictionary-based-methods.html"><span class="header-section-number">16</span> Exercise 2: Dictionary-based methods</a></li>
-<li><a class="" href="exercise-3-comparison-and-complexity.html"><span class="header-section-number">17</span> Exercise 3: Comparison and complexity</a></li>
-<li><a class="" href="exercise-4-scaling-techniques.html"><span class="header-section-number">18</span> Exercise 4: Scaling techniques</a></li>
-<li><a class="" href="references-2.html"><span class="header-section-number">19</span> References</a></li>
+<li><a class="" href="week-6-demo.html"><span class="header-section-number">11</span> Week 6 Demo</a></li>
+<li><a class="" href="week-7.html"><span class="header-section-number">12</span> Week 7</a></li>
+<li><a class="" href="week-8.html"><span class="header-section-number">13</span> Week 8</a></li>
+<li><a class="" href="week-9.html"><span class="header-section-number">14</span> Week 9</a></li>
+<li><a class="" href="week-10.html"><span class="header-section-number">15</span> Week 10</a></li>
+<li><a class="active" href="exercise-1-word-frequency-analysis.html"><span class="header-section-number">16</span> Exercise 1: Word frequency analysis</a></li>
+<li><a class="" href="exercise-2-dictionary-based-methods.html"><span class="header-section-number">17</span> Exercise 2: Dictionary-based methods</a></li>
+<li><a class="" href="exercise-3-comparison-and-complexity.html"><span class="header-section-number">18</span> Exercise 3: Comparison and complexity</a></li>
+<li><a class="" href="exercise-4-scaling-techniques.html"><span class="header-section-number">19</span> Exercise 4: Scaling techniques</a></li>
+<li><a class="" href="references-2.html"><span class="header-section-number">20</span> References</a></li>
 </ul>
 
         <div class="book-extra">
@@ -72,13 +73,13 @@
         </div>
       </nav>
 </div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="exercise-1-word-frequency-analysis" class="section level1" number="15">
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="exercise-1-word-frequency-analysis" class="section level1" number="16">
 <h1>
-<span class="header-section-number">15</span> Exercise 1: Word frequency analysis<a class="anchor" aria-label="anchor" href="#exercise-1-word-frequency-analysis"><i class="fas fa-link"></i></a>
+<span class="header-section-number">16</span> Exercise 1: Word frequency analysis<a class="anchor" aria-label="anchor" href="#exercise-1-word-frequency-analysis"><i class="fas fa-link"></i></a>
 </h1>
-<div id="introduction" class="section level2" number="15.1">
+<div id="introduction" class="section level2" number="16.1">
 <h2>
-<span class="header-section-number">15.1</span> Introduction<a class="anchor" aria-label="anchor" href="#introduction"><i class="fas fa-link"></i></a>
+<span class="header-section-number">16.1</span> Introduction<a class="anchor" aria-label="anchor" href="#introduction"><i class="fas fa-link"></i></a>
 </h2>
 <p>In this tutorial, you will learn how to summarise, aggregate, and analyze text in R:</p>
 <ul>
@@ -88,9 +89,9 @@
 <li>How to perform automated gender assignment from name data (and think about possible biases these methods may enclose)</li>
 </ul>
 </div>
-<div id="setup-4" class="section level2" number="15.2">
+<div id="setup-5" class="section level2" number="16.2">
 <h2>
-<span class="header-section-number">15.2</span> Setup<a class="anchor" aria-label="anchor" href="#setup-4"><i class="fas fa-link"></i></a>
+<span class="header-section-number">16.2</span> Setup<a class="anchor" aria-label="anchor" href="#setup-5"><i class="fas fa-link"></i></a>
 </h2>
 <p>To practice these skills, we will use a dataset that I have already collected from the Edinburgh Fringe Festival website.</p>
 <p>You can try this out yourself too: to obtain these data, you must first obtain an API key. Instructions on how to do this are available at the <a href="https://api.edinburghfestivalcity.com/documentation/fringe_approval">Edinburgh Fringe API page</a>:</p>
@@ -98,12 +99,12 @@
 <img src="data/wordfreq/fringeapi.png" alt=""><p class="caption">Alt Text</p>
 </div>
 </div>
-<div id="load-data-and-packages" class="section level2" number="15.3">
+<div id="load-data-and-packages" class="section level2" number="16.3">
 <h2>
-<span class="header-section-number">15.3</span> Load data and packages<a class="anchor" aria-label="anchor" href="#load-data-and-packages"><i class="fas fa-link"></i></a>
+<span class="header-section-number">16.3</span> Load data and packages<a class="anchor" aria-label="anchor" href="#load-data-and-packages"><i class="fas fa-link"></i></a>
 </h2>
 <p>Before proceeding, we’ll load the remaining packages we will need for this tutorial.</p>
-<div class="sourceCode" id="cb147"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb157"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span> <span class="co"># loads dplyr, ggplot2, and others</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/juliasilge/tidytext">tidytext</a></span><span class="op">)</span> <span class="co"># includes set of functions useful for manipulating text</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jrnold/ggthemes">ggthemes</a></span><span class="op">)</span> <span class="co"># includes a set of themes to make your visualizations look nice!</span>
@@ -112,7 +113,7 @@
 <p>For this tutorial, we will be using data that I have pre-cleaned and provided in .csv format. The data come from the Edinburgh Book Festival API, and provide data for every event that has taken place at the Edinburgh Book Festival, which runs every year in the month of August, for nine years: 2012-2020. There are many questions we might ask of these data. In this tutorial, we will investigate the contents of each event, and the speakers at each event, to determine if there are any trends in gender representation over time.</p>
 <p>The first task, then, is to read in these data. We can do this with the <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code> function.</p>
 <p>The <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code> function takes the .csv file and loads it into the working environment as a data frame object called “edbfdata.” We can call this object anything though. Try changing the name of the object before the &lt;- arrow. Note that R does not allow names with spaces in, however. It is also not a good idea to name the object something beginning with numbers, as this means you have to call the object within ` marks.</p>
-<div class="sourceCode" id="cb148"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb158"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">edbfdata</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/wordfreq/edbookfestall.csv"</span><span class="op">)</span></code></pre></div>
 <pre><code>## New names:
 ## * `` -&gt; ...1</code></pre>
@@ -125,20 +126,20 @@
 ## ℹ Use `spec()` to retrieve the full column specification for this data.
 ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 <p>If you’re working on this document from your own computer (“locally”) you can download the Edinburgh Fringe data in the following way:</p>
-<div class="sourceCode" id="cb151"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb161"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">edbfdata</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/cjbarrie/RDL-Ed/main/02-text-as-data/data/edbookfestall.csv"</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="inspect-and-filter-data" class="section level2" number="15.4">
+<div id="inspect-and-filter-data" class="section level2" number="16.4">
 <h2>
-<span class="header-section-number">15.4</span> Inspect and filter data<a class="anchor" aria-label="anchor" href="#inspect-and-filter-data"><i class="fas fa-link"></i></a>
+<span class="header-section-number">16.4</span> Inspect and filter data<a class="anchor" aria-label="anchor" href="#inspect-and-filter-data"><i class="fas fa-link"></i></a>
 </h2>
 <p>Our next job is to cut down this dataset to size, including only those columns that we need. But first we can inspect it to see what the existing column names are, and how each variable is coded. To do this we can first call:</p>
-<div class="sourceCode" id="cb152"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb162"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">edbfdata</span><span class="op">)</span></code></pre></div>
 <pre><code>##  [1] "...1"         "festival_id"  "title"        "sub_title"    "artist"       "year"        
 ##  [7] "description"  "genre"        "latitude"     "longitude"    "age_category" "ID"</code></pre>
 <p>And then:</p>
-<div class="sourceCode" id="cb154"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb164"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">edbfdata</span><span class="op">)</span></code></pre></div>
 <pre><code>## Rows: 5,938
 ## Columns: 12
@@ -156,7 +157,7 @@
 ## $ ID           &lt;chr&gt; "Denise Mina2012", "Alex T Smith2012", "Peter Cocks2012", "Paul Mason2012", "Chris …</code></pre>
 <p>We can see that the description of each event is included in a column named “description” and the year of that event as “year.” So for now we’ll just keep these two. Remember: we’re interested in this tutorial firstly in the representation of gender and feminism in forms of cultural production given a platform at the Edinburgh International Book Festival. Given this, we are first and foremost interested in the reported content of each artist’s event.</p>
 <p>We use pipe <code>%&gt;%</code> functions in the tidyverse package to quickly and efficiently select the columns we want from the edbfdata data.frame object. We pass this data to a new data.frame object, which we call “evdes.”</p>
-<div class="sourceCode" id="cb156"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb166"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># get simplified dataset with only event contents and year</span>
 <span class="va">evdes</span> <span class="op">&lt;-</span> <span class="va">edbfdata</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">description</span>, <span class="va">year</span><span class="op">)</span>
@@ -172,36 +173,36 @@
 ## 5 "&lt;p&gt;\n\tChris d&amp;rsquo;Lacey tells you all about The Fire Ascending, the next exciting instalment …  2012
 ## 6 "&lt;p&gt;\n\tIt&amp;rsquo;s time for the honourable, feisty and courageous young hero, Sir Charlie Stinky …  2012</code></pre>
 <p>And let’s take a quick look at how many events there were over time at the festival. To do this, we first calculate the number of individual events (row observations) by year (column variable).</p>
-<div class="sourceCode" id="cb158"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb168"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">evtsperyr</span> <span class="op">&lt;-</span> <span class="va">evdes</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>obs<span class="op">=</span><span class="fl">1</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">year</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>sum_events <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">obs</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>And then we can plot this using ggplot!</p>
-<div class="sourceCode" id="cb159"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb169"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">evtsperyr</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">year</span>, <span class="va">sum_events</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_tufte.html">theme_tufte</a></span><span class="op">(</span>base_family <span class="op">=</span> <span class="st">"Helvetica"</span><span class="op">)</span> <span class="op">+</span> 
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>expand <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span>, limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="cn">NA</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-156-1.png" width="672"></div>
+<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-106-1.png" width="672"></div>
 <p>Perhaps unsurprisingly, in the context of the pandemic, the number of recorded bookings for the 2020 Festival is drastically reduced.</p>
 </div>
-<div id="tidy-the-text" class="section level2" number="15.5">
+<div id="tidy-the-text" class="section level2" number="16.5">
 <h2>
-<span class="header-section-number">15.5</span> Tidy the text<a class="anchor" aria-label="anchor" href="#tidy-the-text"><i class="fas fa-link"></i></a>
+<span class="header-section-number">16.5</span> Tidy the text<a class="anchor" aria-label="anchor" href="#tidy-the-text"><i class="fas fa-link"></i></a>
 </h2>
 <p>Given that these data were obtained from an API that outputs data originally in HTML format, some of the text still contains some HTML and PHP encodings for e.g. bold font or paragraphs. We’ll need to get rid of this, as well as other punctuation before analyzing these data.</p>
 <p>The below set of commands takes the event descriptions, extracts individual words, and counts the number of times they appear in each of the years covered by our book festival data.</p>
-<div class="sourceCode" id="cb160"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb170"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">#get year and word for every word and date pair in the dataset</span>
 <span class="va">tidy_des</span> <span class="op">&lt;-</span> <span class="va">evdes</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>desc <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/chartr.html">tolower</a></span><span class="op">(</span><span class="va">description</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://rdrr.io/pkg/tidytext/man/unnest_tokens.html">unnest_tokens</a></span><span class="op">(</span><span class="va">word</span>, <span class="va">desc</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="va">word</span>, <span class="st">"[a-z]"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="back-to-the-fringe" class="section level2" number="15.6">
+<div id="back-to-the-fringe" class="section level2" number="16.6">
 <h2>
-<span class="header-section-number">15.6</span> Back to the Fringe<a class="anchor" aria-label="anchor" href="#back-to-the-fringe"><i class="fas fa-link"></i></a>
+<span class="header-section-number">16.6</span> Back to the Fringe<a class="anchor" aria-label="anchor" href="#back-to-the-fringe"><i class="fas fa-link"></i></a>
 </h2>
 <p>We see that the resulting dataset is large (~446k rows). This is because the above commands have first taken the events text, and has “mutated” it into a set of lower case character string. With the “unnest_tokens” function it has then taken each individual string and create a new column called “word” that contains each individual word contained in the event description texts.</p>
 <p>Some terminology is also appropriate here. When we tidy our text into this format, we often refer to these data structures as consisting of “documents” and “terms.” This is because by “tokenizing” our text with the “unnest_tokens” functions we are generating a dataset with one term per row.</p>
@@ -209,11 +210,11 @@
 <p>Instead of by year, we might have wanted to sort our text into “genre.” Here, we have two genres: “Literature” and “Children.” Had we done so, we would then have only two “documents,” which contained all of the words included in the event descriptions for each genre.</p>
 <p>Alternatively, we might be interested in the contributions of individual authors over time. Were this the case, we could have sorted our text into documents by author. In this case, each “document” would represent all the words included in event descriptions for events by the given author (many of whom do have multiple appearances over time or in the same festival for a given year).</p>
 <p>We can yet tidy this further, though. First we’ll remove all stop words and then we’ll remove all apostrophes:</p>
-<div class="sourceCode" id="cb161"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb171"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tidy_des</span> <span class="op">&lt;-</span> <span class="va">tidy_des</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
     <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="va">word</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">stop_words</span><span class="op">$</span><span class="va">word</span><span class="op">)</span></code></pre></div>
 <p>We see that the number of rows in our dataset reduces by about half to ~223k rows. This is natural since a large proportion of any string will contain many so-called “stop words.” We can see what these stop words are by typing:</p>
-<div class="sourceCode" id="cb162"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb172"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">stop_words</span></code></pre></div>
 <pre><code>## # A tibble: 1,149 × 2
 ##    word        lexicon
@@ -231,7 +232,7 @@
 ## # … with 1,139 more rows</code></pre>
 <p>This is a lexicon (list of words) included in the <tt>tidytext</tt> package produced by Julia Silge and David Robinson (see <a href="https://cran.r-project.org/web/packages/tidytext/vignettes/tidytext.html">here</a>). We see it contains over 1000 such words. We remove them here because they are not very informative if we are interested in the substantive content of text (rather than, say, its grammatical content).</p>
 <p>Now let’s have a look at the most common words in these data:</p>
-<div class="sourceCode" id="cb164"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb174"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tidy_des</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">word</span>, sort <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 24,995 × 2
@@ -249,13 +250,13 @@
 ## 10 strong   864
 ## # … with 24,985 more rows</code></pre>
 <p>We can see that one of the most common words is “rsquo,” which is an HTML encoding for an apostrophe. Clearly we need to clean the data a bit more. This is a common issue in large-n text analysis and is a key step if you want to conduct reliably robust forms of text analysis. We’ll have another go using the the filter command, specifying that we only keep the words that are not included in the string of words rsquo, em, ndash, nbsp, lsquo.</p>
-<div class="sourceCode" id="cb166"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb176"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">remove_reg</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"&amp;amp;"</span>,<span class="st">"&amp;lt;"</span>,<span class="st">"&amp;gt;"</span>,<span class="st">"&lt;p&gt;"</span>, <span class="st">"&lt;/p&gt;"</span>,<span class="st">"&amp;rsquo"</span>, <span class="st">"&amp;lsquo;"</span>,  <span class="st">"&amp;#39;"</span>, <span class="st">"&lt;strong&gt;"</span>, <span class="st">"&lt;/strong&gt;"</span>, <span class="st">"rsquo"</span>, <span class="st">"em"</span>, <span class="st">"ndash"</span>, <span class="st">"nbsp"</span>, <span class="st">"lsquo"</span>, <span class="st">"strong"</span><span class="op">)</span>
 <span class="va">reg_match</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">remove_reg</span>, collapse <span class="op">=</span> <span class="st">"|"</span><span class="op">)</span>
                   
 <span class="va">tidy_des</span> <span class="op">&lt;-</span> <span class="va">tidy_des</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="va">word</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">remove_reg</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb167"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb177"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tidy_des</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">word</span>, sort <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 24,989 × 2
@@ -274,11 +275,11 @@
 ## # … with 24,979 more rows</code></pre>
 <p>That’s more like it! The words that feature most seem to make sense now (and are actual words rather than random HTML and UTF-8 encodings).</p>
 <p>Let’s now collect these words into a data.frame object, which we’ll call edbf_term_counts:</p>
-<div class="sourceCode" id="cb169"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb179"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">edbf_term_counts</span> <span class="op">&lt;-</span> <span class="va">tidy_des</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">year</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">word</span>, sort <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb170"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb180"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">edbf_term_counts</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 3
 ## # Groups:   year [6]
@@ -292,15 +293,15 @@
 ## 6  2015 book    239</code></pre>
 <p>For each year, we see that “book” is the most common word… perhaps no surprises here. But this is some evidence that we’re properly pre-processing and cleaning the data. Cleaning text data is an important element of preparing for any text analysis. It is often a process of trial and error as not all text data looks alike, may come from e.g. webpages with HTML encoding, unrecognized fonts or unicode, and all of these have the potential to cause issues! But finding these errors is also a chance to get to know your data…</p>
 </div>
-<div id="analyze-keywords" class="section level2" number="15.7">
+<div id="analyze-keywords" class="section level2" number="16.7">
 <h2>
-<span class="header-section-number">15.7</span> Analyze keywords<a class="anchor" aria-label="anchor" href="#analyze-keywords"><i class="fas fa-link"></i></a>
+<span class="header-section-number">16.7</span> Analyze keywords<a class="anchor" aria-label="anchor" href="#analyze-keywords"><i class="fas fa-link"></i></a>
 </h2>
 <p>Okay, now we have our list of words, and the number of times they appear, we can tag those words we think might be related to issues of gender inequality and sexism. You may decide that this list is imprecise or inexhaustive. If so, then feel free to change the terms we are including after the <code><a href="https://rdrr.io/r/base/grep.html">grepl()</a></code> function.</p>
-<div class="sourceCode" id="cb172"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb182"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">edbf_term_counts</span><span class="op">$</span><span class="va">womword</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html">grepl</a></span><span class="op">(</span><span class="st">"women|feminist|feminism|gender|harassment|sexism|sexist"</span>, 
                                             x <span class="op">=</span> <span class="va">edbf_term_counts</span><span class="op">$</span><span class="va">word</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb173"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb183"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">edbf_term_counts</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 4
 ## # Groups:   year [6]
@@ -313,15 +314,15 @@
 ## 5  2013 book    241       0
 ## 6  2015 book    239       0</code></pre>
 </div>
-<div id="compute-aggregate-statistics" class="section level2" number="15.8">
+<div id="compute-aggregate-statistics" class="section level2" number="16.8">
 <h2>
-<span class="header-section-number">15.8</span> Compute aggregate statistics<a class="anchor" aria-label="anchor" href="#compute-aggregate-statistics"><i class="fas fa-link"></i></a>
+<span class="header-section-number">16.8</span> Compute aggregate statistics<a class="anchor" aria-label="anchor" href="#compute-aggregate-statistics"><i class="fas fa-link"></i></a>
 </h2>
 <p>Now that we have tagged individual words relating to gender inequality and feminism, we can sum up the number of times these words appear each year and then denominate them by the total number of words in the event descriptions.</p>
 <p>The intuition here is that any increase or decrease in the percentage of words relating to these issues is capturing a substantive change in the representation of issues related to sex and gender.</p>
 <p>What do we think of this measure? Is this an adequate measure of representation for such issues in the cultural sphere?</p>
 <p>Are the keywords we used precise enough? If not, what would you change?</p>
-<div class="sourceCode" id="cb175"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb185"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">#get counts by year and word</span>
 <span class="va">edbf_counts</span> <span class="op">&lt;-</span> <span class="va">edbf_term_counts</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">year</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
@@ -329,7 +330,7 @@
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">womword</span><span class="op">==</span><span class="fl">1</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>sum_wom <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span>,
             year_total<span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">year_total</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb176"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb186"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">edbf_counts</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 3
 ##    year sum_wom year_total
@@ -341,12 +342,12 @@
 ## 5  2016      34      24356
 ## 6  2017      55      27602</code></pre>
 </div>
-<div id="plot-time-trends" class="section level2" number="15.9">
+<div id="plot-time-trends" class="section level2" number="16.9">
 <h2>
-<span class="header-section-number">15.9</span> Plot time trends<a class="anchor" aria-label="anchor" href="#plot-time-trends"><i class="fas fa-link"></i></a>
+<span class="header-section-number">16.9</span> Plot time trends<a class="anchor" aria-label="anchor" href="#plot-time-trends"><i class="fas fa-link"></i></a>
 </h2>
 <p>So what do we see? Let’s take the count of words relating to gender in this dataset, and denominate them by the total number of words in these data per year.</p>
-<div class="sourceCode" id="cb178"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb188"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">edbf_counts</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">year</span>, <span class="va">sum_wom</span> <span class="op">/</span> <span class="va">year_total</span>, group<span class="op">=</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="st">"Year"</span><span class="op">)</span> <span class="op">+</span>
@@ -354,9 +355,9 @@
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/label_percent.html">percent_format</a></span><span class="op">(</span><span class="op">)</span>,
                      expand <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span>, limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="cn">NA</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_tufte.html">theme_tufte</a></span><span class="op">(</span>base_family <span class="op">=</span> <span class="st">"Helvetica"</span><span class="op">)</span> </code></pre></div>
-<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-169-1.png" width="672"></div>
+<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-119-1.png" width="672"></div>
 <p>We can add visual guides to draw attention to apparent changes in these data. Here, we might wish to signal the year of the #MeToo movement in 2017.</p>
-<div class="sourceCode" id="cb179"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb189"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">edbf_counts</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">year</span>, <span class="va">sum_wom</span> <span class="op">/</span> <span class="va">year_total</span>, group<span class="op">=</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span><span class="op">(</span>xintercept <span class="op">=</span> <span class="fl">2017</span>, col<span class="op">=</span><span class="st">"red"</span><span class="op">)</span> <span class="op">+</span>
@@ -365,9 +366,9 @@
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/label_percent.html">percent_format</a></span><span class="op">(</span><span class="op">)</span>,
                      expand <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span>, limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="cn">NA</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_tufte.html">theme_tufte</a></span><span class="op">(</span>base_family <span class="op">=</span> <span class="st">"Helvetica"</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-170-1.png" width="672"></div>
+<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-120-1.png" width="672"></div>
 <p>And we could label why we are highlighting the year of 2017 by including a text label along the vertical line.</p>
-<div class="sourceCode" id="cb180"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb190"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">edbf_counts</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">year</span>, <span class="va">sum_wom</span> <span class="op">/</span> <span class="va">year_total</span>, group<span class="op">=</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span><span class="op">(</span>xintercept <span class="op">=</span> <span class="fl">2017</span>, col<span class="op">=</span><span class="st">"red"</span><span class="op">)</span> <span class="op">+</span>
@@ -378,17 +379,17 @@
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/label_percent.html">percent_format</a></span><span class="op">(</span><span class="op">)</span>,
                      expand <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span>, limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="cn">NA</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_tufte.html">theme_tufte</a></span><span class="op">(</span>base_family <span class="op">=</span> <span class="st">"Helvetica"</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-171-1.png" width="672"></div>
+<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-121-1.png" width="672"></div>
 </div>
-<div id="bonus-gender-prediction" class="section level2" number="15.10">
+<div id="bonus-gender-prediction" class="section level2" number="16.10">
 <h2>
-<span class="header-section-number">15.10</span> Bonus: gender prediction<a class="anchor" aria-label="anchor" href="#bonus-gender-prediction"><i class="fas fa-link"></i></a>
+<span class="header-section-number">16.10</span> Bonus: gender prediction<a class="anchor" aria-label="anchor" href="#bonus-gender-prediction"><i class="fas fa-link"></i></a>
 </h2>
 <p>We might decide that this measure is inadequate or too expansive to answer the question at hand. Another way of measuring representation in cultural production is to measure the gender of the authors who spoke at these events.</p>
 <p>Of course, this would take quite some time if we were to individually code each of the approximately 6000 events included in this dataset.</p>
 <p>But there do exist alternative techniques for imputing gender based on the name of an individual.</p>
 <p>We first create a new data.frame object, selecting just the columns for artist name and year. Then we generate a new column containing just the artist’s (author’s) first name:</p>
-<div class="sourceCode" id="cb181"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb191"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># get columns for artist name and year, omitting NAs</span>
 <span class="va">gendes</span> <span class="op">&lt;-</span> <span class="va">edbfdata</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">artist</span>, <span class="va">year</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
@@ -398,7 +399,7 @@
 <span class="va">gendes</span><span class="op">$</span><span class="va">name</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html">sub</a></span><span class="op">(</span><span class="st">" .*"</span>, <span class="st">""</span>, <span class="va">gendes</span><span class="op">$</span><span class="va">artist</span><span class="op">)</span></code></pre></div>
 <p>A set of packages called <tt>gender</tt> and <tt>genderdata</tt> used to make the process of predicting gender based on a given individual’s name pretty straightforward. This technique worked with reference to U.S. Social Security Administration baby name data.</p>
 <p>Given that the most common gender associated with a given name changes over time, the function also allows us to specify the range of years for the cohort in question whose gender we are inferring. Given that we don’t know how wide the cohort of artists is that we have here, we could specify a broad range of 1920-2000.</p>
-<div class="sourceCode" id="cb182"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb192"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">genpred</span> <span class="op">&lt;-</span> <span class="fu">gender</span><span class="op">(</span><span class="va">gendes</span><span class="op">$</span><span class="va">name</span>,
        years <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1920</span>, <span class="fl">2000</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>Unfortunately, this package no longer works with newer versions of R; fortunately, I have recreated it using the original “babynames” data, which comes bundled in the <tt>babynames</tt> package.</p>
@@ -408,7 +409,7 @@
 <p>More information on the <tt>babynames</tt> package can be found <a href="https://www.ssa.gov/oact/babynames/limits.html">here</a>.</p>
 <p>We first load the babynames package into the R environment as a data.frame object. Because the data.frame “babynames” is contained in the <tt>babynames</tt> package we can just call it as an object and store it with .</p>
 <p>This dataset contains names for all years over a period 1800–2019. The variable “n” represents the number of babies born with the given name and sex in that year, and the “prop” represents, according to the package materials accessible <a href="https://cran.r-project.org/web/packages/babynames/babynames.pdf">here</a>, “n divided by total number of applicants in that year, which means proportions are of people of that gender with that name born in that year.”</p>
-<div class="sourceCode" id="cb183"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb193"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">babynames</span> <span class="op">&lt;-</span> <span class="va">babynames</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">babynames</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 5
@@ -421,7 +422,7 @@
 ## 5  1880 F     Minnie     1746 0.0179
 ## 6  1880 F     Margaret   1578 0.0162</code></pre>
 <p>We then calculate the total number of babies of female and male sex born in each year. Then we merge these to get a combined dataset of male and female baby names by year. We then merge this information back into the original babynames data.frame object.</p>
-<div class="sourceCode" id="cb185"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb195"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">totals_female</span> <span class="op">&lt;-</span> <span class="va">babynames</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">sex</span><span class="op">==</span><span class="st">"F"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">year</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
@@ -445,7 +446,7 @@
 ## 6 1880   F  Margaret 1578 0.01616720        90993     110491</code></pre>
 <p>We can then calculate, for all babies born on or after 1920, the number of babies born with that name and sex. With this information, we can then get the proportion of all babies with a given name that were of a particular sex. For example, if 92% of babies born with the name “Mary” were female, this would give us a .92 probability that an individual with the name “Mary” is female.</p>
 <p>We do this for every name in the dataset, excluding names for which the proportion is equal to .5; i.e., for names that we cannot adjudicate between whether they are more or less likely male or female.</p>
-<div class="sourceCode" id="cb187"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb197"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">totprops</span> <span class="op">&lt;-</span> <span class="va">totsm</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">year</span> <span class="op">&gt;=</span> <span class="fl">1920</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">name</span>, <span class="va">year</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
@@ -471,7 +472,7 @@
 ## 5 Aabriella     1      5 F    
 ## 6 Aada          1      5 F</code></pre>
 <p>Once we have our proportions for all names, we can then merge these back with the names of our artists from the Edinburgh Fringe Book Festival. We can then easily plot the proportion of artists at the Festival who are male versus female in each year of the Festival.</p>
-<div class="sourceCode" id="cb189"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb199"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">ednameprops</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/merge.html">merge</a></span><span class="op">(</span><span class="va">totprops</span>, <span class="va">gendes</span>, by <span class="op">=</span> <span class="st">"name"</span><span class="op">)</span>
 
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">ednameprops</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">year</span>, fill <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">sex</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
@@ -482,10 +483,10 @@
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/label_percent.html">percent_format</a></span><span class="op">(</span>accuracy <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_tufte.html">theme_tufte</a></span><span class="op">(</span>base_family <span class="op">=</span> <span class="st">"Helvetica"</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_abline</a></span><span class="op">(</span>slope<span class="op">=</span><span class="fl">0</span>, intercept<span class="op">=</span><span class="fl">0.5</span>,  col <span class="op">=</span> <span class="st">"black"</span>,lty<span class="op">=</span><span class="fl">2</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-177-1.png" width="672"></div>
+<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-127-1.png" width="672"></div>
 <p>What can we conclude form this graph?</p>
 <p>Note that when we merged the proportions from th “babynames” data with our Edinburgh Fringe data we lost some observations. This is because some names in the Edinburgh Fringe data had no match in the “babynames” data. Let’s look at the names that had no match:</p>
-<div class="sourceCode" id="cb190"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb200"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">names1</span> <span class="op">&lt;-</span> <span class="va">ednameprops</span><span class="op">$</span><span class="va">name</span>
 <span class="va">names2</span> <span class="op">&lt;-</span> <span class="va">gendes</span><span class="op">$</span><span class="va">name</span>
 <span class="va">diffs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://generics.r-lib.org/reference/setops.html">setdiff</a></span><span class="op">(</span><span class="va">names2</span>, <span class="va">names1</span><span class="op">)</span>
@@ -522,41 +523,41 @@
 ## [175] "E"             "Dapo"          "Dunja"         "Maaza"         "Wayétu"        "Shokoofeh"</code></pre>
 <p>Do we notice anything about these names? What does this tell us about the potential biases of using such sources as US baby names data as a foundation for gender prediction? What are alternative ways we might go about this task?</p>
 </div>
-<div id="exercises" class="section level2" number="15.11">
+<div id="exercises" class="section level2" number="16.11">
 <h2>
-<span class="header-section-number">15.11</span> Exercises<a class="anchor" aria-label="anchor" href="#exercises"><i class="fas fa-link"></i></a>
+<span class="header-section-number">16.11</span> Exercises<a class="anchor" aria-label="anchor" href="#exercises"><i class="fas fa-link"></i></a>
 </h2>
 <ol style="list-style-type: decimal">
 <li>Filter the books by genre (selecting e.g., “Literature” or “Children”) and plot frequency of women-related words over time.</li>
 <li>Choose another set of terms by which to filter (e.g., race-related words) and plot their frequency over time.</li>
 </ol>
 </div>
-<div id="references" class="section level2" number="15.12">
+<div id="references" class="section level2" number="16.12">
 <h2>
-<span class="header-section-number">15.12</span> References<a class="anchor" aria-label="anchor" href="#references"><i class="fas fa-link"></i></a>
+<span class="header-section-number">16.12</span> References<a class="anchor" aria-label="anchor" href="#references"><i class="fas fa-link"></i></a>
 </h2>
 
 </div>
 </div>
   <div class="chapter-nav">
-<div class="prev"><a href="week-10.html"><span class="header-section-number">14</span> Week 10</a></div>
-<div class="next"><a href="exercise-2-dictionary-based-methods.html"><span class="header-section-number">16</span> Exercise 2: Dictionary-based methods</a></div>
+<div class="prev"><a href="week-10.html"><span class="header-section-number">15</span> Week 10</a></div>
+<div class="next"><a href="exercise-2-dictionary-based-methods.html"><span class="header-section-number">17</span> Exercise 2: Dictionary-based methods</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#exercise-1-word-frequency-analysis"><span class="header-section-number">15</span> Exercise 1: Word frequency analysis</a></li>
-<li><a class="nav-link" href="#introduction"><span class="header-section-number">15.1</span> Introduction</a></li>
-<li><a class="nav-link" href="#setup-4"><span class="header-section-number">15.2</span> Setup</a></li>
-<li><a class="nav-link" href="#load-data-and-packages"><span class="header-section-number">15.3</span> Load data and packages</a></li>
-<li><a class="nav-link" href="#inspect-and-filter-data"><span class="header-section-number">15.4</span> Inspect and filter data</a></li>
-<li><a class="nav-link" href="#tidy-the-text"><span class="header-section-number">15.5</span> Tidy the text</a></li>
-<li><a class="nav-link" href="#back-to-the-fringe"><span class="header-section-number">15.6</span> Back to the Fringe</a></li>
-<li><a class="nav-link" href="#analyze-keywords"><span class="header-section-number">15.7</span> Analyze keywords</a></li>
-<li><a class="nav-link" href="#compute-aggregate-statistics"><span class="header-section-number">15.8</span> Compute aggregate statistics</a></li>
-<li><a class="nav-link" href="#plot-time-trends"><span class="header-section-number">15.9</span> Plot time trends</a></li>
-<li><a class="nav-link" href="#bonus-gender-prediction"><span class="header-section-number">15.10</span> Bonus: gender prediction</a></li>
-<li><a class="nav-link" href="#exercises"><span class="header-section-number">15.11</span> Exercises</a></li>
-<li><a class="nav-link" href="#references"><span class="header-section-number">15.12</span> References</a></li>
+<li><a class="nav-link" href="#exercise-1-word-frequency-analysis"><span class="header-section-number">16</span> Exercise 1: Word frequency analysis</a></li>
+<li><a class="nav-link" href="#introduction"><span class="header-section-number">16.1</span> Introduction</a></li>
+<li><a class="nav-link" href="#setup-5"><span class="header-section-number">16.2</span> Setup</a></li>
+<li><a class="nav-link" href="#load-data-and-packages"><span class="header-section-number">16.3</span> Load data and packages</a></li>
+<li><a class="nav-link" href="#inspect-and-filter-data"><span class="header-section-number">16.4</span> Inspect and filter data</a></li>
+<li><a class="nav-link" href="#tidy-the-text"><span class="header-section-number">16.5</span> Tidy the text</a></li>
+<li><a class="nav-link" href="#back-to-the-fringe"><span class="header-section-number">16.6</span> Back to the Fringe</a></li>
+<li><a class="nav-link" href="#analyze-keywords"><span class="header-section-number">16.7</span> Analyze keywords</a></li>
+<li><a class="nav-link" href="#compute-aggregate-statistics"><span class="header-section-number">16.8</span> Compute aggregate statistics</a></li>
+<li><a class="nav-link" href="#plot-time-trends"><span class="header-section-number">16.9</span> Plot time trends</a></li>
+<li><a class="nav-link" href="#bonus-gender-prediction"><span class="header-section-number">16.10</span> Bonus: gender prediction</a></li>
+<li><a class="nav-link" href="#exercises"><span class="header-section-number">16.11</span> Exercises</a></li>
+<li><a class="nav-link" href="#references"><span class="header-section-number">16.12</span> References</a></li>
 </ul>
 
       <div class="book-extra">

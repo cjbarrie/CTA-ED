@@ -4,7 +4,7 @@
 
 This week builds upon past the scaling techniques we explored in Week 5 and instead turns to another form of unsupervised approach---topic modelling.
 
-The substantive articles by @boyd_characterizing_2018 and @grimmer_general_2011 provide, in turn, illuminating insights using topic models to categorize the thematic content of text information. The article by @boyd_characterizing_2018 looks into the content shared by Russian-backed troll farms during the 2016 US Presidential election, while the article by @alrababah_authoritarian_2020 dissects the thematic information contained in state-controlled news in Syria. 
+The substantive articles by @nelson_computational_2020 and @alrababah_authoritarian_2020 provide, in turn, illuminating insights using topic models to categorize the thematic content of text information.
 
 The article by @ying_topics_2021 provides a valuable overview and accompaniment to the earlier work of @denny_text_2018 when thinking about how we validate our findings and test the robustness of any inferences we make from these models.
 
@@ -17,7 +17,7 @@ Questions:
 
 **Required reading**:
 
-- @boyd_characterizing_2018
+- @nelson_computational_2020
 - @alrababah_authoritarian_2020
 - @ying_topics_2021
 
@@ -26,6 +26,8 @@ Questions:
 - @chang_reading_2009
 - @grimmer_general_2011
 - @denny_text_2018
+- @smith_automatic_2021
+- @boyd_characterizing_2018
 
 **Slides**:
 

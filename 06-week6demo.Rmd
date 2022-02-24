@@ -1,0 +1,80 @@
+# Week 6 Demo
+
+## Setup
+First, we'll load the packages we'll be using in this week's brief demo. 
+
+```{r, message = F, warning = F}
+library(topicmodels)
+library(dplyr)
+library(tidytext)
+library(ggplot2)
+```
+
+Estimating a topic model requires us first to have our data in the form of a document-term-matrix. This is another term for what we have referred to in previous weeks as a document-feature-matrix.
+
+We can take some example data from the `topicmodels` package. This text is from news releases by the Associated Press. It consists of around 2,200 articles (documents) and over 10,000 terms (words).
+
+```{r}
+
+data("AssociatedPress", 
+     package = "topicmodels")
+
+```
+
+To estimate the topic model we need only to specify the document-term-matrix we are using, and the number (`k`) of topics that we are estimating. To speed up estimation, we are here only estimating it on 100 articles.
+
+```{r}
+
+lda_output <- LDA(AssociatedPress[1:100,], k = 10)
+
+```
+
+We can then inspect the contents of each topic as follows.
+
+```{r}
+terms(lda_output, 10)
+```
+
+We can then use the `tidy()` function from `tidytext` to gather the relevant parameters we've estimated. To get the $\beta$ per-topic-per-word probabilities (i.e., the probability that the given term belongs to a given topic) we can do the following.
+
+```{r}
+
+lda_beta <- tidy(lda_output, matrix = "beta")
+
+lda_beta %>%
+  arrange(-beta)
+
+```
+
+And to get the $\gamma$ per-document-per-topic probabilities (i.e., the probability that a given document (here: article) belongs to a particular topic) we do the following.
+
+
+```{r}
+
+lda_gamma <- tidy(lda_output, matrix = "gamma")
+
+lda_gamma %>%
+  arrange(-gamma)
+
+
+```
+
+And we can easily plot our $\beta$ estimates as follows.
+
+```{r}
+
+lda_beta %>%
+  group_by(topic) %>%
+  top_n(10, beta) %>%
+  ungroup() %>%
+  arrange(topic, -beta) %>%
+  mutate(term = reorder_within(term, beta, topic)) %>%
+  ggplot(aes(beta, term, fill = factor(topic))) +
+  geom_col(show.legend = FALSE) +
+  facet_wrap(~ topic, scales = "free", ncol = 4) +
+  scale_y_reordered() +
+  theme_tufte(base_family = "Helvetica")
+
+```
+
+Which shows us the words associated with each topic, and the size of the associated $\beta$ coefficient. 

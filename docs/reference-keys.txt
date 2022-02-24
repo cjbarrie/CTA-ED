@@ -38,8 +38,10 @@ wordfish
 using-quanteda
 week-6
 unupervised-learning-topic-models
+week-6-demo
+setup-4
 week-7
-unupervised-learning-word-embedding
+unsupervised-learning-word-embedding
 week-8
 supervised-learning
 week-9
@@ -48,7 +50,7 @@ week-10
 validation
 exercise-1-word-frequency-analysis
 introduction
-setup-4
+setup-5
 load-data-and-packages
 inspect-and-filter-data
 tidy-the-text
@@ -61,7 +63,7 @@ exercises
 references
 exercise-2-dictionary-based-methods
 introduction-1
-setup-5
+setup-6
 load-data-and-packages-1
 inspect-and-filter-data-1
 get-sentiment-dictionaries
@@ -72,7 +74,7 @@ exercises-1
 references-1
 exercise-3-comparison-and-complexity
 introduction-2
-setup-6
+setup-7
 generate-document-feature-matrix
 compare-between-mps
 compare-between-measures

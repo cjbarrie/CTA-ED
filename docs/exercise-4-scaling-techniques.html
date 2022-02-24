@@ -4,18 +4,18 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Chapter 18 Exercise 4: Scaling techniques | Computational Text Analysis</title>
+<title>Chapter 19 Exercise 4: Scaling techniques | Computational Text Analysis</title>
 <meta name="author" content="Christopher Barrie">
-<meta name="description" content="18.1 Introduction The hands-on exercise for this week focuses on: 1) scaling texts ; 2) implementing scaling techniques using quanteda. In this tutorial, you will learn how to: Scale texts using...">
+<meta name="description" content="19.1 Introduction The hands-on exercise for this week focuses on: 1) scaling texts ; 2) implementing scaling techniques using quanteda. In this tutorial, you will learn how to: Scale texts using...">
 <meta name="generator" content="bookdown 0.24 with bs4_book()">
-<meta property="og:title" content="Chapter 18 Exercise 4: Scaling techniques | Computational Text Analysis">
+<meta property="og:title" content="Chapter 19 Exercise 4: Scaling techniques | Computational Text Analysis">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://cjbarrie.github.io/CTA-ED/exercise-4-scaling-techniques.html">
 <meta property="og:image" content="https://cjbarrie.github.io/CTA-ED/coverb.png">
-<meta property="og:description" content="18.1 Introduction The hands-on exercise for this week focuses on: 1) scaling texts ; 2) implementing scaling techniques using quanteda. In this tutorial, you will learn how to: Scale texts using...">
+<meta property="og:description" content="19.1 Introduction The hands-on exercise for this week focuses on: 1) scaling texts ; 2) implementing scaling techniques using quanteda. In this tutorial, you will learn how to: Scale texts using...">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Chapter 18 Exercise 4: Scaling techniques | Computational Text Analysis">
-<meta name="twitter:description" content="18.1 Introduction The hands-on exercise for this week focuses on: 1) scaling texts ; 2) implementing scaling techniques using quanteda. In this tutorial, you will learn how to: Scale texts using...">
+<meta name="twitter:title" content="Chapter 19 Exercise 4: Scaling techniques | Computational Text Analysis">
+<meta name="twitter:description" content="19.1 Introduction The hands-on exercise for this week focuses on: 1) scaling texts ; 2) implementing scaling techniques using quanteda. In this tutorial, you will learn how to: Scale texts using...">
 <meta name="twitter:image" content="https://cjbarrie.github.io/CTA-ED/coverb.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
@@ -56,15 +56,16 @@
 <li><a class="" href="week-5.html"><span class="header-section-number">8</span> Week 5</a></li>
 <li><a class="" href="week-5-demo.html"><span class="header-section-number">9</span> Week 5 Demo</a></li>
 <li><a class="" href="week-6.html"><span class="header-section-number">10</span> Week 6</a></li>
-<li><a class="" href="week-7.html"><span class="header-section-number">11</span> Week 7</a></li>
-<li><a class="" href="week-8.html"><span class="header-section-number">12</span> Week 8</a></li>
-<li><a class="" href="week-9.html"><span class="header-section-number">13</span> Week 9</a></li>
-<li><a class="" href="week-10.html"><span class="header-section-number">14</span> Week 10</a></li>
-<li><a class="" href="exercise-1-word-frequency-analysis.html"><span class="header-section-number">15</span> Exercise 1: Word frequency analysis</a></li>
-<li><a class="" href="exercise-2-dictionary-based-methods.html"><span class="header-section-number">16</span> Exercise 2: Dictionary-based methods</a></li>
-<li><a class="" href="exercise-3-comparison-and-complexity.html"><span class="header-section-number">17</span> Exercise 3: Comparison and complexity</a></li>
-<li><a class="active" href="exercise-4-scaling-techniques.html"><span class="header-section-number">18</span> Exercise 4: Scaling techniques</a></li>
-<li><a class="" href="references-2.html"><span class="header-section-number">19</span> References</a></li>
+<li><a class="" href="week-6-demo.html"><span class="header-section-number">11</span> Week 6 Demo</a></li>
+<li><a class="" href="week-7.html"><span class="header-section-number">12</span> Week 7</a></li>
+<li><a class="" href="week-8.html"><span class="header-section-number">13</span> Week 8</a></li>
+<li><a class="" href="week-9.html"><span class="header-section-number">14</span> Week 9</a></li>
+<li><a class="" href="week-10.html"><span class="header-section-number">15</span> Week 10</a></li>
+<li><a class="" href="exercise-1-word-frequency-analysis.html"><span class="header-section-number">16</span> Exercise 1: Word frequency analysis</a></li>
+<li><a class="" href="exercise-2-dictionary-based-methods.html"><span class="header-section-number">17</span> Exercise 2: Dictionary-based methods</a></li>
+<li><a class="" href="exercise-3-comparison-and-complexity.html"><span class="header-section-number">18</span> Exercise 3: Comparison and complexity</a></li>
+<li><a class="active" href="exercise-4-scaling-techniques.html"><span class="header-section-number">19</span> Exercise 4: Scaling techniques</a></li>
+<li><a class="" href="references-2.html"><span class="header-section-number">20</span> References</a></li>
 </ul>
 
         <div class="book-extra">
@@ -72,13 +73,13 @@
         </div>
       </nav>
 </div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="exercise-4-scaling-techniques" class="section level1" number="18">
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="exercise-4-scaling-techniques" class="section level1" number="19">
 <h1>
-<span class="header-section-number">18</span> Exercise 4: Scaling techniques<a class="anchor" aria-label="anchor" href="#exercise-4-scaling-techniques"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19</span> Exercise 4: Scaling techniques<a class="anchor" aria-label="anchor" href="#exercise-4-scaling-techniques"><i class="fas fa-link"></i></a>
 </h1>
-<div id="introduction-3" class="section level2" number="18.1">
+<div id="introduction-3" class="section level2" number="19.1">
 <h2>
-<span class="header-section-number">18.1</span> Introduction<a class="anchor" aria-label="anchor" href="#introduction-3"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.1</span> Introduction<a class="anchor" aria-label="anchor" href="#introduction-3"><i class="fas fa-link"></i></a>
 </h2>
 <p>The hands-on exercise for this week focuses on: 1) scaling texts ; 2) implementing scaling techniques using <code>quanteda</code>.</p>
 <p>In this tutorial, you will learn how to:</p>
@@ -89,24 +90,24 @@
 </li>
 </ul>
 <p>Before proceeding, we’ll load the packages we will need for this tutorial.</p>
-<div class="sourceCode" id="cb270"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb280"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://quanteda.io">quanteda</a></span><span class="op">)</span> <span class="co"># includes functions to implement Lexicoder</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/quanteda/quanteda.textmodels">quanteda.textmodels</a></span><span class="op">)</span> <span class="co"># for estimating similarity and complexity measures</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">quanteda.textplots</span><span class="op">)</span> <span class="co">#for visualizing text modelling results</span></code></pre></div>
 <p>In this exercise we’ll be using the dataset we used for the sentiment analysis exercise. The data were collected from the Twitter accounts of the top eight newspapers in the UK by circulation. The tweets include any tweets by the news outlet from their main account.</p>
 <p>We can download the dataset with:</p>
-<div class="sourceCode" id="cb271"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb281"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tweets</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html">readRDS</a></span><span class="op">(</span><span class="st">"data/sentanalysis/newstweets.rds"</span><span class="op">)</span></code></pre></div>
 <p>If you’re working on this document from your own computer (“locally”) you can download the tweets data in the following way:</p>
-<div class="sourceCode" id="cb272"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb282"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tweets</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html">readRDS</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/gzcon.html">gzcon</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/connections.html">url</a></span><span class="op">(</span><span class="st">"https://github.com/cjbarrie/CTA-ED/blob/main/data/sentanalysis/newstweets.rds?raw=true"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>We first take a sample from these data to speed up the runtime of some of the analyses.</p>
-<div class="sourceCode" id="cb273"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb283"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tweets</span> <span class="op">&lt;-</span> <span class="va">tweets</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html">sample_n</a></span><span class="op">(</span><span class="fl">20000</span><span class="op">)</span></code></pre></div>
 <p>Then, as in the previous exercise, we create a corpus object, specify the document-level variables by which we want to group, and generate our document feature matrix.</p>
-<div class="sourceCode" id="cb274"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb284"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">#make corpus object, specifying tweet as text field</span>
 <span class="va">tweets_corpus</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://quanteda.io/reference/corpus.html">corpus</a></span><span class="op">(</span><span class="va">tweets</span>, text_field <span class="op">=</span> <span class="st">"text"</span><span class="op">)</span>
 
@@ -116,40 +117,30 @@
 <span class="va">dfm_tweets</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://quanteda.io/reference/dfm.html">dfm</a></span><span class="op">(</span><span class="fu"><a href="https://quanteda.io/reference/tokens.html">tokens</a></span><span class="op">(</span><span class="va">tweets_corpus</span><span class="op">)</span>,
                   remove_punct <span class="op">=</span> <span class="cn">TRUE</span>, 
                   remove <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/stopwords/man/stopwords.html">stopwords</a></span><span class="op">(</span><span class="st">"english"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code>## Warning: '...' should not be used for tokens() arguments; use 'tokens()' first.</code></pre>
-<pre><code>## Warning: 'remove' is deprecated; use dfm_remove() instead</code></pre>
 <p>We can then have a look at the number of documents (tweets) we have per newspaper Twitter account.</p>
-<div class="sourceCode" id="cb277"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb285"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## number of tweets per newspaper</span>
 <span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="fu"><a href="https://quanteda.io/reference/docvars.html">docvars</a></span><span class="op">(</span><span class="va">dfm_tweets</span>, <span class="st">"newspaper"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## 
 ##     DailyMailUK     DailyMirror EveningStandard        guardian         MetroUK       Telegraph 
-##            2125            5828            2103            2904             925            1516 
+##            2052            5834            2182            2939             966            1519 
 ##          TheSun        thetimes 
-##            3861             738</code></pre>
+##            3840             668</code></pre>
 <p>And this is what our document feature matrix looks like, where each word has a count for each of our eight newspapers.</p>
-<div class="sourceCode" id="cb279"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb287"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">dfm_tweets</span></code></pre></div>
-<pre><code>## Document-feature matrix of: 20,000 documents, 48,839 features (99.98% sparse) and 31 docvars.
+<pre><code>## Document-feature matrix of: 20,000 documents, 48,967 features (99.98% sparse) and 31 docvars.
 ##        features
-## docs    playing board games children christmas taught valuable lesson https://t.co/xt5t8y9tyh
-##   text1       1     1     1        1         1      1        1      1                       1
-##   text2       0     0     0        0         0      0        0      0                       0
-##   text3       0     0     0        0         0      0        0      0                       0
-##   text4       0     0     0        0         0      0        0      0                       0
-##   text5       0     0     0        0         0      0        0      0                       0
-##   text6       0     0     0        0         0      0        0      0                       0
-##        features
-## docs    https://t.co/vfyjnphhg7
-##   text1                       1
-##   text2                       0
-##   text3                       0
-##   text4                       0
-##   text5                       0
-##   text6                       0
-## [ reached max_ndoc ... 19,994 more documents, reached max_nfeat ... 48,829 more features ]</code></pre>
+## docs    rt @standardnews breaking coronavirus outbreak declared pandemic world health organisation
+##   text1  1             1        1           1        1        1        1     1      1            1
+##   text2  1             0        0           0        0        0        0     0      0            0
+##   text3  0             0        0           0        0        0        0     0      0            0
+##   text4  0             0        0           0        0        0        0     0      0            0
+##   text5  0             0        0           0        0        0        0     0      0            0
+##   text6  0             0        0           0        0        0        0     0      0            0
+## [ reached max_ndoc ... 19,994 more documents, reached max_nfeat ... 48,957 more features ]</code></pre>
 <p>Once we have our data in this format, we are able to group and trim the document feature matrix before estimating the wordfish model.</p>
-<div class="sourceCode" id="cb281"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb289"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># compress the document-feature matrix at the newspaper level</span>
 <span class="va">dfm_newstweets</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://quanteda.io/reference/dfm_group.html">dfm_group</a></span><span class="op">(</span><span class="va">dfm_tweets</span>, groups <span class="op">=</span> <span class="va">newspaper</span><span class="op">)</span>
 <span class="co"># remove words not used by two or more newspapers</span>
@@ -158,51 +149,51 @@
 
 <span class="co">## size of the document-feature matrix</span>
 <span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">dfm_newstweets</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1]     8 11178</code></pre>
-<div class="sourceCode" id="cb283"><pre class="downlit sourceCode r">
+<pre><code>## [1]     8 11111</code></pre>
+<div class="sourceCode" id="cb291"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">#### estimate the Wordfish model ####</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123L</span><span class="op">)</span>
 <span class="va">dfm_newstweets_results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/quanteda.textmodels/man/textmodel_wordfish.html">textmodel_wordfish</a></span><span class="op">(</span><span class="va">dfm_newstweets</span>, 
                                              sparse <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <p>And this is what results.</p>
-<div class="sourceCode" id="cb284"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb292"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">dfm_newstweets_results</span><span class="op">)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## textmodel_wordfish.dfm(x = dfm_newstweets, sparse = TRUE)
 ## 
 ## Estimated Document Positions:
-##                   theta       se
-## DailyMailUK      0.7613 0.012264
-## DailyMirror      1.1869 0.006564
-## EveningStandard -0.2803 0.016071
-## guardian        -0.9609 0.010731
-## MetroUK         -0.1232 0.023385
-## Telegraph       -1.0186 0.011762
-## TheSun           1.4137 0.005401
-## thetimes        -0.9790 0.014947
+##                    theta       se
+## DailyMailUK      0.64904 0.012949
+## DailyMirror      1.18234 0.006726
+## EveningStandard -0.22616 0.016082
+## guardian        -0.95429 0.010563
+## MetroUK         -0.04625 0.022759
+## Telegraph       -1.05343 0.010641
+## TheSun           1.45043 0.006048
+## thetimes        -1.00169 0.014966
 ## 
 ## Estimated Feature Scores:
-##      playing  board   games children christmas  taught valuable lesson    mike bloomberg   four  issues
-## beta  0.1668 0.1489 -0.2636   0.1415    0.4764  0.1016    1.635 0.3218 -0.1419   -1.4545 0.1104 -0.1046
-## psi   1.3058 1.0388  1.5653   2.9122    1.1847 -0.1789   -1.582 0.3220  1.1790   -0.2227 2.8016  1.2675
-##        white   house   race   video laurence    fox apologises fellow humans    1917 comments
-## beta -0.1869 0.01285 -0.323 -0.2314  -0.1237 0.1662    -0.0427 0.4655 0.1049 -0.2435  -0.4395
-## psi   1.9561 2.89566  2.002  3.2058  -0.1003 0.7913     0.6799 0.4559 0.5659 -0.7649   1.1661
-##      @piersmorgan britain's heroic    nhs   lions      led government
-## beta      1.05480   0.02595  1.403 0.2207  0.4611 -0.09619    -0.5172
-## psi      -0.08084   2.63606 -1.600 3.8209 -0.2806  1.29573     3.3096</code></pre>
+##         rt breaking coronavirus outbreak declared pandemic  world  health organisation genuinely
+## beta 0.537    0.191     0.06916  -0.2655 -0.06527  -0.2004 -0.317 -0.3277      -0.4119   -0.2873
+## psi  5.307    3.535     5.78715   3.1348  0.50705   3.1738  3.366  3.2041       0.5487   -0.5403
+##      interested       see      one     cos     fair  german    care system protect troubled children
+## beta    -0.2546 0.0005003 -0.06314 -0.2788 -0.03079 -0.7424 -0.3252 -1.105 -0.1106  -0.4731  0.01204
+## psi     -1.4502 2.7723965  3.85881 -1.4480  0.35480  1.1009  3.1042  1.259  1.8918  -0.0784  2.85004
+##      #covid19 anxiety  shows    sign    man  behind   app explains    tips
+## beta  -0.6742  0.4218 0.4165 -0.1215 0.5112 0.05498 0.271   0.6687 -0.2083
+## psi    2.9703  0.5917 2.8370  1.9427 3.5777 2.43805 1.376   1.2749  1.5341</code></pre>
 <p>We can then plot our estimates of the <span class="math inline">\(\theta\)</span>s—i.e., the estimates of the latent newspaper position—as so.</p>
-<div class="sourceCode" id="cb286"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb294"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/quanteda.textplots/man/textplot_scale1d.html">textplot_scale1d</a></span><span class="op">(</span><span class="va">dfm_newstweets_results</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-237-1.png" width="672"></div>
+<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-188-1.png" width="672"></div>
 <p>Interestingly, we seem not to have captured ideology but some other tonal dimension. We see that the tabloid newspapers are scored similarly, and grouped toward the right hand side of this latent dimension; whereas the broadsheet newspapers have an estimated theta further to the left.</p>
 <p>Plotting the “features,” i.e., the word-level betas shows how words are positioned along this dimension, and which words help discriminate between news outlets.</p>
-<div class="sourceCode" id="cb287"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb295"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/quanteda.textplots/man/textplot_scale1d.html">textplot_scale1d</a></span><span class="op">(</span><span class="va">dfm_newstweets_results</span>, margin <span class="op">=</span> <span class="st">"features"</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-238-1.png" width="672"></div>
+<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-189-1.png" width="672"></div>
 <p>And we can also look at these features.</p>
-<div class="sourceCode" id="cb288"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb296"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">features</span> <span class="op">&lt;-</span> <span class="va">dfm_newstweets_results</span><span class="op">[[</span><span class="st">"features"</span><span class="op">]</span><span class="op">]</span>
 
 <span class="va">betas</span> <span class="op">&lt;-</span> <span class="va">dfm_newstweets_results</span><span class="op">[[</span><span class="st">"beta"</span><span class="op">]</span><span class="op">]</span>
@@ -228,58 +219,34 @@ betas
 <tbody>
 <tr>
 <td style="text-align:left;">
+ig
+</td>
+<td style="text-align:right;">
+8.961685
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
 🎥
 </td>
 <td style="text-align:right;">
-12.203562
+7.789194
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-spider
+diver
 </td>
 <td style="text-align:right;">
-5.473297
+7.015293
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-callum
+alien-looking
 </td>
 <td style="text-align:right;">
-5.389252
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-gorilla
-</td>
-<td style="text-align:right;">
-5.156683
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-proposal
-</td>
-<td style="text-align:right;">
-5.141551
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-stuns
-</td>
-<td style="text-align:right;">
-4.890852
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-melt
-</td>
-<td style="text-align:right;">
-4.812153
+6.054607
 </td>
 </tr>
 <tr>
@@ -287,103 +254,127 @@ melt
 wwe
 </td>
 <td style="text-align:right;">
-4.812153
+5.304746
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-mouse
+cutest
 </td>
 <td style="text-align:right;">
-4.812153
+5.304746
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-retriever
+lad
 </td>
 <td style="text-align:right;">
-4.812153
+5.012236
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-priceless
+bargains
 </td>
 <td style="text-align:right;">
-4.812153
+4.835006
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-bum
+partner’s
 </td>
 <td style="text-align:right;">
-4.812153
+4.692455
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-gentle
+ronaldo
 </td>
 <td style="text-align:right;">
-4.702300
+4.495505
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-fabulous
+clever
 </td>
 <td style="text-align:right;">
-4.688306
+4.351126
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-starlink
+wheelchair
 </td>
 <td style="text-align:right;">
-4.434772
+4.340552
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-equivalent
+mcguinness
 </td>
 <td style="text-align:right;">
-4.434772
+4.340552
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-amor
+spider
 </td>
 <td style="text-align:right;">
-4.434772
+4.192178
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-luggage
+nails
 </td>
 <td style="text-align:right;">
-4.434772
+4.192178
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-snoring
+rides
 </td>
 <td style="text-align:right;">
-4.434772
+3.950626
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-toys
+ghostly
 </td>
 <td style="text-align:right;">
-4.076754
+3.950626
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+extensions
+</td>
+<td style="text-align:right;">
+3.950626
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+corrie’s
+</td>
+<td style="text-align:right;">
+3.950626
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+lion
+</td>
+<td style="text-align:right;">
+3.857082
 </td>
 </tr>
 </tbody>
@@ -393,13 +384,13 @@ toys
 </div>
 </div>
   <div class="chapter-nav">
-<div class="prev"><a href="exercise-3-comparison-and-complexity.html"><span class="header-section-number">17</span> Exercise 3: Comparison and complexity</a></div>
-<div class="next"><a href="references-2.html"><span class="header-section-number">19</span> References</a></div>
+<div class="prev"><a href="exercise-3-comparison-and-complexity.html"><span class="header-section-number">18</span> Exercise 3: Comparison and complexity</a></div>
+<div class="next"><a href="references-2.html"><span class="header-section-number">20</span> References</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#exercise-4-scaling-techniques"><span class="header-section-number">18</span> Exercise 4: Scaling techniques</a></li>
-<li><a class="nav-link" href="#introduction-3"><span class="header-section-number">18.1</span> Introduction</a></li>
+<li><a class="nav-link" href="#exercise-4-scaling-techniques"><span class="header-section-number">19</span> Exercise 4: Scaling techniques</a></li>
+<li><a class="nav-link" href="#introduction-3"><span class="header-section-number">19.1</span> Introduction</a></li>
 </ul>
 
       <div class="book-extra">

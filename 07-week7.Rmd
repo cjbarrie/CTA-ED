@@ -1,6 +1,6 @@
 # Week 7
 
-## Unupervised learning (word embedding)
+## Unsupervised learning (word embedding)
 
 **Required reading**:
 
