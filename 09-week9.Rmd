@@ -1,16 +1,15 @@
 # Week 9
 
-## Word embedding
+## Sampling text information
 
 **Required reading**:
 
-- @garg_word_2018
-- @kozlowski_geometry_2019
-- @rodriguez_word_2021
-- @jurafsky_speech_2021 [ch.6]: [https://web.stanford.edu/~jurafsky/slp3/](https://web.stanford.edu/~jurafsky/slp3/)]
+- @barbera_understanding_2015
+- @pechenick_characterizing_2015
+- @krippendorff_content_2004 [chs. 5 and 6]
 
 **Further reading**:
 
-- 
+- @martins_rise_2020
 - 
 - 

@@ -1,15 +1,17 @@
 # Week 8
 
-## Sampling text information
+## Supervised learning
 
 **Required reading**:
 
-- @barbera_understanding_2015
-- @pechenick_characterizing_2015
-- @krippendorff_content_2004 [chs. 5 and 6]
+- @hopkins_method_2010
+- @king_how_2017-1
+- @siegel_trumping_2021
+- @yu_classifying_2008
+- @manning_introduction_2007 [chs. 13,14, and 15]: [https://nlp.stanford.edu/IR-book/information-retrieval-book.html](https://nlp.stanford.edu/IR-book/information-retrieval-book.html)]
 
 **Further reading**:
 
-- @martins_rise_2020
-- 
+- @denny_text_2018
+- @king_computer-assisted_2017
 - 

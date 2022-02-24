@@ -6,16 +6,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Chapter 10 Week 7 | Computational Text Analysis</title>
 <meta name="author" content="Christopher Barrie">
-<meta name="description" content="10.1 Supervised learning Required reading: Hopkins and King (2010) King, Pan, and Roberts (2017) Siegel et al. (2021) Yu, Kaufmann, and Diermeier (2008) Manning, Raghavan, and Schtze...">
+<meta name="description" content="10.1 Unupervised learning (word embedding) Required reading: Garg et al. (2018) Kozlowski, Taddy, and Evans (2019) P. Rodriguez and Spirling (2021) Jurafsky and Martin (2021, ch.6):...">
 <meta name="generator" content="bookdown 0.24 with bs4_book()">
 <meta property="og:title" content="Chapter 10 Week 7 | Computational Text Analysis">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://cjbarrie.github.io/CTA-ED/week-7.html">
 <meta property="og:image" content="https://cjbarrie.github.io/CTA-ED/coverb.png">
-<meta property="og:description" content="10.1 Supervised learning Required reading: Hopkins and King (2010) King, Pan, and Roberts (2017) Siegel et al. (2021) Yu, Kaufmann, and Diermeier (2008) Manning, Raghavan, and Schtze...">
+<meta property="og:description" content="10.1 Unupervised learning (word embedding) Required reading: Garg et al. (2018) Kozlowski, Taddy, and Evans (2019) P. Rodriguez and Spirling (2021) Jurafsky and Martin (2021, ch.6):...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Chapter 10 Week 7 | Computational Text Analysis">
-<meta name="twitter:description" content="10.1 Supervised learning Required reading: Hopkins and King (2010) King, Pan, and Roberts (2017) Siegel et al. (2021) Yu, Kaufmann, and Diermeier (2008) Manning, Raghavan, and Schtze...">
+<meta name="twitter:description" content="10.1 Unupervised learning (word embedding) Required reading: Garg et al. (2018) Kozlowski, Taddy, and Evans (2019) P. Rodriguez and Spirling (2021) Jurafsky and Martin (2021, ch.6):...">
 <meta name="twitter:image" content="https://cjbarrie.github.io/CTA-ED/coverb.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
@@ -74,23 +74,22 @@
 <h1>
 <span class="header-section-number">10</span> Week 7<a class="anchor" aria-label="anchor" href="#week-7"><i class="fas fa-link"></i></a>
 </h1>
-<div id="supervised-learning" class="section level2" number="10.1">
+<div id="unupervised-learning-word-embedding" class="section level2" number="10.1">
 <h2>
-<span class="header-section-number">10.1</span> Supervised learning<a class="anchor" aria-label="anchor" href="#supervised-learning"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.1</span> Unupervised learning (word embedding)<a class="anchor" aria-label="anchor" href="#unupervised-learning-word-embedding"><i class="fas fa-link"></i></a>
 </h2>
 <p><strong>Required reading</strong>:</p>
 <ul>
-<li><span class="citation"><a href="references-2.html#ref-hopkins_method_2010" role="doc-biblioref">Hopkins and King</a> (<a href="references-2.html#ref-hopkins_method_2010" role="doc-biblioref">2010</a>)</span></li>
-<li><span class="citation"><a href="references-2.html#ref-king_how_2017-1" role="doc-biblioref">King, Pan, and Roberts</a> (<a href="references-2.html#ref-king_how_2017-1" role="doc-biblioref">2017</a>)</span></li>
-<li><span class="citation"><a href="references-2.html#ref-siegel_trumping_2021" role="doc-biblioref">Siegel et al.</a> (<a href="references-2.html#ref-siegel_trumping_2021" role="doc-biblioref">2021</a>)</span></li>
-<li><span class="citation"><a href="references-2.html#ref-yu_classifying_2008" role="doc-biblioref">Yu, Kaufmann, and Diermeier</a> (<a href="references-2.html#ref-yu_classifying_2008" role="doc-biblioref">2008</a>)</span></li>
+<li><span class="citation"><a href="references-2.html#ref-garg_word_2018" role="doc-biblioref">Garg et al.</a> (<a href="references-2.html#ref-garg_word_2018" role="doc-biblioref">2018</a>)</span></li>
+<li><span class="citation"><a href="references-2.html#ref-kozlowski_geometry_2019" role="doc-biblioref">Kozlowski, Taddy, and Evans</a> (<a href="references-2.html#ref-kozlowski_geometry_2019" role="doc-biblioref">2019</a>)</span></li>
+<li><span class="citation"><a href="references-2.html#ref-rodriguez_word_2021" role="doc-biblioref">P. Rodriguez and Spirling</a> (<a href="references-2.html#ref-rodriguez_word_2021" role="doc-biblioref">2021</a>)</span></li>
 <li>
-<span class="citation"><a href="references-2.html#ref-manning_introduction_2007" role="doc-biblioref">Manning, Raghavan, and Schtze</a> (<a href="references-2.html#ref-manning_introduction_2007" role="doc-biblioref">2007</a>chs. 13,14, and 15)</span>: <a href="https://nlp.stanford.edu/IR-book/information-retrieval-book.html">https://nlp.stanford.edu/IR-book/information-retrieval-book.html</a>]</li>
+<span class="citation"><a href="references-2.html#ref-jurafsky_speech_2021" role="doc-biblioref">Jurafsky and Martin</a> (<a href="references-2.html#ref-jurafsky_speech_2021" role="doc-biblioref">2021, ch.6</a>)</span>: <a href="https://web.stanford.edu/~jurafsky/slp3/">https://web.stanford.edu/~jurafsky/slp3/</a>]</li>
 </ul>
 <p><strong>Further reading</strong>:</p>
 <ul>
-<li><span class="citation"><a href="references-2.html#ref-denny_text_2018" role="doc-biblioref">Denny and Spirling</a> (<a href="references-2.html#ref-denny_text_2018" role="doc-biblioref">2018</a>)</span></li>
-<li><span class="citation"><a href="references-2.html#ref-king_computer-assisted_2017" role="doc-biblioref">King, Lam, and Roberts</a> (<a href="references-2.html#ref-king_computer-assisted_2017" role="doc-biblioref">2017</a>)</span></li>
+<li>
+<li>
 <li>
 </ul>
 </div>
@@ -102,7 +101,7 @@
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
 <li><a class="nav-link" href="#week-7"><span class="header-section-number">10</span> Week 7</a></li>
-<li><a class="nav-link" href="#supervised-learning"><span class="header-section-number">10.1</span> Supervised learning</a></li>
+<li><a class="nav-link" href="#unupervised-learning-word-embedding"><span class="header-section-number">10.1</span> Unupervised learning (word embedding)</a></li>
 </ul>
 
       <div class="book-extra">
@@ -120,7 +119,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Computational Text Analysis</strong>" was written by Christopher Barrie. It was last built on 2022-02-23.</p>
+    <p>"<strong>Computational Text Analysis</strong>" was written by Christopher Barrie. It was last built on 2022-02-24.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

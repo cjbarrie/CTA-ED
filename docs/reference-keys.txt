@@ -32,13 +32,13 @@ complexity
 week-5
 scaling-techniques
 week-6
-unupervised-learning
+unupervised-learning-topic-models
 week-7
-supervised-learning
+unupervised-learning-word-embedding
 week-8
-sampling-text-information
+supervised-learning
 week-9
-word-embedding
+sampling-text-information
 week-10
 validation
 exercise-1-word-frequency-analysis

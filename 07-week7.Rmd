@@ -1,17 +1,16 @@
 # Week 7
 
-## Supervised learning
+## Unupervised learning (word embedding)
 
 **Required reading**:
 
-- @hopkins_method_2010
-- @king_how_2017-1
-- @siegel_trumping_2021
-- @yu_classifying_2008
-- @manning_introduction_2007 [chs. 13,14, and 15]: [https://nlp.stanford.edu/IR-book/information-retrieval-book.html](https://nlp.stanford.edu/IR-book/information-retrieval-book.html)]
+- @garg_word_2018
+- @kozlowski_geometry_2019
+- @rodriguez_word_2021
+- @jurafsky_speech_2021 [ch.6]: [https://web.stanford.edu/~jurafsky/slp3/](https://web.stanford.edu/~jurafsky/slp3/)]
 
 **Further reading**:
 
-- @denny_text_2018
-- @king_computer-assisted_2017
+- 
+- 
 - 
