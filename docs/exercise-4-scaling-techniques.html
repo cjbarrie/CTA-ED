@@ -175,34 +175,34 @@
 ## 
 ## Estimated Document Positions:
 ##                    theta       se
-## DailyMailUK      0.64903 0.012949
+## DailyMailUK      0.64904 0.012949
 ## DailyMirror      1.18234 0.006726
-## EveningStandard -0.22617 0.016082
-## guardian        -0.95428 0.010563
-## MetroUK         -0.04626 0.022759
-## Telegraph       -1.05343 0.010640
-## TheSun           1.45044 0.006048
-## thetimes        -1.00168 0.014966
+## EveningStandard -0.22616 0.016082
+## guardian        -0.95429 0.010563
+## MetroUK         -0.04625 0.022759
+## Telegraph       -1.05343 0.010641
+## TheSun           1.45043 0.006048
+## thetimes        -1.00169 0.014966
 ## 
 ## Estimated Feature Scores:
 ##         rt breaking coronavirus outbreak declared pandemic  world  health organisation
-## beta 0.537    0.191     0.06918  -0.2654 -0.06525  -0.2004 -0.317 -0.3277      -0.4118
+## beta 0.537    0.191     0.06917  -0.2654 -0.06526  -0.2004 -0.317 -0.3277      -0.4118
 ## psi  5.307    3.535     5.78715   3.1348  0.50705   3.1738  3.366  3.2041       0.5487
 ##      genuinely interested       see      one     cos     fair  german    care system protect
-## beta   -0.2873    -0.2545 0.0005187 -0.06312 -0.2788 -0.03077 -0.7424 -0.3251 -1.105 -0.1106
-## psi    -0.5403    -1.4502 2.7723961  3.85881 -1.4480  0.35480  1.1009  3.1042  1.259  1.8918
+## beta   -0.2873    -0.2546 0.0005042 -0.06313 -0.2788 -0.03078 -0.7424 -0.3252 -1.105 -0.1106
+## psi    -0.5403    -1.4502 2.7723965  3.85881 -1.4480  0.35480  1.1009  3.1042  1.259  1.8918
 ##      troubled children #covid19 anxiety  shows    sign    man  behind   app explains    tips
-## beta  -0.4731  0.01205  -0.6742  0.4218 0.4165 -0.1215 0.5112 0.05499 0.271   0.6687 -0.2083
+## beta  -0.4731  0.01204  -0.6742  0.4218 0.4165 -0.1215 0.5112 0.05498 0.271   0.6687 -0.2083
 ## psi   -0.0784  2.85004   2.9703  0.5917 2.8370  1.9427 3.5777 2.43805 1.376   1.2749  1.5341</code></pre>
 <p>We can then plot our estimates of the <span class="math inline">\(\theta\)</span>s—i.e., the estimates of the latent newspaper position—as so.</p>
 <div class="sourceCode" id="cb302"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/quanteda.textplots/man/textplot_scale1d.html">textplot_scale1d</a></span><span class="op">(</span><span class="va">dfm_newstweets_results</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-180-1.png" width="672"></div>
+<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-170-1.png" width="672"></div>
 <p>Interestingly, we seem not to have captured ideology but some other tonal dimension. We see that the tabloid newspapers are scored similarly, and grouped toward the right hand side of this latent dimension; whereas the broadsheet newspapers have an estimated theta further to the left.</p>
 <p>Plotting the “features,” i.e., the word-level betas shows how words are positioned along this dimension, and which words help discriminate between news outlets.</p>
 <div class="sourceCode" id="cb303"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/quanteda.textplots/man/textplot_scale1d.html">textplot_scale1d</a></span><span class="op">(</span><span class="va">dfm_newstweets_results</span>, margin <span class="op">=</span> <span class="st">"features"</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-181-1.png" width="672"></div>
+<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-171-1.png" width="672"></div>
 <p>And we can also look at these features.</p>
 <div class="sourceCode" id="cb304"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">features</span> <span class="op">&lt;-</span> <span class="va">dfm_newstweets_results</span><span class="op">[[</span><span class="st">"features"</span><span class="op">]</span><span class="op">]</span>
@@ -233,7 +233,7 @@ betas
 ig
 </td>
 <td style="text-align:right;">
-8.961481
+8.961713
 </td>
 </tr>
 <tr>
@@ -241,7 +241,7 @@ ig
 🎥
 </td>
 <td style="text-align:right;">
-7.789041
+7.789219
 </td>
 </tr>
 <tr>
@@ -249,7 +249,7 @@ ig
 diver
 </td>
 <td style="text-align:right;">
-7.015194
+7.015305
 </td>
 </tr>
 <tr>
@@ -257,7 +257,7 @@ diver
 alien-looking
 </td>
 <td style="text-align:right;">
-6.054545
+6.054616
 </td>
 </tr>
 <tr>
@@ -265,7 +265,7 @@ alien-looking
 wwe
 </td>
 <td style="text-align:right;">
-5.304709
+5.304753
 </td>
 </tr>
 <tr>
@@ -273,7 +273,7 @@ wwe
 cutest
 </td>
 <td style="text-align:right;">
-5.304709
+5.304753
 </td>
 </tr>
 <tr>
@@ -281,7 +281,7 @@ cutest
 lad
 </td>
 <td style="text-align:right;">
-5.012207
+5.012242
 </td>
 </tr>
 <tr>
@@ -289,7 +289,7 @@ lad
 bargains
 </td>
 <td style="text-align:right;">
-4.834933
+4.835016
 </td>
 </tr>
 <tr>
@@ -297,7 +297,7 @@ bargains
 partner’s
 </td>
 <td style="text-align:right;">
-4.692434
+4.692460
 </td>
 </tr>
 <tr>
@@ -305,7 +305,7 @@ partner’s
 ronaldo
 </td>
 <td style="text-align:right;">
-4.495462
+4.495513
 </td>
 </tr>
 <tr>
@@ -313,7 +313,7 @@ ronaldo
 clever
 </td>
 <td style="text-align:right;">
-4.351067
+4.351135
 </td>
 </tr>
 <tr>
@@ -321,7 +321,7 @@ clever
 wheelchair
 </td>
 <td style="text-align:right;">
-4.340539
+4.340557
 </td>
 </tr>
 <tr>
@@ -329,7 +329,7 @@ wheelchair
 mcguinness
 </td>
 <td style="text-align:right;">
-4.340539
+4.340557
 </td>
 </tr>
 <tr>
@@ -337,7 +337,7 @@ mcguinness
 spider
 </td>
 <td style="text-align:right;">
-4.192143
+4.192186
 </td>
 </tr>
 <tr>
@@ -345,7 +345,7 @@ spider
 nails
 </td>
 <td style="text-align:right;">
-4.192143
+4.192186
 </td>
 </tr>
 <tr>
@@ -353,7 +353,7 @@ nails
 rides
 </td>
 <td style="text-align:right;">
-3.950621
+3.950630
 </td>
 </tr>
 <tr>
@@ -361,7 +361,7 @@ rides
 ghostly
 </td>
 <td style="text-align:right;">
-3.950621
+3.950630
 </td>
 </tr>
 <tr>
@@ -369,7 +369,7 @@ ghostly
 extensions
 </td>
 <td style="text-align:right;">
-3.950621
+3.950630
 </td>
 </tr>
 <tr>
@@ -377,7 +377,7 @@ extensions
 corrie’s
 </td>
 <td style="text-align:right;">
-3.950621
+3.950630
 </td>
 </tr>
 <tr>
@@ -385,7 +385,7 @@ corrie’s
 lion
 </td>
 <td style="text-align:right;">
-3.857002
+3.857095
 </td>
 </tr>
 </tbody>

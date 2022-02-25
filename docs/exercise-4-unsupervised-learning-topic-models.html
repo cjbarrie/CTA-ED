@@ -189,7 +189,7 @@
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span> <span class="va">topic</span>, scales <span class="op">=</span> <span class="st">"free"</span>, ncol <span class="op">=</span> <span class="fl">4</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/tidytext/man/reorder_within.html">scale_y_reordered</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_tufte.html">theme_tufte</a></span><span class="op">(</span>base_family <span class="op">=</span> <span class="st">"Helvetica"</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-190-1.png" width="672"></div>
+<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-180-1.png" width="672"></div>
 <p>But how do we actually evaluate these topics? Here, the topics all seem pretty similar.</p>
 </div>
 <div id="evaluating-topic-model" class="section level2" number="21.3">
@@ -252,7 +252,7 @@
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_fixed.html">coord_equal</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <pre><code>## Warning: Removed 6173 rows containing missing values (geom_point).</code></pre>
 <pre><code>## Warning: Removed 6174 rows containing missing values (geom_text).</code></pre>
-<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-191-1.png" width="672"></div>
+<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-181-1.png" width="672"></div>
 <p>We see that there do seem to be some marked distinguishing characteristics. In the plot above, for example, we see that more abstract notions of state systems appear with greater frequency in Volume 1 while Volume 2 seems to contain words specific to America (e.g., “north” and “south”) with greater frequency. The way to read the above plot is that words positioned further away from the diagonal line appear with greater frequency in one volume versus the other.</p>
 </div>
 <div id="split-into-chapter-documents" class="section level3" number="21.3.2">
@@ -430,7 +430,7 @@
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Book words assigned to"</span>,
        y <span class="op">=</span> <span class="st">"Book words came from"</span>,
        fill <span class="op">=</span> <span class="st">"% of assignments"</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-195-1.png" width="672"></div>
+<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-185-1.png" width="672"></div>
 <p>Not bad! We see that the model estimated with accuracy 91% of chapters in Volume 2 and 79% of chapters in Volume 1</p>
 </div>
 </div>

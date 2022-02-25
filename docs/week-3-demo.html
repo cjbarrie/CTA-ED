@@ -141,17 +141,17 @@
 <pre><code>## `summarise()` has grouped output by 'week', 'student'. You can override using the `.groups`
 ## argument.
 ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'</code></pre>
-<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-46-1.png" width="672"></div>
+<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-36-1.png" width="672"></div>
 <p>And now the simulated data with an increasing number of happy words.</p>
 <pre><code>## `summarise()` has grouped output by 'week', 'student'. You can override using the `.groups`
 ## argument.
 ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'</code></pre>
-<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-47-1.png" width="672"></div>
+<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-37-1.png" width="672"></div>
 <p>And finally a decreasing number of happy words.</p>
 <pre><code>## `summarise()` has grouped output by 'week', 'student'. You can override using the `.groups`
 ## argument.
 ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'</code></pre>
-<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-48-1.png" width="672"></div>
+<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-38-1.png" width="672"></div>
 </div>
 <div id="normalizing-sentiment" class="section level2" number="5.3">
 <h2>
@@ -229,7 +229,7 @@
 ## 10     1      10    1235        4537    0.272
 ## # … with 290 more rows</code></pre>
 <p>Then if we repeat this for each of our datasets and plot we see the following.</p>
-<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-52-1.png" width="672"></div>
+<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-42-1.png" width="672"></div>
 <p>Why do the plots look like this?</p>
 <p>Well, in the first, we have about the <em>same</em> number of total words each week and about the <em>same</em> number of happy words each week. If we divided the latter by the former, we get a proportion that is also stable over time.</p>
 <p>In the second, however, we have an <em>increasing</em> number of total words each week, but about the <em>same</em> number of happy words over time. This means that we are dividing by an ever larger number, giving ever smaller proportions. As such, the trend is decreasing over time.</p>
