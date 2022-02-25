@@ -1,0 +1,80 @@
+# Week 7 Demo
+
+## Setup
+
+First, we'll load the packages we'll be using in this week's brief demo. here we are pre-loading an already-estimated PMI matrix and results from the singualr value decomposition approach.
+
+```{r, warning = F, message = F}
+library(Matrix) #for handling matrices
+library(tidyverse)
+library(irlba) # for SVD
+library(umap) # for dimensionality reduction
+
+load("data/wordembed/pmi_svd.RData")
+load("data/wordembed/pmi_matrix.RData")
+```
+
+
+How does it work?
+
+- Various approaches, including:
+  - 1. SVD
+  - 2. Neural network-based techniques like GloVe and Word2Vec
+  
+In both approaches, we are:
+
+1. Defining a context window (see figure below)
+2. Looking at probabilities of word appearing near another words
+
+![Context window](data/wordembed/window.png)
+
+The implementation of this technique using the singular value decomposition approach requires the following data structure:
+
+  - Word pair matrix with PMI (Pairwise mutual information)
+  - where   PMI = log(P(x,y)/P(x)P(y))
+  - and   P(x,y)   is the probability of word x appearing within a six-word window of word y
+  - and   P(x)   is the probability of word x appearing in the whole corpus
+  - and   P(y)   is the probability of word y appearing in the whole corpus
+
+
+```{r ,echo=F}
+
+head(pmi_matrix[1:6, 1:6])
+
+```
+
+And the resulting matrix object will take the following format:
+
+```{r ,echo=F}
+
+glimpse(pmi_matrix)
+
+```
+
+We will then use the "Singular Value Decomposition" (SVD) techique. This is another multidimensional scaling technique, where the first axis of the resulting coordinates captures the most variance, the second the second-most etc...
+
+And to do this, we simply need to do the following.
+
+```{r, eval = F}
+
+pmi_svd <- irlba(pmi_matrix, 256, maxit = 500)
+
+```
+
+After which we can collect our vectors for each word and inspect them. 
+
+```{r}
+word_vectors <- pmi_svd$u
+rownames(word_vectors) <- rownames(pmi_matrix)
+dim(word_vectors)
+
+head(word_vectors[1:5, 1:5])
+```
+
+## Using `GloVe` or `word2vec`
+
+The neural network approach is considerably more involved, and the figure below gives an overview picture of the differing algorithmic approaches we might use.
+
+<center>
+<img src="data/wordembed/skip_gram_mikolov.png" >
+</center>

@@ -58,14 +58,17 @@
 <li><a class="" href="week-6.html"><span class="header-section-number">10</span> Week 6</a></li>
 <li><a class="" href="week-6-demo.html"><span class="header-section-number">11</span> Week 6 Demo</a></li>
 <li><a class="" href="week-7.html"><span class="header-section-number">12</span> Week 7</a></li>
-<li><a class="" href="week-8.html"><span class="header-section-number">13</span> Week 8</a></li>
-<li><a class="" href="week-9.html"><span class="header-section-number">14</span> Week 9</a></li>
-<li><a class="" href="week-10.html"><span class="header-section-number">15</span> Week 10</a></li>
-<li><a class="" href="exercise-1-word-frequency-analysis.html"><span class="header-section-number">16</span> Exercise 1: Word frequency analysis</a></li>
-<li><a class="" href="exercise-2-dictionary-based-methods.html"><span class="header-section-number">17</span> Exercise 2: Dictionary-based methods</a></li>
-<li><a class="" href="exercise-3-comparison-and-complexity.html"><span class="header-section-number">18</span> Exercise 3: Comparison and complexity</a></li>
-<li><a class="" href="exercise-4-scaling-techniques.html"><span class="header-section-number">19</span> Exercise 4: Scaling techniques</a></li>
-<li><a class="" href="references-2.html"><span class="header-section-number">20</span> References</a></li>
+<li><a class="" href="week-7-demo.html"><span class="header-section-number">13</span> Week 7 Demo</a></li>
+<li><a class="" href="week-8.html"><span class="header-section-number">14</span> Week 8</a></li>
+<li><a class="" href="week-9.html"><span class="header-section-number">15</span> Week 9</a></li>
+<li><a class="" href="week-10.html"><span class="header-section-number">16</span> Week 10</a></li>
+<li><a class="" href="exercise-1-word-frequency-analysis.html"><span class="header-section-number">17</span> Exercise 1: Word frequency analysis</a></li>
+<li><a class="" href="exercise-2-dictionary-based-methods.html"><span class="header-section-number">18</span> Exercise 2: Dictionary-based methods</a></li>
+<li><a class="" href="exercise-3-comparison-and-complexity.html"><span class="header-section-number">19</span> Exercise 3: Comparison and complexity</a></li>
+<li><a class="" href="exercise-4-scaling-techniques.html"><span class="header-section-number">20</span> Exercise 4: Scaling techniques</a></li>
+<li><a class="" href="exercise-4-unsupervised-learning-topic-models.html"><span class="header-section-number">21</span> Exercise 4: Unsupervised learning (topic models)</a></li>
+<li><a class="" href="exercise-4-word-embedding.html"><span class="header-section-number">22</span> Exercise 4: Word embedding</a></li>
+<li><a class="" href="references-2.html"><span class="header-section-number">23</span> References</a></li>
 </ul>
 
         <div class="book-extra">
@@ -327,30 +330,30 @@
 <pre><code>## $Y
 ##      docs
 ## words D01 D02 D03 D04 D05 D06 D07 D08 D09 D10
-##   W01  32  20  20  19  16  11  12   5  11  11
-##   W02  21  14  11  20  17  14   7  12   7   5
-##   W03  18  27  22  17  14  17  15  12   5   4
-##   W04  20  16  17  14  18  16   8  10  10   1
-##   W05  20  17  22  10  14  15  12   8   7  10
-##   W06   9  10   8  10  11  10  13  17  21  16
-##   W07   4   4   9   9  10  21  18  19  20  20
-##   W08   4   4  10   9  17  19  13  21  22  17
-##   W09   4   6  13   4  14  13   9  14  19  26
-##   W10   8   7   7  11  10  27  16  23  22  21
-##   W11  61  56  48  51  42  32  26  20   8  12
-##   W12  66  73  41  47  37  33  33  28  17  10
-##   W13  65  66  43  40  37  35  22  23  20  23
-##   W14  56  55  55  40  35  25  32  25  16  18
-##   W15  50  48  56  38  47  34  34  19  17  13
-##   W16  16  10  21  28  34  43  48  51  49  54
-##   W17  10  22  25  42  30  30  39  53  47  59
-##   W18  12  21  23  37  24  40  55  46  65  63
-##   W19  14   8  24  23  42  41  45  43  46  61
-##   W20  10  16  25  31  31  24  43  51  71  56
+##   W01  19  24  23  18  14  12   8  13   6   4
+##   W02  25  11  22  22  12  11   6  10   4   4
+##   W03  14  21  18  19  13  16  17  10   3  11
+##   W04  34  23  25  11  19  16  10   6  13   7
+##   W05  25  19  20  20  16  10  10  12   7   2
+##   W06   4   5  12   7  13  20  19  19  23  31
+##   W07   6   6  15   7  13  16  14  15  19  28
+##   W08   5   4  12  14  15  13  18  19  19  20
+##   W09   6   7   7   9   8  17  19  20  17  20
+##   W10   6   6   9   6  13  13  13  19  17  27
+##   W11  59  59  46  38  39  28  26  25  15  17
+##   W12  58  52  53  58  36  38  26  19  26  19
+##   W13  59  55  49  44  41  27  24  18  21  10
+##   W14  59  59  45  45  32  30  31  15  17  12
+##   W15  65  54  43  34  44  39  21  36  13  14
+##   W16  12  13  22  36  31  35  49  40  55  54
+##   W17   9  23  19  24  31  39  59  50  51  46
+##   W18   7  21  10  29  37  34  52  58  57  58
+##   W19  14  17  28  32  41  45  36  37  50  58
+##   W20  14  21  22  27  32  41  42  59  67  58
 ## 
 ## $theta
-##  [1] -1.4863011 -1.1560120 -0.8257228 -0.4954337 -0.1651446  0.1651446  0.4954337  0.8257228  1.1560120
-## [10]  1.4863011
+##  [1] -1.4863011 -1.1560120 -0.8257228 -0.4954337 -0.1651446  0.1651446  0.4954337  0.8257228
+##  [9]  1.1560120  1.4863011
 ## 
 ## $doclen
 ## D01 D02 D03 D04 D05 D06 D07 D08 D09 D10 
@@ -373,17 +376,17 @@
 ##  wordfish(wfm = dd$Y)
 ## 
 ## Document Positions:
-##     Estimate Std. Error     Lower     Upper
-## D01  -1.5169    0.11794 -1.748086 -1.285761
-## D02  -1.3251    0.11172 -1.544060 -1.106115
-## D03  -0.6752    0.09718 -0.865662 -0.484713
-## D04  -0.3681    0.09360 -0.551526 -0.184606
-## D05  -0.1808    0.09241 -0.361916  0.000335
-## D06   0.1884    0.09223  0.007655  0.369193
-## D07   0.4480    0.09383  0.264118  0.631908
-## D08   0.7825    0.09802  0.590414  0.974641
-## D09   1.2645    0.10849  1.051879  1.477160
-## D10   1.3806    0.11184  1.161444  1.599853</code></pre>
+##     Estimate Std. Error   Lower   Upper
+## D01  -1.6377    0.12091 -1.8747 -1.4007
+## D02  -1.0952    0.10362 -1.2983 -0.8921
+## D03  -0.7994    0.09727 -0.9900 -0.6087
+## D04  -0.4718    0.09259 -0.6533 -0.2903
+## D05  -0.1218    0.09020 -0.2986  0.0550
+## D06   0.2071    0.09036  0.0300  0.3842
+## D07   0.6220    0.09390  0.4380  0.8061
+## D08   0.7571    0.09586  0.5693  0.9450
+## D09   1.1126    0.10303  0.9107  1.3146
+## D10   1.4272    0.11189  1.2079  1.6465</code></pre>
 </div>
 <div id="using-quanteda" class="section level2" number="9.4">
 <h2>
@@ -421,7 +424,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Computational Text Analysis</strong>" was written by Christopher Barrie. It was last built on 2022-02-24.</p>
+    <p>"<strong>Computational Text Analysis</strong>" was written by Christopher Barrie. It was last built on 2022-02-25.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

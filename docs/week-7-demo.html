@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 13 Week 7 Demo | Computational Text Analysis</title>
+<meta name="author" content="Christopher Barrie">
+<meta name="description" content="13.1 Setup First, we’ll load the packages we’ll be using in this week’s brief demo. here we are pre-loading an already-estimated PMI matrix and results from the singualr value decomposition...">
+<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta property="og:title" content="Chapter 13 Week 7 Demo | Computational Text Analysis">
+<meta property="og:type" content="book">
+<meta property="og:url" content="https://cjbarrie.github.io/CTA-ED/week-7-demo.html">
+<meta property="og:image" content="https://cjbarrie.github.io/CTA-ED/coverb.png">
+<meta property="og:description" content="13.1 Setup First, we’ll load the packages we’ll be using in this week’s brief demo. here we are pre-loading an already-estimated PMI matrix and results from the singualr value decomposition...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 13 Week 7 Demo | Computational Text Analysis">
+<meta name="twitter:description" content="13.1 Setup First, we’ll load the packages we’ll be using in this week’s brief demo. here we are pre-loading an already-estimated PMI matrix and results from the singualr value decomposition...">
+<meta name="twitter:image" content="https://cjbarrie.github.io/CTA-ED/coverb.png">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS -->
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Computational Text Analysis</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">“Computational Text Analysis” (PGSP11584)</a></li>
+<li><a class="" href="course-overview.html">Course Overview</a></li>
+<li><a class="" href="introduction-to-r.html">Introduction to R</a></li>
+<li><a class="" href="week-1.html"><span class="header-section-number">1</span> Week 1</a></li>
+<li><a class="" href="week-2.html"><span class="header-section-number">2</span> Week 2</a></li>
+<li><a class="" href="week-2-demo.html"><span class="header-section-number">3</span> Week 2 Demo</a></li>
+<li><a class="" href="week-3.html"><span class="header-section-number">4</span> Week 3</a></li>
+<li><a class="" href="week-3-demo.html"><span class="header-section-number">5</span> Week 3 Demo</a></li>
+<li><a class="" href="week-4.html"><span class="header-section-number">6</span> Week 4</a></li>
+<li><a class="" href="week-4-demo.html"><span class="header-section-number">7</span> Week 4 Demo</a></li>
+<li><a class="" href="week-5.html"><span class="header-section-number">8</span> Week 5</a></li>
+<li><a class="" href="week-5-demo.html"><span class="header-section-number">9</span> Week 5 Demo</a></li>
+<li><a class="" href="week-6.html"><span class="header-section-number">10</span> Week 6</a></li>
+<li><a class="" href="week-6-demo.html"><span class="header-section-number">11</span> Week 6 Demo</a></li>
+<li><a class="" href="week-7.html"><span class="header-section-number">12</span> Week 7</a></li>
+<li><a class="active" href="week-7-demo.html"><span class="header-section-number">13</span> Week 7 Demo</a></li>
+<li><a class="" href="week-8.html"><span class="header-section-number">14</span> Week 8</a></li>
+<li><a class="" href="week-9.html"><span class="header-section-number">15</span> Week 9</a></li>
+<li><a class="" href="week-10.html"><span class="header-section-number">16</span> Week 10</a></li>
+<li><a class="" href="exercise-1-word-frequency-analysis.html"><span class="header-section-number">17</span> Exercise 1: Word frequency analysis</a></li>
+<li><a class="" href="exercise-2-dictionary-based-methods.html"><span class="header-section-number">18</span> Exercise 2: Dictionary-based methods</a></li>
+<li><a class="" href="exercise-3-comparison-and-complexity.html"><span class="header-section-number">19</span> Exercise 3: Comparison and complexity</a></li>
+<li><a class="" href="exercise-4-scaling-techniques.html"><span class="header-section-number">20</span> Exercise 4: Scaling techniques</a></li>
+<li><a class="" href="exercise-4-unsupervised-learning-topic-models.html"><span class="header-section-number">21</span> Exercise 4: Unsupervised learning (topic models)</a></li>
+<li><a class="" href="exercise-4-word-embedding.html"><span class="header-section-number">22</span> Exercise 4: Word embedding</a></li>
+<li><a class="" href="references-2.html"><span class="header-section-number">23</span> References</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/cjbarrie/CTA-ED">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="week-7-demo" class="section level1" number="13">
+<h1>
+<span class="header-section-number">13</span> Week 7 Demo<a class="anchor" aria-label="anchor" href="#week-7-demo"><i class="fas fa-link"></i></a>
+</h1>
+<div id="setup-5" class="section level2" number="13.1">
+<h2>
+<span class="header-section-number">13.1</span> Setup<a class="anchor" aria-label="anchor" href="#setup-5"><i class="fas fa-link"></i></a>
+</h2>
+<p>First, we’ll load the packages we’ll be using in this week’s brief demo. here we are pre-loading an already-estimated PMI matrix and results from the singualr value decomposition approach.</p>
+<div class="sourceCode" id="cb157"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://Matrix.R-forge.R-project.org/">Matrix</a></span><span class="op">)</span> <span class="co">#for handling matrices</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">irlba</span><span class="op">)</span> <span class="co"># for SVD</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/tkonopka/umap">umap</a></span><span class="op">)</span> <span class="co"># for dimensionality reduction</span>
+
+<span class="fu"><a href="https://rdrr.io/r/base/load.html">load</a></span><span class="op">(</span><span class="st">"data/wordembed/pmi_svd.RData"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/load.html">load</a></span><span class="op">(</span><span class="st">"data/wordembed/pmi_matrix.RData"</span><span class="op">)</span></code></pre></div>
+<p>How does it work?</p>
+<ul>
+<li>Various approaches, including:
+<ul>
+<li><ol style="list-style-type: decimal">
+<li>SVD</li>
+</ol></li>
+<li><ol start="2" style="list-style-type: decimal">
+<li>Neural network-based techniques like GloVe and Word2Vec</li>
+</ol></li>
+</ul>
+</li>
+</ul>
+<p>In both approaches, we are:</p>
+<ol style="list-style-type: decimal">
+<li>Defining a context window (see figure below)</li>
+<li>Looking at probabilities of word appearing near another words</li>
+</ol>
+<div class="figure">
+<img src="data/wordembed/window.png" alt=""><p class="caption">Context window</p>
+</div>
+<p>The implementation of this technique using the singular value decomposition approach requires the following data structure:</p>
+<ul>
+<li>Word pair matrix with PMI (Pairwise mutual information)</li>
+<li>where PMI = log(P(x,y)/P(x)P(y))</li>
+<li>and P(x,y) is the probability of word x appearing within a six-word window of word y</li>
+<li>and P(x) is the probability of word x appearing in the whole corpus</li>
+<li>and P(y) is the probability of word y appearing in the whole corpus</li>
+</ul>
+<pre><code>## 6 x 6 sparse Matrix of class "dgCMatrix"
+##                the          to          and          of      https           a
+## the    0.653259169 -0.01948121 -0.006446459  0.27136395 -0.5246159 -0.32557524
+## to    -0.019481205  0.75498084 -0.065170433 -0.25694210 -0.5731182 -0.04595798
+## and   -0.006446459 -0.06517043  1.027782342 -0.03974904 -0.4915159 -0.05862969
+## of     0.271363948 -0.25694210 -0.039749043  1.02111517 -0.5045067  0.09829389
+## https -0.524615878 -0.57311817 -0.491515918 -0.50450674  0.5451841 -0.57956404
+## a     -0.325575239 -0.04595798 -0.058629689  0.09829389 -0.5795640  1.03048355</code></pre>
+<p>And the resulting matrix object will take the following format:</p>
+<pre><code>## Formal class 'dgCMatrix' [package "Matrix"] with 6 slots
+##   ..@ i       : int [1:350700] 0 1 2 3 4 5 6 7 8 9 ...
+##   ..@ p       : int [1:21173] 0 7819 14360 20175 25467 29910 34368 39207 43376 46401 ...
+##   ..@ Dim     : int [1:2] 21172 21172
+##   ..@ Dimnames:List of 2
+##   .. ..$ : chr [1:21172] "the" "to" "and" "of" ...
+##   .. ..$ : chr [1:21172] "the" "to" "and" "of" ...
+##   ..@ x       : num [1:350700] 0.65326 -0.01948 -0.00645 0.27136 -0.52462 ...
+##   ..@ factors : list()</code></pre>
+<p>We will then use the “Singular Value Decomposition” (SVD) techique. This is another multidimensional scaling technique, where the first axis of the resulting coordinates captures the most variance, the second the second-most etc…</p>
+<p>And to do this, we simply need to do the following.</p>
+<div class="sourceCode" id="cb160"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">pmi_svd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/irlba/man/irlba.html">irlba</a></span><span class="op">(</span><span class="va">pmi_matrix</span>, <span class="fl">256</span>, maxit <span class="op">=</span> <span class="fl">500</span><span class="op">)</span></code></pre></div>
+<p>After which we can collect our vectors for each word and inspect them.</p>
+<div class="sourceCode" id="cb161"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">word_vectors</span> <span class="op">&lt;-</span> <span class="va">pmi_svd</span><span class="op">$</span><span class="va">u</span>
+<span class="fu"><a href="https://tibble.tidyverse.org/reference/rownames.html">rownames</a></span><span class="op">(</span><span class="va">word_vectors</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/rownames.html">rownames</a></span><span class="op">(</span><span class="va">pmi_matrix</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">word_vectors</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 21172   256</code></pre>
+<div class="sourceCode" id="cb163"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">word_vectors</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span><span class="op">)</span></code></pre></div>
+<pre><code>##               [,1]        [,2]        [,3]        [,4]        [,5]
+## the    0.007810973  0.07024009  0.06377615  0.03139044 -0.12362108
+## to     0.006889381 -0.03210269  0.10665925  0.03537632  0.10104552
+## and   -0.050498380  0.09131495  0.19658197 -0.08136253 -0.01605705
+## of    -0.015628371  0.16306386  0.13296127 -0.04087709 -0.23175976
+## https  0.301718525  0.07658843 -0.01720398  0.26219147  0.07930941</code></pre>
+</div>
+<div id="using-glove-or-word2vec" class="section level2" number="13.2">
+<h2>
+<span class="header-section-number">13.2</span> Using <code>GloVe</code> or <code>word2vec</code><a class="anchor" aria-label="anchor" href="#using-glove-or-word2vec"><i class="fas fa-link"></i></a>
+</h2>
+<p>The neural network approach is considerably more involved, and the figure below gives an overview picture of the differing algorithmic approaches we might use.</p>
+<center>
+<img src="data/wordembed/skip_gram_mikolov.png">
+</center>
+
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="week-7.html"><span class="header-section-number">12</span> Week 7</a></div>
+<div class="next"><a href="week-8.html"><span class="header-section-number">14</span> Week 8</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#week-7-demo"><span class="header-section-number">13</span> Week 7 Demo</a></li>
+<li><a class="nav-link" href="#setup-5"><span class="header-section-number">13.1</span> Setup</a></li>
+<li><a class="nav-link" href="#using-glove-or-word2vec"><span class="header-section-number">13.2</span> Using GloVe or word2vec</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/cjbarrie/CTA-ED/blob/master/07-week7demo.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/cjbarrie/CTA-ED/edit/master/07-week7demo.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Computational Text Analysis</strong>" was written by Christopher Barrie. It was last built on 2022-02-25.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>
