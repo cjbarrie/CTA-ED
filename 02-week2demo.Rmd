@@ -67,7 +67,7 @@ And we can see that as each week goes by, we have more and more text.
 lipsum_text %>%
   unnest_tokens(word, text) %>%
   group_by(week) %>%
-  count(word) %>%
+  dplyr::count(word) %>%
   select(week, n) %>%
   distinct() %>%
   ggplot() +
@@ -96,7 +96,7 @@ for(i in 1:nrow(lipsum_text)) {
 lipsum_text %>%
   unnest_tokens(word, text) %>%
   group_by(week) %>%
-  count(word) %>%
+  dplyr::count(word) %>%
   select(week, n) %>%
   distinct() %>%
   ggplot() +
@@ -110,7 +110,7 @@ Now let's check out the top frequency words in this text.
 ```{r}
 lipsum_text %>%
   unnest_tokens(word, text) %>%
-  count(word, sort = T) %>%
+  dplyr::count(word, sort = T) %>%
   top_n(5) %>%
   knitr::kable(format="html")%>% 
   kable_styling("striped", full_width = F)
@@ -124,7 +124,7 @@ First we need to get total word frequencies for each week.
 lipsum_totals <- lipsum_text %>%
   group_by(week) %>%
   unnest_tokens(word, text) %>%
-  count(word) %>%
+  dplyr::count(word) %>%
   mutate(total = sum(n)) %>%
   distinct(week, total)
 ```
@@ -135,7 +135,7 @@ lipsum_sed <- lipsum_text %>%
   group_by(week) %>%
   unnest_tokens(word, text) %>%
   filter(word == "sed")  %>%
-  count(word) %>%
+  dplyr::count(word) %>%
   mutate(total_sed = sum(n)) %>%
   distinct(week, total_sed)
 

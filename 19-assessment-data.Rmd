@@ -1,0 +1,122 @@
+# Assessment data
+
+## Introduction
+
+Below you will find a series of datasets. You can choose to use these for the summative assessment. Alternatively, you can contact me with a suggestion of a dataset and a relevant research question. See the [Course Overview](https://cjbarrie.github.io/CTA-ED/course-overview.html) page for full details of the assessment.
+
+## @osnabrugge_playing_2021 data
+
+We can access data from @osnabrugge_playing_2021 [here](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/QDTLYV)
+
+To prepare these data, we can use the same code as used by the original authors:
+
+```{r, echo= FALSE}
+library("ggplot2")
+library("plyr")
+library("gdata")
+library("stringr")
+library("data.table")
+
+## Prep Osnabrugge et al. 
+
+data = fread("/Users/cbarrie6/Dropbox/Teaching/Edinburgh/teaching/CTA_21-22/assessment/data/uk_data.csv", encoding="UTF-8")
+
+
+data$date = as.Date(data$date)
+
+
+#Table 2: Examples: Emotive and neutral speeches
+example1 = subset(data, id_speech==854597)
+example1$emotive_rhetoric
+example1$text
+
+example2 = subset(data, id_speech==778143)
+example2$emotive_rhetoric
+example2$text
+
+#Create time variable
+data$time= NA
+data$time[data$date>=as.Date("2001-01-01") & data$date<=as.Date("2001-06-30")] = "01/1"
+data$time[data$date>=as.Date("2001-07-01") & data$date<=as.Date("2001-12-31")] = "01/2"
+data$time[data$date>=as.Date("2002-01-01") & data$date<=as.Date("2002-06-30")] = "02/1"
+data$time[data$date>=as.Date("2002-07-01") & data$date<=as.Date("2002-12-31")] = "02/2"
+data$time[data$date>=as.Date("2003-01-01") & data$date<=as.Date("2003-06-30")] = "03/1"
+data$time[data$date>=as.Date("2003-07-01") & data$date<=as.Date("2003-12-31")] = "03/2"
+data$time[data$date>=as.Date("2004-01-01") & data$date<=as.Date("2004-06-30")] = "04/1"
+data$time[data$date>=as.Date("2004-07-01") & data$date<=as.Date("2004-12-31")] = "04/2"
+data$time[data$date>=as.Date("2005-01-01") & data$date<=as.Date("2005-06-30")] = "05/1"
+data$time[data$date>=as.Date("2005-07-01") & data$date<=as.Date("2005-12-31")] = "05/2"
+data$time[data$date>=as.Date("2006-01-01") & data$date<=as.Date("2006-06-30")] = "06/1"
+data$time[data$date>=as.Date("2006-07-01") & data$date<=as.Date("2006-12-31")] = "06/2"
+data$time[data$date>=as.Date("2007-01-01") & data$date<=as.Date("2007-06-30")] = "07/1"
+data$time[data$date>=as.Date("2007-07-01") & data$date<=as.Date("2007-12-31")] = "07/2"
+data$time[data$date>=as.Date("2008-01-01") & data$date<=as.Date("2008-06-30")] = "08/1"
+data$time[data$date>=as.Date("2008-07-01") & data$date<=as.Date("2008-12-31")] = "08/2"
+data$time[data$date>=as.Date("2009-01-01") & data$date<=as.Date("2009-06-30")] = "09/1"
+data$time[data$date>=as.Date("2009-07-01") & data$date<=as.Date("2009-12-31")] = "09/2"
+data$time[data$date>=as.Date("2010-01-01") & data$date<=as.Date("2010-06-30")] = "10/1"
+data$time[data$date>=as.Date("2010-07-01") & data$date<=as.Date("2010-12-31")] = "10/2"
+data$time[data$date>=as.Date("2011-01-01") & data$date<=as.Date("2011-06-30")] = "11/1"
+data$time[data$date>=as.Date("2011-07-01") & data$date<=as.Date("2011-12-31")] = "11/2"
+data$time[data$date>=as.Date("2012-01-01") & data$date<=as.Date("2012-06-30")] = "12/1"
+data$time[data$date>=as.Date("2012-07-01") & data$date<=as.Date("2012-12-31")] = "12/2"
+data$time[data$date>=as.Date("2013-01-01") & data$date<=as.Date("2013-06-30")] = "13/1"
+data$time[data$date>=as.Date("2013-07-01") & data$date<=as.Date("2013-12-31")] = "13/2"
+data$time[data$date>=as.Date("2014-01-01") & data$date<=as.Date("2014-06-30")] = "14/1"
+data$time[data$date>=as.Date("2014-07-01") & data$date<=as.Date("2014-12-31")] = "14/2"
+data$time[data$date>=as.Date("2015-01-01") & data$date<=as.Date("2015-06-30")] = "15/1"
+data$time[data$date>=as.Date("2015-07-01") & data$date<=as.Date("2015-12-31")] = "15/2"
+data$time[data$date>=as.Date("2016-01-01") & data$date<=as.Date("2016-06-30")] = "16/1"
+data$time[data$date>=as.Date("2016-07-01") & data$date<=as.Date("2016-12-31")] = "16/2"
+data$time[data$date>=as.Date("2017-01-01") & data$date<=as.Date("2017-06-30")] = "17/1"
+data$time[data$date>=as.Date("2017-07-01") & data$date<=as.Date("2017-12-31")] = "17/2"
+data$time[data$date>=as.Date("2018-01-01") & data$date<=as.Date("2018-06-30")] = "18/1"
+data$time[data$date>=as.Date("2018-07-01") & data$date<=as.Date("2018-12-31")] = "18/2"
+data$time[data$date>=as.Date("2019-01-01") & data$date<=as.Date("2019-06-30")] = "19/1"
+data$time[data$date>=as.Date("2019-07-01") & data$date<=as.Date("2019-12-31")] = "19/2"
+
+data$time2 = data$time
+data$time2 = str_replace(data$time2, "/", "_")
+
+data$stage = 0
+data$stage[data$m_questions==1]= 1
+data$stage[data$u_questions==1]= 2
+data$stage[data$queen_debate_others==1]= 3
+data$stage[data$queen_debate_day1==1]= 4
+data$stage[data$pm_questions==1]= 5
+
+```
+
+Below, I display a sample of these data.
+
+```{r, echo=FALSE}
+
+data <- readRDS("data/assessment/osnabrugge_samp.rds")
+
+```
+
+```{r, echo=F}
+data %>%
+  select(id_speech, text, last_name, first_name, date, government, female, age) %>%
+  kbl() %>%
+  kable_styling(bootstrap_options = "striped")
+```
+
+If the full dataset is too large for your machines, you can easily take a sample of it with:
+
+```{r, eval=F}
+
+data_samp <- data %>%
+  sample_n(10000)
+
+```
+
+##  Twitter Transparency data
+
+Select a dataset/datasets of interest from the Twitter Transparency archive [here](https://transparency.twitter.com/en/reports/information-operations.html). These are datasets that have been flagged for "information operations" activity; that is, activity designed to distort, often through automated messaging, the information landscape to the benefit of a given entity (normally a government). 
+
+The datasets are all listed and downloadable in ".csv" format if you scroll down to "03. Download Archive." Here, you will just be asked to enter your email address as agreement to Terms of Use. 
+
+## @king_how_2013 data
+
+Data from the article by @king_how_2013 on Chinese social media posts, and censorship dynamics can be downloadedn [here](https://dataverse.harvard.edu/dataset.xhtml;jsessionid=062d8cc68e633603611ab3e89755?persistentId=doi%3A10.7910%2FDVN1%2F22691&version=&q=&fileTypeGroupFacet=&fileAccess=&fileSortField=date). 

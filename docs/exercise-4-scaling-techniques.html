@@ -68,7 +68,8 @@
 <li><a class="active" href="exercise-4-scaling-techniques.html"><span class="header-section-number">20</span> Exercise 4: Scaling techniques</a></li>
 <li><a class="" href="exercise-5-unsupervised-learning-topic-models.html"><span class="header-section-number">21</span> Exercise 5: Unsupervised learning (topic models)</a></li>
 <li><a class="" href="exercise-6-word-embedding.html"><span class="header-section-number">22</span> Exercise 6: Word embedding</a></li>
-<li><a class="" href="references-2.html"><span class="header-section-number">23</span> References</a></li>
+<li><a class="" href="assessment-data.html"><span class="header-section-number">23</span> Assessment data</a></li>
+<li><a class="" href="references-2.html"><span class="header-section-number">24</span> References</a></li>
 </ul>
 
         <div class="book-extra">
@@ -93,7 +94,7 @@
 </li>
 </ul>
 <p>Before proceeding, we’ll load the packages we will need for this tutorial.</p>
-<div class="sourceCode" id="cb288"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb291"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://quanteda.io">quanteda</a></span><span class="op">)</span> <span class="co"># includes functions to implement Lexicoder</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/quanteda/quanteda.textmodels">quanteda.textmodels</a></span><span class="op">)</span> <span class="co"># for estimating similarity and complexity measures</span>
@@ -105,13 +106,13 @@
 <span class="header-section-number">20.2</span> Importing data<a class="anchor" aria-label="anchor" href="#importing-data"><i class="fas fa-link"></i></a>
 </h2>
 <p>We can download the dataset with:</p>
-<div class="sourceCode" id="cb289"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb292"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tweets</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html">readRDS</a></span><span class="op">(</span><span class="st">"data/sentanalysis/newstweets.rds"</span><span class="op">)</span></code></pre></div>
 <p>If you’re working on this document from your own computer (“locally”) you can download the tweets data in the following way:</p>
-<div class="sourceCode" id="cb290"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb293"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tweets</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html">readRDS</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/gzcon.html">gzcon</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/connections.html">url</a></span><span class="op">(</span><span class="st">"https://github.com/cjbarrie/CTA-ED/blob/main/data/sentanalysis/newstweets.rds?raw=true"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>We first take a sample from these data to speed up the runtime of some of the analyses.</p>
-<div class="sourceCode" id="cb291"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb294"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tweets</span> <span class="op">&lt;-</span> <span class="va">tweets</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html">sample_n</a></span><span class="op">(</span><span class="fl">20000</span><span class="op">)</span></code></pre></div>
 </div>
@@ -120,7 +121,7 @@
 <span class="header-section-number">20.3</span> Construct <code>dfm</code> object<a class="anchor" aria-label="anchor" href="#construct-dfm-object"><i class="fas fa-link"></i></a>
 </h2>
 <p>Then, as in the previous exercise, we create a corpus object, specify the document-level variables by which we want to group, and generate our document feature matrix.</p>
-<div class="sourceCode" id="cb292"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb295"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">#make corpus object, specifying tweet as text field</span>
 <span class="va">tweets_corpus</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://quanteda.io/reference/corpus.html">corpus</a></span><span class="op">(</span><span class="va">tweets</span>, text_field <span class="op">=</span> <span class="st">"text"</span><span class="op">)</span>
 
@@ -131,7 +132,7 @@
                   remove_punct <span class="op">=</span> <span class="cn">TRUE</span>, 
                   remove <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/stopwords/man/stopwords.html">stopwords</a></span><span class="op">(</span><span class="st">"english"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>We can then have a look at the number of documents (tweets) we have per newspaper Twitter account.</p>
-<div class="sourceCode" id="cb293"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb296"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## number of tweets per newspaper</span>
 <span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="fu"><a href="https://quanteda.io/reference/docvars.html">docvars</a></span><span class="op">(</span><span class="va">dfm_tweets</span>, <span class="st">"newspaper"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## 
@@ -140,7 +141,7 @@
 ##          TheSun        thetimes 
 ##            3840             668</code></pre>
 <p>And this is what our document feature matrix looks like, where each word has a count for each of our eight newspapers.</p>
-<div class="sourceCode" id="cb295"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb298"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">dfm_tweets</span></code></pre></div>
 <pre><code>## Document-feature matrix of: 20,000 documents, 48,967 features (99.98% sparse) and 31 docvars.
 ##        features
@@ -158,7 +159,7 @@
 <span class="header-section-number">20.4</span> Estimate wordfish model<a class="anchor" aria-label="anchor" href="#estimate-wordfish-model"><i class="fas fa-link"></i></a>
 </h2>
 <p>Once we have our data in this format, we are able to group and trim the document feature matrix before estimating the wordfish model.</p>
-<div class="sourceCode" id="cb297"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb300"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># compress the document-feature matrix at the newspaper level</span>
 <span class="va">dfm_newstweets</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://quanteda.io/reference/dfm_group.html">dfm_group</a></span><span class="op">(</span><span class="va">dfm_tweets</span>, groups <span class="op">=</span> <span class="va">newspaper</span><span class="op">)</span>
 <span class="co"># remove words not used by two or more newspapers</span>
@@ -168,13 +169,13 @@
 <span class="co">## size of the document-feature matrix</span>
 <span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">dfm_newstweets</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1]     8 11111</code></pre>
-<div class="sourceCode" id="cb299"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb302"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">#### estimate the Wordfish model ####</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123L</span><span class="op">)</span>
 <span class="va">dfm_newstweets_results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/quanteda.textmodels/man/textmodel_wordfish.html">textmodel_wordfish</a></span><span class="op">(</span><span class="va">dfm_newstweets</span>, 
                                              sparse <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <p>And this is what results.</p>
-<div class="sourceCode" id="cb300"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb303"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">dfm_newstweets_results</span><span class="op">)</span></code></pre></div>
 <pre><code>## 
 ## Call:
@@ -185,7 +186,7 @@
 ## DailyMailUK      0.64904 0.012949
 ## DailyMirror      1.18235 0.006726
 ## EveningStandard -0.22616 0.016082
-## guardian        -0.95428 0.010563
+## guardian        -0.95429 0.010563
 ## MetroUK         -0.04625 0.022759
 ## Telegraph       -1.05344 0.010640
 ## TheSun           1.45044 0.006048
@@ -193,25 +194,25 @@
 ## 
 ## Estimated Feature Scores:
 ##         rt breaking coronavirus outbreak declared pandemic  world  health organisation genuinely
-## beta 0.537    0.191     0.06917  -0.2654 -0.06526  -0.2004 -0.317 -0.3277      -0.4118   -0.2873
+## beta 0.537    0.191     0.06918  -0.2654 -0.06525  -0.2004 -0.317 -0.3277      -0.4118   -0.2873
 ## psi  5.307    3.535     5.78715   3.1348  0.50705   3.1738  3.366  3.2041       0.5487   -0.5403
 ##      interested       see      one     cos     fair  german    care system protect troubled children
-## beta    -0.2546 0.0005075 -0.06313 -0.2788 -0.03078 -0.7424 -0.3252 -1.105 -0.1106  -0.4731  0.01204
-## psi     -1.4502 2.7723966  3.85881 -1.4480  0.35480  1.1009  3.1042  1.259  1.8918  -0.0784  2.85004
+## beta    -0.2545 0.0005129 -0.06312 -0.2788 -0.03078 -0.7424 -0.3251 -1.105 -0.1106  -0.4731  0.01205
+## psi     -1.4502 2.7723965  3.85881 -1.4480  0.35480  1.1009  3.1042  1.259  1.8918  -0.0784  2.85004
 ##      #covid19 anxiety  shows    sign    man  behind   app explains    tips
-## beta  -0.6742  0.4218 0.4165 -0.1215 0.5112 0.05498 0.271   0.6687 -0.2083
+## beta  -0.6742  0.4218 0.4165 -0.1215 0.5112 0.05499 0.271   0.6687 -0.2083
 ## psi    2.9703  0.5917 2.8370  1.9427 3.5777 2.43805 1.376   1.2749  1.5341</code></pre>
 <p>We can then plot our estimates of the <span class="math inline">\(\theta\)</span>s—i.e., the estimates of the latent newspaper position—as so.</p>
-<div class="sourceCode" id="cb302"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb305"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/quanteda.textplots/man/textplot_scale1d.html">textplot_scale1d</a></span><span class="op">(</span><span class="va">dfm_newstweets_results</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-170-1.png" width="672"></div>
 <p>Interestingly, we seem not to have captured ideology but some other tonal dimension. We see that the tabloid newspapers are scored similarly, and grouped toward the right hand side of this latent dimension; whereas the broadsheet newspapers have an estimated theta further to the left.</p>
 <p>Plotting the “features,” i.e., the word-level betas shows how words are positioned along this dimension, and which words help discriminate between news outlets.</p>
-<div class="sourceCode" id="cb303"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb306"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/quanteda.textplots/man/textplot_scale1d.html">textplot_scale1d</a></span><span class="op">(</span><span class="va">dfm_newstweets_results</span>, margin <span class="op">=</span> <span class="st">"features"</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-171-1.png" width="672"></div>
 <p>And we can also look at these features.</p>
-<div class="sourceCode" id="cb304"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb307"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">features</span> <span class="op">&lt;-</span> <span class="va">dfm_newstweets_results</span><span class="op">[[</span><span class="st">"features"</span><span class="op">]</span><span class="op">]</span>
 
 <span class="va">betas</span> <span class="op">&lt;-</span> <span class="va">dfm_newstweets_results</span><span class="op">[[</span><span class="st">"beta"</span><span class="op">]</span><span class="op">]</span>
@@ -240,7 +241,7 @@ betas
 ig
 </td>
 <td style="text-align:right;">
-8.961667
+8.961663
 </td>
 </tr>
 <tr>
@@ -248,7 +249,7 @@ ig
 🎥
 </td>
 <td style="text-align:right;">
-7.789180
+7.789179
 </td>
 </tr>
 <tr>
@@ -256,7 +257,7 @@ ig
 diver
 </td>
 <td style="text-align:right;">
-7.015288
+7.015287
 </td>
 </tr>
 <tr>
@@ -264,7 +265,7 @@ diver
 alien-looking
 </td>
 <td style="text-align:right;">
-6.054604
+6.054605
 </td>
 </tr>
 <tr>
@@ -272,7 +273,7 @@ alien-looking
 wwe
 </td>
 <td style="text-align:right;">
-5.304746
+5.304747
 </td>
 </tr>
 <tr>
@@ -280,7 +281,7 @@ wwe
 cutest
 </td>
 <td style="text-align:right;">
-5.304746
+5.304747
 </td>
 </tr>
 <tr>
@@ -288,7 +289,7 @@ cutest
 lad
 </td>
 <td style="text-align:right;">
-5.012236
+5.012238
 </td>
 </tr>
 <tr>
@@ -296,7 +297,7 @@ lad
 bargains
 </td>
 <td style="text-align:right;">
-4.835002
+4.835003
 </td>
 </tr>
 <tr>
@@ -304,7 +305,7 @@ bargains
 partner’s
 </td>
 <td style="text-align:right;">
-4.692455
+4.692457
 </td>
 </tr>
 <tr>
@@ -312,7 +313,7 @@ partner’s
 ronaldo
 </td>
 <td style="text-align:right;">
-4.495504
+4.495505
 </td>
 </tr>
 <tr>
@@ -320,7 +321,7 @@ ronaldo
 clever
 </td>
 <td style="text-align:right;">
-4.351123
+4.351124
 </td>
 </tr>
 <tr>
@@ -328,7 +329,7 @@ clever
 wheelchair
 </td>
 <td style="text-align:right;">
-4.340553
+4.340555
 </td>
 </tr>
 <tr>
@@ -336,7 +337,7 @@ wheelchair
 mcguinness
 </td>
 <td style="text-align:right;">
-4.340553
+4.340555
 </td>
 </tr>
 <tr>
@@ -344,7 +345,7 @@ mcguinness
 spider
 </td>
 <td style="text-align:right;">
-4.192178
+4.192180
 </td>
 </tr>
 <tr>
@@ -352,7 +353,7 @@ spider
 nails
 </td>
 <td style="text-align:right;">
-4.192178
+4.192180
 </td>
 </tr>
 <tr>
@@ -360,7 +361,7 @@ nails
 rides
 </td>
 <td style="text-align:right;">
-3.950628
+3.950630
 </td>
 </tr>
 <tr>
@@ -368,7 +369,7 @@ rides
 ghostly
 </td>
 <td style="text-align:right;">
-3.950628
+3.950630
 </td>
 </tr>
 <tr>
@@ -376,7 +377,7 @@ ghostly
 extensions
 </td>
 <td style="text-align:right;">
-3.950628
+3.950630
 </td>
 </tr>
 <tr>
@@ -384,7 +385,7 @@ extensions
 corrie’s
 </td>
 <td style="text-align:right;">
-3.950628
+3.950630
 </td>
 </tr>
 <tr>
@@ -404,20 +405,20 @@ lion
 <span class="header-section-number">20.5</span> Replicating Kaneko et al.<a class="anchor" aria-label="anchor" href="#replicating-kaneko-et-al."><i class="fas fa-link"></i></a>
 </h2>
 <p>This section adapts code from the replication data provided for <span class="citation">Kaneko, Asano, and Miwa (<a href="references-2.html#ref-kaneko_estimating_2021" role="doc-biblioref">2021</a>)</span> <a href="https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/EL3KYD">here</a>. We can access data from the first study by <span class="citation">Kaneko, Asano, and Miwa (<a href="references-2.html#ref-kaneko_estimating_2021" role="doc-biblioref">2021</a>)</span> in the following way.</p>
-<div class="sourceCode" id="cb306"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb309"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">kaneko_dfm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html">readRDS</a></span><span class="op">(</span><span class="st">"data/wordscaling/study1_kaneko.rds"</span><span class="op">)</span></code></pre></div>
 <p>If you’re working locally, you can download the <code>dfm</code> data with:</p>
-<div class="sourceCode" id="cb307"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb310"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">kaneko_dfm</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html">readRDS</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/gzcon.html">gzcon</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/connections.html">url</a></span><span class="op">(</span><span class="st">"https://github.com/cjbarrie/CTA-ED/blob/main/data/wordscaling/kaneko_dfm.rds?raw=true"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>This data is in the form a document-feature-matrix. We can first manipulate it in the same way as <span class="citation">Kaneko, Asano, and Miwa (<a href="references-2.html#ref-kaneko_estimating_2021" role="doc-biblioref">2021</a>)</span> by grouping at the level of newspaper and removing infrequent words.</p>
-<div class="sourceCode" id="cb308"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb311"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="fu"><a href="https://quanteda.io/reference/docvars.html">docvars</a></span><span class="op">(</span><span class="va">kaneko_dfm</span>, <span class="st">"Newspaper"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## 
 ##       Asahi     Chugoku    Chunichi    Hokkaido      Kahoku    Mainichi      Nikkei Nishinippon 
 ##          38          24          47          46          18          26          13          27 
 ##      Sankei     Yomiuri 
 ##          14          30</code></pre>
-<div class="sourceCode" id="cb310"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb313"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## prepare the newspaper-level document-feature matrix</span>
 <span class="co"># compress the document-feature matrix at the newspaper level</span>
 <span class="va">kaneko_dfm_study1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://quanteda.io/reference/dfm_group.html">dfm_group</a></span><span class="op">(</span><span class="va">kaneko_dfm</span>, groups <span class="op">=</span> <span class="va">Newspaper</span><span class="op">)</span>

@@ -110,4 +110,9 @@ glove-algorithm
 implementation-1
 visualization
 exercises-5
+assessment-data
+introduction-6
+osnabrugge_playing_2021-data
+twitter-transparency-data
+king_how_2013-data
 references-2

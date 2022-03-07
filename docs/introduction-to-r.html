@@ -68,7 +68,8 @@
 <li><a class="" href="exercise-4-scaling-techniques.html"><span class="header-section-number">20</span> Exercise 4: Scaling techniques</a></li>
 <li><a class="" href="exercise-5-unsupervised-learning-topic-models.html"><span class="header-section-number">21</span> Exercise 5: Unsupervised learning (topic models)</a></li>
 <li><a class="" href="exercise-6-word-embedding.html"><span class="header-section-number">22</span> Exercise 6: Word embedding</a></li>
-<li><a class="" href="references-2.html"><span class="header-section-number">23</span> References</a></li>
+<li><a class="" href="assessment-data.html"><span class="header-section-number">23</span> Assessment data</a></li>
+<li><a class="" href="references-2.html"><span class="header-section-number">24</span> References</a></li>
 </ul>
 
         <div class="book-extra">
@@ -154,8 +155,16 @@
 <p>After the package is installed, we then need to load it into our environment by typing <tt>library(<insert name of package here>)</insert></tt>. Note that, here, you don’t need to wrap the name of the package in quotation marks. So this will do the trick:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></code></pre></div>
+<pre><code>## ── Attaching packages ────────────────────────────────────────────────────────────────── tidyverse 1.3.1 ──</code></pre>
+<pre><code>## ✓ ggplot2 3.3.5     ✓ purrr   0.3.4
+## ✓ tibble  3.1.6     ✓ dplyr   1.0.8
+## ✓ tidyr   1.2.0     ✓ stringr 1.4.0
+## ✓ readr   2.1.2     ✓ forcats 0.5.1</code></pre>
+<pre><code>## ── Conflicts ───────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()</code></pre>
 <p>What now? Well, let’s see just how easy it is to visualize some data using <tt>ggplot</tt> which is a package that comes bundled into the larger <tt>tidyverse</tt> package.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">mpg</span><span class="op">)</span> <span class="op">+</span> 
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">displ</span>, y <span class="op">=</span> <span class="va">hwy</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-6-1.png" width="672"></div>
@@ -170,18 +179,18 @@
 <li><p>Saving plots: If you have made any plots you would like to save, click Export (in the plotting pane) and choose a relevant file extension (e.g. .png, .pdf, etc.) and size.</p></li>
 <li><p>To save <strong>individual</strong> objects (for example <tt>x</tt> from above) from your environment, run the following command (choosing a suitable filename):</p></li>
 </ul>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/save.html">save</a></span><span class="op">(</span><span class="va">x</span>,file<span class="op">=</span><span class="st">"myobject.RData"</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/load.html">load</a></span><span class="op">(</span>file<span class="op">=</span><span class="st">"myobject.RData"</span><span class="op">)</span></code></pre></div>
 <ul>
 <li>To save <strong>all</strong> of your objects (i.e. everything in the top right panel) at once, run the following command (choosing a suitable filename):</li>
 </ul>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/save.html">save.image</a></span><span class="op">(</span>file<span class="op">=</span><span class="st">"myfilname.RData"</span><span class="op">)</span></code></pre></div>
 <ul>
 <li>Your objects can be re-loaded into R during your next session by running:</li>
 </ul>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/load.html">load</a></span><span class="op">(</span>file<span class="op">=</span><span class="st">"myfilename.RData"</span><span class="op">)</span></code></pre></div>
 <p>There are many other file formats you might use to save any output. We will encounter these as the course progresses.</p>
 </div>
@@ -190,10 +199,10 @@
 <span class="header-section-number">0.7</span> Knowing where R saves your documents<a class="anchor" aria-label="anchor" href="#knowing-where-r-saves-your-documents"><i class="fas fa-link"></i></a>
 </h2>
 <p>If you are at home, when you open a new script make sure to check and set your working directory (i.e. the folder where the files you create will be saved). To check your working directory use the getwd() command (type it into the Console or write it in your script in the Source Editor):</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/getwd.html">getwd</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p>To set your working directory, run the following command, substituting the file directory of your choice. Remember that anything following the `#’ symbol is simply a clarifying comment and R will not process it.</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Example for Mac </span>
 <span class="fu"><a href="https://rdrr.io/r/base/getwd.html">setwd</a></span><span class="op">(</span><span class="st">"/Users/Documents/mydir/"</span><span class="op">)</span> 
 <span class="co">## Example for PC </span>
@@ -210,7 +219,7 @@
 <li><p>The free online book by Julia Silge and David Robinson “Text Mining with R” is available <a href="https://www.tidytextmining.com/">here</a></p></li>
 <li><p>For more practice with R, you may want to consult a set of interactive tutorials, available through the package “learnr.” Once you’ve installed this package, you can go through the tutorials yourselves by calling:</p></li>
 </ul>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rstudio.github.io/learnr/">learnr</a></span><span class="op">)</span>
 
 <span class="fu">available_tutorials</span><span class="op">(</span><span class="op">)</span> <span class="co"># this will tell you the names of the tutorials available</span>
