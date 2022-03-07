@@ -103,28 +103,28 @@
 <p>We can then inspect the contents of each topic as follows.</p>
 <div class="sourceCode" id="cb153"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/terms.html">terms</a></span><span class="op">(</span><span class="va">lda_output</span>, <span class="fl">10</span><span class="op">)</span></code></pre></div>
-<pre><code>##       Topic 1      Topic 2          Topic 3      Topic 4   Topic 5    Topic 6   Topic 7     Topic 8     
-##  [1,] "officials"  "administration" "percent"    "fire"    "soviet"   "bank"    "percent"   "roberts"   
-##  [2,] "state"      "central"        "prices"     "dukakis" "new"      "noriega" "year"      "people"    
-##  [3,] "soviet"     "i"              "oil"        "people"  "rating"   "new"     "company"   "peres"     
-##  [4,] "government" "farmer"         "new"        "i"       "study"    "panama"  "new"       "two"       
-##  [5,] "people"     "snow"           "i"          "waste"   "police"   "warming" "duracell"  "years"     
-##  [6,] "official"   "thats"          "government" "new"     "officers" "global"  "last"      "magellan"  
-##  [7,] "agents"     "high"           "rate"       "grain"   "polish"   "senate"  "business"  "spacecraft"
-##  [8,] "north"      "northern"       "million"    "monday"  "years"    "plan"    "florio"    "ms"        
-##  [9,] "president"  "percent"        "year"       "skins"   "school"   "summit"  "increased" "official"  
-## [10,] "two"        "southern"       "gas"        "state"   "children" "soviet"  "million"   "ago"       
-##       Topic 9     Topic 10    
-##  [1,] "bush"      "new"       
-##  [2,] "police"    "i"         
-##  [3,] "greyhound" "california"
-##  [4,] "mrs"       "bush"      
-##  [5,] "president" "barry"     
-##  [6,] "union"     "city"      
-##  [7,] "bar"       "monday"    
-##  [8,] "company"   "york"      
-##  [9,] "i"         "air"       
-## [10,] "man"       "campaign"</code></pre>
+<pre><code>##       Topic 1      Topic 2      Topic 3    Topic 4      Topic 5          Topic 6       Topic 7    Topic 8 
+##  [1,] "year"       "percent"    "bush"     "percent"    "i"              "rating"      "percent"  "fire"  
+##  [2,] "two"        "soviet"     "i"        "prices"     "people"         "immigration" "noriega"  "three" 
+##  [3,] "agents"     "economy"    "dukakis"  "greyhound"  "soviet"         "new"         "barry"    "first" 
+##  [4,] "government" "national"   "campaign" "waste"      "administration" "year"        "duracell" "monday"
+##  [5,] "peres"      "businesses" "police"   "new"        "thats"          "man"         "gas"      "year"  
+##  [6,] "president"  "economic"   "told"     "union"      "farmer"         "congress"    "million"  "grain" 
+##  [7,] "north"      "report"     "get"      "people"     "new"            "officials"   "panama"   "last"  
+##  [8,] "officials"  "study"      "warming"  "government" "polish"         "jews"        "i"        "saudi" 
+##  [9,] "offer"      "animals"    "back"     "inflation"  "florio"         "million"     "moore"    "season"
+## [10,] "official"   "blackowned" "global"   "oil"        "officers"       "skins"       "company"  "friday"
+##       Topic 9      Topic 10  
+##  [1,] "new"        "new"     
+##  [2,] "bank"       "people"  
+##  [3,] "california" "roberts" 
+##  [4,] "state"      "two"     
+##  [5,] "central"    "tuesday" 
+##  [6,] "i"          "i"       
+##  [7,] "expected"   "like"    
+##  [8,] "snow"       "years"   
+##  [9,] "england"    "children"
+## [10,] "magellan"   "city"</code></pre>
 <p>We can then use the <code><a href="https://generics.r-lib.org/reference/tidy.html">tidy()</a></code> function from <code>tidytext</code> to gather the relevant parameters we’ve estimated. To get the <span class="math inline">\(\beta\)</span> per-topic-per-word probabilities (i.e., the probability that the given term belongs to a given topic) we can do the following.</p>
 <div class="sourceCode" id="cb155"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">lda_beta</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="va">lda_output</span>, matrix <span class="op">=</span> <span class="st">"beta"</span><span class="op">)</span>
@@ -132,18 +132,18 @@
 <span class="va">lda_beta</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="op">-</span><span class="va">beta</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 104,730 × 3
-##    topic term              beta
-##    &lt;int&gt; &lt;chr&gt;            &lt;dbl&gt;
-##  1     3 percent        0.0229 
-##  2     7 percent        0.0214 
-##  3     6 bank           0.0157 
-##  4     7 year           0.0141 
-##  5     3 prices         0.0114 
-##  6     4 fire           0.0111 
-##  7     5 soviet         0.0107 
-##  8     9 bush           0.0105 
-##  9     3 oil            0.0100 
-## 10     2 administration 0.00979
+##    topic term      beta
+##    &lt;int&gt; &lt;chr&gt;    &lt;dbl&gt;
+##  1     7 percent 0.0186
+##  2     4 percent 0.0182
+##  3     2 percent 0.0177
+##  4     3 bush    0.0172
+##  5     9 new     0.0168
+##  6     9 bank    0.0151
+##  7     2 soviet  0.0136
+##  8     3 i       0.0124
+##  9     3 dukakis 0.0124
+## 10    10 new     0.0103
 ## # … with 104,720 more rows</code></pre>
 <p>And to get the <span class="math inline">\(\gamma\)</span> per-document-per-topic probabilities (i.e., the probability that a given document (here: article) belongs to a particular topic) we do the following.</p>
 <div class="sourceCode" id="cb157"><pre class="downlit sourceCode r">
@@ -154,16 +154,16 @@
 <pre><code>## # A tibble: 1,000 × 3
 ##    document topic gamma
 ##       &lt;int&gt; &lt;int&gt; &lt;dbl&gt;
-##  1       76     2  1.00
-##  2       81    10  1.00
-##  3        6     6  1.00
-##  4       43     8  1.00
-##  5       31     3  1.00
-##  6       95    10  1.00
-##  7       77     9  1.00
+##  1       76     5  1.00
+##  2       81     5  1.00
+##  3        6     7  1.00
+##  4       43    10  1.00
+##  5       31     4  1.00
+##  6       95     9  1.00
+##  7       77     3  1.00
 ##  8       29     5  1.00
 ##  9       80    10  1.00
-## 10       57     1  1.00
+## 10       57     6  1.00
 ## # … with 990 more rows</code></pre>
 <p>And we can easily plot our <span class="math inline">\(\beta\)</span> estimates as follows.</p>
 <div class="sourceCode" id="cb159"><pre class="downlit sourceCode r">

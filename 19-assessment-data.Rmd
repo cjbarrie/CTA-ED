@@ -10,7 +10,7 @@ We can access data from @osnabrugge_playing_2021 [here](https://dataverse.harvar
 
 To prepare these data, we can use the same code as used by the original authors:
 
-```{r, echo= FALSE}
+```{r, eval= FALSE}
 library("ggplot2")
 library("plyr")
 library("gdata")
@@ -96,6 +96,9 @@ data <- readRDS("data/assessment/osnabrugge_samp.rds")
 ```
 
 ```{r, echo=F}
+
+data <- data[1:3,]
+
 data %>%
   select(id_speech, text, last_name, first_name, date, government, female, age) %>%
   kbl() %>%

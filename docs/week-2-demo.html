@@ -104,20 +104,20 @@
 <code class="sourceCode R"><span class="va">lipsum_text</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>text <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/stringi/man/stri_rand_lipsum.html">stri_rand_lipsum</a></span><span class="op">(</span><span class="fl">1</span>, start_lipsum <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">lipsum_text</span><span class="op">$</span><span class="va">text</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] "Lorem ipsum dolor sit amet, eu tempus, auctor non eu vitae ultricies cras, luctus fusce litora enim elementum et. Etiam tellus nulla quis sed odio suspendisse purus elit hendrerit tortor. Justo elementum ante ullamcorper. Eu erat risus eu pellentesque, ut facilisis est maximus at? Magnis ac mauris non amet in. Quis ac porta, egestas laoreet semper curae, in ligula! Vel in elit vivamus facilisi placerat. Nunc ipsum, nisl porttitor praesent etiam class finibus volutpat eget. Per nec nisl. In consectetur dignissim at nostra in congue. Et bibendum diam, ullamcorper vitae ultricies, sed ridiculus morbi consequat. Lacus et eget feugiat, in sed sed viverra vel. In amet, neque non sed eleifend. Interdum, vel lectus, et rhoncus."</code></pre>
+<pre><code>## [1] "Lorem ipsum dolor sit amet, vestibulum aliquam, dictumst praesent ut in ut maximus. Ex ligula lorem sed ut enim sed amet eu commodo, lectus, pellentesque mi, egestas. Varius scelerisque id, erat ex arcu pulvinar nulla nascetur faucibus consectetur. Fames faucibus sed ultrices dignissim in lobortis libero elementum. Sit sed lobortis ac fringilla convallis, imperdiet. Pretium vestibulum id donec ad et in accumsan. Ex ligula ullamcorper et sed in parturient efficitur quisque. Volutpat varius et facilisi sociosqu convallis."</code></pre>
 <p>We can then tokenize with the <code><a href="https://rdrr.io/pkg/tidytext/man/unnest_tokens.html">unnest_tokens()</a></code> function in <code>tidytext</code>.</p>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tokens</span> <span class="op">&lt;-</span> <span class="va">lipsum_text</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://rdrr.io/pkg/tidytext/man/unnest_tokens.html">unnest_tokens</a></span><span class="op">(</span><span class="va">word</span>, <span class="va">text</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">tokens</span><span class="op">)</span></code></pre></div>
-<pre><code>##    word
-## 1 lorem
-## 2 ipsum
-## 3 dolor
-## 4   sit
-## 5  amet
-## 6    eu</code></pre>
+<pre><code>##         word
+## 1      lorem
+## 2      ipsum
+## 3      dolor
+## 4        sit
+## 5       amet
+## 6 vestibulum</code></pre>
 <p>Now we’ll get some larger data, simulating 5000 observations (rows) of random Latin text strings.</p>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Varying total words example</span>
@@ -200,7 +200,7 @@ n
 lipsum
 </td>
 <td style="text-align:right;">
-71638
+73229
 </td>
 </tr>
 <tr>
@@ -208,7 +208,7 @@ lipsum
 more
 </td>
 <td style="text-align:right;">
-71638
+73229
 </td>
 </tr>
 <tr>
@@ -216,7 +216,7 @@ more
 words
 </td>
 <td style="text-align:right;">
-66863
+68421
 </td>
 </tr>
 <tr>
@@ -224,7 +224,7 @@ words
 sed
 </td>
 <td style="text-align:right;">
-17967
+17696
 </td>
 </tr>
 <tr>
@@ -232,7 +232,7 @@ sed
 in
 </td>
 <td style="text-align:right;">
-12549
+12332
 </td>
 </tr>
 </tbody>
