@@ -85,7 +85,7 @@ complexity-1
 exercises-2
 exercise-4-scaling-techniques
 introduction-3
-exercise-4-unsupervised-learning-topic-models
+exercise-5-unsupervised-learning-topic-models
 introduction-4
 setup-9
 evaluating-topic-model
@@ -94,7 +94,7 @@ split-into-chapter-documents
 examine-consensus
 validation-1
 exercises-3
-exercise-4-word-embedding
+exercise-6-word-embedding
 introduction-5
 setup-10
 word-vectors-via-svd

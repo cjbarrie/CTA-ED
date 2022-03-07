@@ -66,8 +66,8 @@
 <li><a class="" href="exercise-2-dictionary-based-methods.html"><span class="header-section-number">18</span> Exercise 2: Dictionary-based methods</a></li>
 <li><a class="active" href="exercise-3-comparison-and-complexity.html"><span class="header-section-number">19</span> Exercise 3: Comparison and complexity</a></li>
 <li><a class="" href="exercise-4-scaling-techniques.html"><span class="header-section-number">20</span> Exercise 4: Scaling techniques</a></li>
-<li><a class="" href="exercise-4-unsupervised-learning-topic-models.html"><span class="header-section-number">21</span> Exercise 4: Unsupervised learning (topic models)</a></li>
-<li><a class="" href="exercise-4-word-embedding.html"><span class="header-section-number">22</span> Exercise 4: Word embedding</a></li>
+<li><a class="" href="exercise-5-unsupervised-learning-topic-models.html"><span class="header-section-number">21</span> Exercise 5: Unsupervised learning (topic models)</a></li>
+<li><a class="" href="exercise-6-word-embedding.html"><span class="header-section-number">22</span> Exercise 6: Word embedding</a></li>
 <li><a class="" href="references-2.html"><span class="header-section-number">23</span> References</a></li>
 </ul>
 
@@ -90,7 +90,7 @@
 <li>Compare texts using character-based measures of similarity and distance</li>
 <li>Compare texts using term-based measures of similarity and distance</li>
 <li>Calculate the complexity of texts</li>
-<li>Replicate analyses from <span class="citation"><a href="references-2.html#ref-schoonvelde_liberals_2019" role="doc-biblioref">Schoonvelde et al.</a> (<a href="references-2.html#ref-schoonvelde_liberals_2019" role="doc-biblioref">2019</a>)</span>
+<li>Replicate analyses from <span class="citation">Schoonvelde et al. (<a href="references-2.html#ref-schoonvelde_liberals_2019" role="doc-biblioref">2019</a>)</span>
 </li>
 </ul>
 </div>
@@ -118,22 +118,21 @@
 <div class="sourceCode" id="cb258"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">tweets</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 3
-##   username   tweet                                                                 date      
-##   &lt;chr&gt;      &lt;chr&gt;                                                                 &lt;date&gt;    
-## 1 aluncairns "A good luck message to Chris Coleman’s squad @FAWales ahead of toni… 2017-10-09
-## 2 aluncairns ".@AlunCairns “The close relationship between industry and governmen… 2017-10-09
-## 3 aluncairns "@BarclaysCorp &amp;amp; @SPTS_Tech \"voice of Welsh Manufacturing\" eve… 2017-10-09
-## 4 aluncairns "Today we announced plans to ban the sale of ivory in the UK.\nThe c… 2017-10-06
-## 5 aluncairns "Unbeaten Wales overcome Georgia to boost their @FIFAWorldCup qualif… 2017-10-06
-## 6 aluncairns ".@GutoAberconwy marks 25 years of engine production @toyotafactory … 2017-10-06</code></pre>
+##   username   tweet                                                                               date      
+##   &lt;chr&gt;      &lt;chr&gt;                                                                               &lt;date&gt;    
+## 1 aluncairns "A good luck message to Chris Coleman’s squad @FAWales ahead of tonight’s crucial … 2017-10-09
+## 2 aluncairns ".@AlunCairns “The close relationship between industry and government stand only t… 2017-10-09
+## 3 aluncairns "@BarclaysCorp &amp;amp; @SPTS_Tech \"voice of Welsh Manufacturing\" event with @AlunC… 2017-10-09
+## 4 aluncairns "Today we announced plans to ban the sale of ivory in the UK.\nThe cruel poaching … 2017-10-06
+## 5 aluncairns "Unbeaten Wales overcome Georgia to boost their @FIFAWorldCup qualification hopes.… 2017-10-06
+## 6 aluncairns ".@GutoAberconwy marks 25 years of engine production @toyotafactory Deeside #stron… 2017-10-06</code></pre>
 <p>And there are 24 MPs whose tweets we’re examining.</p>
 <div class="sourceCode" id="cb260"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">tweets</span><span class="op">$</span><span class="va">username</span><span class="op">)</span></code></pre></div>
-<pre><code>##  [1] "aluncairns"      "amberrudduk"     "andrealeadsom"   "borisjohnson"   
-##  [5] "brandonlewis"    "damiangreen"     "damianhinds"     "daviddavismp"   
-##  [9] "davidgauke"      "davidmundelldct" "dlidington"      "gavinwilliamson"
-## [13] "gregclarkmp"     "jbrokenshire"    "jeremy_hunt"     "juliansmithuk"  
-## [17] "justinegreening" "liamfox"         "michaelgove"     "pennymordaunt"  
+<pre><code>##  [1] "aluncairns"      "amberrudduk"     "andrealeadsom"   "borisjohnson"    "brandonlewis"   
+##  [6] "damiangreen"     "damianhinds"     "daviddavismp"    "davidgauke"      "davidmundelldct"
+## [11] "dlidington"      "gavinwilliamson" "gregclarkmp"     "jbrokenshire"    "jeremy_hunt"    
+## [16] "juliansmithuk"   "justinegreening" "liamfox"         "michaelgove"     "pennymordaunt"  
 ## [21] "philiphammonduk" "sajidjavid"      "theresa_may"     "trussliz"</code></pre>
 <div class="sourceCode" id="cb262"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">tweets</span><span class="op">$</span><span class="va">username</span><span class="op">)</span><span class="op">)</span></code></pre></div>
@@ -256,7 +255,7 @@
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="st">"MP username"</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">"Cosine similarity score"</span><span class="op">)</span> <span class="op">+</span> 
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-150-1.png" width="672"></div>
+<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-151-1.png" width="672"></div>
 <p>Combining these steps into a single <code>for</code> loop, we can see how our different similarity measures of interest compare.</p>
 <div class="sourceCode" id="cb278"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">#specify different similarity measures to explore</span>
@@ -306,13 +305,13 @@
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="st">"MP username"</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">"Similarity score"</span><span class="op">)</span> <span class="op">+</span> 
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-151-1.png" width="672"></div>
+<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-152-1.png" width="672"></div>
 </div>
 <div id="complexity-1" class="section level2" number="19.6">
 <h2>
 <span class="header-section-number">19.6</span> Complexity<a class="anchor" aria-label="anchor" href="#complexity-1"><i class="fas fa-link"></i></a>
 </h2>
-<p>We now move to document-level measures of text characteristics. And here we will focus on the paper by <span class="citation"><a href="references-2.html#ref-schoonvelde_liberals_2019" role="doc-biblioref">Schoonvelde et al.</a> (<a href="references-2.html#ref-schoonvelde_liberals_2019" role="doc-biblioref">2019</a>)</span>.</p>
+<p>We now move to document-level measures of text characteristics. And here we will focus on the paper by <span class="citation">Schoonvelde et al. (<a href="references-2.html#ref-schoonvelde_liberals_2019" role="doc-biblioref">2019</a>)</span>.</p>
 <p>We will be using a subset of these data, taken from EU speeches given by four politicians. These are provided by the authors at <a href="https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/S4IZ8K">https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/S4IZ8K</a>.</p>
 <p>We can load the data as follows.</p>
 <div class="sourceCode" id="cb279"><pre class="downlit sourceCode r">
@@ -345,7 +344,7 @@
 <span class="co"># returned as quanteda data.frame with document-level information;</span>
 <span class="co"># need just the score:</span>
 <span class="va">speeches</span><span class="op">$</span><span class="va">flesch.kincaid</span> <span class="op">&lt;-</span> <span class="va">speeches</span><span class="op">$</span><span class="va">flesch.kincaid</span><span class="op">$</span><span class="va">Flesch.Kincaid</span></code></pre></div>
-<p>We want this information aggregated over each of our politicians: Gordon Brown, Jose Zapatero“, David Cameron, and Mariano Rajoy. These are recorded in the data under a column called”speaker."</p>
+<p>We want this information aggregated over each of our politicians: Gordon Brown, Jose Zapatero”, David Cameron, and Mariano Rajoy. These are recorded in the data under a column called “speaker.”</p>
 <div class="sourceCode" id="cb284"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">#get mean and standard deviation of Flesch-Kincaid, and N of speeches for each speaker</span>
 <span class="va">sum_corpus</span> <span class="op">&lt;-</span> <span class="va">speeches</span> <span class="op"><a href="https://quanteda.io/reference/pipe.html">%&gt;%</a></span>
@@ -368,7 +367,7 @@
 ## 2 G. Brown         13.3  2.30   277 0.138   13.0  13.6
 ## 3 J.L.R. Zapatero  15.5  2.83   354 0.150   15.2  15.8
 ## 4 M. Rajoy         13.7  2.56   389 0.130   13.4  13.9</code></pre>
-<p>Which we can then plot—and we see that our results look like those in Figure 1 of the published article by <span class="citation"><a href="references-2.html#ref-schoonvelde_liberals_2019" role="doc-biblioref">Schoonvelde et al.</a> (<a href="references-2.html#ref-schoonvelde_liberals_2019" role="doc-biblioref">2019</a>)</span>.</p>
+<p>Which we can then plot—and we see that our results look like those in Figure 1 of the published article by <span class="citation">Schoonvelde et al. (<a href="references-2.html#ref-schoonvelde_liberals_2019" role="doc-biblioref">2019</a>)</span>.</p>
 <div class="sourceCode" id="cb287"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">sum_corpus</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">speaker</span>, y<span class="op">=</span><span class="va">mean</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span>stat<span class="op">=</span><span class="st">"identity"</span><span class="op">)</span> <span class="op">+</span> 
@@ -378,7 +377,7 @@
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">"Mean Complexity"</span><span class="op">)</span> <span class="op">+</span> 
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> 
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html">ylim</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">20</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-158-1.png" width="672"></div>
+<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-159-1.png" width="672"></div>
 </div>
 <div id="exercises-2" class="section level2" number="19.7">
 <h2>
@@ -386,7 +385,7 @@
 </h2>
 <ol style="list-style-type: decimal">
 <li>Compute distance measures such as “euclidean” or “manhattan” for the MP tweets as above, comparing between tweets by MPs and tweets by PM, Theresa May.</li>
-<li>Estimate at least three other complexity measures for the EU speeches as above. Consider how the results compare to the Flesch-Kincaid measure used in the article by <span class="citation"><a href="references-2.html#ref-schoonvelde_liberals_2019" role="doc-biblioref">Schoonvelde et al.</a> (<a href="references-2.html#ref-schoonvelde_liberals_2019" role="doc-biblioref">2019</a>)</span>.</li>
+<li>Estimate at least three other complexity measures for the EU speeches as above. Consider how the results compare to the Flesch-Kincaid measure used in the article by <span class="citation">Schoonvelde et al. (<a href="references-2.html#ref-schoonvelde_liberals_2019" role="doc-biblioref">2019</a>)</span>.</li>
 <li>(Advanced—optional) Estimate similarity scores between the MP tweets and the PM tweets for each week contained in the data. Plot the results.</li>
 </ol>
 </div>
@@ -422,7 +421,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Computational Text Analysis</strong>" was written by Christopher Barrie. It was last built on 2022-02-25.</p>
+    <p>"<strong>Computational Text Analysis</strong>" was written by Christopher Barrie. It was last built on 2022-03-07.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

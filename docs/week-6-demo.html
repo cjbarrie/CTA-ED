@@ -6,16 +6,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Chapter 11 Week 6 Demo | Computational Text Analysis</title>
 <meta name="author" content="Christopher Barrie">
-<meta name="description" content="11.1 Setup First, we’ll load the packages we’ll be using in this week’s brief demo. library(topicmodels) library(dplyr) library(tidytext) library(ggplot2) Estimating a topic model requires us...">
+<meta name="description" content="11.1 Setup First, we’ll load the packages we’ll be using in this week’s brief demo. library(topicmodels) library(dplyr) library(tidytext) library(ggplot2) library(ggthemes) Estimating a topic...">
 <meta name="generator" content="bookdown 0.24 with bs4_book()">
 <meta property="og:title" content="Chapter 11 Week 6 Demo | Computational Text Analysis">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://cjbarrie.github.io/CTA-ED/week-6-demo.html">
 <meta property="og:image" content="https://cjbarrie.github.io/CTA-ED/coverb.png">
-<meta property="og:description" content="11.1 Setup First, we’ll load the packages we’ll be using in this week’s brief demo. library(topicmodels) library(dplyr) library(tidytext) library(ggplot2) Estimating a topic model requires us...">
+<meta property="og:description" content="11.1 Setup First, we’ll load the packages we’ll be using in this week’s brief demo. library(topicmodels) library(dplyr) library(tidytext) library(ggplot2) library(ggthemes) Estimating a topic...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Chapter 11 Week 6 Demo | Computational Text Analysis">
-<meta name="twitter:description" content="11.1 Setup First, we’ll load the packages we’ll be using in this week’s brief demo. library(topicmodels) library(dplyr) library(tidytext) library(ggplot2) Estimating a topic model requires us...">
+<meta name="twitter:description" content="11.1 Setup First, we’ll load the packages we’ll be using in this week’s brief demo. library(topicmodels) library(dplyr) library(tidytext) library(ggplot2) library(ggthemes) Estimating a topic...">
 <meta name="twitter:image" content="https://cjbarrie.github.io/CTA-ED/coverb.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
@@ -66,8 +66,8 @@
 <li><a class="" href="exercise-2-dictionary-based-methods.html"><span class="header-section-number">18</span> Exercise 2: Dictionary-based methods</a></li>
 <li><a class="" href="exercise-3-comparison-and-complexity.html"><span class="header-section-number">19</span> Exercise 3: Comparison and complexity</a></li>
 <li><a class="" href="exercise-4-scaling-techniques.html"><span class="header-section-number">20</span> Exercise 4: Scaling techniques</a></li>
-<li><a class="" href="exercise-4-unsupervised-learning-topic-models.html"><span class="header-section-number">21</span> Exercise 4: Unsupervised learning (topic models)</a></li>
-<li><a class="" href="exercise-4-word-embedding.html"><span class="header-section-number">22</span> Exercise 4: Word embedding</a></li>
+<li><a class="" href="exercise-5-unsupervised-learning-topic-models.html"><span class="header-section-number">21</span> Exercise 5: Unsupervised learning (topic models)</a></li>
+<li><a class="" href="exercise-6-word-embedding.html"><span class="header-section-number">22</span> Exercise 6: Word embedding</a></li>
 <li><a class="" href="references-2.html"><span class="header-section-number">23</span> References</a></li>
 </ul>
 
@@ -89,7 +89,8 @@
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">topicmodels</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/juliasilge/tidytext">tidytext</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></code></pre></div>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jrnold/ggthemes">ggthemes</a></span><span class="op">)</span></code></pre></div>
 <p>Estimating a topic model requires us first to have our data in the form of a document-term-matrix. This is another term for what we have referred to in previous weeks as a document-feature-matrix.</p>
 <p>We can take some example data from the <code>topicmodels</code> package. This text is from news releases by the Associated Press. It consists of around 2,200 articles (documents) and over 10,000 terms (words).</p>
 <div class="sourceCode" id="cb148"><pre class="downlit sourceCode r">
@@ -101,28 +102,28 @@
 <p>We can then inspect the contents of each topic as follows.</p>
 <div class="sourceCode" id="cb150"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/terms.html">terms</a></span><span class="op">(</span><span class="va">lda_output</span>, <span class="fl">10</span><span class="op">)</span></code></pre></div>
-<pre><code>##       Topic 1     Topic 2    Topic 3          Topic 4    Topic 5       Topic 6    
-##  [1,] "union"     "soviet"   "i"              "barry"    "year"        "bush"     
-##  [2,] "i"         "roberts"  "rating"         "fbi"      "immigration" "campaign" 
-##  [3,] "greyhound" "people"   "new"            "people"   "percent"     "peres"    
-##  [4,] "soviet"    "waste"    "administration" "agents"   "last"        "dukakis"  
-##  [5,] "company"   "years"    "thats"          "moore"    "monday"      "president"
-##  [6,] "gas"       "duracell" "farmer"         "congress" "record"      "official" 
-##  [7,] "new"       "i"        "mrs"            "asked"    "company"     "i"        
-##  [8,] "talks"     "officers" "children"       "germany"  "new"         "offer"    
-##  [9,] "agreement" "police"   "north"          "i"        "three"       "get"      
-## [10,] "drivers"   "magellan" "people"         "jews"     "president"   "people"   
-##       Topic 7      Topic 8    Topic 9   Topic 10    
-##  [1,] "new"        "year"     "percent" "bank"      
-##  [2,] "economic"   "central"  "prices"  "new"       
-##  [3,] "dukakis"    "new"      "rate"    "state"     
-##  [4,] "noriega"    "snow"     "rose"    "fire"      
-##  [5,] "percent"    "northern" "year"    "government"
-##  [6,] "california" "two"      "month"   "people"    
-##  [7,] "i"          "florio"   "report"  "million"   
-##  [8,] "national"   "bombs"    "index"   "reported"  
-##  [9,] "jackson"    "city"     "price"   "church"    
-## [10,] "panama"     "high"     "oil"     "mexico"</code></pre>
+<pre><code>##       Topic 1      Topic 2          Topic 3    Topic 4      Topic 5     Topic 6     Topic 7   Topic 8     
+##  [1,] "company"    "administration" "percent"  "new"        "bank"      "bush"      "fire"    "new"       
+##  [2,] "children"   "state"          "soviet"   "barry"      "new"       "i"         "new"     "i"         
+##  [3,] "grain"      "i"              "thursday" "california" "leaders"   "roberts"   "year"    "people"    
+##  [4,] "nikolais"   "noriega"        "duracell" "moore"      "officials" "campaign"  "people"  "rating"    
+##  [5,] "plant"      "percent"        "new"      "states"     "president" "people"    "state"   "dukakis"   
+##  [6,] "arco"       "thats"          "two"      "york"       "greyhound" "dukakis"   "company" "waste"     
+##  [7,] "average"    "farmer"         "agents"   "air"        "summit"    "police"    "florio"  "cuban"     
+##  [8,] "bar"        "man"            "gas"      "drugs"      "union"     "years"     "church"  "two"       
+##  [9,] "multistate" "panama"         "magellan" "baker"      "warming"   "year"      "mexico"  "washington"
+## [10,] "stock"      "people"         "polish"   "mundy"      "global"    "president" "million" "state"     
+##       Topic 9     Topic 10    
+##  [1,] "percent"   "soviet"    
+##  [2,] "central"   "i"         
+##  [3,] "oil"       "year"      
+##  [4,] "high"      "gorbachevs"
+##  [5,] "prices"    "gorbachev" 
+##  [6,] "rate"      "committee" 
+##  [7,] "rose"      "officials" 
+##  [8,] "degrees"   "last"      
+##  [9,] "year"      "group"     
+## [10,] "wednesday" "mrs"</code></pre>
 <p>We can then use the <code><a href="https://generics.r-lib.org/reference/tidy.html">tidy()</a></code> function from <code>tidytext</code> to gather the relevant parameters we’ve estimated. To get the <span class="math inline">\(\beta\)</span> per-topic-per-word probabilities (i.e., the probability that the given term belongs to a given topic) we can do the following.</p>
 <div class="sourceCode" id="cb152"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">lda_beta</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="va">lda_output</span>, matrix <span class="op">=</span> <span class="st">"beta"</span><span class="op">)</span>
@@ -130,18 +131,18 @@
 <span class="va">lda_beta</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="op">-</span><span class="va">beta</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 104,730 × 3
-##    topic term       beta
-##    &lt;int&gt; &lt;chr&gt;     &lt;dbl&gt;
-##  1     9 percent  0.0373
-##  2     6 bush     0.0308
-##  3    10 bank     0.0145
-##  4     2 soviet   0.0135
-##  5     6 campaign 0.0128
-##  6    10 new      0.0125
-##  7     3 i        0.0124
-##  8     9 prices   0.0112
-##  9     6 peres    0.0111
-## 10     7 new      0.0104
+##    topic term              beta
+##    &lt;int&gt; &lt;chr&gt;            &lt;dbl&gt;
+##  1     9 percent        0.0255 
+##  2     6 bush           0.0181 
+##  3    10 soviet         0.0157 
+##  4     5 bank           0.0136 
+##  5     4 new            0.0131 
+##  6    10 i              0.0113 
+##  7     7 fire           0.0106 
+##  8     2 administration 0.0106 
+##  9     1 company        0.0102 
+## 10     8 new            0.00941
 ## # … with 104,720 more rows</code></pre>
 <p>And to get the <span class="math inline">\(\gamma\)</span> per-document-per-topic probabilities (i.e., the probability that a given document (here: article) belongs to a particular topic) we do the following.</p>
 <div class="sourceCode" id="cb154"><pre class="downlit sourceCode r">
@@ -152,16 +153,16 @@
 <pre><code>## # A tibble: 1,000 × 3
 ##    document topic gamma
 ##       &lt;int&gt; &lt;int&gt; &lt;dbl&gt;
-##  1       76     3  1.00
-##  2       81    10  1.00
-##  3        6     7  1.00
-##  4       43     2  1.00
+##  1       76     2  1.00
+##  2       81     7  1.00
+##  3        6     2  1.00
+##  4       43     6  1.00
 ##  5       31     9  1.00
-##  6       95     7  1.00
+##  6       95     4  1.00
 ##  7       77     6  1.00
-##  8       29     2  1.00
-##  9       80     5  1.00
-## 10       57     4  1.00
+##  8       29     3  1.00
+##  9       80     9  1.00
+## 10       57     5  1.00
 ## # … with 990 more rows</code></pre>
 <p>And we can easily plot our <span class="math inline">\(\beta\)</span> estimates as follows.</p>
 <div class="sourceCode" id="cb156"><pre class="downlit sourceCode r">
@@ -176,7 +177,7 @@
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span> <span class="va">topic</span>, scales <span class="op">=</span> <span class="st">"free"</span>, ncol <span class="op">=</span> <span class="fl">4</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/tidytext/man/reorder_within.html">scale_y_reordered</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_tufte.html">theme_tufte</a></span><span class="op">(</span>base_family <span class="op">=</span> <span class="st">"Helvetica"</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-75-1.png" width="672"></div>
+<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-76-1.png" width="672"></div>
 <p>Which shows us the words associated with each topic, and the size of the associated <span class="math inline">\(\beta\)</span> coefficient.</p>
 
 </div>
@@ -206,7 +207,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Computational Text Analysis</strong>" was written by Christopher Barrie. It was last built on 2022-02-25.</p>
+    <p>"<strong>Computational Text Analysis</strong>" was written by Christopher Barrie. It was last built on 2022-03-07.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

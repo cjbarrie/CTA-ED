@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 22 Exercise 6: Word embedding | Computational Text Analysis</title>
+<meta name="author" content="Christopher Barrie">
+<meta name="description" content="22.1 Introduction The hands-on exercise for this week focuses on word embedding and provides an overview of the data structures, and functions relevant for, estimating word vectors for...">
+<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta property="og:title" content="Chapter 22 Exercise 6: Word embedding | Computational Text Analysis">
+<meta property="og:type" content="book">
+<meta property="og:url" content="https://cjbarrie.github.io/CTA-ED/exercise-6-word-embedding.html">
+<meta property="og:image" content="https://cjbarrie.github.io/CTA-ED/coverb.png">
+<meta property="og:description" content="22.1 Introduction The hands-on exercise for this week focuses on word embedding and provides an overview of the data structures, and functions relevant for, estimating word vectors for...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 22 Exercise 6: Word embedding | Computational Text Analysis">
+<meta name="twitter:description" content="22.1 Introduction The hands-on exercise for this week focuses on word embedding and provides an overview of the data structures, and functions relevant for, estimating word vectors for...">
+<meta name="twitter:image" content="https://cjbarrie.github.io/CTA-ED/coverb.png">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS -->
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Computational Text Analysis</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">“Computational Text Analysis” (PGSP11584)</a></li>
+<li><a class="" href="course-overview.html">Course Overview</a></li>
+<li><a class="" href="introduction-to-r.html">Introduction to R</a></li>
+<li><a class="" href="week-1.html"><span class="header-section-number">1</span> Week 1</a></li>
+<li><a class="" href="week-2.html"><span class="header-section-number">2</span> Week 2</a></li>
+<li><a class="" href="week-2-demo.html"><span class="header-section-number">3</span> Week 2 Demo</a></li>
+<li><a class="" href="week-3.html"><span class="header-section-number">4</span> Week 3</a></li>
+<li><a class="" href="week-3-demo.html"><span class="header-section-number">5</span> Week 3 Demo</a></li>
+<li><a class="" href="week-4.html"><span class="header-section-number">6</span> Week 4</a></li>
+<li><a class="" href="week-4-demo.html"><span class="header-section-number">7</span> Week 4 Demo</a></li>
+<li><a class="" href="week-5.html"><span class="header-section-number">8</span> Week 5</a></li>
+<li><a class="" href="week-5-demo.html"><span class="header-section-number">9</span> Week 5 Demo</a></li>
+<li><a class="" href="week-6.html"><span class="header-section-number">10</span> Week 6</a></li>
+<li><a class="" href="week-6-demo.html"><span class="header-section-number">11</span> Week 6 Demo</a></li>
+<li><a class="" href="week-7.html"><span class="header-section-number">12</span> Week 7</a></li>
+<li><a class="" href="week-7-demo.html"><span class="header-section-number">13</span> Week 7 Demo</a></li>
+<li><a class="" href="week-8.html"><span class="header-section-number">14</span> Week 8</a></li>
+<li><a class="" href="week-9.html"><span class="header-section-number">15</span> Week 9</a></li>
+<li><a class="" href="week-10.html"><span class="header-section-number">16</span> Week 10</a></li>
+<li><a class="" href="exercise-1-word-frequency-analysis.html"><span class="header-section-number">17</span> Exercise 1: Word frequency analysis</a></li>
+<li><a class="" href="exercise-2-dictionary-based-methods.html"><span class="header-section-number">18</span> Exercise 2: Dictionary-based methods</a></li>
+<li><a class="" href="exercise-3-comparison-and-complexity.html"><span class="header-section-number">19</span> Exercise 3: Comparison and complexity</a></li>
+<li><a class="" href="exercise-4-scaling-techniques.html"><span class="header-section-number">20</span> Exercise 4: Scaling techniques</a></li>
+<li><a class="" href="exercise-5-unsupervised-learning-topic-models.html"><span class="header-section-number">21</span> Exercise 5: Unsupervised learning (topic models)</a></li>
+<li><a class="active" href="exercise-6-word-embedding.html"><span class="header-section-number">22</span> Exercise 6: Word embedding</a></li>
+<li><a class="" href="references-2.html"><span class="header-section-number">23</span> References</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/cjbarrie/CTA-ED">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="exercise-6-word-embedding" class="section level1" number="22">
+<h1>
+<span class="header-section-number">22</span> Exercise 6: Word embedding<a class="anchor" aria-label="anchor" href="#exercise-6-word-embedding"><i class="fas fa-link"></i></a>
+</h1>
+<div id="introduction-5" class="section level2" number="22.1">
+<h2>
+<span class="header-section-number">22.1</span> Introduction<a class="anchor" aria-label="anchor" href="#introduction-5"><i class="fas fa-link"></i></a>
+</h2>
+<p>The hands-on exercise for this week focuses on word embedding and provides an overview of the data structures, and functions relevant for, estimating word vectors for word-embedding analyses.</p>
+<p>In this tutorial, you will learn how to:</p>
+<ul>
+<li>Generate word vectors (embeddings) via SVD</li>
+<li>Train a local word embedding model in GloVe</li>
+<li>Visualize and inspect results</li>
+<li>Load and examine pre-trained embeddings</li>
+</ul>
+<p>Note: Adapts from tutorials by Chris Bail <a href="https://cbail.github.io/textasdata/word2vec/rmarkdown/word2vec.html">here</a> and Julia Silge <a href="https://juliasilge.com/blog/tidy-word-vectors/">here</a> and Emil Hvitfeldt and Julia Silge <a href="https://smltar.com/">here</a>.</p>
+</div>
+<div id="setup-10" class="section level2" number="22.2">
+<h2>
+<span class="header-section-number">22.2</span> Setup<a class="anchor" aria-label="anchor" href="#setup-10"><i class="fas fa-link"></i></a>
+</h2>
+<div class="sourceCode" id="cb344"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span> <span class="co"># loads dplyr, ggplot2, and others</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://stringr.tidyverse.org">stringr</a></span><span class="op">)</span> <span class="co"># to handle text elements</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/juliasilge/tidytext">tidytext</a></span><span class="op">)</span> <span class="co"># includes set of functions useful for manipulating text</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jrnold/ggthemes">ggthemes</a></span><span class="op">)</span> <span class="co"># to make your plots look nice</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://text2vec.org">text2vec</a></span><span class="op">)</span> <span class="co"># for word embedding implementation</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/dgrtwo/widyr">widyr</a></span><span class="op">)</span> <span class="co"># for reshaping the text data</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">irlba</span><span class="op">)</span> <span class="co"># for svd</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/tkonopka/umap">umap</a></span><span class="op">)</span> <span class="co"># for dimensionality reduction</span></code></pre></div>
+<p>We begin by reading in the data. These data come from a sample of 1m tweets by elected UK MPs over the period 2017-2019. The data contain just the name of the MP-user, the text of the tweet, and the MP’s party. We then just add an ID variable called “postID.”</p>
+<div class="sourceCode" id="cb345"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">twts_sample</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html">readRDS</a></span><span class="op">(</span><span class="st">"data/wordembed/twts_corpus_sample.rds"</span><span class="op">)</span>
+
+<span class="co">#create tweet id</span>
+<span class="va">twts_sample</span><span class="op">$</span><span class="va">postID</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/row.names.html">row.names</a></span><span class="op">(</span><span class="va">twts_sample</span><span class="op">)</span></code></pre></div>
+<p>If you’re working on this document from your own computer (“locally”) you can download the tweets sample data in the following way:</p>
+<div class="sourceCode" id="cb346"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">twts_sample</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html">readRDS</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/gzcon.html">gzcon</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/connections.html">url</a></span><span class="op">(</span><span class="st">"https://github.com/cjbarrie/CTA-ED/blob/main/data/wordembed/twts_corpus_sample.rds?raw=true"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+</div>
+<div id="word-vectors-via-svd" class="section level2" number="22.3">
+<h2>
+<span class="header-section-number">22.3</span> Word vectors via SVD<a class="anchor" aria-label="anchor" href="#word-vectors-via-svd"><i class="fas fa-link"></i></a>
+</h2>
+<p>We’re going to set about generating a set of word vectors with from our text data. Note that many word embedding applications will use pre-trained embeddings from a much larger corpus, or will generate local embeddings using neural net-based approaches.</p>
+<p>Here, we’re instead going to generate a set of embeddings or word vectors by making a series of calculations based on the frequencies with which words appear in different contexts. We will then use a technique called the “Singular Value Decomposition” (SVD). This is a dimensionality reduction technique where the first axis of the resulting composition is designed to capture the most variance, the second the second-most etc…</p>
+<p>How do we achieve this?</p>
+</div>
+<div id="implementation" class="section level2" number="22.4">
+<h2>
+<span class="header-section-number">22.4</span> Implementation<a class="anchor" aria-label="anchor" href="#implementation"><i class="fas fa-link"></i></a>
+</h2>
+<p>The first thing we need to do is to get our data in the right format to calculate so-called “skip-gram probabilties.” If you go through the code line by the line in the below you will begin to understand what these are.</p>
+<p>What’s going on?</p>
+<p>Well, we’re first unnesting our tweet data as in previous exercises. But importantly, here, we’re not unnesting to individual tokens but to ngrams of length 6 or, in other words, for postID n with words k indexed by i, we take words i<sub>1</sub> …i<sub>6</sub>, then we take words i<sub>2</sub> …i<sub>7</sub>. Try just running the first two lines of the code below to see what this means in practice.</p>
+<p>After this, we make a unique ID for the particular ngram we create for each postID, and then we make a unique skipgramID for each postID and ngram. And then we unnest the words of each ngram associated with each skipgramID.</p>
+<p>You can see the resulting output below.</p>
+<div class="sourceCode" id="cb347"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#create context window with length 6</span>
+<span class="va">tidy_skipgrams</span> <span class="op">&lt;-</span> <span class="va">twts_sample</span> <span class="op"><a href="https://stringr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+    <span class="fu"><a href="https://rdrr.io/pkg/tidytext/man/unnest_tokens.html">unnest_tokens</a></span><span class="op">(</span><span class="va">ngram</span>, <span class="va">tweet</span>, token <span class="op">=</span> <span class="st">"ngrams"</span>, n <span class="op">=</span> <span class="fl">6</span><span class="op">)</span> <span class="op"><a href="https://stringr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>ngramID <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/ranking.html">row_number</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://stringr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+    <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/unite.html">unite</a></span><span class="op">(</span><span class="va">skipgramID</span>, <span class="va">postID</span>, <span class="va">ngramID</span><span class="op">)</span> <span class="op"><a href="https://stringr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+    <span class="fu"><a href="https://rdrr.io/pkg/tidytext/man/unnest_tokens.html">unnest_tokens</a></span><span class="op">(</span><span class="va">word</span>, <span class="va">ngram</span><span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">tidy_skipgrams</span>, n<span class="op">=</span><span class="fl">20</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 20 × 4
+##    username  party_value             skipgramID word   
+##    &lt;chr&gt;     &lt;chr&gt;                   &lt;chr&gt;      &lt;chr&gt;  
+##  1 kirstysnp Scottish National Party 1_1        in     
+##  2 kirstysnp Scottish National Party 1_1        amongst
+##  3 kirstysnp Scottish National Party 1_1        all    
+##  4 kirstysnp Scottish National Party 1_1        the    
+##  5 kirstysnp Scottish National Party 1_1        horror 
+##  6 kirstysnp Scottish National Party 1_1        at     
+##  7 kirstysnp Scottish National Party 1_2        amongst
+##  8 kirstysnp Scottish National Party 1_2        all    
+##  9 kirstysnp Scottish National Party 1_2        the    
+## 10 kirstysnp Scottish National Party 1_2        horror 
+## 11 kirstysnp Scottish National Party 1_2        at     
+## 12 kirstysnp Scottish National Party 1_2        the    
+## 13 kirstysnp Scottish National Party 1_3        all    
+## 14 kirstysnp Scottish National Party 1_3        the    
+## 15 kirstysnp Scottish National Party 1_3        horror 
+## 16 kirstysnp Scottish National Party 1_3        at     
+## 17 kirstysnp Scottish National Party 1_3        the    
+## 18 kirstysnp Scottish National Party 1_3        notion 
+## 19 kirstysnp Scottish National Party 1_4        the    
+## 20 kirstysnp Scottish National Party 1_4        horror</code></pre>
+<p>What next?</p>
+<p>Well we can now calculate a set of probabilities from our skipgrams. We do so with the <code><a href="https://rdrr.io/pkg/widyr/man/pairwise_count.html">pairwise_count()</a></code> function from the <tt>widyr</tt> package. Essentially, this function is saying: for each skipgramID count the number of times a word appears with another word for that feature (where the feature is the skipgramID). We set <code>diag</code> to <code>TRUE</code> when we also want to count the number of times a word appears near itself.</p>
+<p>The probability we are then calculating is the number of times a word appears with another word denominated by the total number of word pairings across the whole corpus.</p>
+<div class="sourceCode" id="cb349"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#calculate probabilities</span>
+<span class="va">skipgram_probs</span> <span class="op">&lt;-</span> <span class="va">tidy_skipgrams</span> <span class="op"><a href="https://stringr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+    <span class="fu"><a href="https://rdrr.io/pkg/widyr/man/pairwise_count.html">pairwise_count</a></span><span class="op">(</span><span class="va">word</span>, <span class="va">skipgramID</span>, diag <span class="op">=</span> <span class="cn">TRUE</span>, sort <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op"><a href="https://stringr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="co"># diag = T means that we also count when the word appears twice within the window</span>
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>p <span class="op">=</span> <span class="va">n</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">skipgram_probs</span><span class="op">[</span><span class="fl">1000</span><span class="op">:</span><span class="fl">1020</span>,<span class="op">]</span>, n<span class="op">=</span><span class="fl">20</span><span class="op">)</span></code></pre></div>
+<pre><code>## Warning: `distinct_()` was deprecated in dplyr 0.7.0.
+## Please use `distinct()` instead.
+## See vignette('programming') for more help
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.</code></pre>
+<pre><code>## # A tibble: 20 × 4
+##    item1   item2       n         p
+##    &lt;chr&gt;   &lt;chr&gt;   &lt;dbl&gt;     &lt;dbl&gt;
+##  1 no      to       4100 0.0000531
+##  2 vote    for      4099 0.0000531
+##  3 for     vote     4099 0.0000531
+##  4 see     the      4078 0.0000528
+##  5 the     see      4078 0.0000528
+##  6 having  having   4076 0.0000528
+##  7 by      of       4065 0.0000527
+##  8 of      by       4065 0.0000527
+##  9 this    with     4051 0.0000525
+## 10 with    this     4051 0.0000525
+## 11 set     set      4050 0.0000525
+## 12 right   the      4045 0.0000524
+## 13 the     right    4045 0.0000524
+## 14 what    the      4044 0.0000524
+## 15 going   to       4044 0.0000524
+## 16 the     what     4044 0.0000524
+## 17 to      going    4044 0.0000524
+## 18 evening evening  4035 0.0000523
+## 19 get     the      4032 0.0000522
+## 20 the     get      4032 0.0000522</code></pre>
+<p>So we see, for example, the words vote and for appear 4099 times together. Denominating that by the total n of word pairings (or <code>sum(skipgram_probs$n)</code>), gives us our probability p. </p>
+<p>Okay, now we have our skipgram probabilities we need to get our “unigram probabilities” in order to normalize the skipgram probabilities before applying the singular value decomposition.</p>
+<p>What is a “unigram probability”? Well, this is just a technical way of saying: count up all the appearances of a given word in our corpus then divide that by the total number of words in our corpus. And we can do this as such:</p>
+<div class="sourceCode" id="cb352"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#calculate unigram probabilities (used to normalize skipgram probabilities later)</span>
+<span class="va">unigram_probs</span> <span class="op">&lt;-</span> <span class="va">twts_sample</span> <span class="op"><a href="https://stringr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+    <span class="fu"><a href="https://rdrr.io/pkg/tidytext/man/unnest_tokens.html">unnest_tokens</a></span><span class="op">(</span><span class="va">word</span>, <span class="va">tweet</span><span class="op">)</span> <span class="op"><a href="https://stringr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">word</span>, sort <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op"><a href="https://stringr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>p <span class="op">=</span> <span class="va">n</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<p>Finally, it’s time to normalize our skipgram probabilities.</p>
+<p>We take our skipgram probabilities, we filter out word pairings that appear twenty times or less. We rename our words “item1” and “item2,” we merge in the unigram probabilities for both words.</p>
+<p>And then we calculate the joint probability as the skipgram probability divided by the unigram probability for the first word in the pairing divided by the unigram probability for the second word in the pairing. This is equivalent to: P(x,y)/P(x)P(y).</p>
+<p>In essence, the interpretation of this value is: <em>“do events (words) x and y occur together more often than we would expect if they were independent”</em>?</p>
+<p>Once we’ve recovered these normalized probabilities, we can have a look at the joint probabilities for a given item, i.e., word. Here, we look at the word “brexit” and look at those words with the highest value for “p_together.”</p>
+<p>Higher values greater than 1 indicate that the words are more likely to appear close to each other; low values less than 1 indicate that they are unlikely to appear close to each other. This, in other words, gives an indication of the association of two words.</p>
+<div class="sourceCode" id="cb353"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#normalize skipgram probabilities</span>
+<span class="va">normalized_prob</span> <span class="op">&lt;-</span> <span class="va">skipgram_probs</span> <span class="op"><a href="https://stringr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">n</span> <span class="op">&gt;</span> <span class="fl">20</span><span class="op">)</span> <span class="op"><a href="https://stringr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="co">#filter out skipgrams with n &lt;=20</span>
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span>word1 <span class="op">=</span> <span class="va">item1</span>, word2 <span class="op">=</span> <span class="va">item2</span><span class="op">)</span> <span class="op"><a href="https://stringr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">unigram_probs</span> <span class="op"><a href="https://stringr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+                  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span>word1 <span class="op">=</span> <span class="va">word</span>, p1 <span class="op">=</span> <span class="va">p</span><span class="op">)</span>,
+              by <span class="op">=</span> <span class="st">"word1"</span><span class="op">)</span> <span class="op"><a href="https://stringr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">unigram_probs</span> <span class="op"><a href="https://stringr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+                  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span>word2 <span class="op">=</span> <span class="va">word</span>, p2 <span class="op">=</span> <span class="va">p</span><span class="op">)</span>,
+              by <span class="op">=</span> <span class="st">"word2"</span><span class="op">)</span> <span class="op"><a href="https://stringr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>p_together <span class="op">=</span> <span class="va">p</span> <span class="op">/</span> <span class="va">p1</span> <span class="op">/</span> <span class="va">p2</span><span class="op">)</span>
+
+<span class="va">normalized_prob</span> <span class="op"><a href="https://stringr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">word1</span> <span class="op">==</span> <span class="st">"brexit"</span><span class="op">)</span> <span class="op"><a href="https://stringr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="op">-</span><span class="va">p_together</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 1,016 × 7
+##    word1  word2                      n           p      p1         p2 p_together
+##    &lt;chr&gt;  &lt;chr&gt;                  &lt;dbl&gt;       &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;
+##  1 brexit brexit                 38517 0.000499    0.00279 0.00279          64.0
+##  2 brexit softer                    50 0.000000648 0.00279 0.00000484       48.0
+##  3 brexit dividend                 176 0.00000228  0.00279 0.0000201        40.7
+##  4 brexit scotlandsplaceineurope    37 0.000000479 0.00279 0.00000446       38.5
+##  5 brexit botched                  129 0.00000167  0.00279 0.0000208        28.7
+##  6 brexit gridlock                  30 0.000000389 0.00279 0.00000521       26.7
+##  7 brexit deadlock                 120 0.00000155  0.00279 0.0000242        23.0
+##  8 brexit preparedness              22 0.000000285 0.00279 0.00000446       22.9
+##  9 brexit soft                      89 0.00000115  0.00279 0.0000190        21.8
+## 10 brexit weaken                    24 0.000000311 0.00279 0.00000521       21.4
+## # … with 1,006 more rows</code></pre>
+<p>Using this normalized probabilities, we then calculate the PMI or “Pointwise Mutual Information” value, which is simply the log of the joint probability we calculated above.</p>
+<p><strong>Definition time</strong>: “PMI is logarithm of the probability of finding two words together, normalized for the probability of finding each of the words alone.”</p>
+<p>We then cast our word pairs into a sparse matrix where values correspond to the PMI between two corresponding words.</p>
+<div class="sourceCode" id="cb355"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">pmi_matrix</span> <span class="op">&lt;-</span> <span class="va">normalized_prob</span> <span class="op"><a href="https://stringr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>pmi <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log10</a></span><span class="op">(</span><span class="va">p_together</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://stringr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+    <span class="fu"><a href="https://rdrr.io/pkg/tidytext/man/cast_sparse.html">cast_sparse</a></span><span class="op">(</span><span class="va">word1</span>, <span class="va">word2</span>, <span class="va">pmi</span><span class="op">)</span>
+
+<span class="co">#remove missing data</span>
+<span class="va">pmi_matrix</span><span class="op">@</span><span class="va">x</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">pmi_matrix</span><span class="op">@</span><span class="va">x</span><span class="op">)</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">0</span>
+<span class="co">#run SVD</span>
+<span class="va">pmi_svd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/irlba/man/irlba.html">irlba</a></span><span class="op">(</span><span class="va">pmi_matrix</span>, <span class="fl">256</span>, maxit <span class="op">=</span> <span class="fl">500</span><span class="op">)</span>
+
+<span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">pmi_matrix</span><span class="op">)</span></code></pre></div>
+<pre><code>## Formal class 'dgCMatrix' [package "Matrix"] with 6 slots
+##   ..@ i       : int [1:350700] 0 1 2 3 4 5 6 7 8 9 ...
+##   ..@ p       : int [1:21173] 0 7819 14360 20175 25467 29910 34368 39207 43376 46401 ...
+##   ..@ Dim     : int [1:2] 21172 21172
+##   ..@ Dimnames:List of 2
+##   .. ..$ : chr [1:21172] "the" "to" "and" "of" ...
+##   .. ..$ : chr [1:21172] "the" "to" "and" "of" ...
+##   ..@ x       : num [1:350700] 0.65326 -0.01948 -0.00645 0.27136 -0.52462 ...
+##   ..@ factors : list()</code></pre>
+<p>Notice here that we are setting the vector size to equal 256. This just means that we have a vector length of 256 for any given word.</p>
+<p>That is, the set of numbers used to represent a word has length limited to 256. This is arbitrary and can be changed. Typically, a size in the low hundreds is chosen when representing a word as a vector.</p>
+<p>The word vectors are then taken as the “u” column, or the left-singular vectors, of the SVD.</p>
+<div class="sourceCode" id="cb357"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#next we output the word vectors:</span>
+<span class="va">word_vectors</span> <span class="op">&lt;-</span> <span class="va">pmi_svd</span><span class="op">$</span><span class="va">u</span>
+<span class="fu"><a href="https://tibble.tidyverse.org/reference/rownames.html">rownames</a></span><span class="op">(</span><span class="va">word_vectors</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/rownames.html">rownames</a></span><span class="op">(</span><span class="va">pmi_matrix</span><span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">word_vectors</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 21172   256</code></pre>
+</div>
+<div id="exploration" class="section level2" number="22.5">
+<h2>
+<span class="header-section-number">22.5</span> Exploration<a class="anchor" aria-label="anchor" href="#exploration"><i class="fas fa-link"></i></a>
+</h2>
+<p>We can define a simple function below to then take our word vector, and find the most similar words, or nearest neighbours, for a given word:</p>
+<div class="sourceCode" id="cb359"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">nearest_words</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">word_vectors</span>, <span class="va">word</span><span class="op">)</span><span class="op">{</span>
+  <span class="va">selected_vector</span> <span class="op">=</span> <span class="va">word_vectors</span><span class="op">[</span><span class="va">word</span>,<span class="op">]</span>
+  <span class="va">mult</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">word_vectors</span> <span class="op"><a href="https://rdrr.io/pkg/Matrix/man/matrix-products.html">%*%</a></span> <span class="va">selected_vector</span><span class="op">)</span> <span class="co">#dot product of selected word vector and all word vectors</span>
+  
+  <span class="va">mult</span> <span class="op"><a href="https://stringr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://tibble.tidyverse.org/reference/rownames.html">rownames_to_column</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://stringr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span>word <span class="op">=</span> <span class="va">rowname</span>,
+         similarity <span class="op">=</span> <span class="va">V1</span><span class="op">)</span> <span class="op"><a href="https://stringr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter-joins.html">anti_join</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/tidytext/man/get_stopwords.html">get_stopwords</a></span><span class="op">(</span>language <span class="op">=</span> <span class="st">"en"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://stringr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="op">-</span><span class="va">similarity</span><span class="op">)</span>
+
+<span class="op">}</span>
+
+<span class="va">boris_synonyms</span> <span class="op">&lt;-</span> <span class="fu">nearest_words</span><span class="op">(</span><span class="va">word_vectors</span>, <span class="st">"boris"</span><span class="op">)</span></code></pre></div>
+<pre><code>## Joining, by = "word"</code></pre>
+<div class="sourceCode" id="cb361"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">brexit_synonyms</span> <span class="op">&lt;-</span> <span class="fu">nearest_words</span><span class="op">(</span><span class="va">word_vectors</span>, <span class="st">"brexit"</span><span class="op">)</span></code></pre></div>
+<pre><code>## Joining, by = "word"</code></pre>
+<div class="sourceCode" id="cb363"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">boris_synonyms</span>, n<span class="op">=</span><span class="fl">10</span><span class="op">)</span></code></pre></div>
+<pre><code>##       word similarity
+## 1  johnson 0.10309556
+## 2    boris 0.09940448
+## 3   jeremy 0.04823204
+## 4    trust 0.04800155
+## 5   corbyn 0.04102031
+## 6   farage 0.03973588
+## 7    trump 0.03938184
+## 8    can.t 0.03533624
+## 9     says 0.03324624
+## 10    word 0.03267437</code></pre>
+<div class="sourceCode" id="cb365"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">brexit_synonyms</span>, n<span class="op">=</span><span class="fl">10</span><span class="op">)</span></code></pre></div>
+<pre><code>##        word similarity
+## 1    brexit 0.38737979
+## 2      deal 0.15083433
+## 3   botched 0.05003683
+## 4      tory 0.04377030
+## 5   unleash 0.04233445
+## 6    impact 0.04139872
+## 7   theresa 0.04017608
+## 8  approach 0.03970233
+## 9  handling 0.03901461
+## 10  orderly 0.03897535</code></pre>
+<div class="sourceCode" id="cb367"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#then we can visualize</span>
+<span class="va">brexit_synonyms</span> <span class="op"><a href="https://stringr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>selected <span class="op">=</span> <span class="st">"brexit"</span><span class="op">)</span> <span class="op"><a href="https://stringr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows</a></span><span class="op">(</span><span class="va">boris_synonyms</span> <span class="op"><a href="https://stringr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+              <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>selected <span class="op">=</span> <span class="st">"boris"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://stringr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">selected</span><span class="op">)</span> <span class="op"><a href="https://stringr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/top_n.html">top_n</a></span><span class="op">(</span><span class="fl">15</span>, <span class="va">similarity</span><span class="op">)</span> <span class="op"><a href="https://stringr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>token <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/reorder.factor.html">reorder</a></span><span class="op">(</span><span class="va">word</span>, <span class="va">similarity</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://stringr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">token</span><span class="op">!=</span><span class="va">selected</span><span class="op">)</span> <span class="op"><a href="https://stringr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">token</span>, <span class="va">similarity</span>, fill <span class="op">=</span> <span class="va">selected</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span><span class="op">(</span>show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">selected</span>, scales <span class="op">=</span> <span class="st">"free"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_fill_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"#336B87"</span>, <span class="st">"#2A3132"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_tufte.html">theme_tufte</a></span><span class="op">(</span>base_family <span class="op">=</span> <span class="st">"Helvetica"</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-203-1.png" width="672"></div>
+</div>
+<div id="glove-embeddings" class="section level2" number="22.6">
+<h2>
+<span class="header-section-number">22.6</span> GloVe Embeddings<a class="anchor" aria-label="anchor" href="#glove-embeddings"><i class="fas fa-link"></i></a>
+</h2>
+<p>This section adapts from tutorials by Pedro Rodriguez <a href="https://github.com/prodriguezsosa/conText/blob/master/vignettes/quickstart_local_transform.md">here</a> and Dmitriy Selivanov <a href="http://text2vec.org/glove.html">here</a> and Wouter van Gils <a href="https://medium.com/broadhorizon-cmotions/nlp-with-r-part-2-training-word-embedding-models-and-visualize-results-ae444043e234">here</a>.</p>
+</div>
+<div id="glove-algorithm" class="section level2" number="22.7">
+<h2>
+<span class="header-section-number">22.7</span> GloVe algorithm<a class="anchor" aria-label="anchor" href="#glove-algorithm"><i class="fas fa-link"></i></a>
+</h2>
+<p>This section is taken from <tt>text2vec</tt> package page <a href="http://text2vec.org/glove.html">here</a>.</p>
+<p>The GloVe algorithm by pennington_glove_2014 consists of the following steps:</p>
+<ol style="list-style-type: decimal">
+<li><p>Collect word co-occurence statistics in a form of word co-ocurrence matrix <span class="math inline">\(X\)</span>. Each element <span class="math inline">\(X_{ij}\)</span> of such matrix represents how often word <em>i</em> appears in context of word <em>j</em>. Usually we scan our corpus in the following manner: for each term we look for context terms within some area defined by a <em>window_size</em> before the term and a <em>window_size</em> after the term. Also we give less weight for more distant words, usually using this formula: <span class="math display">\[decay = 1/offset\]</span></p></li>
+<li><p>Define soft constraints for each word pair: <span class="math display">\[w_i^Tw_j + b_i + b_j = log(X_{ij})\]</span> Here <span class="math inline">\(w_i\)</span> - vector for the main word, <span class="math inline">\(w_j\)</span> - vector for the context word, <span class="math inline">\(b_i\)</span>, <span class="math inline">\(b_j\)</span> are scalar biases for the main and context words.</p></li>
+<li><p>Define a cost function
+<span class="math display">\[J = \sum_{i=1}^V \sum_{j=1}^V \; f(X_{ij}) ( w_i^T w_j + b_i + b_j - \log X_{ij})^2\]</span>
+Here <span class="math inline">\(f\)</span> is a weighting function which help us to prevent learning only from extremely common word pairs. The GloVe authors choose the following function:</p></li>
+</ol>
+<p><span class="math display">\[
+f(X_{ij}) =
+\begin{cases}
+(\frac{X_{ij}}{x_{max}})^\alpha &amp; \text{if } X_{ij} &lt; XMAX \\
+1 &amp; \text{otherwise}
+\end{cases}
+\]</span></p>
+<p>How do we go about implementing this algorithm in R?</p>
+<p>Let’s first make sure we have loaded the packages we need:</p>
+<div class="sourceCode" id="cb368"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://text2vec.org">text2vec</a></span><span class="op">)</span> <span class="co"># for implementation of GloVe algorithm</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://stringr.tidyverse.org">stringr</a></span><span class="op">)</span> <span class="co"># to handle text strings</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/tkonopka/umap">umap</a></span><span class="op">)</span> <span class="co"># for dimensionality reduction later on</span></code></pre></div>
+</div>
+<div id="implementation-1" class="section level2" number="22.8">
+<h2>
+<span class="header-section-number">22.8</span> Implementation<a class="anchor" aria-label="anchor" href="#implementation-1"><i class="fas fa-link"></i></a>
+</h2>
+<p>We then need to set some of the choice parameters of the GloVe model. The first is the window size <code>WINDOW_SIZE</code>, which, as above, is arbitrary but normally set around 6-8. This means we are looking for word context of words up to 6 words around the target word. The image below illustrates this choice parameter for the word “cat” in a given sentence, with increase context window size:</p>
+<div class="figure">
+<img src="data/wordembed/window.png" style="width:50.0%" alt=""><p class="caption">Context window</p>
+</div>
+<p>And this will ultimately be understood in matrix format as:</p>
+<div class="figure">
+<img src="data/wordembed/matrix_context.png" style="width:50.0%" alt=""><p class="caption">Context window</p>
+</div>
+<p>The iterations parameter <code>ITERS</code> simply sets the maximum number of iterations to allow for model convergence. This number of iterations is relatively high and the model will likely converge before 100 iterations.</p>
+<p>The <code>DIM</code> parameter specifies the length of the word vector we want to result (i.e., just as we set a limit of 256 for the SVD approach above). Finally, <code>COUNT_MIN</code> is specifying the minimum count of words that we want to keep. In other words, if a word appears fewer than ten times, it is discarded. Again, this is the same as above where we discarded word pairings that appeared fewer than twenty times.</p>
+<div class="sourceCode" id="cb369"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># ================================ choice parameters</span>
+<span class="co"># ================================</span>
+<span class="va">WINDOW_SIZE</span> <span class="op">&lt;-</span> <span class="fl">6</span>
+<span class="va">DIM</span> <span class="op">&lt;-</span> <span class="fl">300</span>
+<span class="va">ITERS</span> <span class="op">&lt;-</span> <span class="fl">100</span>
+<span class="va">COUNT_MIN</span> <span class="op">&lt;-</span> <span class="fl">10</span></code></pre></div>
+<p>We next “shuffle” our text. This just means we are randomly reordering the character vector of tweets.</p>
+<div class="sourceCode" id="cb370"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># shuffle text</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">42L</span><span class="op">)</span>
+<span class="va">text</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">twts_sample</span><span class="op">$</span><span class="va">tweet</span><span class="op">)</span></code></pre></div>
+<p>We then create a list object, tokenizing the text of each tweet within each item of the list. After this, we create the vocabulary object needed to implement the GloVe algorithm. We do this by creating an “itoken” object with <code><a href="https://rdrr.io/pkg/text2vec/man/itoken.html">itoken()</a></code> and then creating a vocabulary with <code>create_vocabulary</code>. We then remove words that do not exceed our specified threshold above with <code><a href="https://rdrr.io/pkg/text2vec/man/prune_vocabulary.html">prune_vocabulary()</a></code>.</p>
+<div class="sourceCode" id="cb371"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># ================================ create vocab ================================</span>
+<span class="va">tokens</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/text2vec/man/tokenizers.html">space_tokenizer</a></span><span class="op">(</span><span class="va">text</span><span class="op">)</span>
+<span class="va">it</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/text2vec/man/itoken.html">itoken</a></span><span class="op">(</span><span class="va">tokens</span>, progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+<span class="va">vocab</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/text2vec/man/create_vocabulary.html">create_vocabulary</a></span><span class="op">(</span><span class="va">it</span><span class="op">)</span>
+<span class="va">vocab_pruned</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/text2vec/man/prune_vocabulary.html">prune_vocabulary</a></span><span class="op">(</span><span class="va">vocab</span>, term_count_min <span class="op">=</span> <span class="va">COUNT_MIN</span><span class="op">)</span>  <span class="co"># keep only words that meet count threshold</span></code></pre></div>
+<p>Next up we vectorize our vocabulary and create our term co-occurrence matrix. Again, this is similar to the above where we created a matrix of PMIs for each of the word pairings in our corpus.</p>
+<div class="sourceCode" id="cb372"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># ================================ create term co-occurrence matrix</span>
+<span class="co"># ================================</span>
+<span class="va">vectorizer</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/text2vec/man/vectorizers.html">vocab_vectorizer</a></span><span class="op">(</span><span class="va">vocab_pruned</span><span class="op">)</span>
+<span class="va">tcm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/text2vec/man/create_tcm.html">create_tcm</a></span><span class="op">(</span><span class="va">it</span>, <span class="va">vectorizer</span>, skip_grams_window <span class="op">=</span> <span class="va">WINDOW_SIZE</span>, skip_grams_window_context <span class="op">=</span> <span class="st">"symmetric"</span>, 
+    weights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">1</span>, <span class="va">WINDOW_SIZE</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<p>Then we set our final model parameters, learning rate and fit the model. This whole process will take some time. To save time when working through this tutorial, you may also download the resulting embedding from the Github repo linked a little further below.</p>
+<div class="sourceCode" id="cb373"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># ================================ set model parameters</span>
+<span class="co"># ================================</span>
+<span class="va">glove</span> <span class="op">&lt;-</span> <span class="va"><a href="https://rdrr.io/pkg/text2vec/man/GloVe.html">GlobalVectors</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>rank <span class="op">=</span> <span class="va">DIM</span>, x_max <span class="op">=</span> <span class="fl">100</span>, learning_rate <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span>
+
+<span class="co"># ================================ fit model ================================</span>
+<span class="va">word_vectors_main</span> <span class="op">&lt;-</span> <span class="va">glove</span><span class="op">$</span><span class="fu">fit_transform</span><span class="op">(</span><span class="va">tcm</span>, n_iter <span class="op">=</span> <span class="va">ITERS</span>, convergence_tol <span class="op">=</span> <span class="fl">0.001</span>, 
+    n_threads <span class="op">=</span> <span class="fu">RcppParallel</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/RcppParallel/man/setThreadOptions.html">defaultNumThreads</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<p>Finally, we get the resulting word embedding and save it as a .rds file.</p>
+<div class="sourceCode" id="cb374"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># ================================ get output ================================</span>
+<span class="va">word_vectors_context</span> <span class="op">&lt;-</span> <span class="va">glove</span><span class="op">$</span><span class="va">components</span>
+<span class="va">glove_embedding</span> <span class="op">&lt;-</span> <span class="va">word_vectors_main</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">word_vectors_context</span><span class="op">)</span>  <span class="co"># word vectors</span>
+
+<span class="co"># ================================ save ================================</span>
+<span class="fu"><a href="https://rdrr.io/r/base/readRDS.html">saveRDS</a></span><span class="op">(</span><span class="va">glove_embedding</span>, file <span class="op">=</span> <span class="st">"local_glove.rds"</span><span class="op">)</span></code></pre></div>
+<p><strong>To save time when working through this tutorial, you may also download the resulting embedding from the Github repo with</strong>:</p>
+<div class="sourceCode" id="cb375"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">url</span> <span class="op">&lt;-</span> <span class="st">"https://github.com/cjbarrie/CTA-ED/blob/main/data/wordembed/local_glove.rds?raw=true"</span>
+<span class="va">glove_embedding</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html">readRDS</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/connections.html">url</a></span><span class="op">(</span><span class="va">url</span>, method<span class="op">=</span><span class="st">"libcurl"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+</div>
+<div id="visualization" class="section level2" number="22.9">
+<h2>
+<span class="header-section-number">22.9</span> Visualization<a class="anchor" aria-label="anchor" href="#visualization"><i class="fas fa-link"></i></a>
+</h2>
+<p>How do we explore these embeddings? Well, imagine that our embeddings will look something not dissimilar to this visualization of another embedding <a href="https://anvaka.github.io/pm/#/galaxy/word2vec-wiki?cx=-17&amp;cy=-237&amp;cz=-613&amp;lx=-0.0575&amp;ly=-0.9661&amp;lz=-0.2401&amp;lw=-0.0756&amp;ml=300&amp;s=1.75&amp;l=1&amp;v=d50_clean">here</a>. In other words, we are talking about something that doesn’t lend itself to projection in 2D space!</p>
+<p>But…</p>
+<p>All hope is not lost, space travellers. A smart technique by <span class="citation">McInnes, Healy, and Melville (<a href="references-2.html#ref-mcinnes_umap_2020" role="doc-biblioref">2020</a>)</span> linked <a href="https://arxiv.org/abs/1802.03426">here</a> describes a way to reduce the dimensionality of such embedding layers using what is called “Uniform Manifold Approximation and Projection.” How do we do this? Well, happily, with the <tt>umap</tt> package it is pretty straightforward!</p>
+<div class="sourceCode" id="cb376"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># GloVe dimension reduction</span>
+<span class="va">glove_umap</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/umap/man/umap.html">umap</a></span><span class="op">(</span><span class="va">glove_embedding</span>, n_components <span class="op">=</span> <span class="fl">2</span>, metric <span class="op">=</span> <span class="st">"cosine"</span>, n_neighbors <span class="op">=</span> <span class="fl">25</span>, min_dist <span class="op">=</span> <span class="fl">0.1</span>, spread<span class="op">=</span><span class="fl">2</span><span class="op">)</span></code></pre></div>
+<p>Why is this helpful? Well, for a number of reasons, but it is particularly helpful here for visualizing our embeddings in two-dimensional space.</p>
+<div class="sourceCode" id="cb377"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Put results in a dataframe for ggplot</span>
+<span class="va">df_glove_umap</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">glove_umap</span><span class="op">[[</span><span class="st">"layout"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span>
+
+<span class="co"># Add the labels of the words to the dataframe</span>
+<span class="va">df_glove_umap</span><span class="op">$</span><span class="va">word</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/rownames.html">rownames</a></span><span class="op">(</span><span class="va">df_glove_umap</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">df_glove_umap</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"UMAP1"</span>, <span class="st">"UMAP2"</span>, <span class="st">"word"</span><span class="op">)</span>
+
+<span class="co"># Plot the UMAP dimensions</span>
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">df_glove_umap</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">UMAP1</span>, y <span class="op">=</span> <span class="va">UMAP2</span><span class="op">)</span>, colour <span class="op">=</span> <span class="st">'blue'</span>, size <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html">annotate</a></span><span class="op">(</span><span class="st">"rect"</span>, xmin <span class="op">=</span> <span class="op">-</span><span class="fl">3</span>, xmax <span class="op">=</span> <span class="op">-</span><span class="fl">2</span>, ymin <span class="op">=</span> <span class="fl">5</span>, ymax <span class="op">=</span> <span class="fl">7</span>,alpha <span class="op">=</span> <span class="fl">.2</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"GloVe word embedding in 2D using UMAP"</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-215-1.png" width="672"></div>
+<div class="sourceCode" id="cb378"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Plot the shaded part of the GloVe word embedding with labels</span>
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">df_glove_umap</span><span class="op">[</span><span class="va">df_glove_umap</span><span class="op">$</span><span class="va">UMAP1</span> <span class="op">&lt;</span> <span class="op">-</span><span class="fl">2.5</span> <span class="op">&amp;</span> <span class="va">df_glove_umap</span><span class="op">$</span><span class="va">UMAP1</span> <span class="op">&gt;</span> <span class="op">-</span><span class="fl">3</span> <span class="op">&amp;</span> <span class="va">df_glove_umap</span><span class="op">$</span><span class="va">UMAP2</span> <span class="op">&gt;</span> <span class="fl">5</span> <span class="op">&amp;</span> <span class="va">df_glove_umap</span><span class="op">$</span><span class="va">UMAP2</span> <span class="op">&lt;</span> <span class="fl">6.5</span>,<span class="op">]</span><span class="op">)</span> <span class="op">+</span>
+      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">UMAP1</span>, y <span class="op">=</span> <span class="va">UMAP2</span><span class="op">)</span>, colour <span class="op">=</span> <span class="st">'blue'</span>, size <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">+</span>
+      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">UMAP1</span>, <span class="va">UMAP2</span>, label <span class="op">=</span> <span class="va">word</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">2.5</span>, vjust<span class="op">=</span><span class="op">-</span><span class="fl">1</span>, hjust<span class="op">=</span><span class="fl">0</span><span class="op">)</span> <span class="op">+</span>
+      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"GloVe word embedding in 2D using UMAP - partial view"</span><span class="op">)</span> <span class="op">+</span>
+      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>plot.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>hjust <span class="op">=</span> <span class="fl">.5</span>, size <span class="op">=</span> <span class="fl">14</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-215-2.png" width="672"></div>
+<div class="sourceCode" id="cb379"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Plot the word embedding of words that are related for the GloVe model</span>
+<span class="va">word</span> <span class="op">&lt;-</span> <span class="va">glove_embedding</span><span class="op">[</span><span class="st">"economy"</span>,, drop <span class="op">=</span> <span class="cn">FALSE</span><span class="op">]</span>
+<span class="va">cos_sim</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/text2vec/man/similarities.html">sim2</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">glove_embedding</span>, y <span class="op">=</span> <span class="va">word</span>, method <span class="op">=</span> <span class="st">"cosine"</span>, norm <span class="op">=</span> <span class="st">"l2"</span><span class="op">)</span>
+<span class="va">select</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/rownames.html">rownames</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span><span class="op">(</span><span class="va">cos_sim</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>, decreasing <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>, <span class="fl">25</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">select</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="st">"word"</span>
+<span class="va">selected_words</span> <span class="op">&lt;-</span> <span class="va">df_glove_umap</span> <span class="op"><a href="https://stringr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span><span class="op">(</span>y<span class="op">=</span><span class="va">select</span>, by<span class="op">=</span> <span class="st">"word"</span>, match <span class="op">=</span> <span class="st">"all"</span><span class="op">)</span> 
+
+<span class="co">#The ggplot visual for GloVe</span>
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">selected_words</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">UMAP1</span>, y <span class="op">=</span> <span class="va">UMAP2</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span> 
+      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">UMAP1</span>, <span class="va">UMAP2</span>, label <span class="op">=</span> <span class="va">word</span><span class="op">)</span>, show.legend <span class="op">=</span> <span class="cn">FALSE</span>, size <span class="op">=</span> <span class="fl">2.5</span>, vjust<span class="op">=</span><span class="op">-</span><span class="fl">1.5</span>, hjust<span class="op">=</span><span class="fl">0</span><span class="op">)</span> <span class="op">+</span>
+      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"GloVe word embedding of words related to 'economy'"</span><span class="op">)</span> <span class="op">+</span>
+      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>plot.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>hjust <span class="op">=</span> <span class="fl">.5</span>, size <span class="op">=</span> <span class="fl">14</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-215-3.png" width="672"></div>
+<p>We can see, here, then that our embeddings seem to make sense. We zoomed in first on that little outgrowth of our 2D mapping, which seemed to correspond to numbers and number words. Then we looked at words around “economy” and we see other related terms like “growth” and “jobs.”</p>
+</div>
+<div id="exercises-4" class="section level2" number="22.10">
+<h2>
+<span class="header-section-number">22.10</span> Exercises<a class="anchor" aria-label="anchor" href="#exercises-4"><i class="fas fa-link"></i></a>
+</h2>
+<ol style="list-style-type: decimal">
+<li>Inspect and visualize the nearest neighbour synonyms of other relevant words in the tweets corpus</li>
+<li>Identify another region of interest in the GloVe-trained model and visualize</li>
+</ol>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="exercise-5-unsupervised-learning-topic-models.html"><span class="header-section-number">21</span> Exercise 5: Unsupervised learning (topic models)</a></div>
+<div class="next"><a href="references-2.html"><span class="header-section-number">23</span> References</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#exercise-6-word-embedding"><span class="header-section-number">22</span> Exercise 6: Word embedding</a></li>
+<li><a class="nav-link" href="#introduction-5"><span class="header-section-number">22.1</span> Introduction</a></li>
+<li><a class="nav-link" href="#setup-10"><span class="header-section-number">22.2</span> Setup</a></li>
+<li><a class="nav-link" href="#word-vectors-via-svd"><span class="header-section-number">22.3</span> Word vectors via SVD</a></li>
+<li><a class="nav-link" href="#implementation"><span class="header-section-number">22.4</span> Implementation</a></li>
+<li><a class="nav-link" href="#exploration"><span class="header-section-number">22.5</span> Exploration</a></li>
+<li><a class="nav-link" href="#glove-embeddings"><span class="header-section-number">22.6</span> GloVe Embeddings</a></li>
+<li><a class="nav-link" href="#glove-algorithm"><span class="header-section-number">22.7</span> GloVe algorithm</a></li>
+<li><a class="nav-link" href="#implementation-1"><span class="header-section-number">22.8</span> Implementation</a></li>
+<li><a class="nav-link" href="#visualization"><span class="header-section-number">22.9</span> Visualization</a></li>
+<li><a class="nav-link" href="#exercises-4"><span class="header-section-number">22.10</span> Exercises</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/cjbarrie/CTA-ED/blob/master/16-word-embedding.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/cjbarrie/CTA-ED/edit/master/16-word-embedding.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Computational Text Analysis</strong>" was written by Christopher Barrie. It was last built on 2022-03-07.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

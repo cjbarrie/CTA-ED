@@ -1,4 +1,4 @@
-# Exercise 4: Word embedding
+# Exercise 6: Word embedding
 
 ## Introduction
 
@@ -288,11 +288,11 @@ library(umap) # for dimensionality reduction later on
 
 We then need to set some of the choice parameters of the GloVe model. The first is the window size `WINDOW_SIZE`, which, as above, is arbitrary but normally set around 6-8. This means we are looking for word context of words up to 6 words around the target word. The image below illustrates this choice parameter for the word "cat" in a given sentence, with increase context window size:
 
-![Context window](data/wordembed/window.png)
+![Context window](data/wordembed/window.png){width=50%}
 
 And this will ultimately be understood in matrix format as:
 
-![Context window](data/wordembed/matrix_context.png)
+![Context window](data/wordembed/matrix_context.png){width=50%}
 
 The iterations parameter `ITERS` simply sets the maximum number of iterations to allow for model convergence. This number of iterations is relatively high and the model will likely converge before 100 iterations. 
 

@@ -8,6 +8,7 @@ library(topicmodels)
 library(dplyr)
 library(tidytext)
 library(ggplot2)
+library(ggthemes)
 ```
 
 Estimating a topic model requires us first to have our data in the form of a document-term-matrix. This is another term for what we have referred to in previous weeks as a document-feature-matrix.

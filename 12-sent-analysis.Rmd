@@ -28,6 +28,7 @@ library(readr) # more informative and easy way to import data
 library(stringr) # to handle text elements
 library(tidytext) # includes set of functions useful for manipulating text
 library(quanteda) # includes functions to implement Lexicoder
+library(textdata)
 
 ```
 

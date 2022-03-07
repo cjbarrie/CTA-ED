@@ -1,4 +1,4 @@
-# Exercise 4: Unsupervised learning (topic models)
+# Exercise 5: Unsupervised learning (topic models)
 
 ## Introduction
 

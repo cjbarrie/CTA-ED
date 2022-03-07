@@ -66,8 +66,8 @@
 <li><a class="" href="exercise-2-dictionary-based-methods.html"><span class="header-section-number">18</span> Exercise 2: Dictionary-based methods</a></li>
 <li><a class="" href="exercise-3-comparison-and-complexity.html"><span class="header-section-number">19</span> Exercise 3: Comparison and complexity</a></li>
 <li><a class="" href="exercise-4-scaling-techniques.html"><span class="header-section-number">20</span> Exercise 4: Scaling techniques</a></li>
-<li><a class="" href="exercise-4-unsupervised-learning-topic-models.html"><span class="header-section-number">21</span> Exercise 4: Unsupervised learning (topic models)</a></li>
-<li><a class="" href="exercise-4-word-embedding.html"><span class="header-section-number">22</span> Exercise 4: Word embedding</a></li>
+<li><a class="" href="exercise-5-unsupervised-learning-topic-models.html"><span class="header-section-number">21</span> Exercise 5: Unsupervised learning (topic models)</a></li>
+<li><a class="" href="exercise-6-word-embedding.html"><span class="header-section-number">22</span> Exercise 6: Word embedding</a></li>
 <li><a class="" href="references-2.html"><span class="header-section-number">23</span> References</a></li>
 </ul>
 
@@ -129,7 +129,7 @@
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="st">"I can't wait to learn Computational Text Analysis"</span> <span class="co">#Note the quotation marks!</span></code></pre></div>
 <p>To tell R to run the command, highlight the relevant row in your script and click the <tt>Run</tt> button (top right of the Script) - or hold down <tt>ctrl+enter</tt> on Windows or <tt>cmd+enter</tt> on Mac - to send the command to the Console (bottom left), where the actual evaluation and calculations are taking place. These shortcut keys will become very familiar to you very quickly!</p>
-<p>Running the command above creates an object named ‘x,’ that contains the words of your message.</p>
+<p>Running the command above creates an object named ‘x’, that contains the words of your message.</p>
 <p>You can now see ‘x’ in the Environment (top right). To view what is contained in x, type in the Console (bottom left):</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></code></pre></div>
@@ -158,7 +158,7 @@
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">mpg</span><span class="op">)</span> <span class="op">+</span> 
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">displ</span>, y <span class="op">=</span> <span class="va">hwy</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-6-1.png" width="672"></div>
+<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-7-1.png" width="672"></div>
 <p>If we wanted to save where we’d got to with making our plots, we would want to save our scripts, and maybe the data we used as well, so that we could return to it at a later stage.</p>
 </div>
 <div id="saving-your-objects-plots-and-scripts" class="section level2" number="0.6">
@@ -204,7 +204,7 @@
 <span class="header-section-number">0.8</span> Practicing in R<a class="anchor" aria-label="anchor" href="#practicing-in-r"><i class="fas fa-link"></i></a>
 </h2>
 <p>The best way to learn <tt>R</tt> is to use it. These workshops on text analysis will not be the place to become fully proficient in <tt>R</tt>. They will, however, be a chance to conduct some hands-on analysis with applied examples in a fast-expanding field. And the best way to learn is through doing. So give it a shot!</p>
-<p>For some further practice in the R programming language, look no further than <span class="citation"><a href="references-2.html#ref-wickham_r_2017" role="doc-biblioref">Wickham and Grolemund</a> (<a href="references-2.html#ref-wickham_r_2017" role="doc-biblioref">2017</a>)</span> and, for tidy text analysis, <span class="citation"><a href="references-2.html#ref-silge_text_2017" role="doc-biblioref">Silge and Robinson</a> (<a href="references-2.html#ref-silge_text_2017" role="doc-biblioref">2017</a>)</span>.</p>
+<p>For some further practice in the R programming language, look no further than <span class="citation">Wickham and Grolemund (<a href="references-2.html#ref-wickham_r_2017" role="doc-biblioref">2017</a>)</span> and, for tidy text analysis, <span class="citation">Silge and Robinson (<a href="references-2.html#ref-silge_text_2017" role="doc-biblioref">2017</a>)</span>.</p>
 <ul>
 <li><p>The free online book by Hadley Wickham “R for Data Science” is available <a href="https://r4ds.had.co.nz/">here</a></p></li>
 <li><p>The free online book by Julia Silge and David Robinson “Text Mining with R” is available <a href="https://www.tidytextmining.com/">here</a></p></li>
@@ -260,7 +260,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Computational Text Analysis</strong>" was written by Christopher Barrie. It was last built on 2022-02-25.</p>
+    <p>"<strong>Computational Text Analysis</strong>" was written by Christopher Barrie. It was last built on 2022-03-07.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
