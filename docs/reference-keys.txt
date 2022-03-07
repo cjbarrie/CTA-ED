@@ -85,6 +85,11 @@ complexity-1
 exercises-2
 exercise-4-scaling-techniques
 introduction-3
+importing-data
+construct-dfm-object
+estimate-wordfish-model
+replicating-kaneko-et-al.
+exercises-3
 exercise-5-unsupervised-learning-topic-models
 introduction-4
 setup-9
@@ -93,7 +98,7 @@ plot-relative-word-frequencies
 split-into-chapter-documents
 examine-consensus
 validation-1
-exercises-3
+exercises-4
 exercise-6-word-embedding
 introduction-5
 setup-10
@@ -104,5 +109,5 @@ glove-embeddings
 glove-algorithm
 implementation-1
 visualization
-exercises-4
+exercises-5
 references-2
