@@ -119,21 +119,22 @@
 <div class="sourceCode" id="cb261"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">tweets</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 3
-##   username   tweet                                                                               date      
-##   &lt;chr&gt;      &lt;chr&gt;                                                                               &lt;date&gt;    
-## 1 aluncairns "A good luck message to Chris Coleman’s squad @FAWales ahead of tonight’s crucial … 2017-10-09
-## 2 aluncairns ".@AlunCairns “The close relationship between industry and government stand only t… 2017-10-09
-## 3 aluncairns "@BarclaysCorp &amp;amp; @SPTS_Tech \"voice of Welsh Manufacturing\" event with @AlunC… 2017-10-09
-## 4 aluncairns "Today we announced plans to ban the sale of ivory in the UK.\nThe cruel poaching … 2017-10-06
-## 5 aluncairns "Unbeaten Wales overcome Georgia to boost their @FIFAWorldCup qualification hopes.… 2017-10-06
-## 6 aluncairns ".@GutoAberconwy marks 25 years of engine production @toyotafactory Deeside #stron… 2017-10-06</code></pre>
+##   username   tweet                                                        date      
+##   &lt;chr&gt;      &lt;chr&gt;                                                        &lt;date&gt;    
+## 1 aluncairns "A good luck message to Chris Coleman’s squad @FAWales ahea… 2017-10-09
+## 2 aluncairns ".@AlunCairns “The close relationship between industry and … 2017-10-09
+## 3 aluncairns "@BarclaysCorp &amp;amp; @SPTS_Tech \"voice of Welsh Manufactur… 2017-10-09
+## 4 aluncairns "Today we announced plans to ban the sale of ivory in the U… 2017-10-06
+## 5 aluncairns "Unbeaten Wales overcome Georgia to boost their @FIFAWorldC… 2017-10-06
+## 6 aluncairns ".@GutoAberconwy marks 25 years of engine production @toyot… 2017-10-06</code></pre>
 <p>And there are 24 MPs whose tweets we’re examining.</p>
 <div class="sourceCode" id="cb263"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">tweets</span><span class="op">$</span><span class="va">username</span><span class="op">)</span></code></pre></div>
-<pre><code>##  [1] "aluncairns"      "amberrudduk"     "andrealeadsom"   "borisjohnson"    "brandonlewis"   
-##  [6] "damiangreen"     "damianhinds"     "daviddavismp"    "davidgauke"      "davidmundelldct"
-## [11] "dlidington"      "gavinwilliamson" "gregclarkmp"     "jbrokenshire"    "jeremy_hunt"    
-## [16] "juliansmithuk"   "justinegreening" "liamfox"         "michaelgove"     "pennymordaunt"  
+<pre><code>##  [1] "aluncairns"      "amberrudduk"     "andrealeadsom"   "borisjohnson"   
+##  [5] "brandonlewis"    "damiangreen"     "damianhinds"     "daviddavismp"   
+##  [9] "davidgauke"      "davidmundelldct" "dlidington"      "gavinwilliamson"
+## [13] "gregclarkmp"     "jbrokenshire"    "jeremy_hunt"     "juliansmithuk"  
+## [17] "justinegreening" "liamfox"         "michaelgove"     "pennymordaunt"  
 ## [21] "philiphammonduk" "sajidjavid"      "theresa_may"     "trussliz"</code></pre>
 <div class="sourceCode" id="cb265"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">tweets</span><span class="op">$</span><span class="va">username</span><span class="op">)</span><span class="op">)</span></code></pre></div>
@@ -422,7 +423,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Computational Text Analysis</strong>" was written by Christopher Barrie. It was last built on 2022-03-07.</p>
+    <p>"<strong>Computational Text Analysis</strong>" was written by Christopher Barrie. It was last built on 2022-03-10.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

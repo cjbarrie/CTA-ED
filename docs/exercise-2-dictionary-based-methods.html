@@ -148,30 +148,34 @@
 <div class="sourceCode" id="cb217"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">tweets</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 31
-##   tweet_id  user_username text  lang  author_id source possibly_sensit… conversation_id created_at user_url
-##   &lt;chr&gt;     &lt;chr&gt;         &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt;  &lt;lgl&gt;            &lt;chr&gt;           &lt;chr&gt;      &lt;chr&gt;   
-## 1 12123344… DailyMirror   "Sec… en    16887175  Tweet… FALSE            12123344022665… 2020-01-0… https:/…
-## 2 12123341… DailyMirror   "RT … en    16887175  Tweet… FALSE            12123341694576… 2020-01-0… https:/…
-## 3 12123331… thetimes      "A c… en    6107422   Echob… FALSE            12123331958799… 2020-01-0… http://…
-## 4 12123331… TheSun        "Way… en    34655603  Echob… FALSE            12123331948649… 2020-01-0… https:/…
-## 5 12123329… DailyMailUK   "Stu… en    111556423 Socia… FALSE            12123329205071… 2020-01-0… https:/…
-## 6 12123326… TheSun        "Dad… en    34655603  Twitt… FALSE            12123326405708… 2020-01-0… https:/…
-## # … with 21 more variables: user_location &lt;chr&gt;, user_protected &lt;lgl&gt;, user_verified &lt;lgl&gt;,
-## #   user_name &lt;chr&gt;, user_profile_image_url &lt;chr&gt;, user_description &lt;chr&gt;, user_created_at &lt;chr&gt;,
-## #   user_pinned_tweet_id &lt;chr&gt;, retweet_count &lt;int&gt;, like_count &lt;int&gt;, quote_count &lt;int&gt;,
-## #   user_tweet_count &lt;int&gt;, user_list_count &lt;int&gt;, user_followers_count &lt;int&gt;, user_following_count &lt;int&gt;,
-## #   sourcetweet_type &lt;chr&gt;, sourcetweet_id &lt;chr&gt;, sourcetweet_text &lt;chr&gt;, sourcetweet_lang &lt;chr&gt;,
-## #   sourcetweet_author_id &lt;chr&gt;, in_reply_to_user_id &lt;chr&gt;</code></pre>
+##   tweet_id            user_username text     lang  author_id source possibly_sensit…
+##   &lt;chr&gt;               &lt;chr&gt;         &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt;  &lt;lgl&gt;           
+## 1 1212334402266521602 DailyMirror   "Secret… en    16887175  Tweet… FALSE           
+## 2 1212334169457676289 DailyMirror   "RT @Mi… en    16887175  Tweet… FALSE           
+## 3 1212333195879993344 thetimes      "A cele… en    6107422   Echob… FALSE           
+## 4 1212333194864988161 TheSun        "Wayne … en    34655603  Echob… FALSE           
+## 5 1212332920507191296 DailyMailUK   "Studen… en    111556423 Socia… FALSE           
+## 6 1212332640570875904 TheSun        "Dad fi… en    34655603  Twitt… FALSE           
+## # … with 24 more variables: conversation_id &lt;chr&gt;, created_at &lt;chr&gt;,
+## #   user_url &lt;chr&gt;, user_location &lt;chr&gt;, user_protected &lt;lgl&gt;, user_verified &lt;lgl&gt;,
+## #   user_name &lt;chr&gt;, user_profile_image_url &lt;chr&gt;, user_description &lt;chr&gt;,
+## #   user_created_at &lt;chr&gt;, user_pinned_tweet_id &lt;chr&gt;, retweet_count &lt;int&gt;,
+## #   like_count &lt;int&gt;, quote_count &lt;int&gt;, user_tweet_count &lt;int&gt;,
+## #   user_list_count &lt;int&gt;, user_followers_count &lt;int&gt;, user_following_count &lt;int&gt;,
+## #   sourcetweet_type &lt;chr&gt;, sourcetweet_id &lt;chr&gt;, sourcetweet_text &lt;chr&gt;, …</code></pre>
 <div class="sourceCode" id="cb219"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">tweets</span><span class="op">)</span></code></pre></div>
-<pre><code>##  [1] "tweet_id"               "user_username"          "text"                   "lang"                  
-##  [5] "author_id"              "source"                 "possibly_sensitive"     "conversation_id"       
-##  [9] "created_at"             "user_url"               "user_location"          "user_protected"        
-## [13] "user_verified"          "user_name"              "user_profile_image_url" "user_description"      
-## [17] "user_created_at"        "user_pinned_tweet_id"   "retweet_count"          "like_count"            
-## [21] "quote_count"            "user_tweet_count"       "user_list_count"        "user_followers_count"  
-## [25] "user_following_count"   "sourcetweet_type"       "sourcetweet_id"         "sourcetweet_text"      
-## [29] "sourcetweet_lang"       "sourcetweet_author_id"  "in_reply_to_user_id"</code></pre>
+<pre><code>##  [1] "tweet_id"               "user_username"          "text"                  
+##  [4] "lang"                   "author_id"              "source"                
+##  [7] "possibly_sensitive"     "conversation_id"        "created_at"            
+## [10] "user_url"               "user_location"          "user_protected"        
+## [13] "user_verified"          "user_name"              "user_profile_image_url"
+## [16] "user_description"       "user_created_at"        "user_pinned_tweet_id"  
+## [19] "retweet_count"          "like_count"             "quote_count"           
+## [22] "user_tweet_count"       "user_list_count"        "user_followers_count"  
+## [25] "user_following_count"   "sourcetweet_type"       "sourcetweet_id"        
+## [28] "sourcetweet_text"       "sourcetweet_lang"       "sourcetweet_author_id" 
+## [31] "in_reply_to_user_id"</code></pre>
 <p>Each row here is a tweets produced by one of the news outlets detailed above over a five month period, January–May 2020. Note also that each tweets has a particular date. We can therefore use these to look at any over time changes.</p>
 <p>We won’t need all of these variables so let’s just keep those that are of interest to us:</p>
 <div class="sourceCode" id="cb221"><pre class="downlit sourceCode r">
@@ -492,7 +496,8 @@ The Guardian
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method<span class="op">=</span> <span class="va">loess</span>, alpha<span class="op">=</span><span class="fl">0.25</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">"afinn sentiment"</span><span class="op">)</span></code></pre></div>
 <pre><code>## Joining, by = "word"
-## `summarise()` has grouped output by 'date'. You can override using the `.groups` argument.
+## `summarise()` has grouped output by 'date'. You can override using the `.groups`
+## argument.
 ## `geom_smooth()` using formula 'y ~ x'</code></pre>
 <div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-127-3.png" width="672"></div>
 <p>We see that they do look pretty similar… and interestingly it seems that overall sentiment positivity <em>increases</em> as the pandemic breaks.</p>
@@ -530,7 +535,8 @@ The Guardian
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span>stat<span class="op">=</span> <span class="st">"identity"</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">"mortality words"</span><span class="op">)</span></code></pre></div>
 <pre><code>## Joining, by = "word"
-## `summarise()` has grouped output by 'date'. You can override using the `.groups` argument.</code></pre>
+## `summarise()` has grouped output by 'date'. You can override using the `.groups`
+## argument.</code></pre>
 <div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-129-1.png" width="672"></div>
 <p>The above simply counts the number of mortality words over time. This might be misleading if there are, for example, more or longer tweets at certain points in time; i.e., if the length or quantity of text is not time-constant.</p>
 <p>Why would this matter? Well, in the above it could just be that we have more mortality words later on because there are just more tweets earlier on. By just counting words, we are not taking into account the <em>denominator</em>.</p>
@@ -674,7 +680,7 @@ The Guardian
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Computational Text Analysis</strong>" was written by Christopher Barrie. It was last built on 2022-03-07.</p>
+    <p>"<strong>Computational Text Analysis</strong>" was written by Christopher Barrie. It was last built on 2022-03-10.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

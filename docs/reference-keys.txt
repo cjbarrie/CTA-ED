@@ -46,9 +46,9 @@ week-7-demo
 setup-5
 using-glove-or-word2vec
 week-8
-supervised-learning
-week-9
 sampling-text-information
+week-9
+supervised-learning
 week-10
 validation
 exercise-1-word-frequency-analysis
