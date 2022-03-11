@@ -54,7 +54,7 @@ tocq <- readRDS("data/topicmodels/tocq.rds")
 If you're working on this document from your own computer ("locally") you can download the data in the following way:
 
 ```{r, eval = F}
-tocq  <- readRDS(gzcon(url("https://github.com/cjbarrie/CTA-ED/blob/main/data/topicmodels/tocq.rds?raw=true")))
+tocq  <- readRDS(gzcon(url("https://github.com/cjbarrie/CTA-ED/blob/main/data/topicmodels/tocq.RDS?raw=true")))
 
 ```
 
