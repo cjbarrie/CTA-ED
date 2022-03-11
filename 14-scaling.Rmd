@@ -166,7 +166,7 @@ kaneko_dfm <- readRDS("data/wordscaling/study1_kaneko.rds")
 If you're working locally, you can download the `dfm` data with:
 
 ```{r, eval = F}
-kaneko_dfm  <- readRDS(gzcon(url("https://github.com/cjbarrie/CTA-ED/blob/main/data/wordscaling/kaneko_dfm.rds?raw=true")))
+kaneko_dfm  <- readRDS(gzcon(url("https://github.com/cjbarrie/CTA-ED/blob/main/data/wordscaling/study1_kaneko.rds?raw=true")))
 
 ```
 

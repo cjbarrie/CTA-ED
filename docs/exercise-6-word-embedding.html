@@ -350,7 +350,7 @@
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_fill_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"#336B87"</span>, <span class="st">"#2A3132"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_tufte.html">theme_tufte</a></span><span class="op">(</span>base_family <span class="op">=</span> <span class="st">"Helvetica"</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-205-1.png" width="672"></div>
+<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-207-1.png" width="672"></div>
 </div>
 <div id="glove-embeddings" class="section level2" number="22.6">
 <h2>
@@ -471,7 +471,7 @@ f(X_{ij}) =
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">UMAP1</span>, y <span class="op">=</span> <span class="va">UMAP2</span><span class="op">)</span>, colour <span class="op">=</span> <span class="st">'blue'</span>, size <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html">annotate</a></span><span class="op">(</span><span class="st">"rect"</span>, xmin <span class="op">=</span> <span class="op">-</span><span class="fl">3</span>, xmax <span class="op">=</span> <span class="op">-</span><span class="fl">2</span>, ymin <span class="op">=</span> <span class="fl">5</span>, ymax <span class="op">=</span> <span class="fl">7</span>,alpha <span class="op">=</span> <span class="fl">.2</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"GloVe word embedding in 2D using UMAP"</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-217-1.png" width="672"></div>
+<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-219-1.png" width="672"></div>
 <div class="sourceCode" id="cb387"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Plot the shaded part of the GloVe word embedding with labels</span>
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">df_glove_umap</span><span class="op">[</span><span class="va">df_glove_umap</span><span class="op">$</span><span class="va">UMAP1</span> <span class="op">&lt;</span> <span class="op">-</span><span class="fl">2.5</span> <span class="op">&amp;</span> <span class="va">df_glove_umap</span><span class="op">$</span><span class="va">UMAP1</span> <span class="op">&gt;</span> <span class="op">-</span><span class="fl">3</span> <span class="op">&amp;</span> <span class="va">df_glove_umap</span><span class="op">$</span><span class="va">UMAP2</span> <span class="op">&gt;</span> <span class="fl">5</span> <span class="op">&amp;</span> <span class="va">df_glove_umap</span><span class="op">$</span><span class="va">UMAP2</span> <span class="op">&lt;</span> <span class="fl">6.5</span>,<span class="op">]</span><span class="op">)</span> <span class="op">+</span>
@@ -479,7 +479,7 @@ f(X_{ij}) =
       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">UMAP1</span>, <span class="va">UMAP2</span>, label <span class="op">=</span> <span class="va">word</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">2.5</span>, vjust<span class="op">=</span><span class="op">-</span><span class="fl">1</span>, hjust<span class="op">=</span><span class="fl">0</span><span class="op">)</span> <span class="op">+</span>
       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"GloVe word embedding in 2D using UMAP - partial view"</span><span class="op">)</span> <span class="op">+</span>
       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>plot.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>hjust <span class="op">=</span> <span class="fl">.5</span>, size <span class="op">=</span> <span class="fl">14</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-217-2.png" width="672"></div>
+<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-219-2.png" width="672"></div>
 <div class="sourceCode" id="cb388"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Plot the word embedding of words that are related for the GloVe model</span>
 <span class="va">word</span> <span class="op">&lt;-</span> <span class="va">glove_embedding</span><span class="op">[</span><span class="st">"economy"</span>,, drop <span class="op">=</span> <span class="cn">FALSE</span><span class="op">]</span>
@@ -494,7 +494,7 @@ f(X_{ij}) =
       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">UMAP1</span>, <span class="va">UMAP2</span>, label <span class="op">=</span> <span class="va">word</span><span class="op">)</span>, show.legend <span class="op">=</span> <span class="cn">FALSE</span>, size <span class="op">=</span> <span class="fl">2.5</span>, vjust<span class="op">=</span><span class="op">-</span><span class="fl">1.5</span>, hjust<span class="op">=</span><span class="fl">0</span><span class="op">)</span> <span class="op">+</span>
       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"GloVe word embedding of words related to 'economy'"</span><span class="op">)</span> <span class="op">+</span>
       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>plot.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>hjust <span class="op">=</span> <span class="fl">.5</span>, size <span class="op">=</span> <span class="fl">14</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-217-3.png" width="672"></div>
+<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-219-3.png" width="672"></div>
 <p>We can see, here, then that our embeddings seem to make sense. We zoomed in first on that little outgrowth of our 2D mapping, which seemed to correspond to numbers and number words. Then we looked at words around “economy” and we see other related terms like “growth” and “jobs.”</p>
 </div>
 <div id="exercises-5" class="section level2" number="22.10">
@@ -541,7 +541,7 @@ f(X_{ij}) =
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Computational Text Analysis</strong>" was written by Christopher Barrie. It was last built on 2022-03-10.</p>
+    <p>"<strong>Computational Text Analysis</strong>" was written by Christopher Barrie. It was last built on 2022-03-11.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
