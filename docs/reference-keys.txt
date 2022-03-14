@@ -119,6 +119,7 @@ using-apis
 other-apis-r-packages
 scraping
 speech-to-text
+ocr
 assessment-data
 introduction-7
 osnabrugge_playing_2021-data

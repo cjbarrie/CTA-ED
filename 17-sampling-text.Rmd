@@ -10,6 +10,7 @@ In this tutorial, you will learn how to:
 * Query text information using different APIs
 * Scrape text information programmatically
 * Transcribe text information from audio
+* Extract text information from images
 
 ## Online corpora
 
@@ -773,4 +774,16 @@ from youtube_transcript_api import YouTubeTranscriptApi
 
 YouTubeTranscriptApi.get_transcript("cpbtcsGE0OA")
 ```
+
+## OCR
+
+The last major technique that might be of interest for extracting text is Optical Character Recognition (OCR). This is a technique that reads in image files (e.g., .jpg or .png or .pdf) automatically extracts the text contained therein. 
+
+A very good package in R for extracting text from images is `daiR`, details of which can be found [here](https://cran.r-project.org/web/packages/daiR/index.html). This connects again to the Google Cloud Engine (and thus requires billing info.) but it won't charge you until you've spent your first free $300 of credit. This will take a while to spend so you have a good deal amount of tokens before you start incurring expenses.
+
+You can consult [here](https://dair.info/articles/setting_up_google_storage.html) for info. on setting up your Google Cloud service account. \
+
+Once you have done this you'll be ready to connect to the Google Cloud Engine. 
+
+
 
