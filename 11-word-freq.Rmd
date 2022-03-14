@@ -42,7 +42,8 @@ edbfdata <- read_csv("data/wordfreq/edbookfestall.csv")
 If you're working on this document from your own computer ("locally") you can download the Edinburgh Fringe data in the following way:
 
 ```{r, eval = F}
-edbfdata <- read_csv("https://raw.githubusercontent.com/cjbarrie/RDL-Ed/main/02-text-as-data/data/edbookfestall.csv")
+edbfdata <- read_csv("https://github.com/cjbarrie/CTA-ED/blob/main/data/wordfreq/edbookfestall.csv"
+                     
 ```
 
 

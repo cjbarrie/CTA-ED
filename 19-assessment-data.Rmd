@@ -120,6 +120,6 @@ Select a dataset/datasets of interest from the Twitter Transparency archive [her
 
 The datasets are all listed and downloadable in ".csv" format if you scroll down to "03. Download Archive." Here, you will just be asked to enter your email address as agreement to Terms of Use. 
 
-## @king_how_2013 data
+## @michalopoulos_folklore_2021
 
-Data from the article by @king_how_2013 on Chinese social media posts, and censorship dynamics can be downloadedn [here](https://dataverse.harvard.edu/dataset.xhtml;jsessionid=062d8cc68e633603611ab3e89755?persistentId=doi%3A10.7910%2FDVN1%2F22691&version=&q=&fileTypeGroupFacet=&fileAccess=&fileSortField=date). 
+Data from the article by @michalopoulos_folklore_2021 on Folkloric belief using text data derived from ethnographic materials, which can be downloaded [here](https://dataverse.harvard.edu/dataset.xhtml;jsessionid=8ff772a5d630bc91f1e9c543e537?persistentId=doi%3A10.7910%2FDVN%2FIXOHKB&version=&q=&fileTypeGroupFacet=&fileAccess=&fileSortField=name&fileSortOrder=desc). 

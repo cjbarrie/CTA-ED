@@ -2,7 +2,7 @@
 
 ## Setup
 
-First, we'll load the packages we'll be using in this week's brief demo. here we are pre-loading an already-estimated PMI matrix and results from the singualr value decomposition approach.
+First, we'll load the packages we'll be using in this week's brief demo. here we are pre-loading an already-estimated PMI matrix and results from the singular value decomposition approach.
 
 ```{r, warning = F, message = F}
 library(Matrix) #for handling matrices
