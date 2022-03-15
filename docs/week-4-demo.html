@@ -87,7 +87,7 @@
 <span class="header-section-number">7.1</span> Setup<a class="anchor" aria-label="anchor" href="#setup-2"><i class="fas fa-link"></i></a>
 </h2>
 <p>First, we’ll load the packages we’ll be using in this week’s brief demo.</p>
-<div class="sourceCode" id="cb76"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb79"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://quanteda.io">quanteda</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://quanteda.io">quanteda.textstats</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">quanteda.textplots</span><span class="op">)</span>
@@ -102,22 +102,22 @@
 </h2>
 <p>A first measure of text similarity is at the level of characters. We can look <em>for the last time</em> (I promise) at the example from the lecture and see how similarity compares.</p>
 <p>We’ll make two sentences and create two character objects from them. These are two thoughts imagined up from our classes.</p>
-<div class="sourceCode" id="cb77"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb80"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">a</span> <span class="op">&lt;-</span> <span class="st">"We are all very happy to be at a lecture at 10AM"</span>
 <span class="va">b</span> <span class="op">&lt;-</span> <span class="st">"We are all even happier that we don’t have a lecture next week"</span></code></pre></div>
 <p>We know that the “longest common substring measure” is, according to the <a href="https://cran.r-project.org/web/packages/stringdist/stringdist.pdf">stringdist</a> package documentation, “the longest string that can be obtained by pairing characters from <em>a</em> and <em>b</em> while keeping the order of characters intact.”</p>
 <p>And we can easily get different distance/similarity measures by comparing our character objects <code>a</code> and <code>b</code> as so.</p>
-<div class="sourceCode" id="cb78"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb81"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## longest common substring distance</span>
 <span class="fu"><a href="https://rdrr.io/pkg/stringdist/man/stringdist.html">stringdist</a></span><span class="op">(</span><span class="va">a</span>, <span class="va">b</span>,
            method <span class="op">=</span> <span class="st">"lcs"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 36</code></pre>
-<div class="sourceCode" id="cb80"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb83"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## levenshtein distance</span>
 <span class="fu"><a href="https://rdrr.io/pkg/stringdist/man/stringdist.html">stringdist</a></span><span class="op">(</span><span class="va">a</span>, <span class="va">b</span>,
            method <span class="op">=</span> <span class="st">"lv"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 26</code></pre>
-<div class="sourceCode" id="cb82"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb85"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## jaro distance</span>
 <span class="fu"><a href="https://rdrr.io/pkg/stringdist/man/stringdist.html">stringdist</a></span><span class="op">(</span><span class="va">a</span>, <span class="va">b</span>,
            method <span class="op">=</span> <span class="st">"jw"</span>, p <span class="op">=</span><span class="fl">0</span><span class="op">)</span></code></pre></div>
@@ -129,7 +129,7 @@
 </h2>
 <p>In this second example from the lecture, we’re taking the opening line of <em>Pride and Prejudice</em> alongside my own versions of this same famous opening line.</p>
 <p>We can get the text of Jane Austen very easily thanks to the <code>janeaustenr</code> package.</p>
-<div class="sourceCode" id="cb84"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb87"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## similarity and distance example</span>
 
 <span class="va">text</span> <span class="op">&lt;-</span> <span class="fu">janeaustenr</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/janeaustenr/man/prideprejudice.html">prideprejudice</a></span>
@@ -141,39 +141,39 @@
 <span class="va">sentence1</span></code></pre></div>
 <pre><code>## [1] "It is a truth universally acknowledged, that a single man in possession of a good fortune, must be in want of a wife."</code></pre>
 <p>We’re then going to specify our alternative versions of this same sentence.</p>
-<div class="sourceCode" id="cb86"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb89"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">sentence2</span> <span class="op">&lt;-</span> <span class="st">"Everyone knows that a rich man without wife will want a wife"</span>
 
 <span class="va">sentence3</span> <span class="op">&lt;-</span> <span class="st">"He's loaded so he wants to get married. Everyone knows that's what happens."</span></code></pre></div>
 <p>Finally, we’re going to convert these into a document feature matrix. We’re doing this with the <code>quanteda</code> package, which is a package that we’ll begin using more and more over coming weeks as the analyses we’re performing get gradually more technical.</p>
-<div class="sourceCode" id="cb87"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb90"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">dfmat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://quanteda.io/reference/dfm.html">dfm</a></span><span class="op">(</span><span class="fu"><a href="https://quanteda.io/reference/tokens.html">tokens</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">sentence1</span>,
                       <span class="va">sentence2</span>,
                       <span class="va">sentence3</span><span class="op">)</span><span class="op">)</span>,
              remove_punct <span class="op">=</span> <span class="cn">TRUE</span>, remove <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/stopwords/man/stopwords.html">stopwords</a></span><span class="op">(</span><span class="st">"english"</span><span class="op">)</span><span class="op">)</span>
 
 <span class="va">dfmat</span></code></pre></div>
-<pre><code>## Document-feature matrix of: 3 documents, 21 features (58.73% sparse) and 0 docvars.
+<pre><code>## Document-feature matrix of: 3 documents, 20 features (58.33% sparse) and 0 docvars.
 ##        features
 ## docs    truth universally acknowledged single man possession good fortune must want
 ##   text1     1           1            1      1   1          1    1       1    1    1
 ##   text2     0           0            0      0   1          0    0       0    0    1
 ##   text3     0           0            0      0   0          0    0       0    0    0
-## [ reached max_nfeat ... 11 more features ]</code></pre>
+## [ reached max_nfeat ... 10 more features ]</code></pre>
 <p>What do we see here?</p>
 <p>Well, it’s clear that <code>text2</code> and <code>text3</code> are not very similar to <code>text1</code> at all—they share few words. But we also see that <code>text2</code> does at least contain some words that are shared with <code>text1</code>, which is the original opening line of Jane Austen’s <em>Pride and Prejudice</em>.</p>
 <p>So, how do we then measure the similarity or distance between these texts?</p>
 <p>The first way is simply by correlating the two sets of ones and zeroes. We can do this with the <code>quanteda.textstats</code> package like so.</p>
-<div class="sourceCode" id="cb89"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb92"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## correlation</span>
 <span class="fu"><a href="https://quanteda.io/reference/textstat_simil.html">textstat_simil</a></span><span class="op">(</span><span class="va">dfmat</span>, margin <span class="op">=</span> <span class="st">"documents"</span>, method <span class="op">=</span> <span class="st">"correlation"</span><span class="op">)</span></code></pre></div>
 <pre><code>## textstat_simil object; method = "correlation"
-##        text1  text2  text3
-## text1  1.000 -0.117 -0.742
-## text2 -0.117  1.000 -0.173
-## text3 -0.742 -0.173  1.000</code></pre>
+##         text1   text2  text3
+## text1  1.0000 -0.0689 -0.811
+## text2 -0.0689  1.0000 -0.144
+## text3 -0.8112 -0.1438  1.000</code></pre>
 <p>And you’ll see that this is the same as what we would get if we manipulated the data into tidy format (rows for words and columns of 1s and 0s).</p>
-<div class="sourceCode" id="cb91"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb94"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">test</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="va">dfmat</span><span class="op">)</span>
 <span class="va">test</span> <span class="op">&lt;-</span> <span class="va">test</span> <span class="op"><a href="https://quanteda.io/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://rdrr.io/pkg/tidytext/man/document_term_casters.html">cast_dfm</a></span><span class="op">(</span><span class="va">term</span>, <span class="va">document</span>, <span class="va">count</span><span class="op">)</span>
@@ -181,46 +181,46 @@
 
 <span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">test</span><span class="op">[</span>,<span class="fl">2</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span><span class="op">)</span>
 <span class="va">res</span></code></pre></div>
-<pre><code>##            text1      text2      text3
-## text1  1.0000000 -0.1167748 -0.7416198
-## text2 -0.1167748  1.0000000 -0.1732051
-## text3 -0.7416198 -0.1732051  1.0000000</code></pre>
+<pre><code>##             text1       text2      text3
+## text1  1.00000000 -0.06894503 -0.8112457
+## text2 -0.06894503  1.00000000 -0.1438235
+## text3 -0.81124574 -0.14382349  1.0000000</code></pre>
 <p>And we see that as expected <code>text2</code> is more highly correlated with <code>text1</code> than is <code>text3</code>.</p>
-<div class="sourceCode" id="cb93"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb96"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/corrplot/man/corrplot.html">corrplot</a></span><span class="op">(</span><span class="va">res</span>, type <span class="op">=</span> <span class="st">"upper"</span>, order <span class="op">=</span> <span class="st">"hclust"</span>, 
          tl.col <span class="op">=</span> <span class="st">"black"</span>, tl.srt <span class="op">=</span> <span class="fl">45</span><span class="op">)</span></code></pre></div>
 <p><img src="main_files/figure-html/unnamed-chunk-51-1.png" width="672">
 As for Euclidean distances, we can again use <code>quanteda</code> as so.</p>
-<div class="sourceCode" id="cb94"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb97"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://quanteda.io/reference/textstat_simil.html">textstat_dist</a></span><span class="op">(</span><span class="va">dfmat</span>, margin <span class="op">=</span> <span class="st">"documents"</span>, method <span class="op">=</span> <span class="st">"euclidean"</span><span class="op">)</span></code></pre></div>
 <pre><code>## textstat_dist object; method = "euclidean"
 ##       text1 text2 text3
-## text1     0  3.74  4.24
-## text2  3.74     0  3.74
-## text3  4.24  3.74     0</code></pre>
+## text1     0  3.61  4.24
+## text2  3.61     0  3.61
+## text3  4.24  3.61     0</code></pre>
 <p>Or we could define our own function just so we see what’s going on behind the scenes.</p>
-<div class="sourceCode" id="cb96"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb99"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># function for Euclidean distance</span>
 <span class="va">euclidean</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">a</span>,<span class="va">b</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="op">(</span><span class="va">a</span> <span class="op">-</span> <span class="va">b</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span>
 <span class="co"># estimating the distance</span>
 <span class="fu">euclidean</span><span class="op">(</span><span class="va">test</span><span class="op">$</span><span class="va">text1</span>, <span class="va">test</span><span class="op">$</span><span class="va">text2</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 3.741657</code></pre>
-<div class="sourceCode" id="cb98"><pre class="downlit sourceCode r">
+<pre><code>## [1] 3.605551</code></pre>
+<div class="sourceCode" id="cb101"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">euclidean</span><span class="op">(</span><span class="va">test</span><span class="op">$</span><span class="va">text1</span>, <span class="va">test</span><span class="op">$</span><span class="va">text3</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 4.242641</code></pre>
-<div class="sourceCode" id="cb100"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb103"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">euclidean</span><span class="op">(</span><span class="va">test</span><span class="op">$</span><span class="va">text2</span>, <span class="va">test</span><span class="op">$</span><span class="va">text3</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 3.741657</code></pre>
+<pre><code>## [1] 3.605551</code></pre>
 <p>For Manhattan distance, we could use <code>quanteda</code> again.</p>
-<div class="sourceCode" id="cb102"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb105"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://quanteda.io/reference/textstat_simil.html">textstat_dist</a></span><span class="op">(</span><span class="va">dfmat</span>, margin <span class="op">=</span> <span class="st">"documents"</span>, method <span class="op">=</span> <span class="st">"manhattan"</span><span class="op">)</span></code></pre></div>
 <pre><code>## textstat_dist object; method = "manhattan"
 ##       text1 text2 text3
-## text1     0    14    18
-## text2    14     0    12
-## text3    18    12     0</code></pre>
+## text1     0    13    18
+## text2    13     0    11
+## text3    18    11     0</code></pre>
 <p>Or we could again define our own function.</p>
-<div class="sourceCode" id="cb104"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb107"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## manhattan</span>
 <span class="va">manhattan</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">a</span>, <span class="va">b</span><span class="op">)</span><span class="op">{</span>
   <span class="va">dist</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">a</span> <span class="op">-</span> <span class="va">b</span><span class="op">)</span>
@@ -229,23 +229,23 @@ As for Euclidean distances, we can again use <code>quanteda</code> as so.</p>
 <span class="op">}</span>
 
 <span class="fu">manhattan</span><span class="op">(</span><span class="va">test</span><span class="op">$</span><span class="va">text1</span>, <span class="va">test</span><span class="op">$</span><span class="va">text2</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 14</code></pre>
-<div class="sourceCode" id="cb106"><pre class="downlit sourceCode r">
+<pre><code>## [1] 13</code></pre>
+<div class="sourceCode" id="cb109"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">manhattan</span><span class="op">(</span><span class="va">test</span><span class="op">$</span><span class="va">text1</span>, <span class="va">test</span><span class="op">$</span><span class="va">text3</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 18</code></pre>
-<div class="sourceCode" id="cb108"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb111"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">manhattan</span><span class="op">(</span><span class="va">test</span><span class="op">$</span><span class="va">text2</span>, <span class="va">test</span><span class="op">$</span><span class="va">text3</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 12</code></pre>
+<pre><code>## [1] 11</code></pre>
 <p>And for the cosine similarity, <code>quanteda</code> again makes this straightforward.</p>
-<div class="sourceCode" id="cb110"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb113"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://quanteda.io/reference/textstat_simil.html">textstat_simil</a></span><span class="op">(</span><span class="va">dfmat</span>, margin <span class="op">=</span> <span class="st">"documents"</span>, method <span class="op">=</span> <span class="st">"cosine"</span><span class="op">)</span></code></pre></div>
 <pre><code>## textstat_simil object; method = "cosine"
 ##       text1 text2 text3
-## text1 1.000 0.364     0
-## text2 0.364 1.000 0.228
-## text3     0 0.228 1.000</code></pre>
+## text1 1.000 0.381     0
+## text2 0.381 1.000 0.239
+## text3     0 0.239 1.000</code></pre>
 <p>But to make clear what’s going on here, we could again write our own function.</p>
-<div class="sourceCode" id="cb112"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb115"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## cosine</span>
 <span class="va">cos.sim</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">a</span>, <span class="va">b</span><span class="op">)</span> 
 <span class="op">{</span>
@@ -253,13 +253,13 @@ As for Euclidean distances, we can again use <code>quanteda</code> as so.</p>
 <span class="op">}</span>  
 
 <span class="fu">cos.sim</span><span class="op">(</span><span class="va">test</span><span class="op">$</span><span class="va">text1</span>, <span class="va">test</span><span class="op">$</span><span class="va">text2</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 0.3636364</code></pre>
-<div class="sourceCode" id="cb114"><pre class="downlit sourceCode r">
+<pre><code>## [1] 0.381385</code></pre>
+<div class="sourceCode" id="cb117"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">cos.sim</span><span class="op">(</span><span class="va">test</span><span class="op">$</span><span class="va">text1</span>, <span class="va">test</span><span class="op">$</span><span class="va">text3</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 0</code></pre>
-<div class="sourceCode" id="cb116"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb119"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">cos.sim</span><span class="op">(</span><span class="va">test</span><span class="op">$</span><span class="va">text2</span>, <span class="va">test</span><span class="op">$</span><span class="va">text3</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 0.2279212</code></pre>
+<pre><code>## [1] 0.2390457</code></pre>
 </div>
 <div id="complexity" class="section level2" number="7.4">
 <h2>
@@ -271,15 +271,15 @@ As for Euclidean distances, we can again use <code>quanteda</code> as so.</p>
 <p>{:}{Flesch’s Reading Ease Score (Flesch 1948).
 }</p>
 <p>We can estimate a readability score for our respective sentences as such. The Flesch score from 1948 is the default.</p>
-<div class="sourceCode" id="cb118"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb121"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://quanteda.io/reference/textstat_readability.html">textstat_readability</a></span><span class="op">(</span><span class="va">sentence1</span><span class="op">)</span></code></pre></div>
 <pre><code>##   document   Flesch
 ## 1    text1 62.10739</code></pre>
-<div class="sourceCode" id="cb120"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb123"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://quanteda.io/reference/textstat_readability.html">textstat_readability</a></span><span class="op">(</span><span class="va">sentence2</span><span class="op">)</span></code></pre></div>
 <pre><code>##   document Flesch
 ## 1    text1 88.905</code></pre>
-<div class="sourceCode" id="cb122"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb125"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://quanteda.io/reference/textstat_readability.html">textstat_readability</a></span><span class="op">(</span><span class="va">sentence3</span><span class="op">)</span></code></pre></div>
 <pre><code>##   document   Flesch
 ## 1    text1 83.09904</code></pre>
@@ -290,15 +290,15 @@ As for Euclidean distances, we can again use <code>quanteda</code> as so.</p>
 <p>where = Nwmin3sy = the number of words with 3 syllables or more.
 This measure is regression equation D in McLaughlin’s original paper.}</p>
 <p>We can calculate this for our three sentences as below.</p>
-<div class="sourceCode" id="cb124"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb127"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://quanteda.io/reference/textstat_readability.html">textstat_readability</a></span><span class="op">(</span><span class="va">sentence1</span>, measure <span class="op">=</span> <span class="st">"SMOG"</span><span class="op">)</span></code></pre></div>
 <pre><code>##   document     SMOG
 ## 1    text1 13.02387</code></pre>
-<div class="sourceCode" id="cb126"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb129"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://quanteda.io/reference/textstat_readability.html">textstat_readability</a></span><span class="op">(</span><span class="va">sentence2</span>, measure <span class="op">=</span> <span class="st">"SMOG"</span><span class="op">)</span></code></pre></div>
 <pre><code>##   document     SMOG
 ## 1    text1 8.841846</code></pre>
-<div class="sourceCode" id="cb128"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb131"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://quanteda.io/reference/textstat_readability.html">textstat_readability</a></span><span class="op">(</span><span class="va">sentence3</span>, measure <span class="op">=</span> <span class="st">"SMOG"</span><span class="op">)</span></code></pre></div>
 <pre><code>##   document     SMOG
 ## 1    text1 7.168622</code></pre>
@@ -334,7 +334,7 @@ This measure is regression equation D in McLaughlin’s original paper.}</p>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Computational Text Analysis</strong>" was written by Christopher Barrie. It was last built on 2022-03-14.</p>
+    <p>"<strong>Computational Text Analysis</strong>" was written by Christopher Barrie. It was last built on 2022-03-15.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

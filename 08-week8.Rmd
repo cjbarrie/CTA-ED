@@ -18,3 +18,7 @@ The reading by @michalopoulos_folklore_2021 takes an entirely different tack, bu
 
 - @martins_rise_2020
 - @baumard_cultural_2022
+
+**Slides**:
+
+- Week 8 [Slides](https://docs.google.com/presentation/d/1gAuaqirCG-Db1Q77tudp_Z4QIh0esvHBjRDiFEm8yWk/edit?usp=sharing)

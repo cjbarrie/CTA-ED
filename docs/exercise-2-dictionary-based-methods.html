@@ -106,7 +106,7 @@
 <span class="header-section-number">18.3</span> Load data and packages<a class="anchor" aria-label="anchor" href="#load-data-and-packages-1"><i class="fas fa-link"></i></a>
 </h2>
 <p>Before proceeding, we’ll load the remaining packages we will need for this tutorial.</p>
-<div class="sourceCode" id="cb210"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb213"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/cjbarrie/academictwitteR">academictwitteR</a></span><span class="op">)</span> <span class="co"># for fetching Twitter data</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span> <span class="co"># loads dplyr, ggplot2, and others</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readr.tidyverse.org">readr</a></span><span class="op">)</span> <span class="co"># more informative and easy way to import data</span>
@@ -115,7 +115,7 @@
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://quanteda.io">quanteda</a></span><span class="op">)</span> <span class="co"># includes functions to implement Lexicoder</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/EmilHvitfeldt/textdata">textdata</a></span><span class="op">)</span></code></pre></div>
 <p>In this exercise we’ll be using another new dataset. The data were collected from the Twitter accounts of the top eight newspapers in the UK by circulation. You can see the names of the newspapers in the code below:</p>
-<div class="sourceCode" id="cb211"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb214"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">newspapers</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"TheSun"</span>, <span class="st">"DailyMailUK"</span>, <span class="st">"MetroUK"</span>, <span class="st">"DailyMirror"</span>, 
                <span class="st">"EveningStandard"</span>, <span class="st">"thetimes"</span>, <span class="st">"Telegraph"</span>, <span class="st">"guardian"</span><span class="op">)</span>
 
@@ -135,10 +135,10 @@
 <div class="inline-figure"><img src="data/sentanalysis/guardiancorona.png" style="width:100.0%"></div>
 <p>For details of how to access Twitter data with <code>academictwitteR</code>, check out details of the package <a href="https://cran.r-project.org/web/packages/academictwitteR/index.html">here</a>.</p>
 <p>We can download the final dataset with:</p>
-<div class="sourceCode" id="cb212"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb215"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tweets</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html">readRDS</a></span><span class="op">(</span><span class="st">"data/sentanalysis/newstweets.rds"</span><span class="op">)</span></code></pre></div>
 <p>If you’re working on this document from your own computer (“locally”) you can download the tweets data in the following way:</p>
-<div class="sourceCode" id="cb213"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb216"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tweets</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html">readRDS</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/gzcon.html">gzcon</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/connections.html">url</a></span><span class="op">(</span><span class="st">"https://github.com/cjbarrie/CTA-ED/blob/main/data/sentanalysis/newstweets.rds?raw=true"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="inspect-and-filter-data-1" class="section level2" number="18.4">
@@ -146,30 +146,40 @@
 <span class="header-section-number">18.4</span> Inspect and filter data<a class="anchor" aria-label="anchor" href="#inspect-and-filter-data-1"><i class="fas fa-link"></i></a>
 </h2>
 <p>Let’s have a look at the data:</p>
-<div class="sourceCode" id="cb214"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb217"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">tweets</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 31
-##   tweet_id            user_username text  lang  author_id source possibly_sensit… conversation_id created_at user_url user_location user_protected user_verified user_name user_profile_im…
-##   &lt;chr&gt;               &lt;chr&gt;         &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt;  &lt;lgl&gt;            &lt;chr&gt;           &lt;chr&gt;      &lt;chr&gt;    &lt;chr&gt;         &lt;lgl&gt;          &lt;lgl&gt;         &lt;chr&gt;     &lt;chr&gt;           
-## 1 1212334402266521602 DailyMirror   "Sec… en    16887175  Tweet… FALSE            12123344022665… 2020-01-0… https:/… UK            FALSE          TRUE          The Mirr… https://pbs.twi…
-## 2 1212334169457676289 DailyMirror   "RT … en    16887175  Tweet… FALSE            12123341694576… 2020-01-0… https:/… UK            FALSE          TRUE          The Mirr… https://pbs.twi…
-## 3 1212333195879993344 thetimes      "A c… en    6107422   Echob… FALSE            12123331958799… 2020-01-0… http://… London        FALSE          TRUE          The Times https://pbs.twi…
-## 4 1212333194864988161 TheSun        "Way… en    34655603  Echob… FALSE            12123331948649… 2020-01-0… https:/… London        FALSE          TRUE          The Sun   https://pbs.twi…
-## 5 1212332920507191296 DailyMailUK   "Stu… en    111556423 Socia… FALSE            12123329205071… 2020-01-0… https:/… London, UK    FALSE          TRUE          Daily Ma… https://pbs.twi…
-## 6 1212332640570875904 TheSun        "Dad… en    34655603  Twitt… FALSE            12123326405708… 2020-01-0… https:/… London        FALSE          TRUE          The Sun   https://pbs.twi…
-## # … with 16 more variables: user_description &lt;chr&gt;, user_created_at &lt;chr&gt;, user_pinned_tweet_id &lt;chr&gt;, retweet_count &lt;int&gt;, like_count &lt;int&gt;, quote_count &lt;int&gt;, user_tweet_count &lt;int&gt;,
-## #   user_list_count &lt;int&gt;, user_followers_count &lt;int&gt;, user_following_count &lt;int&gt;, sourcetweet_type &lt;chr&gt;, sourcetweet_id &lt;chr&gt;, sourcetweet_text &lt;chr&gt;, sourcetweet_lang &lt;chr&gt;,
-## #   sourcetweet_author_id &lt;chr&gt;, in_reply_to_user_id &lt;chr&gt;</code></pre>
-<div class="sourceCode" id="cb216"><pre class="downlit sourceCode r">
+##   tweet_id            user_username text     lang  author_id source possibly_sensit…
+##   &lt;chr&gt;               &lt;chr&gt;         &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt;  &lt;lgl&gt;           
+## 1 1212334402266521602 DailyMirror   "Secret… en    16887175  Tweet… FALSE           
+## 2 1212334169457676289 DailyMirror   "RT @Mi… en    16887175  Tweet… FALSE           
+## 3 1212333195879993344 thetimes      "A cele… en    6107422   Echob… FALSE           
+## 4 1212333194864988161 TheSun        "Wayne … en    34655603  Echob… FALSE           
+## 5 1212332920507191296 DailyMailUK   "Studen… en    111556423 Socia… FALSE           
+## 6 1212332640570875904 TheSun        "Dad fi… en    34655603  Twitt… FALSE           
+## # … with 24 more variables: conversation_id &lt;chr&gt;, created_at &lt;chr&gt;,
+## #   user_url &lt;chr&gt;, user_location &lt;chr&gt;, user_protected &lt;lgl&gt;, user_verified &lt;lgl&gt;,
+## #   user_name &lt;chr&gt;, user_profile_image_url &lt;chr&gt;, user_description &lt;chr&gt;,
+## #   user_created_at &lt;chr&gt;, user_pinned_tweet_id &lt;chr&gt;, retweet_count &lt;int&gt;,
+## #   like_count &lt;int&gt;, quote_count &lt;int&gt;, user_tweet_count &lt;int&gt;,
+## #   user_list_count &lt;int&gt;, user_followers_count &lt;int&gt;, user_following_count &lt;int&gt;,
+## #   sourcetweet_type &lt;chr&gt;, sourcetweet_id &lt;chr&gt;, sourcetweet_text &lt;chr&gt;, …</code></pre>
+<div class="sourceCode" id="cb219"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">tweets</span><span class="op">)</span></code></pre></div>
-<pre><code>##  [1] "tweet_id"               "user_username"          "text"                   "lang"                   "author_id"              "source"                 "possibly_sensitive"    
-##  [8] "conversation_id"        "created_at"             "user_url"               "user_location"          "user_protected"         "user_verified"          "user_name"             
-## [15] "user_profile_image_url" "user_description"       "user_created_at"        "user_pinned_tweet_id"   "retweet_count"          "like_count"             "quote_count"           
-## [22] "user_tweet_count"       "user_list_count"        "user_followers_count"   "user_following_count"   "sourcetweet_type"       "sourcetweet_id"         "sourcetweet_text"      
-## [29] "sourcetweet_lang"       "sourcetweet_author_id"  "in_reply_to_user_id"</code></pre>
+<pre><code>##  [1] "tweet_id"               "user_username"          "text"                  
+##  [4] "lang"                   "author_id"              "source"                
+##  [7] "possibly_sensitive"     "conversation_id"        "created_at"            
+## [10] "user_url"               "user_location"          "user_protected"        
+## [13] "user_verified"          "user_name"              "user_profile_image_url"
+## [16] "user_description"       "user_created_at"        "user_pinned_tweet_id"  
+## [19] "retweet_count"          "like_count"             "quote_count"           
+## [22] "user_tweet_count"       "user_list_count"        "user_followers_count"  
+## [25] "user_following_count"   "sourcetweet_type"       "sourcetweet_id"        
+## [28] "sourcetweet_text"       "sourcetweet_lang"       "sourcetweet_author_id" 
+## [31] "in_reply_to_user_id"</code></pre>
 <p>Each row here is a tweets produced by one of the news outlets detailed above over a five month period, January–May 2020. Note also that each tweets has a particular date. We can therefore use these to look at any over time changes.</p>
 <p>We won’t need all of these variables so let’s just keep those that are of interest to us:</p>
-<div class="sourceCode" id="cb218"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb221"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tweets</span> <span class="op">&lt;-</span> <span class="va">tweets</span> <span class="op"><a href="https://rdrr.io/pkg/academictwitteR/man/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">user_username</span>, <span class="va">text</span>, <span class="va">created_at</span>, <span class="va">user_name</span>,
          <span class="va">retweet_count</span>, <span class="va">like_count</span>, <span class="va">quote_count</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/academictwitteR/man/pipe.html">%&gt;%</a></span>
@@ -319,13 +329,13 @@ The Guardian
 </tbody>
 </table></div>
 <p>We manipulate the data into tidy format again, unnesting each token (here: words) from the tweet text.</p>
-<div class="sourceCode" id="cb219"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb222"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tidy_tweets</span> <span class="op">&lt;-</span> <span class="va">tweets</span> <span class="op"><a href="https://rdrr.io/pkg/academictwitteR/man/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>desc <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/chartr.html">tolower</a></span><span class="op">(</span><span class="va">tweet</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/academictwitteR/man/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://rdrr.io/pkg/tidytext/man/unnest_tokens.html">unnest_tokens</a></span><span class="op">(</span><span class="va">word</span>, <span class="va">desc</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/academictwitteR/man/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="va">word</span>, <span class="st">"[a-z]"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>We’ll then tidy this further, as in the previous example, by removing stop words:</p>
-<div class="sourceCode" id="cb220"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb223"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tidy_tweets</span> <span class="op">&lt;-</span> <span class="va">tidy_tweets</span> <span class="op"><a href="https://rdrr.io/pkg/academictwitteR/man/pipe.html">%&gt;%</a></span>
     <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="va">word</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">stop_words</span><span class="op">$</span><span class="va">word</span><span class="op">)</span></code></pre></div>
 </div>
@@ -344,7 +354,7 @@ The Guardian
 </li>
 </ul>
 <p>We can have a look at some of these to see how the relevant dictionaries are stored.</p>
-<div class="sourceCode" id="cb221"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb224"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/tidytext/man/get_sentiments.html">get_sentiments</a></span><span class="op">(</span><span class="st">"afinn"</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 2,477 × 2
 ##    word       value
@@ -360,7 +370,7 @@ The Guardian
 ##  9 abhorrent     -3
 ## 10 abhors        -3
 ## # … with 2,467 more rows</code></pre>
-<div class="sourceCode" id="cb223"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb226"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/tidytext/man/get_sentiments.html">get_sentiments</a></span><span class="op">(</span><span class="st">"bing"</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 6,786 × 2
 ##    word        sentiment
@@ -376,7 +386,7 @@ The Guardian
 ##  9 aborted     negative 
 ## 10 aborts      negative 
 ## # … with 6,776 more rows</code></pre>
-<div class="sourceCode" id="cb225"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb228"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/tidytext/man/get_sentiments.html">get_sentiments</a></span><span class="op">(</span><span class="st">"nrc"</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 13,875 × 2
 ##    word        sentiment
@@ -394,7 +404,7 @@ The Guardian
 ## # … with 13,865 more rows</code></pre>
 <p>What do we see here. First, the <code>AFINN</code> lexicon gives words a score from -5 to +5, where more negative scores indicate more negative sentiment and more positive scores indicate more positive sentiment. The <code>nrc</code> lexicon opts for a binary classification: positive, negative, anger, anticipation, disgust, fear, joy, sadness, surprise, and trust, with each word given a score of 1/0 for each of these sentiments. In other words, for the <code>nrc</code> lexicon, words appear multiple times if they enclose more than one such emotion (see, e.g., “abandon” above). The <code>bing</code> lexicon is most minimal, classifying words simply into binary “positive” or “negative” categories.</p>
 <p>Let’s see how we might filter the texts by selecting a dictionary, or subset of a dictionary, and using <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join()</a></code> to then filter out tweet data. We might, for example, be interested in fear words. Maybe, we might hypothesize, there is a uptick of fear toward the beginning of the coronavirus outbreak. First, let’s have a look at the words in our tweet data that the <code>nrc</code> lexicon codes as fear-related words.</p>
-<div class="sourceCode" id="cb227"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb230"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">nrc_fear</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/tidytext/man/get_sentiments.html">get_sentiments</a></span><span class="op">(</span><span class="st">"nrc"</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/academictwitteR/man/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">sentiment</span> <span class="op">==</span> <span class="st">"fear"</span><span class="op">)</span>
 
@@ -423,7 +433,7 @@ The Guardian
 <span class="header-section-number">18.6</span> Sentiment trends over time<a class="anchor" aria-label="anchor" href="#sentiment-trends-over-time"><i class="fas fa-link"></i></a>
 </h2>
 <p>Do we see any time trends? First let’s make sure the data are properly arranged in ascending order by date. We’ll then add column, which we’ll call “order,” the use of which will become clear when we do the sentiment analysis.</p>
-<div class="sourceCode" id="cb230"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb233"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">#gen data variable, order and format date</span>
 <span class="va">tidy_tweets</span><span class="op">$</span><span class="va">date</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="va">tidy_tweets</span><span class="op">$</span><span class="va">created_at</span><span class="op">)</span>
 
@@ -435,7 +445,7 @@ The Guardian
 <p>In the below, we first add in our sentiment dictionary with <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join()</a></code>. We then use the <code><a href="https://dplyr.tidyverse.org/reference/count.html">count()</a></code> function, specifying that we want to count over dates, and that words should be indexed in order (i.e., by row number) over every 1000 rows (i.e., every 1000 words).</p>
 <p>This means that if one date has many tweets totalling &gt;1000 words, then we will have multiple observations for that given date; if there are only one or two tweets then we might have just one row and associated sentiment score for that date.</p>
 <p>We then calculate the sentiment scores for each of our sentiment types (positive, negative, anger, anticipation, disgust, fear, joy, sadness, surprise, and trust) and use the <code><a href="https://tidyr.tidyverse.org/reference/spread.html">spread()</a></code> function to convert these into separate columns (rather than rows). Finally we calculate a net sentiment score by subtracting the score for negative sentiment from positive sentiment.</p>
-<div class="sourceCode" id="cb231"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb234"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">#get tweet sentiment by date</span>
 <span class="va">tweets_nrc_sentiment</span> <span class="op">&lt;-</span> <span class="va">tidy_tweets</span> <span class="op"><a href="https://rdrr.io/pkg/academictwitteR/man/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/tidytext/man/get_sentiments.html">get_sentiments</a></span><span class="op">(</span><span class="st">"nrc"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/academictwitteR/man/pipe.html">%&gt;%</a></span>
@@ -443,7 +453,7 @@ The Guardian
   <span class="fu"><a href="https://tidyr.tidyverse.org/reference/spread.html">spread</a></span><span class="op">(</span><span class="va">sentiment</span>, <span class="va">n</span>, fill <span class="op">=</span> <span class="fl">0</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/academictwitteR/man/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>sentiment <span class="op">=</span> <span class="va">positive</span> <span class="op">-</span> <span class="va">negative</span><span class="op">)</span></code></pre></div>
 <pre><code>## Joining, by = "word"</code></pre>
-<div class="sourceCode" id="cb233"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb236"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tweets_nrc_sentiment</span> <span class="op"><a href="https://rdrr.io/pkg/academictwitteR/man/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">date</span>, <span class="va">sentiment</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>alpha<span class="op">=</span><span class="fl">0.5</span><span class="op">)</span> <span class="op">+</span>
@@ -451,7 +461,7 @@ The Guardian
 <pre><code>## `geom_smooth()` using formula 'y ~ x'</code></pre>
 <div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-126-1.png" width="672"></div>
 <p>How do our different sentiment dictionaries look when compared to each other? We can then plot the sentiment scores over time for each of our sentiment dictionaries like so:</p>
-<div class="sourceCode" id="cb235"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb238"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tidy_tweets</span> <span class="op"><a href="https://rdrr.io/pkg/academictwitteR/man/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/tidytext/man/get_sentiments.html">get_sentiments</a></span><span class="op">(</span><span class="st">"bing"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/academictwitteR/man/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">date</span>, index <span class="op">=</span> <span class="va">order</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%/%</a></span> <span class="fl">1000</span>, <span class="va">sentiment</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/academictwitteR/man/pipe.html">%&gt;%</a></span>
@@ -464,7 +474,7 @@ The Guardian
 <pre><code>## Joining, by = "word"
 ## `geom_smooth()` using formula 'y ~ x'</code></pre>
 <div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-127-1.png" width="672"></div>
-<div class="sourceCode" id="cb237"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb240"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tidy_tweets</span> <span class="op"><a href="https://rdrr.io/pkg/academictwitteR/man/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/tidytext/man/get_sentiments.html">get_sentiments</a></span><span class="op">(</span><span class="st">"nrc"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/academictwitteR/man/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">date</span>, index <span class="op">=</span> <span class="va">order</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%/%</a></span> <span class="fl">1000</span>, <span class="va">sentiment</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/academictwitteR/man/pipe.html">%&gt;%</a></span>
@@ -477,7 +487,7 @@ The Guardian
 <pre><code>## Joining, by = "word"
 ## `geom_smooth()` using formula 'y ~ x'</code></pre>
 <div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-127-2.png" width="672"></div>
-<div class="sourceCode" id="cb239"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb242"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tidy_tweets</span> <span class="op"><a href="https://rdrr.io/pkg/academictwitteR/man/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/tidytext/man/get_sentiments.html">get_sentiments</a></span><span class="op">(</span><span class="st">"afinn"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/academictwitteR/man/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">date</span>, index <span class="op">=</span> <span class="va">order</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%/%</a></span> <span class="fl">1000</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/academictwitteR/man/pipe.html">%&gt;%</a></span> 
@@ -487,7 +497,8 @@ The Guardian
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method<span class="op">=</span> <span class="va">loess</span>, alpha<span class="op">=</span><span class="fl">0.25</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">"afinn sentiment"</span><span class="op">)</span></code></pre></div>
 <pre><code>## Joining, by = "word"
-## `summarise()` has grouped output by 'date'. You can override using the `.groups` argument.
+## `summarise()` has grouped output by 'date'. You can override using the `.groups`
+## argument.
 ## `geom_smooth()` using formula 'y ~ x'</code></pre>
 <div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-127-3.png" width="672"></div>
 <p>We see that they do look pretty similar… and interestingly it seems that overall sentiment positivity <em>increases</em> as the pandemic breaks.</p>
@@ -498,7 +509,7 @@ The Guardian
 </h2>
 <p>Of course, list- or dictionary-based methods need not only focus on sentiment, even if this is one of their most common uses. In essence, what you’ll have seen from the above is that sentiment analysis techniques rely on a given lexicon and score words appropriately. And there is nothing stopping us from making our own dictionaries, whether they measure sentiment or not. In the data above, we might be interested, for example, in the prevalence of mortality-related words in the news. As such, we might choose to make our own dictionary of terms. What would this look like?</p>
 <p>A very minimal example would choose, for example, words like “death” and its synonyms and score these all as 1. We would then combine these into a dictionary, which we’ve called “mordict” here.</p>
-<div class="sourceCode" id="cb241"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb244"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">word</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'death'</span>, <span class="st">'illness'</span>, <span class="st">'hospital'</span>, <span class="st">'life'</span>, <span class="st">'health'</span>,
              <span class="st">'fatality'</span>, <span class="st">'morbidity'</span>, <span class="st">'deadly'</span>, <span class="st">'dead'</span>, <span class="st">'victim'</span><span class="op">)</span>
 <span class="va">value</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span>
@@ -516,7 +527,7 @@ The Guardian
 ## 9       dead     1
 ## 10    victim     1</code></pre>
 <p>We could then use the same technique as above to bind these with our data and look at the incidence of such words over time. Combining the sequence of scripts from above we would do the following:</p>
-<div class="sourceCode" id="cb243"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb246"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tidy_tweets</span> <span class="op"><a href="https://rdrr.io/pkg/academictwitteR/man/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span><span class="op">(</span><span class="va">mordict</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/academictwitteR/man/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">date</span>, index <span class="op">=</span> <span class="va">order</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%/%</a></span> <span class="fl">1000</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/academictwitteR/man/pipe.html">%&gt;%</a></span> 
@@ -525,13 +536,14 @@ The Guardian
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span>stat<span class="op">=</span> <span class="st">"identity"</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">"mortality words"</span><span class="op">)</span></code></pre></div>
 <pre><code>## Joining, by = "word"
-## `summarise()` has grouped output by 'date'. You can override using the `.groups` argument.</code></pre>
+## `summarise()` has grouped output by 'date'. You can override using the `.groups`
+## argument.</code></pre>
 <div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-129-1.png" width="672"></div>
 <p>The above simply counts the number of mortality words over time. This might be misleading if there are, for example, more or longer tweets at certain points in time; i.e., if the length or quantity of text is not time-constant.</p>
 <p>Why would this matter? Well, in the above it could just be that we have more mortality words later on because there are just more tweets earlier on. By just counting words, we are not taking into account the <em>denominator</em>.</p>
 <p>An alternative, and preferable, method here would simply take a character string of the relevant words. We would then sum the total number of words across all tweets over time. Then we would filter our tweet words by whether or not they are a mortality word or not, according to the dictionary of words we have constructed. We would then do the same again with these words, summing the number of times they appear for each date.</p>
 <p>After this, we join with our data frame of total words for each date. Note that here we are using <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">full_join()</a></code> as we want to include dates that appear in the “totals” data frame that do not appear when we filter for mortality words; i.e., days when mortality words are equal to 0. We then go about plotting as before.</p>
-<div class="sourceCode" id="cb245"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb248"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mordict</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'death'</span>, <span class="st">'illness'</span>, <span class="st">'hospital'</span>, <span class="st">'life'</span>, <span class="st">'health'</span>,
              <span class="st">'fatality'</span>, <span class="st">'morbidity'</span>, <span class="st">'deadly'</span>, <span class="st">'dead'</span>, <span class="st">'victim'</span><span class="op">)</span>
 
@@ -548,7 +560,7 @@ The Guardian
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">date</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/academictwitteR/man/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>sum_mwords <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">obs</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/academictwitteR/man/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">full_join</a></span><span class="op">(</span><span class="va">totals</span>, <span class="va">word</span>, by<span class="op">=</span><span class="st">"date"</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/academictwitteR/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>sum_mwords<span class="op">=</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/fifelse.html">ifelse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">sum_mwords</span><span class="op">)</span>, <span class="fl">0</span>, <span class="va">sum_mwords</span><span class="op">)</span>,
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>sum_mwords<span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">sum_mwords</span><span class="op">)</span>, <span class="fl">0</span>, <span class="va">sum_mwords</span><span class="op">)</span>,
          pctmwords <span class="op">=</span> <span class="va">sum_mwords</span><span class="op">/</span><span class="va">sum_words</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/academictwitteR/man/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">date</span>, <span class="va">pctmwords</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>alpha<span class="op">=</span><span class="fl">0.5</span><span class="op">)</span> <span class="op">+</span>
@@ -564,22 +576,22 @@ The Guardian
 <p>The above approaches use general dictionary-based techniques that were not designed for domain-specific text such as news text. The Lexicoder Sentiment Dictionary, by <span class="citation">Young and Soroka (<a href="references-2.html#ref-young_affective_2012" role="doc-biblioref">2012</a>)</span> was designed specifically for examining the affective content of news text. In what follows, we will see how to implement an analysis using this dictionary.</p>
 <p>We will conduct the analysis using the <code>quanteda</code> package. You will see that we can tokenize text in a similar way using functions included in the quanteda package.</p>
 <p>With the <code>quanteda</code> package we first need to create a “corpus” object, by declaring our tweets a corpus object. Here, we make sure our date column is correctly stored and then create the corpus object with the <code><a href="https://quanteda.io/reference/corpus.html">corpus()</a></code> function. Note that we are specifying the <code>text_field</code> as “tweet” as this is where our text data of interest is, and we are including information on the date that tweet was published. This information is specified with the <code>docvars</code> argument. You’ll see tthen that the corpus consists of the text and so-called “docvars,” which are just the variables (columns) in the original dataset. Here, we have only included the date column.</p>
-<div class="sourceCode" id="cb247"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb250"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tweets</span><span class="op">$</span><span class="va">date</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="va">tweets</span><span class="op">$</span><span class="va">created_at</span><span class="op">)</span>
 
 <span class="va">tweet_corpus</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://quanteda.io/reference/corpus.html">corpus</a></span><span class="op">(</span><span class="va">tweets</span>, text_field <span class="op">=</span> <span class="st">"tweet"</span>, docvars <span class="op">=</span> <span class="st">"date"</span><span class="op">)</span></code></pre></div>
 <pre><code>## Warning: docvars argument is not used.</code></pre>
 <p>We then tokenize our text using the <code><a href="https://quanteda.io/reference/tokens.html">tokens()</a></code> function from quanteda, removing punctuation along the way:</p>
-<div class="sourceCode" id="cb249"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb252"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">toks_news</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://quanteda.io/reference/tokens.html">tokens</a></span><span class="op">(</span><span class="va">tweet_corpus</span>, remove_punct <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <p>We then take the <code>data_dictionary_LSD2015</code> that comes bundled with <code>quanteda</code> and and we select only the positive and negative categories, excluding words deemed “neutral.” After this, we are ready to “look up” in this dictionary how the tokens in our corpus are scored with the <code><a href="https://quanteda.io/reference/tokens_lookup.html">tokens_lookup()</a></code> function.</p>
-<div class="sourceCode" id="cb250"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb253"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># select only the "negative" and "positive" categories</span>
 <span class="va">data_dictionary_LSD2015_pos_neg</span> <span class="op">&lt;-</span> <span class="va">data_dictionary_LSD2015</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span>
 
 <span class="va">toks_news_lsd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://quanteda.io/reference/tokens_lookup.html">tokens_lookup</a></span><span class="op">(</span><span class="va">toks_news</span>, dictionary <span class="op">=</span> <span class="va">data_dictionary_LSD2015_pos_neg</span><span class="op">)</span></code></pre></div>
 <p>This creates a long list of all the texts (tweets) annotated with a series of ‘positive’ or ‘negative’ annotations depending on the valence of the words in that text. The creators of <code>quanteda</code> then recommend we generate a document feature matric from this. Grouping by date, we then get a dfm object, which is a quite convoluted list object that we can plot using base graphics functions for plotting matrices.</p>
-<div class="sourceCode" id="cb251"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb254"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># create a document document-feature matrix and group it by date</span>
 <span class="va">dfmat_news_lsd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://quanteda.io/reference/dfm.html">dfm</a></span><span class="op">(</span><span class="va">toks_news_lsd</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/academictwitteR/man/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="https://quanteda.io/reference/dfm_group.html">dfm_group</a></span><span class="op">(</span>groups <span class="op">=</span> <span class="va">date</span><span class="op">)</span>
@@ -590,7 +602,7 @@ The Guardian
 <span class="fu"><a href="https://rdrr.io/r/graphics/grid.html">grid</a></span><span class="op">(</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/legend.html">legend</a></span><span class="op">(</span><span class="st">"topleft"</span>, col <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, legend <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">dfmat_news_lsd</span><span class="op">)</span>, lty <span class="op">=</span> <span class="fl">1</span>, bg <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-134-1.png" width="672"></div>
-<div class="sourceCode" id="cb252"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb255"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># plot overall sentiment (positive  - negative) over time</span>
 
 <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">dfmat_news_lsd</span><span class="op">$</span><span class="va">date</span>, <span class="va">dfmat_news_lsd</span><span class="op">[</span>,<span class="st">"positive"</span><span class="op">]</span> <span class="op">-</span> <span class="va">dfmat_news_lsd</span><span class="op">[</span>,<span class="st">"negative"</span><span class="op">]</span>, 
@@ -599,7 +611,7 @@ The Guardian
 <span class="fu"><a href="https://rdrr.io/r/graphics/abline.html">abline</a></span><span class="op">(</span>h <span class="op">=</span> <span class="fl">0</span>, lty <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-134-2.png" width="672"></div>
 <p>Alternatively, we can recreate this in tidy format as follows:</p>
-<div class="sourceCode" id="cb253"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb256"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">negative</span> <span class="op">&lt;-</span> <span class="va">dfmat_news_lsd</span><span class="op">@</span><span class="va">x</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">121</span><span class="op">]</span>
 <span class="va">positive</span> <span class="op">&lt;-</span> <span class="va">dfmat_news_lsd</span><span class="op">@</span><span class="va">x</span><span class="op">[</span><span class="fl">122</span><span class="op">:</span><span class="fl">242</span><span class="op">]</span>
 <span class="va">date</span> <span class="op">&lt;-</span> <span class="va">dfmat_news_lsd</span><span class="op">@</span><span class="va">Dimnames</span><span class="op">$</span><span class="va">docs</span>
@@ -612,7 +624,7 @@ The Guardian
 <span class="va">tidy_sent</span><span class="op">$</span><span class="va">sentiment</span> <span class="op">&lt;-</span> <span class="va">tidy_sent</span><span class="op">$</span><span class="va">positive</span> <span class="op">-</span> <span class="va">tidy_sent</span><span class="op">$</span><span class="va">negative</span>
 <span class="va">tidy_sent</span><span class="op">$</span><span class="va">date</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="va">tidy_sent</span><span class="op">$</span><span class="va">date</span><span class="op">)</span></code></pre></div>
 <p>And plot accordingly:</p>
-<div class="sourceCode" id="cb254"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb257"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tidy_sent</span> <span class="op"><a href="https://rdrr.io/pkg/academictwitteR/man/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">date</span>, <span class="va">sentiment</span><span class="op">)</span><span class="op">)</span></code></pre></div>
@@ -669,7 +681,7 @@ The Guardian
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Computational Text Analysis</strong>" was written by Christopher Barrie. It was last built on 2022-03-14.</p>
+    <p>"<strong>Computational Text Analysis</strong>" was written by Christopher Barrie. It was last built on 2022-03-15.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
