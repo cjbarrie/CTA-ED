@@ -101,7 +101,7 @@
 <span class="header-section-number">21.2</span> Setup<a class="anchor" aria-label="anchor" href="#setup-9"><i class="fas fa-link"></i></a>
 </h2>
 <p>Before proceeding, we’ll load the packages we will need for this tutorial.</p>
-<div class="sourceCode" id="cb315"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb312"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span> <span class="co"># loads dplyr, ggplot2, and others</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://stringr.tidyverse.org">stringr</a></span><span class="op">)</span> <span class="co"># to handle text elements</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/juliasilge/tidytext">tidytext</a></span><span class="op">)</span> <span class="co"># includes set of functions useful for manipulating text</span>
@@ -119,26 +119,26 @@
 <p>This example is adapted by <a href="https://www.tidytextmining.com/">Text Mining with R: A Tidy Approach</a> by Julia Silge and David Robinson.</p>
 <div class="inline-figure"><img src="data/topicmodels/gutenberg.gif" style="width:100.0%"></div>
 <p>Here, we see that Volume of Tocqueville’s “Democracy in America” is stored as “815”. A separate search reveals that Volume 2 is stored as “816”.</p>
-<div class="sourceCode" id="cb316"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb313"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tocq</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/gutenbergr/reference/gutenberg_download.html">gutenberg_download</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">815</span>, <span class="fl">816</span><span class="op">)</span>, 
                             meta_fields <span class="op">=</span> <span class="st">"author"</span><span class="op">)</span></code></pre></div>
 <p>Or we can download the dataset with:</p>
-<div class="sourceCode" id="cb317"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb314"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tocq</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html">readRDS</a></span><span class="op">(</span><span class="st">"data/topicmodels/tocq.rds"</span><span class="op">)</span></code></pre></div>
 <p>If you’re working on this document from your own computer (“locally”) you can download the data in the following way:</p>
-<div class="sourceCode" id="cb318"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb315"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tocq</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html">readRDS</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/gzcon.html">gzcon</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/connections.html">url</a></span><span class="op">(</span><span class="st">"https://github.com/cjbarrie/CTA-ED/blob/main/data/topicmodels/tocq.RDS?raw=true"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>Once we have read in these data, we convert it into a different data shape: the document-term-matrix. We also create a new columns, which we call “booknumber” that recordss whether the term in question is from Volume 1 or Volume 2. To convert from tidy into “DocumentTermMatrix” format we can first use <code><a href="https://rdrr.io/pkg/tidytext/man/unnest_tokens.html">unnest_tokens()</a></code> as we have done in past exercises, remove stop words, and then use the <code><a href="https://rdrr.io/pkg/tidytext/man/document_term_casters.html">cast_dtm()</a></code> function to convert into a “DocumentTermMatrix” object.</p>
-<div class="sourceCode" id="cb319"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb316"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tocq_words</span> <span class="op">&lt;-</span> <span class="va">tocq</span> <span class="op"><a href="https://stringr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>booknumber <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">gutenberg_id</span><span class="op">==</span><span class="fl">815</span>, <span class="st">"DiA1"</span>, <span class="st">"DiA2"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://stringr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>booknumber <span class="op">=</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/fifelse.html">ifelse</a></span><span class="op">(</span><span class="va">gutenberg_id</span><span class="op">==</span><span class="fl">815</span>, <span class="st">"DiA1"</span>, <span class="st">"DiA2"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://stringr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://rdrr.io/pkg/tidytext/man/unnest_tokens.html">unnest_tokens</a></span><span class="op">(</span><span class="va">word</span>, <span class="va">text</span><span class="op">)</span> <span class="op"><a href="https://stringr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">word</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://stringr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">booknumber</span>, <span class="va">word</span>, sort <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op"><a href="https://stringr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://stringr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter-joins.html">anti_join</a></span><span class="op">(</span><span class="va">stop_words</span><span class="op">)</span></code></pre></div>
 <pre><code>## Joining, by = "word"</code></pre>
-<div class="sourceCode" id="cb321"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb318"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tocq_dtm</span> <span class="op">&lt;-</span> <span class="va">tocq_words</span> <span class="op"><a href="https://stringr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://rdrr.io/pkg/tidytext/man/document_term_casters.html">cast_dtm</a></span><span class="op">(</span><span class="va">booknumber</span>, <span class="va">word</span>, <span class="va">n</span><span class="op">)</span>
 
@@ -155,10 +155,10 @@
 ##   DiA2     167        561        162  133     313    360   263     241  309    227</code></pre>
 <p>We see here that the data are now stored as a “DocumentTermMatrix.” In this format, the matrix records the term (as equivalent of a column) and the document (as equivalent of row), and the number of times the term appears in the given document. Many terms will not appear in the document, meaning that the matrix will be stored as “sparse,” meaning there will be a preponderance of zeroes. Here, since we are looking only at two documents that both come from a single volume set, the sparsity is relatively low (only 27%). In most applications, the sparsity will be a lot higher, approaching 99% or more.</p>
 <p>Estimating our topic model is then relatively simple. All we need to do if specify how many topics that we want to search for, and we can also set our seed, which is needed to reproduce the same results each time (as the model is a generative probabilistic one, meaning different random iterations will produce different results).</p>
-<div class="sourceCode" id="cb323"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb320"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tocq_lda</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/topicmodels/man/lda.html">LDA</a></span><span class="op">(</span><span class="va">tocq_dtm</span>, k <span class="op">=</span> <span class="fl">10</span>, control <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>seed <span class="op">=</span> <span class="fl">1234</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>After this we can extract the per-topic-per-word probabilities, called “β” from the model:</p>
-<div class="sourceCode" id="cb324"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb321"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tocq_topics</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="va">tocq_lda</span>, matrix <span class="op">=</span> <span class="st">"beta"</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">tocq_topics</span>, n <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></code></pre></div>
@@ -177,7 +177,7 @@
 ## 10    10 democratic 0.00334</code></pre>
 <p>We now have data stored as one topic-per-term-per-row. The betas listed here represent the probability that the given term belongs to a given topic. So, here, we see that the term “democratic” is most likely to belong to topic 4. Strictly, this probability represents the probability that the term is generated from the topic in question.</p>
 <p>We can then plots the top terms, in terms of beta, for each topic as follows:</p>
-<div class="sourceCode" id="cb326"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb323"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tocq_top_terms</span> <span class="op">&lt;-</span> <span class="va">tocq_topics</span> <span class="op"><a href="https://stringr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">topic</span><span class="op">)</span> <span class="op"><a href="https://stringr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/top_n.html">top_n</a></span><span class="op">(</span><span class="fl">10</span>, <span class="va">beta</span><span class="op">)</span> <span class="op"><a href="https://stringr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
@@ -206,12 +206,12 @@
 <span class="header-section-number">21.3.1</span> Plot relative word frequencies<a class="anchor" aria-label="anchor" href="#plot-relative-word-frequencies"><i class="fas fa-link"></i></a>
 </h3>
 <p>First let’s have a look and see whether there really are words obviously distinguishing the two Volumes.</p>
-<div class="sourceCode" id="cb327"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb324"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tidy_tocq</span> <span class="op">&lt;-</span> <span class="va">tocq</span> <span class="op"><a href="https://stringr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://rdrr.io/pkg/tidytext/man/unnest_tokens.html">unnest_tokens</a></span><span class="op">(</span><span class="va">word</span>, <span class="va">text</span><span class="op">)</span> <span class="op"><a href="https://stringr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter-joins.html">anti_join</a></span><span class="op">(</span><span class="va">stop_words</span><span class="op">)</span></code></pre></div>
 <pre><code>## Joining, by = "word"</code></pre>
-<div class="sourceCode" id="cb329"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb326"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Count most common words in both</span>
 <span class="va">tidy_tocq</span> <span class="op"><a href="https://stringr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">word</span>, sort <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
@@ -229,9 +229,9 @@
 ##  9 laws         530
 ## 10 country      524
 ## # … with 12,082 more rows</code></pre>
-<div class="sourceCode" id="cb331"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb328"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">bookfreq</span> <span class="op">&lt;-</span> <span class="va">tidy_tocq</span> <span class="op"><a href="https://stringr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>booknumber <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">gutenberg_id</span><span class="op">==</span><span class="fl">815</span>, <span class="st">"DiA1"</span>, <span class="st">"DiA2"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://stringr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>booknumber <span class="op">=</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/fifelse.html">ifelse</a></span><span class="op">(</span><span class="va">gutenberg_id</span><span class="op">==</span><span class="fl">815</span>, <span class="st">"DiA1"</span>, <span class="st">"DiA2"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://stringr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>word <span class="op">=</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_extract.html">str_extract</a></span><span class="op">(</span><span class="va">word</span>, <span class="st">"[a-z']+"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://stringr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">booknumber</span>, <span class="va">word</span><span class="op">)</span> <span class="op"><a href="https://stringr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">booknumber</span><span class="op">)</span> <span class="op"><a href="https://stringr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
@@ -262,13 +262,13 @@
 <span class="header-section-number">21.3.2</span> Split into chapter documents<a class="anchor" aria-label="anchor" href="#split-into-chapter-documents"><i class="fas fa-link"></i></a>
 </h3>
 <p>In the below, we first separate the volumes into chapters, then we repeat the same procedure as above. The only difference now is that instead of two documents representing the two full volumes of Tocqueville’s work, we now have 132 documents, each representing an individual chapter. Notice now that the sparsity is much increased: around 96%.</p>
-<div class="sourceCode" id="cb334"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb331"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tocq</span> <span class="op">&lt;-</span> <span class="va">tocq</span> <span class="op"><a href="https://stringr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">text</span><span class="op">)</span><span class="op">)</span>
 
 <span class="co"># Divide into documents, each representing one chapter</span>
 <span class="va">tocq_chapter</span> <span class="op">&lt;-</span> <span class="va">tocq</span> <span class="op"><a href="https://stringr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>booknumber <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">gutenberg_id</span><span class="op">==</span><span class="fl">815</span>, <span class="st">"DiA1"</span>, <span class="st">"DiA2"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://stringr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>booknumber <span class="op">=</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/fifelse.html">ifelse</a></span><span class="op">(</span><span class="va">gutenberg_id</span><span class="op">==</span><span class="fl">815</span>, <span class="st">"DiA1"</span>, <span class="st">"DiA2"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://stringr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">booknumber</span><span class="op">)</span> <span class="op"><a href="https://stringr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>chapter <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cumsum.html">cumsum</a></span><span class="op">(</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="va">text</span>, <span class="fu"><a href="https://stringr.tidyverse.org/reference/modifiers.html">regex</a></span><span class="op">(</span><span class="st">"^chapter "</span>, ignore_case <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://stringr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://stringr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
@@ -285,7 +285,7 @@
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">document</span>, <span class="va">word</span>, sort <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op"><a href="https://stringr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <pre><code>## Joining, by = "word"</code></pre>
-<div class="sourceCode" id="cb336"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb333"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tocq_word_counts</span></code></pre></div>
 <pre><code>## # A tibble: 69,781 × 3
 ##    document word             n
@@ -301,7 +301,7 @@
 ##  9 DiA1_21  federal         48
 ## 10 DiA2_76  constitution    48
 ## # … with 69,771 more rows</code></pre>
-<div class="sourceCode" id="cb338"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb335"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Cast into DTM format for LDA analysis</span>
 
 <span class="va">tocq_chapters_dtm</span> <span class="op">&lt;-</span> <span class="va">tocq_word_counts</span> <span class="op"><a href="https://stringr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
@@ -339,11 +339,11 @@
 ##   DiA1_56     25
 ##   DiA2_76     88</code></pre>
 <p>We then re-estimate the topic model with this new DocumentTermMatrix object, specifying k equal to 2. This will enable us to evaluate whether a topic model is able to generatively assign to volume with accuracy.</p>
-<div class="sourceCode" id="cb340"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb337"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tocq_chapters_lda</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/topicmodels/man/lda.html">LDA</a></span><span class="op">(</span><span class="va">tocq_chapters_dtm</span>, k <span class="op">=</span> <span class="fl">2</span>, control <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>seed <span class="op">=</span> <span class="fl">1234</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>After this, it is worth looking at another output of the latent dirichlet allocation procedure. The γ probability represents the per-document-per-topic probability or, in other words, the probability that a given document (here: chapter) belongs to a particular topic (and here, we are assuming these topics represent volumes).</p>
 <p>The gamma values are therefore the estimated proportion of words within a given chapter allocated to a given volume.</p>
-<div class="sourceCode" id="cb341"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb338"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tocq_chapters_gamma</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="va">tocq_chapters_lda</span>, matrix <span class="op">=</span> <span class="st">"gamma"</span><span class="op">)</span>
 <span class="va">tocq_chapters_gamma</span></code></pre></div>
 <pre><code>## # A tibble: 264 × 3
@@ -366,7 +366,7 @@
 <span class="header-section-number">21.3.3</span> Examine consensus<a class="anchor" aria-label="anchor" href="#examine-consensus"><i class="fas fa-link"></i></a>
 </h3>
 <p>Now that we have these topic probabilities, we can see how well our unsupervised learning did at distinguishing the two volumes generatively just from the words contained in each chapter.</p>
-<div class="sourceCode" id="cb343"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb340"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># First separate the document name into title and chapter</span>
 
 <span class="va">tocq_chapters_gamma</span> <span class="op">&lt;-</span> <span class="va">tocq_chapters_gamma</span> <span class="op"><a href="https://stringr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
@@ -405,7 +405,7 @@
 ## 13 DiA1        6     1 0.707 DiA2     
 ## 14 DiA2       27     2 0.654 DiA1     
 ## 15 DiA2       21     2 0.510 DiA1</code></pre>
-<div class="sourceCode" id="cb345"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb342"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Look document-word pairs were to see which words in each documents were assigned</span>
 <span class="co"># to a given topic</span>
 
@@ -425,7 +425,7 @@
 ##  9 DiA1_50  united     5      2
 ## 10 DiA1_22  united     8      2
 ## # … with 69,771 more rows</code></pre>
-<div class="sourceCode" id="cb347"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb344"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">assignments</span> <span class="op">&lt;-</span> <span class="va">assignments</span> <span class="op"><a href="https://stringr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://tidyr.tidyverse.org/reference/separate.html">separate</a></span><span class="op">(</span><span class="va">document</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"title"</span>, <span class="st">"chapter"</span><span class="op">)</span>, sep <span class="op">=</span> <span class="st">"_"</span>, convert <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op"><a href="https://stringr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span><span class="op">(</span><span class="va">tocq_book_topics</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">".topic"</span> <span class="op">=</span> <span class="st">"topic"</span><span class="op">)</span><span class="op">)</span>
@@ -455,7 +455,7 @@
 <p>In the articles by <span class="citation">Ying, Montgomery, and Stewart (<a href="references-2.html#ref-ying_topics_2021" role="doc-biblioref">2021</a>)</span> and <span class="citation">Denny and Spirling (<a href="references-2.html#ref-denny_text_2018" role="doc-biblioref">2018</a>)</span> from this and previous weeks, we read about potential validation techniques.</p>
 <p>In this section, we’ll be using the <code>preText</code> package mentioned in <span class="citation">Denny and Spirling (<a href="references-2.html#ref-denny_text_2018" role="doc-biblioref">2018</a>)</span> to see the impact of different pre-processing choices on our text. Here, I am adapting from a <a href="http://www.mjdenny.com/getting_started_with_preText.html">tutorial</a> by Matthew Denny.</p>
 <p>First we need to reformat our text into a <code>quanteda</code> corpus object.</p>
-<div class="sourceCode" id="cb348"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb345"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># load in U.S. presidential inaugural speeches from Quanteda example data.</span>
 <span class="va">corp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://quanteda.io/reference/corpus.html">corpus</a></span><span class="op">(</span><span class="va">tocq</span>, text_field <span class="op">=</span> <span class="st">"text"</span><span class="op">)</span>
 <span class="co"># use first 10 documents for example</span>
@@ -465,14 +465,14 @@
 <pre><code>##  [1] "text26803" "text25102" "text28867" "text2986"  "text1842"  "text25718"
 ##  [7] "text3371"  "text29925" "text29940" "text29710"</code></pre>
 <p>And now we are ready to preprocess in different ways. Here, we are including n-grams so we are preprocessing the text in 128 different ways. This takes about ten minutes to run on a machine with 8GB RAM.</p>
-<div class="sourceCode" id="cb350"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb347"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">preprocessed_documents</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/preText/man/factorial_preprocessing.html">factorial_preprocessing</a></span><span class="op">(</span>
     <span class="va">documents</span>,
     use_ngrams <span class="op">=</span> <span class="cn">TRUE</span>,
     infrequent_term_threshold <span class="op">=</span> <span class="fl">0.2</span>,
     verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
 <p>We can then get the results of our pre-processing, comparing the distance between documents that have been processed in different ways.</p>
-<div class="sourceCode" id="cb351"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb348"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">preText_results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/preText/man/preText.html">preText</a></span><span class="op">(</span>
     <span class="va">preprocessed_documents</span>,
     dataset_name <span class="op">=</span> <span class="st">"Tocqueville text"</span>,
@@ -480,7 +480,7 @@
     num_comparisons <span class="op">=</span> <span class="fl">20</span>,
     verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
 <p>And we can plot these accordingly.</p>
-<div class="sourceCode" id="cb352"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb349"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/preText/man/preText_score_plot.html">preText_score_plot</a></span><span class="op">(</span><span class="va">preText_results</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="data/topicmodels/pretext_results.png" style="width:100.0%"></div>
 </div>
