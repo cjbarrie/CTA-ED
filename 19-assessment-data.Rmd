@@ -123,3 +123,13 @@ The datasets are all listed and downloadable in ".csv" format if you scroll down
 ## @michalopoulos_folklore_2021
 
 Data from the article by @michalopoulos_folklore_2021 on Folkloric belief using text data derived from ethnographic materials, which can be downloaded [here](https://dataverse.harvard.edu/dataset.xhtml;jsessionid=8ff772a5d630bc91f1e9c543e537?persistentId=doi%3A10.7910%2FDVN%2FIXOHKB&version=&q=&fileTypeGroupFacet=&fileAccess=&fileSortField=name&fileSortOrder=desc). 
+
+We can read the main "Motif" dataset from this dataset (stored in Stata .dta format) as follows. 
+
+```{r}
+library(haven)
+
+folklore <- read_dta("data/assessment/Motif_Master.dta")
+
+head(folklore[,1:5])
+```
