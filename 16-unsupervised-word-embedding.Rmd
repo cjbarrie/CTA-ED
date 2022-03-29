@@ -1,4 +1,4 @@
-# Exercise 6: Word embedding
+# Exercise 6: Unsupervised learning (word embedding)
 
 ## Introduction
 

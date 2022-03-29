@@ -99,7 +99,7 @@ split-into-chapter-documents
 examine-consensus
 validation-1
 exercises-4
-exercise-6-word-embedding
+exercise-6-unsupervised-learning-word-embedding
 introduction-5
 setup-10
 word-vectors-via-svd
@@ -120,8 +120,15 @@ other-apis-r-packages
 scraping
 speech-to-text
 ocr
-assessment-data
+exercise-9-validation
 introduction-7
+setup-11
+manual-review
+reference-comparison
+word-scaling-example
+unsupervised-learning-checks
+assessment-data
+introduction-8
 osnabrugge_playing_2021-data
 twitter-transparency-data
 michalopoulos_folklore_2021

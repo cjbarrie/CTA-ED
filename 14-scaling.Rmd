@@ -189,6 +189,3 @@ dim(kaneko_dfm_study1)
 
 1. Estimate a wordfish model for the @kaneko_estimating_2021 data
 2. Visualize the results
-
-
-

@@ -43,7 +43,7 @@ If you're working on this document from your own computer ("locally") you can do
 
 ```{r, eval = F}
 edbfdata <- read_csv("https://github.com/cjbarrie/CTA-ED/blob/main/data/wordfreq/edbookfestall.csv"
-                     
+                   
 ```
 
 
@@ -146,7 +146,6 @@ We can see that one of the most common words is "rsquo," which is an HTML encodi
 
 ```{r}
 remove_reg <- c("&amp;","&lt;","&gt;","<p>", "</p>","&rsquo", "&lsquo;",  "&#39;", "<strong>", "</strong>", "rsquo", "em", "ndash", "nbsp", "lsquo", "strong")
-reg_match <- paste0(remove_reg, collapse = "|")
                   
 tidy_des <- tidy_des %>%
   filter(!word %in% remove_reg)

@@ -1,12 +1,12 @@
 # Week 8
 
+## Sampling text information
+
 This week we'll be thinking about how best to sample text information, thinking about the different biases that might inhere in the data-generating process, as well as the representativeness and generalizability of any text corpus we construct. 
 
 The reading by @barbera_understanding_2015 invesitgates the representativeness of Twitter data, and should give us pause when thinking about using digital trace data as a general barometer of public opinion. 
 
 The reading by @michalopoulos_folklore_2021 takes an entirely different tack, but illustrates how we can think systematically about text information more broadly representative of societies in general. 
-
-## Sampling text information
 
 **Required reading**:
 

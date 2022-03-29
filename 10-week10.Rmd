@@ -2,14 +2,22 @@
 
 ## Validation
 
+This week we'll be thinking about how to validate techniques we've used in the preceding weeks. Validation is a necessary and important part of any text analysis technique. 
+
+Often we speak of validation in the context of machine labelling of large text data. But validation need not---and should not---be restricted to automated classification tasks. The articles by @ying_topics_2021 and @rodriguez_models_2021 describe ways to approach validation in unsupervised contexts. Finally, the article by @peterson_classification_2018 shows how validation and accuracy might provide a measure of substantive significance. 
+
 **Required reading**:
 
 - @ying_topics_2021
 - @rodriguez_models_2021
+- @peterson_classification_2018
 - @manning_introduction_2007 [ch.2: [https://nlp.stanford.edu/IR-book/information-retrieval-book.html](https://nlp.stanford.edu/IR-book/information-retrieval-book.html)]
 
 **Further reading**:
 
 - @krippendorff_reliability_2004
-- 
-- 
+- @denny_text_2018
+- @grimmer_text_2013-1
+- @barbera_automated_2021
+- @schiller_stance_2021
+- @wilkerson_large-scale_2017-1
