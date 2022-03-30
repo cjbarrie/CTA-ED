@@ -1,0 +1,87 @@
+---
+title: "CTA Example"
+author: "Christopher Barrie"
+date: '2022-03-30'
+output: word_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button at the top of this panel, a document will be generated that includes both content as well as the output of any embedded R code chunks within the document.
+
+## Example
+
+We generally include all of the libraries required at the top of the script as so.
+
+```{r}
+library(haven)
+library(quanteda)
+library(quanteda.textstats)
+library(ggplot2)
+```
+
+We can read the main "Motif" dataset from this dataset (stored in Stata .dta format) as follows. 
+
+```{r}
+folklore <- read_dta("/Users/cbarrie6/Dropbox/Teaching/Edinburgh/teaching/CTA_21-22/CTA-ED/data/assessment/Motif_Master.dta")
+```
+
+## Including outputs
+
+You can also embed outputs like plots that you generate from the data. For example, if I had decided to plot the highest frequency words in the motifs data, I might do the following. 
+
+```{r}
+folk_dfm <- dfm(tokens(folklore$desc_eng))
+
+folk_dfm_features <- textstat_frequency(folk_dfm, n = 20)
+
+# Sort by reverse frequency order
+folk_dfm_features$feature <- with(folk_dfm_features, reorder(feature, -frequency))
+
+ggplot(folk_dfm_features, aes(x = feature, y = frequency)) +
+    geom_point() + 
+    theme(axis.text.x = element_text(angle = 90, hjust = 1))
+
+
+```
+
+## Static code rendering
+
+Note that we can also add the `eval = FALSE` parameter to our code chunk, which means that the code won't run when we knit the file: instead, it will just format the code in a visually appealing way and make it more legible.
+
+If we did not want to include any of the output, and just the code, we could do the following, and include all of our code in one chunk, output as a Word document.
+
+```{r, eval = F}
+library(haven)
+library(quanteda)
+library(quanteda.textstats)
+library(ggplot2)
+
+# read in the data
+folklore <- read_dta("/Users/cbarrie6/Dropbox/Teaching/Edinburgh/teaching/CTA_21-22/CTA-ED/data/assessment/Motif_Master.dta")
+
+# generate dfm from descriptions
+folk_dfm <- dfm(tokens(folklore$desc_eng))
+
+# get dfm features (word frequencies)
+folk_dfm_features <- textstat_frequency(folk_dfm, n = 20)
+
+# Sort by reverse frequency order
+folk_dfm_features$feature <- with(folk_dfm_features, reorder(feature, -frequency))
+
+# plot in descending order
+ggplot(folk_dfm_features, aes(x = feature, y = frequency)) +
+    geom_point() + 
+    theme(axis.text.x = element_text(angle = 90, hjust = 1))
+
+```
+
+## Output formats
+
+Finally, note that if you change the YAML metadata at the top of this document from `output: word_document` to `output: html_document` you will generate a nicely formatted html document. For this assignment, stick with `output: word_document` to avoid any ELMA headaches...

@@ -133,3 +133,7 @@ folklore <- read_dta("data/assessment/Motif_Master.dta")
 
 head(folklore[,1:5])
 ```
+
+## R Markdown
+
+You can access a template R Markdown response for your code
