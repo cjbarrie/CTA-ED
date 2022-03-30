@@ -132,14 +132,14 @@
 ## 6 aluncairns ".@GutoAberconwy marks 25 years of engine production @toyotafactory Deeside #stro… 2017-10-06</code></pre>
 <p>And there are 24 MPs whose tweets we’re examining.</p>
 <div class="sourceCode" id="cb260"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">tweets</span><span class="op">$</span><span class="va">username</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/duplicated.html">unique</a></span><span class="op">(</span><span class="va">tweets</span><span class="op">$</span><span class="va">username</span><span class="op">)</span></code></pre></div>
 <pre><code>##  [1] "aluncairns"      "amberrudduk"     "andrealeadsom"   "borisjohnson"    "brandonlewis"   
 ##  [6] "damiangreen"     "damianhinds"     "daviddavismp"    "davidgauke"      "davidmundelldct"
 ## [11] "dlidington"      "gavinwilliamson" "gregclarkmp"     "jbrokenshire"    "jeremy_hunt"    
 ## [16] "juliansmithuk"   "justinegreening" "liamfox"         "michaelgove"     "pennymordaunt"  
 ## [21] "philiphammonduk" "sajidjavid"      "theresa_may"     "trussliz"</code></pre>
 <div class="sourceCode" id="cb262"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">tweets</span><span class="op">$</span><span class="va">username</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/duplicated.html">unique</a></span><span class="op">(</span><span class="va">tweets</span><span class="op">$</span><span class="va">username</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 24</code></pre>
 </div>
 <div id="generate-document-feature-matrix" class="section level2" number="19.3">
@@ -238,7 +238,7 @@
 <p>So we need to take these cosine similarities and retain only those similarity measures corresponding to the text of Theresa May’s tweets.</p>
 <p>We first convert the <code><a href="https://quanteda.io/reference/textstat_simil.html">textstat_simil()</a></code> output to a matrix.</p>
 <div class="sourceCode" id="cb274"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">cosmat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">cos_sim</span><span class="op">)</span> <span class="co">#convert to a matrix</span></code></pre></div>
+<code class="sourceCode R"><span class="va">cosmat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/as.matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">cos_sim</span><span class="op">)</span> <span class="co">#convert to a matrix</span></code></pre></div>
 <p>And we can see that the 23rd row of this matrix contains the similarity measures with the Theresa May tweets.</p>
 <p>We take this row, removing the similarity of Theresa May with herself (which will always = 1), and convert it to a datframe object.</p>
 <div class="sourceCode" id="cb275"><pre class="downlit sourceCode r">
@@ -279,7 +279,7 @@
     <span class="fu"><a href="https://quanteda.io/reference/dfm_group.html">dfm_group</a></span><span class="op">(</span>groups <span class="op">=</span> <span class="va">username</span><span class="op">)</span> <span class="op"><a href="https://quanteda.io/reference/pipe.html">%&gt;%</a></span>
     <span class="fu"><a href="https://quanteda.io/reference/textstat_simil.html">textstat_simil</a></span><span class="op">(</span>margin <span class="op">=</span> <span class="st">"documents"</span>, method <span class="op">=</span> <span class="va">sim_method</span><span class="op">)</span> <span class="co">#specify method here as character object created above</span>
   
-  <span class="va">testm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">test</span><span class="op">)</span> <span class="co">#convert to a matrix</span>
+  <span class="va">testm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/as.matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">test</span><span class="op">)</span> <span class="co">#convert to a matrix</span>
   
   <span class="co">#generate data frame keeping only the row for Theresa May</span>
   <span class="va">testdf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">testm</span><span class="op">[</span><span class="fl">23</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">22</span>, <span class="fl">24</span><span class="op">)</span><span class="op">]</span><span class="op">)</span>
@@ -294,7 +294,7 @@
   <span class="va">testdf</span><span class="op">$</span><span class="va">method</span> <span class="op">&lt;-</span> <span class="va">sim_method</span>
 
   <span class="co">#bind all together</span>
-  <span class="va">testdf_all</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span><span class="op">(</span><span class="va">testdf_all</span>, <span class="va">testdf</span><span class="op">)</span>  
+  <span class="va">testdf_all</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/rbindlist.html">rbind</a></span><span class="op">(</span><span class="va">testdf_all</span>, <span class="va">testdf</span><span class="op">)</span>  
   
 <span class="op">}</span>
 

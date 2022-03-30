@@ -136,4 +136,6 @@ head(folklore[,1:5])
 
 ## R Markdown
 
-You can access a template R Markdown response for your code
+You can access a template R Markdown response for your code from the Github repo for this book by clicking this [link](https://raw.githubusercontent.com/cjbarrie/CTA-ED/main/data/assessment/CTA_example.Rmd?raw=true) and download the word document it outputs by clicking this [link](https://github.com/cjbarrie/CTA-ED/blob/main/data/assessment/CTA_example.docx?raw=true).
+
+Though you **should submit the R markdown output in word** you can also see what it looks like when generated as html [here](https://raw.githack.com/cjbarrie/CTA-ED/main/data/assessment/CTA_example.html).

@@ -241,7 +241,7 @@
 <span class="va">humanscores</span><span class="op">$</span><span class="va">method</span> <span class="op">&lt;-</span> <span class="st">"Human-coded"</span></code></pre></div>
 <p>We then bind our Wordfish and human-coded scores into one data frame and we are ready to plot.</p>
 <div class="sourceCode" id="cb459"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">wordfish.human.positions</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span><span class="op">(</span><span class="va">wordfishscores</span>, <span class="va">humanscores</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">wordfish.human.positions</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/rbindlist.html">rbind</a></span><span class="op">(</span><span class="va">wordfishscores</span>, <span class="va">humanscores</span><span class="op">)</span>
 
 <span class="va">wordfish.human.positions</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
