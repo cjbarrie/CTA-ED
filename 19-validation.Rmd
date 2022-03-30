@@ -7,7 +7,7 @@ The hands-on exercise for this week focuses on validating text analysis techniqu
 In this tutorial, you will learn how to:
 
 * Manually review 
-* Compare to reference data (@alshaabi_storywrangler_2021)
+* Compare to reference data
 * Conduct tests for unsupervised approaches
 * Conduct tests for supervised approaches
 

@@ -20,4 +20,7 @@ Often we speak of validation in the context of machine labelling of large text d
 - @grimmer_text_2013-1
 - @barbera_automated_2021
 - @schiller_stance_2021
-- @wilkerson_large-scale_2017-1
+
+**Slides**:
+
+- Week 10 [Slides](https://docs.google.com/presentation/d/1Ib3_7MxS1WKs9Th3hiQ4HmvOsrCBpgAf3EcCWDC5GDc/edit?usp=sharing)
