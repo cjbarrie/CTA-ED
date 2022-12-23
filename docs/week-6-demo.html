@@ -114,7 +114,7 @@
 <span class="header-section-number">11.1</span> Setup<a class="anchor" aria-label="anchor" href="#setup-4"><i class="fas fa-link"></i></a>
 </h2>
 <p>First, we’ll load the packages we’ll be using in this week’s brief demo.</p>
-<div class="sourceCode" id="cb150"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb147"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">topicmodels</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/juliasilge/tidytext">tidytext</a></span><span class="op">)</span></span>
@@ -122,39 +122,39 @@
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://github.com/jrnold/ggthemes">ggthemes</a></span><span class="op">)</span></span></code></pre></div>
 <p>Estimating a topic model requires us first to have our data in the form of a document-term-matrix. This is another term for what we have referred to in previous weeks as a document-feature-matrix.</p>
 <p>We can take some example data from the <code>topicmodels</code> package. This text is from news releases by the Associated Press. It consists of around 2,200 articles (documents) and over 10,000 terms (words).</p>
-<div class="sourceCode" id="cb151"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb148"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"AssociatedPress"</span>, </span>
 <span>     package <span class="op">=</span> <span class="st">"topicmodels"</span><span class="op">)</span></span></code></pre></div>
 <p>To estimate the topic model we need only to specify the document-term-matrix we are using, and the number (<code>k</code>) of topics that we are estimating. To speed up estimation, we are here only estimating it on 100 articles.</p>
-<div class="sourceCode" id="cb152"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb149"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">lda_output</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/topicmodels/man/lda.html">LDA</a></span><span class="op">(</span><span class="va">AssociatedPress</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">100</span>,<span class="op">]</span>, k <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code></pre></div>
 <p>We can then inspect the contents of each topic as follows.</p>
-<div class="sourceCode" id="cb153"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb150"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/terms.html">terms</a></span><span class="op">(</span><span class="va">lda_output</span>, <span class="fl">10</span><span class="op">)</span></span></code></pre></div>
-<pre><code>##       Topic 1      Topic 2     Topic 3       Topic 4       Topic 5    Topic 6     Topic 7  
-##  [1,] "fire"       "state"     "soviet"      "bank"        "i"        "bush"      "percent"
-##  [2,] "monday"     "central"   "official"    "year"        "police"   "dukakis"   "prices" 
-##  [3,] "school"     "wednesday" "peres"       "immigration" "man"      "i"         "rate"   
-##  [4,] "magellan"   "snow"      "new"         "new"         "mrs"      "people"    "oil"    
-##  [5,] "spacecraft" "ms"        "israel"      "economy"     "people"   "campaign"  "year"   
-##  [6,] "national"   "northern"  "government"  "study"       "area"     "president" "month"  
-##  [7,] "new"        "southern"  "polish"      "last"        "central"  "told"      "rose"   
-##  [8,] "contact"    "high"      "officers"    "soviet"      "congress" "get"       "gas"    
-##  [9,] "police"     "expected"  "years"       "percent"     "plant"    "agents"    "index"  
-## [10,] "record"     "heavy"     "settlements" "program"     "germany"  "years"     "report" 
-##       Topic 8          Topic 9     Topic 10  
-##  [1,] "i"              "new"       "company" 
-##  [2,] "administration" "rating"    "year"    
-##  [3,] "new"            "roberts"   "new"     
-##  [4,] "noriega"        "barry"     "duracell"
-##  [5,] "people"         "i"         "two"     
-##  [6,] "california"     "greyhound" "north"   
-##  [7,] "states"         "union"     "florio"  
-##  [8,] "thats"          "like"      "york"    
-##  [9,] "think"          "moore"     "grain"   
-## [10,] "waste"          "children"  "kim"</code></pre>
+<pre><code>##       Topic 1      Topic 2      Topic 3        Topic 4     Topic 5      Topic 6         
+##  [1,] "new"        "year"       "fire"         "new"       "new"        "percent"       
+##  [2,] "soviet"     "i"          "soviet"       "bank"      "percent"    "year"          
+##  [3,] "summit"     "gas"        "union"        "roberts"   "states"     "i"             
+##  [4,] "warming"    "last"       "state"        "rating"    "saudi"      "people"        
+##  [5,] "global"     "percent"    "polish"       "company"   "california" "rate"          
+##  [6,] "florio"     "company"    "officers"     "duracell"  "state"      "prices"        
+##  [7,] "research"   "blackowned" "forest"       "greyhound" "years"      "administration"
+##  [8,] "scientists" "oil"        "new"          "million"   "soviet"     "government"    
+##  [9,] "animals"    "season"     "years"        "union"     "study"      "noriega"       
+## [10,] "biological" "average"    "firefighters" "last"      "year"       "think"         
+##       Topic 7     Topic 8     Topic 9    Topic 10   
+##  [1,] "barry"     "bush"      "peres"    "central"  
+##  [2,] "agents"    "i"         "official" "soviet"   
+##  [3,] "fbi"       "dukakis"   "central"  "north"    
+##  [4,] "moore"     "police"    "man"      "new"      
+##  [5,] "grain"     "campaign"  "offer"    "officials"
+##  [6,] "i"         "told"      "people"   "snow"     
+##  [7,] "plant"     "president" "state"    "congress" 
+##  [8,] "president" "people"    "two"      "expected" 
+##  [9,] "record"    "back"      "embassy"  "magellan" 
+## [10,] "arco"      "mrs"       "israel"   "military"</code></pre>
 <p>We can then use the <code><a href="https://generics.r-lib.org/reference/tidy.html">tidy()</a></code> function from <code>tidytext</code> to gather the relevant parameters we’ve estimated. To get the <span class="math inline">\(\beta\)</span> per-topic-per-word probabilities (i.e., the probability that the given term belongs to a given topic) we can do the following.</p>
-<div class="sourceCode" id="cb155"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb152"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">lda_beta</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="va">lda_output</span>, matrix <span class="op">=</span> <span class="st">"beta"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">lda_beta</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -162,19 +162,19 @@
 <pre><code>## # A tibble: 104,730 × 3
 ##    topic term      beta
 ##    &lt;int&gt; &lt;chr&gt;    &lt;dbl&gt;
-##  1     7 percent 0.0399
-##  2     3 soviet  0.0178
-##  3     4 bank    0.0148
-##  4     6 bush    0.0146
-##  5     2 state   0.0141
-##  6    10 company 0.0123
-##  7     7 prices  0.0122
-##  8     5 i       0.0121
-##  9     8 i       0.0119
-## 10    10 year    0.0113
+##  1     6 percent 0.0276
+##  2     8 bush    0.0194
+##  3     4 new     0.0173
+##  4     3 fire    0.0146
+##  5     4 bank    0.0139
+##  6     3 soviet  0.0138
+##  7     8 i       0.0135
+##  8     8 dukakis 0.0135
+##  9     2 year    0.0124
+## 10     3 union   0.0112
 ## # … with 104,720 more rows</code></pre>
 <p>And to get the <span class="math inline">\(\gamma\)</span> per-document-per-topic probabilities (i.e., the probability that a given document (here: article) belongs to a particular topic) we do the following.</p>
-<div class="sourceCode" id="cb157"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb154"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">lda_gamma</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="va">lda_output</span>, matrix <span class="op">=</span> <span class="st">"gamma"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">lda_gamma</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -182,19 +182,19 @@
 <pre><code>## # A tibble: 1,000 × 3
 ##    document topic gamma
 ##       &lt;int&gt; &lt;int&gt; &lt;dbl&gt;
-##  1       76     8  1.00
-##  2       81     6  1.00
-##  3        6     8  1.00
-##  4       43     9  1.00
-##  5       31     7  1.00
-##  6       95     8  1.00
-##  7       77     6  1.00
+##  1       76     6  1.00
+##  2       81     8  1.00
+##  3        6     6  1.00
+##  4       43     4  1.00
+##  5       31     6  1.00
+##  6       95     5  1.00
+##  7       77     8  1.00
 ##  8       29     3  1.00
-##  9       80     1  1.00
-## 10       57     5  1.00
+##  9       80     7  1.00
+## 10       57    10  1.00
 ## # … with 990 more rows</code></pre>
 <p>And we can easily plot our <span class="math inline">\(\beta\)</span> estimates as follows.</p>
-<div class="sourceCode" id="cb159"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb156"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">lda_beta</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">topic</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/top_n.html">top_n</a></span><span class="op">(</span><span class="fl">10</span>, <span class="va">beta</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
