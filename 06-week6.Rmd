@@ -1,6 +1,6 @@
 # Week 6
 
-## Unupervised learning (topic models)
+## Unsupervised learning (topic models)
 
 This week builds upon past the scaling techniques we explored in Week 5 and instead turns to another form of unsupervised approach---topic modelling.
 
