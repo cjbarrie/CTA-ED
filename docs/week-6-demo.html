@@ -7,7 +7,7 @@
 <title>Chapter 11 Week 6 Demo | Computational Text Analysis</title>
 <meta name="author" content="Christopher Barrie">
 <meta name="description" content="11.1 Setup First, we’ll load the packages we’ll be using in this week’s brief demo. library(topicmodels) library(dplyr) library(tidytext) library(ggplot2) library(ggthemes) Estimating a topic...">
-<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta name="generator" content="bookdown 0.31.1 with bs4_book()">
 <meta property="og:title" content="Chapter 11 Week 6 Demo | Computational Text Analysis">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://cjbarrie.github.io/CTA-ED/week-6-demo.html">
@@ -17,12 +17,37 @@
 <meta name="twitter:title" content="Chapter 11 Week 6 Demo | Computational Text Analysis">
 <meta name="twitter:description" content="11.1 Setup First, we’ll load the packages we’ll be using in this week’s brief demo. library(topicmodels) library(dplyr) library(tidytext) library(ggplot2) library(ggthemes) Estimating a topic...">
 <meta name="twitter:image" content="https://cjbarrie.github.io/CTA-ED/coverb.png">
-<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.2.9000/transition.js"></script><script src="libs/bs3compat-0.4.2.9000/tabs.js"></script><script src="libs/bs3compat-0.4.2.9000/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 <link href="libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
-<script src="libs/pagedtable-1.1/js/pagedtable.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS -->
+<script src="libs/pagedtable-1.1/js/pagedtable.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -90,86 +115,97 @@
 </h2>
 <p>First, we’ll load the packages we’ll be using in this week’s brief demo.</p>
 <div class="sourceCode" id="cb150"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">topicmodels</span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/juliasilge/tidytext">tidytext</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jrnold/ggthemes">ggthemes</a></span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">topicmodels</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/juliasilge/tidytext">tidytext</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://github.com/jrnold/ggthemes">ggthemes</a></span><span class="op">)</span></span></code></pre></div>
 <p>Estimating a topic model requires us first to have our data in the form of a document-term-matrix. This is another term for what we have referred to in previous weeks as a document-feature-matrix.</p>
 <p>We can take some example data from the <code>topicmodels</code> package. This text is from news releases by the Associated Press. It consists of around 2,200 articles (documents) and over 10,000 terms (words).</p>
 <div class="sourceCode" id="cb151"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"AssociatedPress"</span>, 
-     package <span class="op">=</span> <span class="st">"topicmodels"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"AssociatedPress"</span>, </span>
+<span>     package <span class="op">=</span> <span class="st">"topicmodels"</span><span class="op">)</span></span></code></pre></div>
 <p>To estimate the topic model we need only to specify the document-term-matrix we are using, and the number (<code>k</code>) of topics that we are estimating. To speed up estimation, we are here only estimating it on 100 articles.</p>
 <div class="sourceCode" id="cb152"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">lda_output</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/topicmodels/man/lda.html">LDA</a></span><span class="op">(</span><span class="va">AssociatedPress</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">100</span>,<span class="op">]</span>, k <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">lda_output</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/topicmodels/man/lda.html">LDA</a></span><span class="op">(</span><span class="va">AssociatedPress</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">100</span>,<span class="op">]</span>, k <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code></pre></div>
 <p>We can then inspect the contents of each topic as follows.</p>
 <div class="sourceCode" id="cb153"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/terms.html">terms</a></span><span class="op">(</span><span class="va">lda_output</span>, <span class="fl">10</span><span class="op">)</span></code></pre></div>
-<pre><code>##       Topic 1   Topic 2    Topic 3   Topic 4     Topic 5    Topic 6      Topic 7     Topic 8      Topic 9          Topic 10    
-##  [1,] "i"       "new"      "percent" "noriega"   "soviet"   "soviet"     "police"    "new"        "people"         "new"       
-##  [2,] "bank"    "year"     "rose"    "panama"    "new"      "saudi"      "man"       "president"  "i"              "percent"   
-##  [3,] "dukakis" "central"  "rate"    "animals"   "fire"     "iraq"       "state"     "rating"     "bush"           "california"
-##  [4,] "bush"    "degrees"  "prices"  "skins"     "million"  "peres"      "union"     "government" "police"         "waste"     
-##  [5,] "roberts" "high"     "year"    "two"       "company"  "officials"  "greyhound" "two"        "administration" "agents"    
-##  [6,] "new"     "snow"     "month"   "american"  "duracell" "congress"   "national"  "year"       "thats"          "county"    
-##  [7,] "barry"   "city"     "report"  "last"      "year"     "official"   "mrs"       "north"      "farmer"         "states"    
-##  [8,] "people"  "northern" "economy" "officials" "polish"   "magellan"   "study"     "children"   "campaign"       "three"     
-##  [9,] "last"    "state"    "oil"     "doctors"   "gas"      "spacecraft" "new"       "kim"        "church"         "grain"     
-## [10,] "moore"   "florio"   "last"    "ferrets"   "officers" "forces"     "percent"   "nikolais"   "president"      "state"</code></pre>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/terms.html">terms</a></span><span class="op">(</span><span class="va">lda_output</span>, <span class="fl">10</span><span class="op">)</span></span></code></pre></div>
+<pre><code>##       Topic 1      Topic 2     Topic 3       Topic 4       Topic 5    Topic 6     Topic 7  
+##  [1,] "fire"       "state"     "soviet"      "bank"        "i"        "bush"      "percent"
+##  [2,] "monday"     "central"   "official"    "year"        "police"   "dukakis"   "prices" 
+##  [3,] "school"     "wednesday" "peres"       "immigration" "man"      "i"         "rate"   
+##  [4,] "magellan"   "snow"      "new"         "new"         "mrs"      "people"    "oil"    
+##  [5,] "spacecraft" "ms"        "israel"      "economy"     "people"   "campaign"  "year"   
+##  [6,] "national"   "northern"  "government"  "study"       "area"     "president" "month"  
+##  [7,] "new"        "southern"  "polish"      "last"        "central"  "told"      "rose"   
+##  [8,] "contact"    "high"      "officers"    "soviet"      "congress" "get"       "gas"    
+##  [9,] "police"     "expected"  "years"       "percent"     "plant"    "agents"    "index"  
+## [10,] "record"     "heavy"     "settlements" "program"     "germany"  "years"     "report" 
+##       Topic 8          Topic 9     Topic 10  
+##  [1,] "i"              "new"       "company" 
+##  [2,] "administration" "rating"    "year"    
+##  [3,] "new"            "roberts"   "new"     
+##  [4,] "noriega"        "barry"     "duracell"
+##  [5,] "people"         "i"         "two"     
+##  [6,] "california"     "greyhound" "north"   
+##  [7,] "states"         "union"     "florio"  
+##  [8,] "thats"          "like"      "york"    
+##  [9,] "think"          "moore"     "grain"   
+## [10,] "waste"          "children"  "kim"</code></pre>
 <p>We can then use the <code><a href="https://generics.r-lib.org/reference/tidy.html">tidy()</a></code> function from <code>tidytext</code> to gather the relevant parameters we’ve estimated. To get the <span class="math inline">\(\beta\)</span> per-topic-per-word probabilities (i.e., the probability that the given term belongs to a given topic) we can do the following.</p>
 <div class="sourceCode" id="cb155"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">lda_beta</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="va">lda_output</span>, matrix <span class="op">=</span> <span class="st">"beta"</span><span class="op">)</span>
-
-<span class="va">lda_beta</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="op">-</span><span class="va">beta</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">lda_beta</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="va">lda_output</span>, matrix <span class="op">=</span> <span class="st">"beta"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">lda_beta</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="op">-</span><span class="va">beta</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## # A tibble: 104,730 × 3
 ##    topic term      beta
 ##    &lt;int&gt; &lt;chr&gt;    &lt;dbl&gt;
-##  1     3 percent 0.0392
-##  2     1 i       0.0169
-##  3     6 soviet  0.0144
-##  4     1 bank    0.0134
-##  5     1 dukakis 0.0124
-##  6     4 noriega 0.0123
-##  7    10 new     0.0121
-##  8     9 people  0.0119
-##  9     2 new     0.0118
-## 10     7 police  0.0117
+##  1     7 percent 0.0399
+##  2     3 soviet  0.0178
+##  3     4 bank    0.0148
+##  4     6 bush    0.0146
+##  5     2 state   0.0141
+##  6    10 company 0.0123
+##  7     7 prices  0.0122
+##  8     5 i       0.0121
+##  9     8 i       0.0119
+## 10    10 year    0.0113
 ## # … with 104,720 more rows</code></pre>
 <p>And to get the <span class="math inline">\(\gamma\)</span> per-document-per-topic probabilities (i.e., the probability that a given document (here: article) belongs to a particular topic) we do the following.</p>
 <div class="sourceCode" id="cb157"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">lda_gamma</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="va">lda_output</span>, matrix <span class="op">=</span> <span class="st">"gamma"</span><span class="op">)</span>
-
-<span class="va">lda_gamma</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="op">-</span><span class="va">gamma</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">lda_gamma</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="va">lda_output</span>, matrix <span class="op">=</span> <span class="st">"gamma"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">lda_gamma</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="op">-</span><span class="va">gamma</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## # A tibble: 1,000 × 3
 ##    document topic gamma
 ##       &lt;int&gt; &lt;int&gt; &lt;dbl&gt;
-##  1       76     9  1.00
-##  2       81     9  1.00
-##  3        6     4  1.00
-##  4       43     1  1.00
-##  5       31     3  1.00
-##  6       95    10  1.00
-##  7       77     1  1.00
-##  8       29     5  1.00
-##  9       80     2  1.00
-## 10       57     6  1.00
+##  1       76     8  1.00
+##  2       81     6  1.00
+##  3        6     8  1.00
+##  4       43     9  1.00
+##  5       31     7  1.00
+##  6       95     8  1.00
+##  7       77     6  1.00
+##  8       29     3  1.00
+##  9       80     1  1.00
+## 10       57     5  1.00
 ## # … with 990 more rows</code></pre>
 <p>And we can easily plot our <span class="math inline">\(\beta\)</span> estimates as follows.</p>
 <div class="sourceCode" id="cb159"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">lda_beta</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">topic</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/top_n.html">top_n</a></span><span class="op">(</span><span class="fl">10</span>, <span class="va">beta</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">topic</span>, <span class="op">-</span><span class="va">beta</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>term <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/tidytext/man/reorder_within.html">reorder_within</a></span><span class="op">(</span><span class="va">term</span>, <span class="va">beta</span>, <span class="va">topic</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">beta</span>, <span class="va">term</span>, fill <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">topic</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span><span class="op">(</span>show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span> <span class="va">topic</span>, scales <span class="op">=</span> <span class="st">"free"</span>, ncol <span class="op">=</span> <span class="fl">4</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/tidytext/man/reorder_within.html">scale_y_reordered</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_tufte.html">theme_tufte</a></span><span class="op">(</span>base_family <span class="op">=</span> <span class="st">"Helvetica"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">lda_beta</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">topic</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/top_n.html">top_n</a></span><span class="op">(</span><span class="fl">10</span>, <span class="va">beta</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">topic</span>, <span class="op">-</span><span class="va">beta</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>term <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/tidytext/man/reorder_within.html">reorder_within</a></span><span class="op">(</span><span class="va">term</span>, <span class="va">beta</span>, <span class="va">topic</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">beta</span>, <span class="va">term</span>, fill <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">topic</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span><span class="op">(</span>show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span> <span class="va">topic</span>, scales <span class="op">=</span> <span class="st">"free"</span>, ncol <span class="op">=</span> <span class="fl">4</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/tidytext/man/reorder_within.html">scale_y_reordered</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_tufte.html">theme_tufte</a></span><span class="op">(</span>base_family <span class="op">=</span> <span class="st">"Helvetica"</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-75-1.png" width="672"></div>
 <p>Which shows us the words associated with each topic, and the size of the associated <span class="math inline">\(\beta\)</span> coefficient.</p>
 
@@ -200,7 +236,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Computational Text Analysis</strong>" was written by Christopher Barrie. It was last built on 2022-05-31.</p>
+    <p>"<strong>Computational Text Analysis</strong>" was written by Christopher Barrie. It was last built on 2022-12-23.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
@@ -213,7 +249,7 @@
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

@@ -6,23 +6,48 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Introduction to R | Computational Text Analysis</title>
 <meta name="author" content="Christopher Barrie">
-<meta name="description" content="This section is designed to ensure you are familiar with the R environment.  0.1 Getting started with R at home Given that we’re all working from home these days, you’ll need to download R and...">
-<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta name="description" content="This section is designed to ensure you are familiar with the R environment.  0.2 Getting started with R at home Given that we’re all working from home these days, you’ll need to download R and...">
+<meta name="generator" content="bookdown 0.31.1 with bs4_book()">
 <meta property="og:title" content="Introduction to R | Computational Text Analysis">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://cjbarrie.github.io/CTA-ED/introduction-to-r.html">
 <meta property="og:image" content="https://cjbarrie.github.io/CTA-ED/coverb.png">
-<meta property="og:description" content="This section is designed to ensure you are familiar with the R environment.  0.1 Getting started with R at home Given that we’re all working from home these days, you’ll need to download R and...">
+<meta property="og:description" content="This section is designed to ensure you are familiar with the R environment.  0.2 Getting started with R at home Given that we’re all working from home these days, you’ll need to download R and...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Introduction to R | Computational Text Analysis">
-<meta name="twitter:description" content="This section is designed to ensure you are familiar with the R environment.  0.1 Getting started with R at home Given that we’re all working from home these days, you’ll need to download R and...">
+<meta name="twitter:description" content="This section is designed to ensure you are familiar with the R environment.  0.2 Getting started with R at home Given that we’re all working from home these days, you’ll need to download R and...">
 <meta name="twitter:image" content="https://cjbarrie.github.io/CTA-ED/coverb.png">
-<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.2.9000/transition.js"></script><script src="libs/bs3compat-0.4.2.9000/tabs.js"></script><script src="libs/bs3compat-0.4.2.9000/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 <link href="libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
-<script src="libs/pagedtable-1.1/js/pagedtable.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS -->
+<script src="libs/pagedtable-1.1/js/pagedtable.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -84,9 +109,9 @@
 <h1>Introduction to R<a class="anchor" aria-label="anchor" href="#introduction-to-r"><i class="fas fa-link"></i></a>
 </h1>
 <p>This section is designed to ensure you are familiar with the <tt>R</tt> environment.</p>
-<div id="getting-started-with-r-at-home" class="section level2" number="0.1">
+<div id="getting-started-with-r-at-home" class="section level2" number="0.2">
 <h2>
-<span class="header-section-number">0.1</span> Getting started with R at home<a class="anchor" aria-label="anchor" href="#getting-started-with-r-at-home"><i class="fas fa-link"></i></a>
+<span class="header-section-number">0.2</span> Getting started with R at home<a class="anchor" aria-label="anchor" href="#getting-started-with-r-at-home"><i class="fas fa-link"></i></a>
 </h2>
 <p>Given that we’re all working from home these days, you’ll need to download R and RStudio onto your own devices. R is the name of the programming language that we’ll be using for coding exercises; RStudio is the IDE (“Integrated Development Environment”), i.e., the piece of software that almost everyone uses when working in R.</p>
 <p>You can download both of these on Windows and Mac easily and for free. This is one of the first reasons to use an “open-source” programming language: it’s free and everyone can contribute!</p>
@@ -97,9 +122,9 @@
 </ol>
 <p><strong>All programs are free. Make sure to load everything listed above for your operating system or R will not work properly!</strong></p>
 </div>
-<div id="some-basic-information" class="section level2" number="0.2">
+<div id="some-basic-information" class="section level2" number="0.3">
 <h2>
-<span class="header-section-number">0.2</span> Some basic information<a class="anchor" aria-label="anchor" href="#some-basic-information"><i class="fas fa-link"></i></a>
+<span class="header-section-number">0.3</span> Some basic information<a class="anchor" aria-label="anchor" href="#some-basic-information"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li><p>A script is a text file in which you write your commands (code) and comments.</p></li>
@@ -111,9 +136,9 @@
 <li><p>Press the <tt>tab</tt> key to auto-complete variable names and commands</p></li>
 </ul>
 </div>
-<div id="getting-started-in-rstudio" class="section level2" number="0.3">
+<div id="getting-started-in-rstudio" class="section level2" number="0.4">
 <h2>
-<span class="header-section-number">0.3</span> Getting Started in RStudio<a class="anchor" aria-label="anchor" href="#getting-started-in-rstudio"><i class="fas fa-link"></i></a>
+<span class="header-section-number">0.4</span> Getting Started in RStudio<a class="anchor" aria-label="anchor" href="#getting-started-in-rstudio"><i class="fas fa-link"></i></a>
 </h2>
 <p>Begin by opening RStudio (located on the desktop). Your first task is to create a new script (this is where we will write our commands). To do so, click:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="introduction-to-r.html#cb1-1" aria-hidden="true" tabindex="-1"></a>File <span class="sc">-</span><span class="ot">-&gt;</span> NewFile <span class="sc">-</span><span class="ot">-&gt;</span> RScript</span></code></pre></div>
@@ -125,28 +150,28 @@
 <li><p>Files/Plots/Packages/Help/Viewer (bottom right)</p></li>
 </ul>
 </div>
-<div id="a-simple-example" class="section level2" number="0.4">
+<div id="a-simple-example" class="section level2" number="0.5">
 <h2>
-<span class="header-section-number">0.4</span> A simple example<a class="anchor" aria-label="anchor" href="#a-simple-example"><i class="fas fa-link"></i></a>
+<span class="header-section-number">0.5</span> A simple example<a class="anchor" aria-label="anchor" href="#a-simple-example"><i class="fas fa-link"></i></a>
 </h2>
 <p>The Script (top left) is where we write our commands for R. You can try this out for a first time by writing a small snipped of code as follows:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="st">"I can't wait to learn Computational Text Analysis"</span> <span class="co">#Note the quotation marks!</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="st">"I can't wait to learn Computational Text Analysis"</span> <span class="co">#Note the quotation marks!</span></span></code></pre></div>
 <p>To tell R to run the command, highlight the relevant row in your script and click the <tt>Run</tt> button (top right of the Script) - or hold down <tt>ctrl+enter</tt> on Windows or <tt>cmd+enter</tt> on Mac - to send the command to the Console (bottom left), where the actual evaluation and calculations are taking place. These shortcut keys will become very familiar to you very quickly!</p>
 <p>Running the command above creates an object named ‘x’, that contains the words of your message.</p>
 <p>You can now see ‘x’ in the Environment (top right). To view what is contained in x, type in the Console (bottom left):</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] "I can't wait to learn Computational Text Analysis"</code></pre>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># or alternatively you can just type:</span>
-
-<span class="va">x</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># or alternatively you can just type:</span></span>
+<span></span>
+<span><span class="va">x</span></span></code></pre></div>
 <pre><code>## [1] "I can't wait to learn Computational Text Analysis"</code></pre>
 </div>
-<div id="loading-packages" class="section level2" number="0.5">
+<div id="loading-packages" class="section level2" number="0.6">
 <h2>
-<span class="header-section-number">0.5</span> Loading packages<a class="anchor" aria-label="anchor" href="#loading-packages"><i class="fas fa-link"></i></a>
+<span class="header-section-number">0.6</span> Loading packages<a class="anchor" aria-label="anchor" href="#loading-packages"><i class="fas fa-link"></i></a>
 </h2>
 <p>The ‘base’ version of <tt>R</tt> is very powerful but it will not be able to do everything on its own, at least not with ease. For more technical or specialized forms of analysis, we will need to load new packages.</p>
 <p>This is when we will need to install a so-called ‘package’—a program that includes new tools (i.e., functions) to carry out specific tasks. You can think of them as ‘extensions’ enhancing <tt>R</tt>’s capacities.</p>
@@ -154,27 +179,29 @@
 <p>This might sound technical. But the beauty of the packaged extensions of <tt>R</tt> is that they contain functions to perform specialized types of analysis with ease.</p>
 <p>We’ll first need to install one of these packages, which you can do as below:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"tidyverse"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"tidyverse"</span><span class="op">)</span></span></code></pre></div>
 <p>After the package is installed, we then need to load it into our environment by typing <tt>library(<insert name of package here>)</insert></tt>. Note that, here, you don’t need to wrap the name of the package in quotation marks. So this will do the trick:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></code></pre></div>
-<pre><code>## ── Attaching packages ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse 1.3.1 ──</code></pre>
-<pre><code>## ✓ ggplot2 3.3.5     ✓ readr   2.1.2
-## ✓ tibble  3.1.6     ✓ purrr   0.3.4
-## ✓ tidyr   1.2.0     ✓ forcats 0.5.1</code></pre>
-<pre><code>## ── Conflicts ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
-## x dplyr::filter() masks stats::filter()
-## x dplyr::lag()    masks stats::lag()</code></pre>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span></code></pre></div>
+<pre><code>## ── Attaching packages ────────────────────────────────────────────────────────── tidyverse 1.3.0 ──</code></pre>
+<pre><code>## ✔ ggplot2 3.3.3      ✔ purrr   0.3.4 
+## ✔ tibble  3.1.8      ✔ dplyr   1.0.10
+## ✔ tidyr   1.1.3      ✔ stringr 1.5.0 
+## ✔ readr   1.4.0      ✔ forcats 0.5.0</code></pre>
+<pre><code>## ── Conflicts ───────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter()         masks stats::filter()
+## ✖ readr::guess_encoding() masks rvest::guess_encoding()
+## ✖ dplyr::lag()            masks stats::lag()</code></pre>
 <p>What now? Well, let’s see just how easy it is to visualize some data using <tt>ggplot</tt> which is a package that comes bundled into the larger <tt>tidyverse</tt> package.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">mpg</span><span class="op">)</span> <span class="op">+</span> 
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">displ</span>, y <span class="op">=</span> <span class="va">hwy</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">mpg</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">displ</span>, y <span class="op">=</span> <span class="va">hwy</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-6-1.png" width="672"></div>
 <p>If we wanted to save where we’d got to with making our plots, we would want to save our scripts, and maybe the data we used as well, so that we could return to it at a later stage.</p>
 </div>
-<div id="saving-your-objects-plots-and-scripts" class="section level2" number="0.6">
+<div id="saving-your-objects-plots-and-scripts" class="section level2" number="0.7">
 <h2>
-<span class="header-section-number">0.6</span> Saving your objects, plots and scripts<a class="anchor" aria-label="anchor" href="#saving-your-objects-plots-and-scripts"><i class="fas fa-link"></i></a>
+<span class="header-section-number">0.7</span> Saving your objects, plots and scripts<a class="anchor" aria-label="anchor" href="#saving-your-objects-plots-and-scripts"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li><p>Saving scripts: To save your script in RStudio (i.e. the top left panel), all you need to do is click File –&gt; Save As (and choose a name for your script). Your script will be something like: myfilename.R.</p></li>
@@ -182,37 +209,37 @@
 <li><p>To save <strong>individual</strong> objects (for example <tt>x</tt> from above) from your environment, run the following command (choosing a suitable filename):</p></li>
 </ul>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/save.html">save</a></span><span class="op">(</span><span class="va">x</span>,file<span class="op">=</span><span class="st">"myobject.RData"</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/load.html">load</a></span><span class="op">(</span>file<span class="op">=</span><span class="st">"myobject.RData"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/save.html">save</a></span><span class="op">(</span><span class="va">x</span>,file<span class="op">=</span><span class="st">"myobject.RData"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/load.html">load</a></span><span class="op">(</span>file<span class="op">=</span><span class="st">"myobject.RData"</span><span class="op">)</span></span></code></pre></div>
 <ul>
 <li>To save <strong>all</strong> of your objects (i.e. everything in the top right panel) at once, run the following command (choosing a suitable filename):</li>
 </ul>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/save.html">save.image</a></span><span class="op">(</span>file<span class="op">=</span><span class="st">"myfilname.RData"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/save.html">save.image</a></span><span class="op">(</span>file<span class="op">=</span><span class="st">"myfilname.RData"</span><span class="op">)</span></span></code></pre></div>
 <ul>
 <li>Your objects can be re-loaded into R during your next session by running:</li>
 </ul>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/load.html">load</a></span><span class="op">(</span>file<span class="op">=</span><span class="st">"myfilename.RData"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/load.html">load</a></span><span class="op">(</span>file<span class="op">=</span><span class="st">"myfilename.RData"</span><span class="op">)</span></span></code></pre></div>
 <p>There are many other file formats you might use to save any output. We will encounter these as the course progresses.</p>
 </div>
-<div id="knowing-where-r-saves-your-documents" class="section level2" number="0.7">
+<div id="knowing-where-r-saves-your-documents" class="section level2" number="0.8">
 <h2>
-<span class="header-section-number">0.7</span> Knowing where R saves your documents<a class="anchor" aria-label="anchor" href="#knowing-where-r-saves-your-documents"><i class="fas fa-link"></i></a>
+<span class="header-section-number">0.8</span> Knowing where R saves your documents<a class="anchor" aria-label="anchor" href="#knowing-where-r-saves-your-documents"><i class="fas fa-link"></i></a>
 </h2>
 <p>If you are at home, when you open a new script make sure to check and set your working directory (i.e. the folder where the files you create will be saved). To check your working directory use the getwd() command (type it into the Console or write it in your script in the Source Editor):</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/getwd.html">getwd</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/getwd.html">getwd</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p>To set your working directory, run the following command, substituting the file directory of your choice. Remember that anything following the `#’ symbol is simply a clarifying comment and R will not process it.</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">## Example for Mac </span>
-<span class="fu"><a href="https://rdrr.io/r/base/getwd.html">setwd</a></span><span class="op">(</span><span class="st">"/Users/Documents/mydir/"</span><span class="op">)</span> 
-<span class="co">## Example for PC </span>
-<span class="fu"><a href="https://rdrr.io/r/base/getwd.html">setwd</a></span><span class="op">(</span><span class="st">"c:/docs/mydir"</span><span class="op">)</span> </code></pre></div>
+<code class="sourceCode R"><span><span class="co">## Example for Mac </span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/getwd.html">setwd</a></span><span class="op">(</span><span class="st">"/Users/Documents/mydir/"</span><span class="op">)</span> </span>
+<span><span class="co">## Example for PC </span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/getwd.html">setwd</a></span><span class="op">(</span><span class="st">"c:/docs/mydir"</span><span class="op">)</span> </span></code></pre></div>
 </div>
-<div id="practicing-in-r" class="section level2" number="0.8">
+<div id="practicing-in-r" class="section level2" number="0.9">
 <h2>
-<span class="header-section-number">0.8</span> Practicing in R<a class="anchor" aria-label="anchor" href="#practicing-in-r"><i class="fas fa-link"></i></a>
+<span class="header-section-number">0.9</span> Practicing in R<a class="anchor" aria-label="anchor" href="#practicing-in-r"><i class="fas fa-link"></i></a>
 </h2>
 <p>The best way to learn <tt>R</tt> is to use it. These workshops on text analysis will not be the place to become fully proficient in <tt>R</tt>. They will, however, be a chance to conduct some hands-on analysis with applied examples in a fast-expanding field. And the best way to learn is through doing. So give it a shot!</p>
 <p>For some further practice in the R programming language, look no further than <span class="citation">Wickham and Grolemund (<a href="references-2.html#ref-wickham_r_2017" role="doc-biblioref">2017</a>)</span> and, for tidy text analysis, <span class="citation">Silge and Robinson (<a href="references-2.html#ref-silge_text_2017" role="doc-biblioref">2017</a>)</span>.</p>
@@ -222,15 +249,15 @@
 <li><p>For more practice with R, you may want to consult a set of interactive tutorials, available through the package “learnr.” Once you’ve installed this package, you can go through the tutorials yourselves by calling:</p></li>
 </ul>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rstudio.github.io/learnr/">learnr</a></span><span class="op">)</span>
-
-<span class="fu">available_tutorials</span><span class="op">(</span><span class="op">)</span> <span class="co"># this will tell you the names of the tutorials available</span>
-
-<span class="fu">run_tutorial</span><span class="op">(</span>name <span class="op">=</span> <span class="st">"ex-data-basics"</span>, package <span class="op">=</span> <span class="st">"learnr"</span><span class="op">)</span> <span class="co">#this will launch the interactive tutorial in a new Internet browser window</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rstudio.github.io/learnr/">learnr</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://pkgs.rstudio.com/learnr/reference/available_tutorials.html">available_tutorials</a></span><span class="op">(</span><span class="op">)</span> <span class="co"># this will tell you the names of the tutorials available</span></span>
+<span></span>
+<span><span class="fu"><a href="https://pkgs.rstudio.com/learnr/reference/run_tutorial.html">run_tutorial</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"ex-data-basics"</span>, package <span class="op">=</span> <span class="st">"learnr"</span><span class="op">)</span> <span class="co">#this will launch the interactive tutorial in a new Internet browser window</span></span></code></pre></div>
 </div>
-<div id="one-final-note" class="section level2" number="0.9">
+<div id="one-final-note" class="section level2" number="0.10">
 <h2>
-<span class="header-section-number">0.9</span> One final note<a class="anchor" aria-label="anchor" href="#one-final-note"><i class="fas fa-link"></i></a>
+<span class="header-section-number">0.10</span> One final note<a class="anchor" aria-label="anchor" href="#one-final-note"><i class="fas fa-link"></i></a>
 </h2>
 <p>Once you’ve dipped into the “R for Data Science” book you’ll hear a lot about the so-called <tt>tidyverse</tt> in R. This is essentially a set of packages that use an alternative, and more intuitive, way of interacting with data.</p>
 <p>The main difference you’ll notice here is that, instead of having separate lines for each function we want to run, or wrapping functions inside functions, sets of functions are “piped” into each other using “pipe” functions, which look have the appearance: <code>%&gt;%</code>.</p>
@@ -245,15 +272,15 @@
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
 <li><a class="nav-link" href="#introduction-to-r">Introduction to R</a></li>
-<li><a class="nav-link" href="#getting-started-with-r-at-home"><span class="header-section-number">0.1</span> Getting started with R at home</a></li>
-<li><a class="nav-link" href="#some-basic-information"><span class="header-section-number">0.2</span> Some basic information</a></li>
-<li><a class="nav-link" href="#getting-started-in-rstudio"><span class="header-section-number">0.3</span> Getting Started in RStudio</a></li>
-<li><a class="nav-link" href="#a-simple-example"><span class="header-section-number">0.4</span> A simple example</a></li>
-<li><a class="nav-link" href="#loading-packages"><span class="header-section-number">0.5</span> Loading packages</a></li>
-<li><a class="nav-link" href="#saving-your-objects-plots-and-scripts"><span class="header-section-number">0.6</span> Saving your objects, plots and scripts</a></li>
-<li><a class="nav-link" href="#knowing-where-r-saves-your-documents"><span class="header-section-number">0.7</span> Knowing where R saves your documents</a></li>
-<li><a class="nav-link" href="#practicing-in-r"><span class="header-section-number">0.8</span> Practicing in R</a></li>
-<li><a class="nav-link" href="#one-final-note"><span class="header-section-number">0.9</span> One final note</a></li>
+<li><a class="nav-link" href="#getting-started-with-r-at-home"><span class="header-section-number">0.2</span> Getting started with R at home</a></li>
+<li><a class="nav-link" href="#some-basic-information"><span class="header-section-number">0.3</span> Some basic information</a></li>
+<li><a class="nav-link" href="#getting-started-in-rstudio"><span class="header-section-number">0.4</span> Getting Started in RStudio</a></li>
+<li><a class="nav-link" href="#a-simple-example"><span class="header-section-number">0.5</span> A simple example</a></li>
+<li><a class="nav-link" href="#loading-packages"><span class="header-section-number">0.6</span> Loading packages</a></li>
+<li><a class="nav-link" href="#saving-your-objects-plots-and-scripts"><span class="header-section-number">0.7</span> Saving your objects, plots and scripts</a></li>
+<li><a class="nav-link" href="#knowing-where-r-saves-your-documents"><span class="header-section-number">0.8</span> Knowing where R saves your documents</a></li>
+<li><a class="nav-link" href="#practicing-in-r"><span class="header-section-number">0.9</span> Practicing in R</a></li>
+<li><a class="nav-link" href="#one-final-note"><span class="header-section-number">0.10</span> One final note</a></li>
 </ul>
 
       <div class="book-extra">
@@ -271,7 +298,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Computational Text Analysis</strong>" was written by Christopher Barrie. It was last built on 2022-05-31.</p>
+    <p>"<strong>Computational Text Analysis</strong>" was written by Christopher Barrie. It was last built on 2022-12-23.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
@@ -284,7 +311,7 @@
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

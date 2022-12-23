@@ -27,7 +27,7 @@ head(lipsum_text$text)
 
 We can then tokenize with the `unnest_tokens()` function in `tidytext`. 
 
-````{r}
+```{r}
 tokens <- lipsum_text %>%
   unnest_tokens(word, text)
 
