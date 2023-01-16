@@ -4,18 +4,18 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Page not found | Computational Text Analysis</title>
+<title>Chapter 15 Week 9: Supervised learning | Computational Text Analysis</title>
 <meta name="author" content="Christopher Barrie">
-<meta name="description" content="The page you requested cannot be found (perhaps it was moved or renamed). You may want to try searching to find the page's new location, or use the table of contents to find the page you are...">
+<meta name="description" content="Required reading: Hopkins and King (2010) King, Pan, and Roberts (2017) Siegel et al. (2021) Yu, Kaufmann, and Diermeier (2008) Manning, Raghavan, and Schtze (2007, chs. 13,14, and 15):...">
 <meta name="generator" content="bookdown 0.24 with bs4_book()">
-<meta property="og:title" content="Page not found | Computational Text Analysis">
+<meta property="og:title" content="Chapter 15 Week 9: Supervised learning | Computational Text Analysis">
 <meta property="og:type" content="book">
-<meta property="og:url" content="https://cjbarrie.github.io/CTA-ED/404.html">
+<meta property="og:url" content="https://cjbarrie.github.io/CTA-ED/week-9-supervised-learning.html">
 <meta property="og:image" content="https://cjbarrie.github.io/CTA-ED/coverb.png">
-<meta property="og:description" content="The page you requested cannot be found (perhaps it was moved or renamed). You may want to try searching to find the page's new location, or use the table of contents to find the page you are...">
+<meta property="og:description" content="Required reading: Hopkins and King (2010) King, Pan, and Roberts (2017) Siegel et al. (2021) Yu, Kaufmann, and Diermeier (2008) Manning, Raghavan, and Schtze (2007, chs. 13,14, and 15):...">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Page not found | Computational Text Analysis">
-<meta name="twitter:description" content="The page you requested cannot be found (perhaps it was moved or renamed). You may want to try searching to find the page's new location, or use the table of contents to find the page you are...">
+<meta name="twitter:title" content="Chapter 15 Week 9: Supervised learning | Computational Text Analysis">
+<meta name="twitter:description" content="Required reading: Hopkins and King (2010) King, Pan, and Roberts (2017) Siegel et al. (2021) Yu, Kaufmann, and Diermeier (2008) Manning, Raghavan, and Schtze (2007, chs. 13,14, and 15):...">
 <meta name="twitter:image" content="https://cjbarrie.github.io/CTA-ED/coverb.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
@@ -61,7 +61,7 @@
 <li><a class="" href="week-7-unsupervised-learning-word-embedding.html"><span class="header-section-number">12</span> Week 7: Unsupervised learning (word embedding)</a></li>
 <li><a class="" href="week-7-demo.html"><span class="header-section-number">13</span> Week 7 Demo</a></li>
 <li><a class="" href="week-8-sampling-text-information.html"><span class="header-section-number">14</span> Week 8: Sampling text information</a></li>
-<li><a class="" href="week-9-supervised-learning.html"><span class="header-section-number">15</span> Week 9: Supervised learning</a></li>
+<li><a class="active" href="week-9-supervised-learning.html"><span class="header-section-number">15</span> Week 9: Supervised learning</a></li>
 <li><a class="" href="week-10-validation.html"><span class="header-section-number">16</span> Week 10: Validation</a></li>
 <li><a class="" href="exercise-1-word-frequency-analysis.html"><span class="header-section-number">17</span> Exercise 1: Word frequency analysis</a></li>
 <li><a class="" href="exercise-2-dictionary-based-methods.html"><span class="header-section-number">18</span> Exercise 2: Dictionary-based methods</a></li>
@@ -80,18 +80,41 @@
         </div>
       </nav>
 </div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="page-not-found" class="section level1">
-<h1>Page not found<a class="anchor" aria-label="anchor" href="#page-not-found"><i class="fas fa-link"></i></a>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="week-9-supervised-learning" class="section level1" number="15">
+<h1>
+<span class="header-section-number">15</span> Week 9: Supervised learning<a class="anchor" aria-label="anchor" href="#week-9-supervised-learning"><i class="fas fa-link"></i></a>
 </h1>
-<p>The page you requested cannot be found (perhaps it was moved or renamed).</p>
-<p>You may want to try searching to find the page's new location, or use
-the table of contents to find the page you are looking for.</p>
+<p><strong>Required reading</strong>:</p>
+<ul>
+<li><span class="citation">Hopkins and King (<a href="references-2.html#ref-hopkins_method_2010" role="doc-biblioref">2010</a>)</span></li>
+<li><span class="citation">King, Pan, and Roberts (<a href="references-2.html#ref-king_how_2017-1" role="doc-biblioref">2017</a>)</span></li>
+<li><span class="citation">Siegel et al. (<a href="references-2.html#ref-siegel_trumping_2021" role="doc-biblioref">2021</a>)</span></li>
+<li><span class="citation">Yu, Kaufmann, and Diermeier (<a href="references-2.html#ref-yu_classifying_2008" role="doc-biblioref">2008</a>)</span></li>
+<li>
+<span class="citation">Manning, Raghavan, and Schtze (<a href="references-2.html#ref-manning_introduction_2007" role="doc-biblioref">2007</a>, chs. 13,14, and 15)</span>: <a href="https://nlp.stanford.edu/IR-book/information-retrieval-book.html">https://nlp.stanford.edu/IR-book/information-retrieval-book.html</a>]</li>
+</ul>
+<p><strong>Further reading</strong>:</p>
+<ul>
+<li><span class="citation">Denny and Spirling (<a href="references-2.html#ref-denny_text_2018" role="doc-biblioref">2018</a>)</span></li>
+<li><span class="citation">King, Lam, and Roberts (<a href="references-2.html#ref-king_computer-assisted_2017" role="doc-biblioref">2017</a>)</span></li>
+<li>
+</ul>
 </div>
   <div class="chapter-nav">
-<div class="empty"></div>
-<div class="empty"></div>
+<div class="prev"><a href="week-8-sampling-text-information.html"><span class="header-section-number">14</span> Week 8: Sampling text information</a></div>
+<div class="next"><a href="week-10-validation.html"><span class="header-section-number">16</span> Week 10: Validation</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
-    </div>
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav"><li><a class="nav-link" href="#week-9-supervised-learning"><span class="header-section-number">15</span> Week 9: Supervised learning</a></li></ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/cjbarrie/CTA-ED/blob/master/09-week9.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/cjbarrie/CTA-ED/edit/master/09-week9.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
 
 </div>
 </div> <!-- .container -->

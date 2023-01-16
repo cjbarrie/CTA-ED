@@ -1,6 +1,4 @@
-# Week 1
-
-## Retrieving and analyzing text information
+# Week 1: Retrieving and analyzing text
 
 Our first task when conducting large-scale text analyses is gathering and curating the text information itself. This is the focus of the chapters by @manning_introduction_2007 listed below. Here, you'll find an introduction to different ways in which we can reformat and 'query' text data in order to begin asking questions of it. This is often referred to in computer science and natural language processing contexts as "information retrieval" and is the foundation of many search, including web search, processes.
 

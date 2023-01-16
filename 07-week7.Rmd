@@ -1,6 +1,4 @@
-# Week 7
-
-## Unsupervised learning (word embedding)
+# Week 7: Unsupervised learning (word embedding)
 
 This week we will be discussing a second form of "unsupervised" learning---word embeddings. If previous weeks allowed us to characterize the complexity of text, or cluster text by potential topical focus, word embeddings permit us a more expansive form of measurement. In essence, we are producing here a matrix representation of an entire corpus. 
 

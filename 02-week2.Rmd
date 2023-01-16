@@ -1,6 +1,4 @@
-# Week 2
-
-## Tokenization and word frequencies
+# Week 2: Tokenization and word frequencies
 
 When approaching large-scale quantiative analyses of text, a key task is how we identify and capture the unit of analysis. One of the most commonly used approaches, across diverse analytical contexts, is text tokenization. Here, we are splitting the text into word units: unigrams, bigrams, trigrams etc. 
 

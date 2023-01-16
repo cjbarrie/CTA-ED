@@ -1,6 +1,4 @@
-# Week 5
-
-## Scaling techniques
+# Week 5: Scaling techniques
 
 Here we begin thinking about more automated techniques for analyzing texts. And there are a bunch of additional considerations we now need to bring to mind. These considerations have sparked significant debates... and the matter is by no means settled.
 

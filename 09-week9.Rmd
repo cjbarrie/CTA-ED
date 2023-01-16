@@ -1,6 +1,4 @@
-# Week 9
-
-## Supervised learning
+# Week 9: Supervised learning
 
 **Required reading**:
 

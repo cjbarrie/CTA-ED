@@ -1,6 +1,4 @@
-# Week 8
-
-## Sampling text information
+# Week 8: Sampling text information
 
 This week we'll be thinking about how best to sample text information, thinking about the different biases that might inhere in the data-generating process, as well as the representativeness and generalizability of any text corpus we construct. 
 

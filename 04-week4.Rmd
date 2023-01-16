@@ -1,6 +1,4 @@
-# Week 4
-
-## Natural language, complexity, and similarity
+# Week 4: Natural language, complexity, and similarity
 
 This week we will be delving more deeply into how language is used in text. In previous weeks, we have tried out two main techniques both of which rely, in different ways, on counting words. This week, we will be thinking about some more sophisticated techniques to identify and measure language use, as well as how to compare texts to each other. The article by @gomaa_survey_2013 provides an overview of different approaches. We will be covering these technical dimensions in the lecture.
 

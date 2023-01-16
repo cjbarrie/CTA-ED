@@ -1,6 +1,4 @@
-# Week 10
-
-## Validation
+# Week 10: Validation
 
 This week we'll be thinking about how to validate techniques we've used in the preceding weeks. Validation is a necessary and important part of any text analysis technique. 
 
