@@ -1,3 +1,7 @@
+---
+bibliography: references.bib
+---
+
 # Week 3: Dictionary-based techniques
 
 An extension of word frequency analyses, which we covered last week, are so-called "dictionary-based" techniques. In their most basic form, these analyses use an index of target terms and classify the corpus of interest based on their presence or absence. The technical dimensions of this type of analysis are covered in the chapter section by @krippendorff_content_2004, and some of the issues attending them in the article by - @loughran_when_2011.
@@ -6,24 +10,23 @@ We will also be reading two examples of the application of these techniques by @
 
 Questions:
 
-1. Are *general* dictionaries possible; or do they have to be domain-specific?
-2. How do we know if our dictionary is accurate?
-3. How could we enhance/supplement dictionary-based techniques?
+1.  Are *general* dictionaries possible; or do they have to be domain-specific?
+2.  How do we know if our dictionary is accurate?
+3.  How could we enhance/supplement dictionary-based techniques?
 
 **Required reading**:
 
-- @martins_rise_2020
-- @young_affective_2012
-
-- @loughran_when_2011
-- @krippendorff_content_2004 (pp.283-289)
+-   @martins_rise_2020
+-   @young_affective_2012
+-   @krippendorff_content_2004 (pp.283-289)
 
 **Further reading**:
 
-- @tausczik_psychological_2010
-- @brier_computer_2011
-- @barbera_automated_2021
+-   @tausczik_psychological_2010
+-   @brier_computer_2011
+-   @bonikowski2015
+-   @barbera_automated_2021
 
 **Slides**:
 
-- Week 3 [Slides](https://docs.google.com/presentation/d/1rgYCYGtZ7resCd7oVsGnaCpwWKduunl8s1famjtGtBY/edit?usp=sharing)
+-   Week 3 [Slides](https://docs.google.com/presentation/d/1rgYCYGtZ7resCd7oVsGnaCpwWKduunl8s1famjtGtBY/edit?usp=sharing)
