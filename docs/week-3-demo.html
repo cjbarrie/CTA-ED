@@ -90,7 +90,7 @@
 <span class="header-section-number">5.1</span> Setup<a class="anchor" aria-label="anchor" href="#setup-1"><i class="fas fa-link"></i></a>
 </h2>
 <p>We’ll first load the packages we need.</p>
-<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://stringi.gagolewski.com/">stringi</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/juliasilge/tidytext">tidytext</a></span><span class="op">)</span>
@@ -104,56 +104,53 @@
 <p>As we discussed in the lectures, we might find in our text of the class’s collective thoughts that there was an increase in “happy” words over time.</p>
 <p>I have simulated a dataset of text split by weeks, students, and words plus whether or not the word is the word “happy” where <code>0</code> means it is not the word “happy” and <code>1</code> means it is.</p>
 <p>We have three datasets: one with a constant number of “happy” words; one with an increasing number of “happy” words; and one with a decreasing number of “happy” words. These are called: <code>happyn</code>, <code>happyu</code>, and <code>happyd</code> respectively.</p>
-<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">happyn</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 4
 ## # Groups:   week, student [1]
-##    week student word   happy
-##   &lt;int&gt;   &lt;int&gt; &lt;chr&gt;  &lt;int&gt;
-## 1     1       5 lorem      0
-## 2     1       5 ipsum      0
-## 3     1       5 dolor      0
-## 4     1       5 sit        0
-## 5     1       5 amet       0
-## 6     1       5 tortor     0</code></pre>
-<div class="sourceCode" id="cb63"><pre class="downlit sourceCode r">
+##    week student word  happy
+##   &lt;int&gt;   &lt;int&gt; &lt;chr&gt; &lt;int&gt;
+## 1     1       9 lorem     0
+## 2     1       9 ipsum     0
+## 3     1       9 dolor     0
+## 4     1       9 sit       0
+## 5     1       9 amet      0
+## 6     1       9 nam       0</code></pre>
+<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">happyu</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 4
 ## # Groups:   week, student [1]
-##    week student word   happy
-##   &lt;int&gt;   &lt;int&gt; &lt;chr&gt;  &lt;int&gt;
-## 1     1       5 lorem      0
-## 2     1       5 ipsum      0
-## 3     1       5 dolor      0
-## 4     1       5 sit        0
-## 5     1       5 amet       0
-## 6     1       5 tortor     0</code></pre>
-<div class="sourceCode" id="cb65"><pre class="downlit sourceCode r">
+##    week student word  happy
+##   &lt;int&gt;   &lt;int&gt; &lt;chr&gt; &lt;int&gt;
+## 1     1       9 lorem     0
+## 2     1       9 ipsum     0
+## 3     1       9 dolor     0
+## 4     1       9 sit       0
+## 5     1       9 amet      0
+## 6     1       9 nam       0</code></pre>
+<div class="sourceCode" id="cb62"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">happyd</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 4
 ## # Groups:   week, student [1]
-##    week student word   happy
-##   &lt;int&gt;   &lt;int&gt; &lt;chr&gt;  &lt;int&gt;
-## 1     1       5 lorem      0
-## 2     1       5 ipsum      0
-## 3     1       5 dolor      0
-## 4     1       5 sit        0
-## 5     1       5 amet       0
-## 6     1       5 tortor     0</code></pre>
+##    week student word  happy
+##   &lt;int&gt;   &lt;int&gt; &lt;chr&gt; &lt;int&gt;
+## 1     1       9 lorem     0
+## 2     1       9 ipsum     0
+## 3     1       9 dolor     0
+## 4     1       9 sit       0
+## 5     1       9 amet      0
+## 6     1       9 nam       0</code></pre>
 <p>We can then see the trend in “happy” words over by week and student.</p>
 <p>First, the dataset where we have a constant number of happy words over time.</p>
-<pre><code>## `summarise()` has grouped output by 'week', 'student'. You can
-## override using the `.groups` argument.
+<pre><code>## `summarise()` has grouped output by 'week', 'student'. You can override using the `.groups` argument.
 ## `geom_smooth()` using method = 'loess' and formula = 'y ~ x'</code></pre>
 <div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-36-1.png" width="672"></div>
 <p>And now the simulated data with an increasing number of happy words.</p>
-<pre><code>## `summarise()` has grouped output by 'week', 'student'. You can
-## override using the `.groups` argument.
+<pre><code>## `summarise()` has grouped output by 'week', 'student'. You can override using the `.groups` argument.
 ## `geom_smooth()` using method = 'loess' and formula = 'y ~ x'</code></pre>
 <div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-37-1.png" width="672"></div>
 <p>And finally a decreasing number of happy words.</p>
-<pre><code>## `summarise()` has grouped output by 'week', 'student'. You can
-## override using the `.groups` argument.
+<pre><code>## `summarise()` has grouped output by 'week', 'student'. You can override using the `.groups` argument.
 ## `geom_smooth()` using method = 'loess' and formula = 'y ~ x'</code></pre>
 <div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-38-1.png" width="672"></div>
 </div>
@@ -167,46 +164,46 @@
 <p>I join these data with three other datasets: <code>happylipsumn</code>, <code>happylipsumu</code>, and <code>happylipsumd</code>. These are datasets of random text, with the <em>same</em> number of happy words.</p>
 <p>The first of these also has the <em>same</em> number of total words each week. The second two, however, have <em>differing</em> number of <em>total</em> words each week: <code>happylipsumu</code> has an increasing number of total words each week; <code>happylipsumd</code> has a decreasing number of total words each week.</p>
 <p>Again, as you see below, we’re splitting by week, student, word, and whether or not it is a “happy” word.</p>
-<div class="sourceCode" id="cb70"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb67"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">happylipsumn</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 4
 ## # Groups:   week, student [1]
-##    week student word     happy
-##   &lt;int&gt;   &lt;int&gt; &lt;chr&gt;    &lt;int&gt;
-## 1     1       5 lorem        0
-## 2     1       5 ipsum        0
-## 3     1       5 dolor        0
-## 4     1       5 sit          0
-## 5     1       5 amet         0
-## 6     1       5 suscipit     0</code></pre>
-<div class="sourceCode" id="cb72"><pre class="downlit sourceCode r">
+##    week student word   happy
+##   &lt;int&gt;   &lt;int&gt; &lt;chr&gt;  &lt;int&gt;
+## 1     1       9 lorem      0
+## 2     1       9 ipsum      0
+## 3     1       9 dolor      0
+## 4     1       9 sit        0
+## 5     1       9 amet       0
+## 6     1       9 semper     0</code></pre>
+<div class="sourceCode" id="cb69"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">happylipsumu</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 4
 ## # Groups:   week, student [1]
-##    week student word  happy
-##   &lt;int&gt;   &lt;int&gt; &lt;chr&gt; &lt;int&gt;
-## 1     1       5 lorem     0
-## 2     1       5 ipsum     0
-## 3     1       5 dolor     0
-## 4     1       5 sit       0
-## 5     1       5 amet      0
-## 6     1       5 vel       0</code></pre>
-<div class="sourceCode" id="cb74"><pre class="downlit sourceCode r">
+##    week student word    happy
+##   &lt;int&gt;   &lt;int&gt; &lt;chr&gt;   &lt;int&gt;
+## 1     1       9 lorem       0
+## 2     1       9 ipsum       0
+## 3     1       9 dolor       0
+## 4     1       9 sit         0
+## 5     1       9 amet        0
+## 6     1       9 commodo     0</code></pre>
+<div class="sourceCode" id="cb71"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">happylipsumd</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 4
 ## # Groups:   week, student [1]
 ##    week student word  happy
 ##   &lt;int&gt;   &lt;int&gt; &lt;chr&gt; &lt;int&gt;
-## 1     1       5 lorem     0
-## 2     1       5 ipsum     0
-## 3     1       5 dolor     0
-## 4     1       5 sit       0
-## 5     1       5 amet      0
-## 6     1       5 augue     0</code></pre>
+## 1     1       9 lorem     0
+## 2     1       9 ipsum     0
+## 3     1       9 dolor     0
+## 4     1       9 sit       0
+## 5     1       9 amet      0
+## 6     1       9 et        0</code></pre>
 <p>Then if we plot the number of happy words <em>divided</em> by the number of total words each week for each student in each of these datasets, we get the below.</p>
 <p>To get this normalized sentiment score–or “happy” score–we need to create a variable (column) in our dataframe that is the sum of happy words divided by the total number of words in the dataframe.</p>
 <p>We can do this in the following way.</p>
-<div class="sourceCode" id="cb76"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb73"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">happylipsumn</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
     <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">week</span>, <span class="va">student</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
     <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>index_total <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
@@ -215,22 +212,21 @@
               index_total <span class="op">=</span> <span class="va">index_total</span>,
               prop_hap <span class="op">=</span> <span class="va">sum_hap</span><span class="op">/</span><span class="va">index_total</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
     <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code>## `summarise()` has grouped output by 'week', 'student'. You can
-## override using the `.groups` argument.</code></pre>
+<pre><code>## `summarise()` has grouped output by 'week', 'student'. You can override using the `.groups` argument.</code></pre>
 <pre><code>## # A tibble: 300 × 5
 ## # Groups:   week, student [300]
 ##     week student sum_hap index_total prop_hap
 ##    &lt;int&gt;   &lt;int&gt;   &lt;int&gt;       &lt;int&gt;    &lt;dbl&gt;
-##  1     1       1     923        4366    0.211
-##  2     1       2    1355        6255    0.217
-##  3     1       3     635        2736    0.232
-##  4     1       4    1029        4633    0.222
-##  5     1       5     835        4272    0.195
-##  6     1       6    1029        5327    0.193
-##  7     1       7    1016        3932    0.258
-##  8     1       8     732        3355    0.218
-##  9     1       9     744        3371    0.221
-## 10     1      10     715        3792    0.189
+##  1     1       1     894        3548    0.252
+##  2     1       2    1164        5259    0.221
+##  3     1       3    1014        4531    0.224
+##  4     1       4     774        3654    0.212
+##  5     1       5     980        4212    0.233
+##  6     1       6     711        3579    0.199
+##  7     1       7    1254        5025    0.250
+##  8     1       8    1117        4846    0.230
+##  9     1       9    1079        4726    0.228
+## 10     1      10    1061        5111    0.208
 ## # … with 290 more rows</code></pre>
 <p>Then if we repeat this for each of our datasets and plot we see the following.</p>
 <div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-42-1.png" width="672"></div>

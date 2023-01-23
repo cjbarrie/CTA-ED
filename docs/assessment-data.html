@@ -92,11 +92,11 @@
 </div>
 <div id="osnabrugge_playing_2021-data" class="section level2" number="25.2">
 <h2>
-<span class="header-section-number">25.2</span> <span class="citation">(<a href="#ref-osnabrugge_playing_2021" role="doc-biblioref"><strong>osnabrugge_playing_2021?</strong></a>)</span> data<a class="anchor" aria-label="anchor" href="#osnabrugge_playing_2021-data"><i class="fas fa-link"></i></a>
+<span class="header-section-number">25.2</span> <span class="citation">Osnabrügge, Hobolt, and Rodon (<a href="references-2.html#ref-osnabrugge_playing_2021" role="doc-biblioref">2021</a>)</span> data<a class="anchor" aria-label="anchor" href="#osnabrugge_playing_2021-data"><i class="fas fa-link"></i></a>
 </h2>
-<p>We can access data from <span class="citation">(<a href="#ref-osnabrugge_playing_2021" role="doc-biblioref"><strong>osnabrugge_playing_2021?</strong></a>)</span> <a href="https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/QDTLYV">here</a></p>
+<p>We can access data from <span class="citation">Osnabrügge, Hobolt, and Rodon (<a href="references-2.html#ref-osnabrugge_playing_2021" role="doc-biblioref">2021</a>)</span> <a href="https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/QDTLYV">here</a></p>
 <p>To prepare these data, we can use the same code as used by the original authors:</p>
-<div class="sourceCode" id="cb466"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb460"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://ggplot2.tidyverse.org">"ggplot2"</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="http://had.co.nz/plyr">"plyr"</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st">"gdata"</span><span class="op">)</span>
@@ -280,7 +280,7 @@ brian
 </tbody>
 </table></div>
 <p>If the full dataset is too large for your machines, you can easily take a sample of it with:</p>
-<div class="sourceCode" id="cb467"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb461"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">data_samp</span> <span class="op">&lt;-</span> <span class="va">data</span> <span class="op"><a href="https://stringr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html">sample_n</a></span><span class="op">(</span><span class="fl">10000</span><span class="op">)</span></code></pre></div>
 </div>
@@ -293,27 +293,25 @@ brian
 </div>
 <div id="michalopoulos_folklore_2021" class="section level2" number="25.4">
 <h2>
-<span class="header-section-number">25.4</span> <span class="citation">(<a href="#ref-michalopoulos_folklore_2021" role="doc-biblioref"><strong>michalopoulos_folklore_2021?</strong></a>)</span><a class="anchor" aria-label="anchor" href="#michalopoulos_folklore_2021"><i class="fas fa-link"></i></a>
+<span class="header-section-number">25.4</span> <span class="citation">Michalopoulos and Xue (<a href="references-2.html#ref-michalopoulos_folklore_2021" role="doc-biblioref">2021</a>)</span><a class="anchor" aria-label="anchor" href="#michalopoulos_folklore_2021"><i class="fas fa-link"></i></a>
 </h2>
-<p>Data from the article by <span class="citation">(<a href="#ref-michalopoulos_folklore_2021" role="doc-biblioref"><strong>michalopoulos_folklore_2021?</strong></a>)</span> on Folkloric belief using text data derived from ethnographic materials, which can be downloaded <a href="https://dataverse.harvard.edu/dataset.xhtml;jsessionid=8ff772a5d630bc91f1e9c543e537?persistentId=doi%3A10.7910%2FDVN%2FIXOHKB&amp;version=&amp;q=&amp;fileTypeGroupFacet=&amp;fileAccess=&amp;fileSortField=name&amp;fileSortOrder=desc">here</a>.</p>
+<p>Data from the article by <span class="citation">Michalopoulos and Xue (<a href="references-2.html#ref-michalopoulos_folklore_2021" role="doc-biblioref">2021</a>)</span> on Folkloric belief using text data derived from ethnographic materials, which can be downloaded <a href="https://dataverse.harvard.edu/dataset.xhtml;jsessionid=8ff772a5d630bc91f1e9c543e537?persistentId=doi%3A10.7910%2FDVN%2FIXOHKB&amp;version=&amp;q=&amp;fileTypeGroupFacet=&amp;fileAccess=&amp;fileSortField=name&amp;fileSortOrder=desc">here</a>.</p>
 <p>We can read the main “Motif” dataset from this dataset (stored in Stata .dta format) as follows.</p>
-<div class="sourceCode" id="cb468"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb462"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://haven.tidyverse.org">haven</a></span><span class="op">)</span>
 
 <span class="va">folklore</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://haven.tidyverse.org/reference/read_dta.html">read_dta</a></span><span class="op">(</span><span class="st">"data/assessment/Motif_Master.dta"</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">folklore</span><span class="op">[</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 5
-##   motif_id title_english                    title…¹ title…² desc_…³
-##   &lt;chr&gt;    &lt;chr&gt;                            &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;  
-## 1 a1       The old sun                      Древне… Ancien… Anothe…
-## 2 a10      The sun finds its eyes           Солнце… The su… The su…
-## 3 a11a     Eyes of the Sun and the Moon: c… Глаза … Eyes o… Visibl…
-## 4 a11b     One-eyed luminaries              Одногл… One-ey… The Su…
-## 5 a11c     The Sun, the Moon and monster’s… Солнце… Sun, m… The Su…
-## 6 a12      Eclipses: a monster’s attack     Затмен… Eclips… Some c…
-## # … with abbreviated variable names ¹​title_russian,
-## #   ²​title_english_googleAPI, ³​desc_eng</code></pre>
+##   motif_id title_english                                    title_russian                 title_english_googleAPI                    desc_eng          
+##   &lt;chr&gt;    &lt;chr&gt;                                            &lt;chr&gt;                         &lt;chr&gt;                                      &lt;chr&gt;             
+## 1 a1       The old sun                                      Древнее солнце                Ancient sun                                Another sun, usua…
+## 2 a10      The sun finds its eyes                           Солнце находит себе глаза     The sun finds its eyes                     The sun gets his …
+## 3 a11a     Eyes of the Sun and the Moon: coolness and night Глаза светил: прохлада и ночь Eyes of the luminaries: coolness and night Visible sun and/o…
+## 4 a11b     One-eyed luminaries                              Одноглазые светила            One-eyed luminaries                        The Sun or the Mo…
+## 5 a11c     The Sun, the Moon and monster’s eyes             Солнце, Луна и глаза чудовища Sun, moon and monster eyes                 The Sun and the M…
+## 6 a12      Eclipses: a monster’s attack                     Затмения: нападение чудовищ   Eclipses: Monster Attack                   Some creature or …</code></pre>
 </div>
 <div id="r-markdown" class="section level2" number="25.5">
 <h2>
@@ -332,9 +330,9 @@ brian
       <ul class="nav navbar-nav">
 <li><a class="nav-link" href="#assessment-data"><span class="header-section-number">25</span> Assessment data</a></li>
 <li><a class="nav-link" href="#introduction-8"><span class="header-section-number">25.1</span> Introduction</a></li>
-<li><a class="nav-link" href="#osnabrugge_playing_2021-data"><span class="header-section-number">25.2</span> (osnabrugge_playing_2021?) data</a></li>
+<li><a class="nav-link" href="#osnabrugge_playing_2021-data"><span class="header-section-number">25.2</span> Osnabrügge, Hobolt, and Rodon (2021) data</a></li>
 <li><a class="nav-link" href="#twitter-transparency-data"><span class="header-section-number">25.3</span> Twitter Transparency data</a></li>
-<li><a class="nav-link" href="#michalopoulos_folklore_2021"><span class="header-section-number">25.4</span> (michalopoulos_folklore_2021?)</a></li>
+<li><a class="nav-link" href="#michalopoulos_folklore_2021"><span class="header-section-number">25.4</span> Michalopoulos and Xue (2021)</a></li>
 <li><a class="nav-link" href="#r-markdown"><span class="header-section-number">25.5</span> R Markdown</a></li>
 </ul>
 
