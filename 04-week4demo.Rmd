@@ -20,8 +20,8 @@ A first measure of text similarity is at the level of characters. We can look *f
 We'll make two sentences and create two character objects from them. These are two thoughts imagined up from our classes. 
 
 ```{r}
-a <- "We are all very happy to be at a lecture at 10AM"
-b <- "We are all even happier that we don’t have a lecture next week"
+a <- "We are all very happy to be at a lecture at 11AM"
+b <- "We are all even happier that we don’t have two lectures a week"
 ```
 
 We know that the "longest common substring measure" is, according to the [stringdist](https://cran.r-project.org/web/packages/stringdist/stringdist.pdf) package documentation, "the longest string that can be obtained by pairing characters from *a* and *b* while keeping the order of characters intact."

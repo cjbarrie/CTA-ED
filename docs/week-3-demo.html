@@ -90,7 +90,7 @@
 <span class="header-section-number">5.1</span> Setup<a class="anchor" aria-label="anchor" href="#setup-1"><i class="fas fa-link"></i></a>
 </h2>
 <p>We’ll first load the packages we need.</p>
-<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://stringi.gagolewski.com/">stringi</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/juliasilge/tidytext">tidytext</a></span><span class="op">)</span>
@@ -104,58 +104,70 @@
 <p>As we discussed in the lectures, we might find in our text of the class’s collective thoughts that there was an increase in “happy” words over time.</p>
 <p>I have simulated a dataset of text split by weeks, students, and words plus whether or not the word is the word “happy” where <code>0</code> means it is not the word “happy” and <code>1</code> means it is.</p>
 <p>We have three datasets: one with a constant number of “happy” words; one with an increasing number of “happy” words; and one with a decreasing number of “happy” words. These are called: <code>happyn</code>, <code>happyu</code>, and <code>happyd</code> respectively.</p>
-<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">happyn</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 4
 ## # Groups:   week, student [1]
-##    week student word       happy
-##   &lt;int&gt;   &lt;int&gt; &lt;chr&gt;      &lt;int&gt;
-## 1     1      24 lorem          0
-## 2     1      24 ipsum          0
-## 3     1      24 dolor          0
-## 4     1      24 sit            0
-## 5     1      24 amet           0
-## 6     1      24 vestibulum     0</code></pre>
-<div class="sourceCode" id="cb63"><pre class="downlit sourceCode r">
+##    week student word    happy
+##   &lt;int&gt;   &lt;int&gt; &lt;chr&gt;   &lt;int&gt;
+## 1     1      23 lorem       0
+## 2     1      23 ipsum       0
+## 3     1      23 dolor       0
+## 4     1      23 sit         0
+## 5     1      23 amet        0
+## 6     1      23 finibus     0</code></pre>
+<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">happyu</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 4
 ## # Groups:   week, student [1]
-##    week student word       happy
-##   &lt;int&gt;   &lt;int&gt; &lt;chr&gt;      &lt;int&gt;
-## 1     1      24 lorem          0
-## 2     1      24 ipsum          0
-## 3     1      24 dolor          0
-## 4     1      24 sit            0
-## 5     1      24 amet           0
-## 6     1      24 vestibulum     0</code></pre>
-<div class="sourceCode" id="cb65"><pre class="downlit sourceCode r">
+##    week student word    happy
+##   &lt;int&gt;   &lt;int&gt; &lt;chr&gt;   &lt;int&gt;
+## 1     1      23 lorem       0
+## 2     1      23 ipsum       0
+## 3     1      23 dolor       0
+## 4     1      23 sit         0
+## 5     1      23 amet        0
+## 6     1      23 finibus     0</code></pre>
+<div class="sourceCode" id="cb62"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">happyd</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 4
 ## # Groups:   week, student [1]
-##    week student word       happy
-##   &lt;int&gt;   &lt;int&gt; &lt;chr&gt;      &lt;int&gt;
-## 1     1      24 lorem          0
-## 2     1      24 ipsum          0
-## 3     1      24 dolor          0
-## 4     1      24 sit            0
-## 5     1      24 amet           0
-## 6     1      24 vestibulum     0</code></pre>
+##    week student word    happy
+##   &lt;int&gt;   &lt;int&gt; &lt;chr&gt;   &lt;int&gt;
+## 1     1      23 lorem       0
+## 2     1      23 ipsum       0
+## 3     1      23 dolor       0
+## 4     1      23 sit         0
+## 5     1      23 amet        0
+## 6     1      23 finibus     0</code></pre>
 <p>We can then see the trend in “happy” words over by week and student.</p>
 <p>First, the dataset where we have a constant number of happy words over time.</p>
-<pre><code>## `summarise()` has grouped output by 'week', 'student'. You can
-## override using the `.groups` argument.
-## `geom_smooth()` using method = 'loess' and formula = 'y ~ x'</code></pre>
-<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-36-1.png" width="672"></div>
-<p>And now the simulated data with an increasing number of happy words.</p>
-<pre><code>## `summarise()` has grouped output by 'week', 'student'. You can
-## override using the `.groups` argument.
-## `geom_smooth()` using method = 'loess' and formula = 'y ~ x'</code></pre>
-<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-37-1.png" width="672"></div>
-<p>And finally a decreasing number of happy words.</p>
-<pre><code>## `summarise()` has grouped output by 'week', 'student'. You can
-## override using the `.groups` argument.
+<pre><code>## Warning: Returning more (or less) than 1 row per `summarise()` group was deprecated in dplyr 1.1.0.
+## ℹ Please use `reframe()` instead.
+## ℹ When switching from `summarise()` to `reframe()`, remember that `reframe()` always returns an
+##   ungrouped data frame and adjust accordingly.</code></pre>
+<pre><code>## `summarise()` has grouped output by 'week', 'student'. You can override using the `.groups`
+## argument.
 ## `geom_smooth()` using method = 'loess' and formula = 'y ~ x'</code></pre>
 <div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-38-1.png" width="672"></div>
+<p>And now the simulated data with an increasing number of happy words.</p>
+<pre><code>## Warning: Returning more (or less) than 1 row per `summarise()` group was deprecated in dplyr 1.1.0.
+## ℹ Please use `reframe()` instead.
+## ℹ When switching from `summarise()` to `reframe()`, remember that `reframe()` always returns an
+##   ungrouped data frame and adjust accordingly.</code></pre>
+<pre><code>## `summarise()` has grouped output by 'week', 'student'. You can override using the `.groups`
+## argument.
+## `geom_smooth()` using method = 'loess' and formula = 'y ~ x'</code></pre>
+<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-39-1.png" width="672"></div>
+<p>And finally a decreasing number of happy words.</p>
+<pre><code>## Warning: Returning more (or less) than 1 row per `summarise()` group was deprecated in dplyr 1.1.0.
+## ℹ Please use `reframe()` instead.
+## ℹ When switching from `summarise()` to `reframe()`, remember that `reframe()` always returns an
+##   ungrouped data frame and adjust accordingly.</code></pre>
+<pre><code>## `summarise()` has grouped output by 'week', 'student'. You can override using the `.groups`
+## argument.
+## `geom_smooth()` using method = 'loess' and formula = 'y ~ x'</code></pre>
+<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-40-1.png" width="672"></div>
 </div>
 <div id="normalizing-sentiment" class="section level2" number="5.3">
 <h2>
@@ -171,38 +183,38 @@
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">happylipsumn</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 4
 ## # Groups:   week, student [1]
-##    week student word     happy
-##   &lt;int&gt;   &lt;int&gt; &lt;chr&gt;    &lt;int&gt;
-## 1     1      24 lorem        0
-## 2     1      24 ipsum        0
-## 3     1      24 dolor        0
-## 4     1      24 sit          0
-## 5     1      24 amet         0
-## 6     1      24 lobortis     0</code></pre>
+##    week student word      happy
+##   &lt;int&gt;   &lt;int&gt; &lt;chr&gt;     &lt;int&gt;
+## 1     1      23 lorem         0
+## 2     1      23 ipsum         0
+## 3     1      23 dolor         0
+## 4     1      23 sit           0
+## 5     1      23 amet          0
+## 6     1      23 elementum     0</code></pre>
 <div class="sourceCode" id="cb72"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">happylipsumu</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 4
 ## # Groups:   week, student [1]
-##    week student word  happy
-##   &lt;int&gt;   &lt;int&gt; &lt;chr&gt; &lt;int&gt;
-## 1     1      24 lorem     0
-## 2     1      24 ipsum     0
-## 3     1      24 dolor     0
-## 4     1      24 sit       0
-## 5     1      24 amet      0
-## 6     1      24 nec       0</code></pre>
+##    week student word   happy
+##   &lt;int&gt;   &lt;int&gt; &lt;chr&gt;  &lt;int&gt;
+## 1     1      23 lorem      0
+## 2     1      23 ipsum      0
+## 3     1      23 dolor      0
+## 4     1      23 sit        0
+## 5     1      23 amet       0
+## 6     1      23 tortor     0</code></pre>
 <div class="sourceCode" id="cb74"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">happylipsumd</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 4
 ## # Groups:   week, student [1]
 ##    week student word  happy
 ##   &lt;int&gt;   &lt;int&gt; &lt;chr&gt; &lt;int&gt;
-## 1     1      24 lorem     0
-## 2     1      24 ipsum     0
-## 3     1      24 dolor     0
-## 4     1      24 sit       0
-## 5     1      24 amet      0
-## 6     1      24 at        0</code></pre>
+## 1     1      23 lorem     0
+## 2     1      23 ipsum     0
+## 3     1      23 dolor     0
+## 4     1      23 sit       0
+## 5     1      23 amet      0
+## 6     1      23 ut        0</code></pre>
 <p>Then if we plot the number of happy words <em>divided</em> by the number of total words each week for each student in each of these datasets, we get the below.</p>
 <p>To get this normalized sentiment score–or “happy” score–we need to create a variable (column) in our dataframe that is the sum of happy words divided by the total number of words in the dataframe.</p>
 <p>We can do this in the following way.</p>
@@ -215,25 +227,29 @@
               index_total <span class="op">=</span> <span class="va">index_total</span>,
               prop_hap <span class="op">=</span> <span class="va">sum_hap</span><span class="op">/</span><span class="va">index_total</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
     <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code>## `summarise()` has grouped output by 'week', 'student'. You can
-## override using the `.groups` argument.</code></pre>
+<pre><code>## Warning: Returning more (or less) than 1 row per `summarise()` group was deprecated in dplyr 1.1.0.
+## ℹ Please use `reframe()` instead.
+## ℹ When switching from `summarise()` to `reframe()`, remember that `reframe()` always returns an
+##   ungrouped data frame and adjust accordingly.</code></pre>
+<pre><code>## `summarise()` has grouped output by 'week', 'student'. You can override using the `.groups`
+## argument.</code></pre>
 <pre><code>## # A tibble: 300 × 5
 ## # Groups:   week, student [300]
 ##     week student sum_hap index_total prop_hap
 ##    &lt;int&gt;   &lt;int&gt;   &lt;int&gt;       &lt;int&gt;    &lt;dbl&gt;
-##  1     1       1     701        3105    0.226
-##  2     1       2     958        5009    0.191
-##  3     1       3     955        4022    0.237
-##  4     1       4     994        3926    0.253
-##  5     1       5     478        2158    0.222
-##  6     1       6    1161        5016    0.231
-##  7     1       7     715        2543    0.281
-##  8     1       8    1035        4890    0.212
-##  9     1       9     646        3102    0.208
-## 10     1      10     853        3956    0.216
+##  1     1       1     687        3640    0.189
+##  2     1       2    1083        5184    0.209
+##  3     1       3     816        3646    0.224
+##  4     1       4     290        1847    0.157
+##  5     1       5    1082        4554    0.238
+##  6     1       6     828        4611    0.180
+##  7     1       7     735        3882    0.189
+##  8     1       8     843        3583    0.235
+##  9     1       9     747        3871    0.193
+## 10     1      10     724        3427    0.211
 ## # … with 290 more rows</code></pre>
 <p>Then if we repeat this for each of our datasets and plot we see the following.</p>
-<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-42-1.png" width="672"></div>
+<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-44-1.png" width="672"></div>
 <p>Why do the plots look like this?</p>
 <p>Well, in the first, we have about the <em>same</em> number of total words each week and about the <em>same</em> number of happy words each week. If we divided the latter by the former, we get a proportion that is also stable over time.</p>
 <p>In the second, however, we have an <em>increasing</em> number of total words each week, but about the <em>same</em> number of happy words over time. This means that we are dividing by an ever larger number, giving ever smaller proportions. As such, the trend is decreasing over time.</p>
@@ -268,7 +284,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Computational Text Analysis</strong>" was written by Christopher Barrie. It was last built on 2023-01-30.</p>
+    <p>"<strong>Computational Text Analysis</strong>" was written by Christopher Barrie. It was last built on 2023-02-06.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

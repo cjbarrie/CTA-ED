@@ -431,7 +431,8 @@ word <- glove_embedding["economy",, drop = FALSE]
 cos_sim = sim2(x = glove_embedding, y = word, method = "cosine", norm = "l2")
 select <- data.frame(rownames(as.data.frame(head(sort(cos_sim[,1], decreasing = TRUE), 25))))
 colnames(select) <- "word"
-selected_words <- df_glove_umap %>% inner_join(y=select, by= "word", match = "all") 
+selected_words <- df_glove_umap %>% 
+  inner_join(y=select, by= "word")
 
 #The ggplot visual for GloVe
 ggplot(selected_words, aes(x = UMAP1, y = UMAP2)) + 
