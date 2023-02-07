@@ -96,7 +96,7 @@
 </h2>
 <p>We can access data from <span class="citation">Osnabrügge, Hobolt, and Rodon (<a href="references-2.html#ref-osnabrugge_playing_2021" role="doc-biblioref">2021</a>)</span> <a href="https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/QDTLYV">here</a></p>
 <p>To prepare these data, we can use the same code as used by the original authors:</p>
-<div class="sourceCode" id="cb472"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb475"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://ggplot2.tidyverse.org">"ggplot2"</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="http://had.co.nz/plyr">"plyr"</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st">"gdata"</span><span class="op">)</span>
@@ -280,7 +280,7 @@ brian
 </tbody>
 </table></div>
 <p>If the full dataset is too large for your machines, you can easily take a sample of it with:</p>
-<div class="sourceCode" id="cb473"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb476"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">data_samp</span> <span class="op">&lt;-</span> <span class="va">data</span> <span class="op"><a href="https://stringr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html">sample_n</a></span><span class="op">(</span><span class="fl">10000</span><span class="op">)</span></code></pre></div>
 </div>
@@ -297,22 +297,23 @@ brian
 </h2>
 <p>Data from the article by <span class="citation">Michalopoulos and Xue (<a href="references-2.html#ref-michalopoulos_folklore_2021" role="doc-biblioref">2021</a>)</span> on Folkloric belief using text data derived from ethnographic materials, which can be downloaded <a href="https://dataverse.harvard.edu/dataset.xhtml;jsessionid=8ff772a5d630bc91f1e9c543e537?persistentId=doi%3A10.7910%2FDVN%2FIXOHKB&amp;version=&amp;q=&amp;fileTypeGroupFacet=&amp;fileAccess=&amp;fileSortField=name&amp;fileSortOrder=desc">here</a>.</p>
 <p>We can read the main “Motif” dataset from this dataset (stored in Stata .dta format) as follows.</p>
-<div class="sourceCode" id="cb474"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb477"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://haven.tidyverse.org">haven</a></span><span class="op">)</span>
 
 <span class="va">folklore</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://haven.tidyverse.org/reference/read_dta.html">read_dta</a></span><span class="op">(</span><span class="st">"data/assessment/Motif_Master.dta"</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">folklore</span><span class="op">[</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 5
-##   motif_id title_english                                    title_russian           title…¹ desc_…²
-##   &lt;chr&gt;    &lt;chr&gt;                                            &lt;chr&gt;                   &lt;chr&gt;   &lt;chr&gt;  
-## 1 a1       The old sun                                      Древнее солнце          Ancien… Anothe…
-## 2 a10      The sun finds its eyes                           Солнце находит себе гл… The su… The su…
-## 3 a11a     Eyes of the Sun and the Moon: coolness and night Глаза светил: прохлада… Eyes o… Visibl…
-## 4 a11b     One-eyed luminaries                              Одноглазые светила      One-ey… The Su…
-## 5 a11c     The Sun, the Moon and monster’s eyes             Солнце, Луна и глаза ч… Sun, m… The Su…
-## 6 a12      Eclipses: a monster’s attack                     Затмения: нападение чу… Eclips… Some c…
-## # … with abbreviated variable names ¹​title_english_googleAPI, ²​desc_eng</code></pre>
+##   motif_id title_english                              title…¹ title…² desc_…³
+##   &lt;chr&gt;    &lt;chr&gt;                                      &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;  
+## 1 a1       The old sun                                Древне… Ancien… Anothe…
+## 2 a10      The sun finds its eyes                     Солнце… The su… The su…
+## 3 a11a     Eyes of the Sun and the Moon: coolness an… Глаза … Eyes o… Visibl…
+## 4 a11b     One-eyed luminaries                        Одногл… One-ey… The Su…
+## 5 a11c     The Sun, the Moon and monster’s eyes       Солнце… Sun, m… The Su…
+## 6 a12      Eclipses: a monster’s attack               Затмен… Eclips… Some c…
+## # … with abbreviated variable names ¹​title_russian,
+## #   ²​title_english_googleAPI, ³​desc_eng</code></pre>
 </div>
 <div id="r-markdown" class="section level2" number="25.5">
 <h2>
@@ -352,7 +353,7 @@ brian
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Computational Text Analysis</strong>" was written by Christopher Barrie. It was last built on 2023-02-06.</p>
+    <p>"<strong>Computational Text Analysis</strong>" was written by Christopher Barrie. It was last built on 2023-02-07.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
