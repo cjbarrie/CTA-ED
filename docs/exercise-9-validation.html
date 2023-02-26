@@ -125,15 +125,14 @@
 <pre><code>## New names:
 ## Rows: 5938 Columns: 12
 ## ── Column specification
-## ───────────────────────────────────────────────────── Delimiter: "," chr
-## (8): festival_id, title, sub_title, artist, description, genre, age_c... dbl
-## (4): ...1, year, latitude, longitude
-## ℹ Use `spec()` to retrieve the full column specification for this data. ℹ
-## Specify the column types or set `show_col_types = FALSE` to quiet this
-## message.
+## ──────────────────────────────────────────────────────────────────────────── Delimiter: "," chr
+## (8): festival_id, title, sub_title, artist, description, genre, age_category, ID dbl (4): ...1,
+## year, latitude, longitude
+## ℹ Use `spec()` to retrieve the full column specification for this data. ℹ Specify the column types
+## or set `show_col_types = FALSE` to quiet this message.
 ## • `` -&gt; `...1`</code></pre>
 <p>As ever, if you’re working on this document from your own computer (“locally”) you can download the Edinburgh Fringe data in the following way:</p>
-<div class="sourceCode" id="cb458"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb458-1"><a href="exercise-9-validation.html#cb458-1" aria-hidden="true" tabindex="-1"></a>edbfdata <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://github.com/cjbarrie/CTA-ED/blob/main/data/wordfreq/edbookfestall.csv"</span></span></code></pre></div>
+<div class="sourceCode" id="cb458"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb458-1"><a href="exercise-9-validation.html#cb458-1" tabindex="-1"></a>edbfdata <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://github.com/cjbarrie/CTA-ED/blob/main/data/wordfreq/edbookfestall.csv"</span></span></code></pre></div>
 <p>We’ll get the data into tidy format as before, tagging individual words for whether or not they appear in our dictionary of woman- and gender-related terms. One addition here is that we’re ascribing each event an individual ID, which will be useful in the next step.</p>
 <div class="sourceCode" id="cb459"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">evdes</span> <span class="op">&lt;-</span> <span class="va">edbfdata</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
@@ -182,9 +181,9 @@
 <span class="header-section-number">24.4.1</span> Word scaling example<a class="anchor" aria-label="anchor" href="#word-scaling-example"><i class="fas fa-link"></i></a>
 </h3>
 <p>A second technique for determining the validity of data involves comparing to external data with which we might expect to see a close comparison—if our text-based measure is precisely estimated.</p>
-<p>A good example of this comes from the week on scaling techniques. Here, the article by <span class="citation">Kaneko, Asano, and Miwa (<a href="references-2.html#ref-kaneko_estimating_2021" role="doc-biblioref">2021</a>)</span> took editorial texts from newspapers to determine whether we could estimate the ideological outlook of these newspapers. In order to determine whether these measures are accurate, however, we need to compare them to some reference data.</p>
+<p>A good example of this comes from the week on scaling techniques. Here, the article by <span class="citation">Kaneko, Asano, and Miwa (<a href="references-2.html#ref-kaneko_estimating_2021">2021</a>)</span> took editorial texts from newspapers to determine whether we could estimate the ideological outlook of these newspapers. In order to determine whether these measures are accurate, however, we need to compare them to some reference data.</p>
 <p>For newspapers, this information might come from expert surveys scoring the bias of newspapers or similar.</p>
-<p>We can access data from the first study by <span class="citation">Kaneko, Asano, and Miwa (<a href="references-2.html#ref-kaneko_estimating_2021" role="doc-biblioref">2021</a>)</span> in the following way.</p>
+<p>We can access data from the first study by <span class="citation">Kaneko, Asano, and Miwa (<a href="references-2.html#ref-kaneko_estimating_2021">2021</a>)</span> in the following way.</p>
 <div class="sourceCode" id="cb462"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">kaneko_dfm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html">readRDS</a></span><span class="op">(</span><span class="st">"data/wordscaling/study1_kaneko.rds"</span><span class="op">)</span></code></pre></div>
 <p>If you’re working locally, you can download the <code>dfm</code> data with:</p>
@@ -194,10 +193,10 @@
 <div class="sourceCode" id="cb464"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="fu"><a href="https://quanteda.io/reference/docvars.html">docvars</a></span><span class="op">(</span><span class="va">kaneko_dfm</span>, <span class="st">"Newspaper"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## 
-##       Asahi     Chugoku    Chunichi    Hokkaido      Kahoku    Mainichi 
-##          38          24          47          46          18          26 
-##      Nikkei Nishinippon      Sankei     Yomiuri 
-##          13          27          14          30</code></pre>
+##       Asahi     Chugoku    Chunichi    Hokkaido      Kahoku    Mainichi      Nikkei Nishinippon 
+##          38          24          47          46          18          26          13          27 
+##      Sankei     Yomiuri 
+##          14          30</code></pre>
 <div class="sourceCode" id="cb466"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## prepare the newspaper-level document-feature matrix</span>
 <span class="co"># compress the document-feature matrix at the newspaper level</span>
@@ -208,7 +207,7 @@
 <span class="co">## size of the document-feature matrix</span>
 <span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">kaneko_dfm_study1</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1]   10 4660</code></pre>
-<p>We’ll then estimate the Wordfish model in the same way as in the article by <span class="citation">Kaneko, Asano, and Miwa (<a href="references-2.html#ref-kaneko_estimating_2021" role="doc-biblioref">2021</a>)</span>.</p>
+<p>We’ll then estimate the Wordfish model in the same way as in the article by <span class="citation">Kaneko, Asano, and Miwa (<a href="references-2.html#ref-kaneko_estimating_2021">2021</a>)</span>.</p>
 <div class="sourceCode" id="cb468"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">#### estimate the Wordfish model ####</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">12345</span><span class="op">)</span>
@@ -219,7 +218,7 @@
                                   score <span class="op">=</span> <span class="va">Study1.wordfish.result</span><span class="op">$</span><span class="va">theta</span><span class="op">)</span>
 
 <span class="va">wordfishscores</span><span class="op">$</span><span class="va">method</span> <span class="op">&lt;-</span> <span class="st">"Wordfish"</span></code></pre></div>
-<p>The replication materials for the <span class="citation">Kaneko, Asano, and Miwa (<a href="references-2.html#ref-kaneko_estimating_2021" role="doc-biblioref">2021</a>)</span> article also include the human-coded positions, which can be accessed as follows.</p>
+<p>The replication materials for the <span class="citation">Kaneko, Asano, and Miwa (<a href="references-2.html#ref-kaneko_estimating_2021">2021</a>)</span> article also include the human-coded positions, which can be accessed as follows.</p>
 <div class="sourceCode" id="cb469"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># human-coded positions of the newspapers</span>
 <span class="va">humancoded.data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="st">"data/wordscaling/humancoded_positions.csv"</span><span class="op">)</span></code></pre></div>
@@ -256,7 +255,7 @@
 <span class="header-section-number">24.5</span> Unsupervised learning checks<a class="anchor" aria-label="anchor" href="#unsupervised-learning-checks"><i class="fas fa-link"></i></a>
 </h2>
 <p>In the example worksheet for topic modelling, we encountered several tests included in the <code>preText</code> package to validate pre-processing steps for our topic models.</p>
-<p>Another article, by <span class="citation">Ying, Montgomery, and Stewart (<a href="references-2.html#ref-ying_topics_2021" role="doc-biblioref">2021</a>)</span>, describes several additional tests we might conduct to validate our model output.</p>
+<p>Another article, by <span class="citation">Ying, Montgomery, and Stewart (<a href="references-2.html#ref-ying_topics_2021">2021</a>)</span>, describes several additional tests we might conduct to validate our model output.</p>
 <p>These include:</p>
 <ol style="list-style-type: decimal">
 <li>Word lists</li>
@@ -316,7 +315,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Computational Text Analysis</strong>" was written by Christopher Barrie. It was last built on 2023-02-07.</p>
+    <p>"<strong>Computational Text Analysis</strong>" was written by Christopher Barrie. It was last built on 2023-02-26.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

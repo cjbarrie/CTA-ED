@@ -93,7 +93,7 @@
 <ul>
 <li>Scale texts using the “wordfish” algorithm</li>
 <li>Scale texts gathered from online sources</li>
-<li>Replicate analyses by <span class="citation">Kaneko, Asano, and Miwa (<a href="references-2.html#ref-kaneko_estimating_2021" role="doc-biblioref">2021</a>)</span>
+<li>Replicate analyses by <span class="citation">Kaneko, Asano, and Miwa (<a href="references-2.html#ref-kaneko_estimating_2021">2021</a>)</span>
 </li>
 </ul>
 <p>Before proceeding, we’ll load the packages we will need for this tutorial.</p>
@@ -139,30 +139,22 @@
 <code class="sourceCode R"><span class="co">## number of tweets per newspaper</span>
 <span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="fu"><a href="https://quanteda.io/reference/docvars.html">docvars</a></span><span class="op">(</span><span class="va">dfm_tweets</span>, <span class="st">"newspaper"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## 
-##     DailyMailUK     DailyMirror EveningStandard        guardian 
-##            2052            5834            2182            2939 
-##         MetroUK       Telegraph          TheSun        thetimes 
-##             966            1519            3840             668</code></pre>
+##     DailyMailUK     DailyMirror EveningStandard        guardian         MetroUK       Telegraph 
+##            2052            5834            2182            2939             966            1519 
+##          TheSun        thetimes 
+##            3840             668</code></pre>
 <p>And this is what our document feature matrix looks like, where each word has a count for each of our eight newspapers.</p>
 <div class="sourceCode" id="cb307"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">dfm_tweets</span></code></pre></div>
 <pre><code>## Document-feature matrix of: 20,000 documents, 48,967 features (99.98% sparse) and 31 docvars.
 ##        features
-## docs    rt @standardnews breaking coronavirus outbreak declared pandemic
-##   text1  1             1        1           1        1        1        1
-##   text2  1             0        0           0        0        0        0
-##   text3  0             0        0           0        0        0        0
-##   text4  0             0        0           0        0        0        0
-##   text5  0             0        0           0        0        0        0
-##   text6  0             0        0           0        0        0        0
-##        features
-## docs    world health organisation
-##   text1     1      1            1
-##   text2     0      0            0
-##   text3     0      0            0
-##   text4     0      0            0
-##   text5     0      0            0
-##   text6     0      0            0
+## docs    rt @standardnews breaking coronavirus outbreak declared pandemic world health organisation
+##   text1  1             1        1           1        1        1        1     1      1            1
+##   text2  1             0        0           0        0        0        0     0      0            0
+##   text3  0             0        0           0        0        0        0     0      0            0
+##   text4  0             0        0           0        0        0        0     0      0            0
+##   text5  0             0        0           0        0        0        0     0      0            0
+##   text6  0             0        0           0        0        0        0     0      0            0
 ## [ reached max_ndoc ... 19,994 more documents, reached max_nfeat ... 48,957 more features ]</code></pre>
 </div>
 <div id="estimate-wordfish-model" class="section level2" number="20.4">
@@ -199,23 +191,20 @@
 ## EveningStandard -0.22616 0.016082
 ## guardian        -0.95429 0.010563
 ## MetroUK         -0.04625 0.022759
-## Telegraph       -1.05344 0.010640
-## TheSun           1.45043 0.006048
+## Telegraph       -1.05343 0.010641
+## TheSun           1.45044 0.006048
 ## thetimes        -1.00168 0.014966
 ## 
 ## Estimated Feature Scores:
-##         rt breaking coronavirus outbreak declared pandemic  world  health
-## beta 0.537    0.191     0.06918  -0.2654 -0.06525  -0.2004 -0.317 -0.3277
-## psi  5.307    3.535     5.78715   3.1348  0.50705   3.1738  3.366  3.2041
-##      organisation genuinely interested       see      one     cos     fair
-## beta      -0.4118   -0.2873    -0.2545 0.0005122 -0.06313 -0.2788 -0.03078
-## psi        0.5487   -0.5403    -1.4502 2.7723966  3.85881 -1.4480  0.35480
-##       german    care system protect troubled children #covid19 anxiety
-## beta -0.7424 -0.3251 -1.105 -0.1106  -0.4731  0.01205  -0.6742  0.4218
-## psi   1.1009  3.1042  1.259  1.8918  -0.0784  2.85004   2.9703  0.5917
-##       shows    sign    man  behind   app explains    tips
-## beta 0.4165 -0.1215 0.5112 0.05499 0.271   0.6687 -0.2083
-## psi  2.8370  1.9427 3.5777 2.43805 1.376   1.2749  1.5341</code></pre>
+##         rt breaking coronavirus outbreak declared pandemic  world  health organisation genuinely
+## beta 0.537    0.191     0.06918  -0.2654 -0.06525  -0.2004 -0.317 -0.3277      -0.4118   -0.2873
+## psi  5.307    3.535     5.78715   3.1348  0.50705   3.1738  3.366  3.2041       0.5487   -0.5403
+##      interested       see      one     cos     fair  german    care system protect troubled
+## beta    -0.2545 0.0005161 -0.06312 -0.2788 -0.03077 -0.7424 -0.3251 -1.105 -0.1106  -0.4731
+## psi     -1.4502 2.7723965  3.85881 -1.4480  0.35480  1.1009  3.1042  1.259  1.8918  -0.0784
+##      children #covid19 anxiety  shows    sign    man  behind   app explains    tips
+## beta  0.01205  -0.6742  0.4218 0.4165 -0.1215 0.5112 0.05499 0.271   0.6687 -0.2083
+## psi   2.85004   2.9703  0.5917 2.8370  1.9427 3.5777 2.43805 1.376   1.2749  1.5341</code></pre>
 <p>We can then plot our estimates of the <span class="math inline">\(\theta\)</span>s—i.e., the estimates of the latent newspaper position—as so.</p>
 <div class="sourceCode" id="cb314"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/quanteda.textplots/man/textplot_scale1d.html">textplot_scale1d</a></span><span class="op">(</span><span class="va">dfm_newstweets_results</span><span class="op">)</span></code></pre></div>
@@ -263,7 +252,7 @@ ig
 🎥
 </td>
 <td style="text-align:right;">
-7.789190
+7.789192
 </td>
 </tr>
 <tr>
@@ -271,7 +260,7 @@ ig
 diver
 </td>
 <td style="text-align:right;">
-7.015295
+7.015294
 </td>
 </tr>
 <tr>
@@ -287,7 +276,7 @@ alien-looking
 wwe
 </td>
 <td style="text-align:right;">
-5.304750
+5.304751
 </td>
 </tr>
 <tr>
@@ -295,7 +284,7 @@ wwe
 cutest
 </td>
 <td style="text-align:right;">
-5.304750
+5.304751
 </td>
 </tr>
 <tr>
@@ -303,7 +292,7 @@ cutest
 lad
 </td>
 <td style="text-align:right;">
-5.012240
+5.012242
 </td>
 </tr>
 <tr>
@@ -311,7 +300,7 @@ lad
 bargains
 </td>
 <td style="text-align:right;">
-4.835008
+4.835009
 </td>
 </tr>
 <tr>
@@ -319,7 +308,7 @@ bargains
 partner’s
 </td>
 <td style="text-align:right;">
-4.692459
+4.692461
 </td>
 </tr>
 <tr>
@@ -327,7 +316,7 @@ partner’s
 ronaldo
 </td>
 <td style="text-align:right;">
-4.495509
+4.495510
 </td>
 </tr>
 <tr>
@@ -335,7 +324,7 @@ ronaldo
 clever
 </td>
 <td style="text-align:right;">
-4.351129
+4.351130
 </td>
 </tr>
 <tr>
@@ -343,7 +332,7 @@ clever
 wheelchair
 </td>
 <td style="text-align:right;">
-4.340556
+4.340558
 </td>
 </tr>
 <tr>
@@ -351,7 +340,7 @@ wheelchair
 mcguinness
 </td>
 <td style="text-align:right;">
-4.340556
+4.340558
 </td>
 </tr>
 <tr>
@@ -359,7 +348,7 @@ mcguinness
 spider
 </td>
 <td style="text-align:right;">
-4.192182
+4.192184
 </td>
 </tr>
 <tr>
@@ -367,7 +356,7 @@ spider
 nails
 </td>
 <td style="text-align:right;">
-4.192182
+4.192184
 </td>
 </tr>
 <tr>
@@ -375,7 +364,7 @@ nails
 rides
 </td>
 <td style="text-align:right;">
-3.950631
+3.950633
 </td>
 </tr>
 <tr>
@@ -383,7 +372,7 @@ rides
 ghostly
 </td>
 <td style="text-align:right;">
-3.950631
+3.950633
 </td>
 </tr>
 <tr>
@@ -391,7 +380,7 @@ ghostly
 extensions
 </td>
 <td style="text-align:right;">
-3.950631
+3.950633
 </td>
 </tr>
 <tr>
@@ -399,7 +388,7 @@ extensions
 corrie’s
 </td>
 <td style="text-align:right;">
-3.950631
+3.950633
 </td>
 </tr>
 <tr>
@@ -407,7 +396,7 @@ corrie’s
 lion
 </td>
 <td style="text-align:right;">
-3.857085
+3.857086
 </td>
 </tr>
 </tbody>
@@ -418,20 +407,20 @@ lion
 <h2>
 <span class="header-section-number">20.5</span> Replicating Kaneko et al.<a class="anchor" aria-label="anchor" href="#replicating-kaneko-et-al."><i class="fas fa-link"></i></a>
 </h2>
-<p>This section adapts code from the replication data provided for <span class="citation">Kaneko, Asano, and Miwa (<a href="references-2.html#ref-kaneko_estimating_2021" role="doc-biblioref">2021</a>)</span> <a href="https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/EL3KYD">here</a>. We can access data from the first study by <span class="citation">Kaneko, Asano, and Miwa (<a href="references-2.html#ref-kaneko_estimating_2021" role="doc-biblioref">2021</a>)</span> in the following way.</p>
+<p>This section adapts code from the replication data provided for <span class="citation">Kaneko, Asano, and Miwa (<a href="references-2.html#ref-kaneko_estimating_2021">2021</a>)</span> <a href="https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/EL3KYD">here</a>. We can access data from the first study by <span class="citation">Kaneko, Asano, and Miwa (<a href="references-2.html#ref-kaneko_estimating_2021">2021</a>)</span> in the following way.</p>
 <div class="sourceCode" id="cb318"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">kaneko_dfm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html">readRDS</a></span><span class="op">(</span><span class="st">"data/wordscaling/study1_kaneko.rds"</span><span class="op">)</span></code></pre></div>
 <p>If you’re working locally, you can download the <code>dfm</code> data with:</p>
 <div class="sourceCode" id="cb319"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">kaneko_dfm</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html">readRDS</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/gzcon.html">gzcon</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/connections.html">url</a></span><span class="op">(</span><span class="st">"https://github.com/cjbarrie/CTA-ED/blob/main/data/wordscaling/study1_kaneko.rds?raw=true"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<p>This data is in the form a document-feature-matrix. We can first manipulate it in the same way as <span class="citation">Kaneko, Asano, and Miwa (<a href="references-2.html#ref-kaneko_estimating_2021" role="doc-biblioref">2021</a>)</span> by grouping at the level of newspaper and removing infrequent words.</p>
+<p>This data is in the form a document-feature-matrix. We can first manipulate it in the same way as <span class="citation">Kaneko, Asano, and Miwa (<a href="references-2.html#ref-kaneko_estimating_2021">2021</a>)</span> by grouping at the level of newspaper and removing infrequent words.</p>
 <div class="sourceCode" id="cb320"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="fu"><a href="https://quanteda.io/reference/docvars.html">docvars</a></span><span class="op">(</span><span class="va">kaneko_dfm</span>, <span class="st">"Newspaper"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## 
-##       Asahi     Chugoku    Chunichi    Hokkaido      Kahoku    Mainichi 
-##          38          24          47          46          18          26 
-##      Nikkei Nishinippon      Sankei     Yomiuri 
-##          13          27          14          30</code></pre>
+##       Asahi     Chugoku    Chunichi    Hokkaido      Kahoku    Mainichi      Nikkei Nishinippon 
+##          38          24          47          46          18          26          13          27 
+##      Sankei     Yomiuri 
+##          14          30</code></pre>
 <div class="sourceCode" id="cb322"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## prepare the newspaper-level document-feature matrix</span>
 <span class="co"># compress the document-feature matrix at the newspaper level</span>
@@ -448,7 +437,7 @@ lion
 <span class="header-section-number">20.6</span> Exercises<a class="anchor" aria-label="anchor" href="#exercises-3"><i class="fas fa-link"></i></a>
 </h2>
 <ol style="list-style-type: decimal">
-<li>Estimate a wordfish model for the <span class="citation">Kaneko, Asano, and Miwa (<a href="references-2.html#ref-kaneko_estimating_2021" role="doc-biblioref">2021</a>)</span> data</li>
+<li>Estimate a wordfish model for the <span class="citation">Kaneko, Asano, and Miwa (<a href="references-2.html#ref-kaneko_estimating_2021">2021</a>)</span> data</li>
 <li>Visualize the results</li>
 </ol>
 </div>
@@ -483,7 +472,7 @@ lion
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Computational Text Analysis</strong>" was written by Christopher Barrie. It was last built on 2023-02-07.</p>
+    <p>"<strong>Computational Text Analysis</strong>" was written by Christopher Barrie. It was last built on 2023-02-26.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

@@ -94,7 +94,7 @@
 <li>Compare texts using character-based measures of similarity and distance</li>
 <li>Compare texts using term-based measures of similarity and distance</li>
 <li>Calculate the complexity of texts</li>
-<li>Replicate analyses from <span class="citation">Schoonvelde et al. (<a href="references-2.html#ref-schoonvelde_liberals_2019" role="doc-biblioref">2019</a>)</span>
+<li>Replicate analyses from <span class="citation">Schoonvelde et al. (<a href="references-2.html#ref-schoonvelde_liberals_2019">2019</a>)</span>
 </li>
 </ul>
 </div>
@@ -122,22 +122,21 @@
 <div class="sourceCode" id="cb270"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">tweets</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 3
-##   username   tweet                                                 date      
-##   &lt;chr&gt;      &lt;chr&gt;                                                 &lt;date&gt;    
-## 1 aluncairns "A good luck message to Chris Coleman’s squad @FAWal… 2017-10-09
-## 2 aluncairns ".@AlunCairns “The close relationship between indust… 2017-10-09
-## 3 aluncairns "@BarclaysCorp &amp;amp; @SPTS_Tech \"voice of Welsh Man… 2017-10-09
-## 4 aluncairns "Today we announced plans to ban the sale of ivory i… 2017-10-06
-## 5 aluncairns "Unbeaten Wales overcome Georgia to boost their @FIF… 2017-10-06
-## 6 aluncairns ".@GutoAberconwy marks 25 years of engine production… 2017-10-06</code></pre>
+##   username   tweet                                                                        date      
+##   &lt;chr&gt;      &lt;chr&gt;                                                                        &lt;date&gt;    
+## 1 aluncairns "A good luck message to Chris Coleman’s squad @FAWales ahead of tonight’s c… 2017-10-09
+## 2 aluncairns ".@AlunCairns “The close relationship between industry and government stand… 2017-10-09
+## 3 aluncairns "@BarclaysCorp &amp;amp; @SPTS_Tech \"voice of Welsh Manufacturing\" event with… 2017-10-09
+## 4 aluncairns "Today we announced plans to ban the sale of ivory in the UK.\nThe cruel po… 2017-10-06
+## 5 aluncairns "Unbeaten Wales overcome Georgia to boost their @FIFAWorldCup qualification… 2017-10-06
+## 6 aluncairns ".@GutoAberconwy marks 25 years of engine production @toyotafactory Deeside… 2017-10-06</code></pre>
 <p>And there are 24 MPs whose tweets we’re examining.</p>
 <div class="sourceCode" id="cb272"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">tweets</span><span class="op">$</span><span class="va">username</span><span class="op">)</span></code></pre></div>
-<pre><code>##  [1] "aluncairns"      "amberrudduk"     "andrealeadsom"   "borisjohnson"   
-##  [5] "brandonlewis"    "damiangreen"     "damianhinds"     "daviddavismp"   
-##  [9] "davidgauke"      "davidmundelldct" "dlidington"      "gavinwilliamson"
-## [13] "gregclarkmp"     "jbrokenshire"    "jeremy_hunt"     "juliansmithuk"  
-## [17] "justinegreening" "liamfox"         "michaelgove"     "pennymordaunt"  
+<pre><code>##  [1] "aluncairns"      "amberrudduk"     "andrealeadsom"   "borisjohnson"    "brandonlewis"   
+##  [6] "damiangreen"     "damianhinds"     "daviddavismp"    "davidgauke"      "davidmundelldct"
+## [11] "dlidington"      "gavinwilliamson" "gregclarkmp"     "jbrokenshire"    "jeremy_hunt"    
+## [16] "juliansmithuk"   "justinegreening" "liamfox"         "michaelgove"     "pennymordaunt"  
 ## [21] "philiphammonduk" "sajidjavid"      "theresa_may"     "trussliz"</code></pre>
 <div class="sourceCode" id="cb274"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">tweets</span><span class="op">$</span><span class="va">username</span><span class="op">)</span><span class="op">)</span></code></pre></div>
@@ -182,28 +181,19 @@
 <code class="sourceCode R"><span class="va">dfmat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://quanteda.io/reference/dfm.html">dfm</a></span><span class="op">(</span><span class="fu"><a href="https://quanteda.io/reference/tokens.html">tokens</a></span><span class="op">(</span><span class="va">tweets_corpus</span><span class="op">)</span>,
              remove_punct <span class="op">=</span> <span class="cn">TRUE</span>, 
              remove <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/stopwords/man/stopwords.html">stopwords</a></span><span class="op">(</span><span class="st">"english"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code>## Warning: '...' should not be used for tokens() arguments; use 'tokens()'
-## first.</code></pre>
+<pre><code>## Warning: '...' should not be used for tokens() arguments; use 'tokens()' first.</code></pre>
 <pre><code>## Warning: 'remove' is deprecated; use dfm_remove() instead</code></pre>
 <div class="sourceCode" id="cb281"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">dfmat</span></code></pre></div>
 <pre><code>## Document-feature matrix of: 10,321 documents, 26,852 features (99.95% sparse) and 2 docvars.
 ##        features
-## docs    good luck message chris coleman's squad @fawales ahead tonight's
-##   text1    1    1       1     1         1     1        1     1         1
-##   text2    0    0       0     0         0     0        0     0         0
-##   text3    0    0       0     0         0     0        0     0         0
-##   text4    0    0       0     0         0     0        0     0         0
-##   text5    0    0       0     0         0     0        0     0         0
-##   text6    0    0       0     0         0     0        0     0         0
-##        features
-## docs    crucial
-##   text1       1
-##   text2       0
-##   text3       0
-##   text4       0
-##   text5       0
-##   text6       0
+## docs    good luck message chris coleman's squad @fawales ahead tonight's crucial
+##   text1    1    1       1     1         1     1        1     1         1       1
+##   text2    0    0       0     0         0     0        0     0         0       0
+##   text3    0    0       0     0         0     0        0     0         0       0
+##   text4    0    0       0     0         0     0        0     0         0       0
+##   text5    0    0       0     0         0     0        0     0         0       0
+##   text6    0    0       0     0         0     0        0     0         0       0
 ## [ reached max_ndoc ... 10,315 more documents, reached max_nfeat ... 26,842 more features ]</code></pre>
 <p>Note that when we do this we need to have tokenized our corpus object first. We can do this by wrapping the <code>tokens</code> function inside the <code><a href="https://quanteda.io/reference/dfm.html">dfm()</a></code> function as above.</p>
 <p>So what is this object? Well the documents here are tweets. And the matrix is a sparse (i.e., mostly zeroes) matrix of 1s and 0s for whether a given word appears in the document (tweet) in question.</p>
@@ -325,7 +315,7 @@
 <h2>
 <span class="header-section-number">19.6</span> Complexity<a class="anchor" aria-label="anchor" href="#complexity-1"><i class="fas fa-link"></i></a>
 </h2>
-<p>We now move to document-level measures of text characteristics. And here we will focus on the paper by <span class="citation">Schoonvelde et al. (<a href="references-2.html#ref-schoonvelde_liberals_2019" role="doc-biblioref">2019</a>)</span>.</p>
+<p>We now move to document-level measures of text characteristics. And here we will focus on the paper by <span class="citation">Schoonvelde et al. (<a href="references-2.html#ref-schoonvelde_liberals_2019">2019</a>)</span>.</p>
 <p>We will be using a subset of these data, taken from EU speeches given by four politicians. These are provided by the authors at <a href="https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/S4IZ8K">https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/S4IZ8K</a>.</p>
 <p>We can load the data as follows.</p>
 <div class="sourceCode" id="cb291"><pre class="downlit sourceCode r">
@@ -381,7 +371,7 @@
 ## 2 G. Brown         13.3  2.30   277 0.138   13.0  13.6
 ## 3 J.L.R. Zapatero  15.5  2.83   354 0.150   15.2  15.8
 ## 4 M. Rajoy         13.7  2.56   389 0.130   13.4  13.9</code></pre>
-<p>Which we can then plot—and we see that our results look like those in Figure 1 of the published article by <span class="citation">Schoonvelde et al. (<a href="references-2.html#ref-schoonvelde_liberals_2019" role="doc-biblioref">2019</a>)</span>.</p>
+<p>Which we can then plot—and we see that our results look like those in Figure 1 of the published article by <span class="citation">Schoonvelde et al. (<a href="references-2.html#ref-schoonvelde_liberals_2019">2019</a>)</span>.</p>
 <div class="sourceCode" id="cb299"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">sum_corpus</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">speaker</span>, y<span class="op">=</span><span class="va">mean</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span>stat<span class="op">=</span><span class="st">"identity"</span><span class="op">)</span> <span class="op">+</span> 
@@ -399,7 +389,7 @@
 </h2>
 <ol style="list-style-type: decimal">
 <li>Compute distance measures such as “euclidean” or “manhattan” for the MP tweets as above, comparing between tweets by MPs and tweets by PM, Theresa May.</li>
-<li>Estimate at least three other complexity measures for the EU speeches as above. Consider how the results compare to the Flesch-Kincaid measure used in the article by <span class="citation">Schoonvelde et al. (<a href="references-2.html#ref-schoonvelde_liberals_2019" role="doc-biblioref">2019</a>)</span>.</li>
+<li>Estimate at least three other complexity measures for the EU speeches as above. Consider how the results compare to the Flesch-Kincaid measure used in the article by <span class="citation">Schoonvelde et al. (<a href="references-2.html#ref-schoonvelde_liberals_2019">2019</a>)</span>.</li>
 <li>(Advanced—optional) Estimate similarity scores between the MP tweets and the PM tweets for each week contained in the data. Plot the results.</li>
 </ol>
 </div>
@@ -435,7 +425,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Computational Text Analysis</strong>" was written by Christopher Barrie. It was last built on 2023-02-07.</p>
+    <p>"<strong>Computational Text Analysis</strong>" was written by Christopher Barrie. It was last built on 2023-02-26.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

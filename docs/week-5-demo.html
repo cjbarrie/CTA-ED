@@ -99,7 +99,7 @@
 <h2>
 <span class="header-section-number">9.2</span> Wordscores<a class="anchor" aria-label="anchor" href="#wordscores"><i class="fas fa-link"></i></a>
 </h2>
-<p>We can inspect the function for the wordscores model by <span class="citation">Laver, Benoit, and Garry (<a href="references-2.html#ref-laver_extracting_2003" role="doc-biblioref">2003</a>)</span> in the following way:</p>
+<p>We can inspect the function for the wordscores model by <span class="citation">Laver, Benoit, and Garry (<a href="references-2.html#ref-laver_extracting_2003">2003</a>)</span> in the following way:</p>
 <div class="sourceCode" id="cb139"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">classic.wordscores</span></code></pre></div>
 <pre><code>## function (wfm, scores) 
@@ -124,7 +124,7 @@
 ##     class(val) &lt;- c("classic.wordscores", "wordscores", class(val))
 ##     return(val)
 ## }
-## &lt;bytecode: 0x2828e9860&gt;
+## &lt;bytecode: 0x1088f6e18&gt;
 ## &lt;environment: namespace:austin&gt;</code></pre>
 <p>We can then take some example data included in the <code>austin</code> package.</p>
 <div class="sourceCode" id="cb141"><pre class="downlit sourceCode r">
@@ -323,7 +323,7 @@
 <h2>
 <span class="header-section-number">9.3</span> Wordfish<a class="anchor" aria-label="anchor" href="#wordfish"><i class="fas fa-link"></i></a>
 </h2>
-<p>If we wish, we can inspect the function for the wordscores model by <span class="citation">Slapin and Proksch (<a href="references-2.html#ref-slapin_scaling_2008" role="doc-biblioref">2008</a>)</span> in the following way. This is a much more complex algorithm, which is not printed here, but you can inspect on your own devices.</p>
+<p>If we wish, we can inspect the function for the wordscores model by <span class="citation">Slapin and Proksch (<a href="references-2.html#ref-slapin_scaling_2008">2008</a>)</span> in the following way. This is a much more complex algorithm, which is not printed here, but you can inspect on your own devices.</p>
 <div class="sourceCode" id="cb150"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">wordfish</span></code></pre></div>
 <p>We can then simulate some data, formatted appropriately for wordfiash estimation in the following way:</p>
@@ -334,30 +334,30 @@
 <pre><code>## $Y
 ##      docs
 ## words D01 D02 D03 D04 D05 D06 D07 D08 D09 D10
-##   W01  18  21  30  15   7  12  11   2   3   3
-##   W02  26  21  13  21  12  10   9  10  11   7
-##   W03  30  33  20  23  13  11  13  10   7   5
-##   W04  22  15  20  19   5  12   5   7  13   1
-##   W05  26  18  13  12   9  16  14   9  12   5
-##   W06   3   4   7  11  13  19  17  17  18  22
-##   W07   1   8   6   7  10   8  16  21  13  18
-##   W08   7   5  11  10  11  16  22  18  25  23
-##   W09   6   3  11   8   8  22  10  19  22  23
-##   W10   5   8   7  16   8  18  17  22  14  30
-##   W11  61  57  46  26  39  23  22  19  20  17
-##   W12  52  44  49  44  46  28  18  20  18  14
-##   W13  56  66  57  53  43  26  32  30  14  15
-##   W14  62  49  43  59  37  41  19  20  15  13
-##   W15  56  67  56  42  49  32  31  19  23  16
-##   W16  17  17  23  33  28  43  52  59  71  50
-##   W17  14  14  19  19  37  32  43  46  53  53
-##   W18  20  22  26  33  39  40  50  41  43  57
-##   W19   6  18  23  17  38  42  50  57  45  60
-##   W20  12  10  20  32  48  49  49  54  60  68
+##   W01  18  16  14  19  12  13   9   5  10   5
+##   W02  15  24  21  17  13   6   8   8   7   7
+##   W03  22  23  15  21  18  13  12   6   6   3
+##   W04  21  24  15  22  12  13   7   9   4   2
+##   W05  12  17  19  16  19   7  11  14   7   2
+##   W06   2   7   3   9  14  14  21  15  19  21
+##   W07   7   1  10   9  13  16  14  19  26  21
+##   W08   8  10  11   5  13  18  15  24  26  23
+##   W09   3   8  13   9  19  18  19  15  24  22
+##   W10   3   9  10  12   7  12  16  26  15  23
+##   W11  59  59  49  45  34  33  43  25  22  14
+##   W12  61  51  47  45  37  32  24  23  16   7
+##   W13  65  65  39  47  41  49  25  21  14   7
+##   W14  63  59  62  50  45  39  30  31  25  12
+##   W15  60  53  64  48  47  27  28  29  18  16
+##   W16  17  20  18  27  39  37  42  43  49  53
+##   W17  11  10  21  28  30  35  35  42  56  64
+##   W18  12  14  19  29  30  46  42  51  60  64
+##   W19  20  19  20  22  25  28  55  41  45  73
+##   W20  21  11  30  20  32  44  44  53  51  61
 ## 
 ## $theta
-##  [1] -1.4863011 -1.1560120 -0.8257228 -0.4954337 -0.1651446  0.1651446
-##  [7]  0.4954337  0.8257228  1.1560120  1.4863011
+##  [1] -1.4863011 -1.1560120 -0.8257228 -0.4954337 -0.1651446  0.1651446  0.4954337  0.8257228
+##  [9]  1.1560120  1.4863011
 ## 
 ## $doclen
 ## D01 D02 D03 D04 D05 D06 D07 D08 D09 D10 
@@ -380,17 +380,17 @@
 ##  wordfish(wfm = dd$Y)
 ## 
 ## Document Positions:
-##     Estimate Std. Error   Lower   Upper
-## D01 -1.48352    0.11313 -1.7052 -1.2618
-## D02 -1.27852    0.10653 -1.4873 -1.0697
-## D03 -0.83861    0.09590 -1.0266 -0.6507
-## D04 -0.53582    0.09123 -0.7146 -0.3570
-## D05 -0.06478    0.08804 -0.2373  0.1078
-## D06  0.31511    0.08902  0.1406  0.4896
-## D07  0.60576    0.09191  0.4256  0.7859
-## D08  0.89271    0.09665  0.7033  1.0821
-## D09  0.97988    0.09847  0.7869  1.1729
-## D10  1.40761    0.11012  1.1918  1.6234</code></pre>
+##     Estimate Std. Error    Lower    Upper
+## D01  -1.2905    0.10617 -1.49855 -1.08236
+## D02  -1.2363    0.10459 -1.44128 -1.03132
+## D03  -0.7342    0.09328 -0.91701 -0.55136
+## D04  -0.6232    0.09158 -0.80274 -0.44374
+## D05  -0.2017    0.08768 -0.37355 -0.02985
+## D06   0.1417    0.08741 -0.02959  0.31306
+## D07   0.4576    0.08947  0.28227  0.63301
+## D08   0.6664    0.09207  0.48596  0.84688
+## D09   1.0767    0.10017  0.88040  1.27304
+## D10   1.7427    0.12248  1.50267  1.98277</code></pre>
 </div>
 <div id="using-quanteda" class="section level2" number="9.4">
 <h2>
@@ -428,7 +428,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Computational Text Analysis</strong>" was written by Christopher Barrie. It was last built on 2023-02-07.</p>
+    <p>"<strong>Computational Text Analysis</strong>" was written by Christopher Barrie. It was last built on 2023-02-26.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

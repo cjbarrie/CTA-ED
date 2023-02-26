@@ -157,15 +157,10 @@
 <span class="va">dfmat</span></code></pre></div>
 <pre><code>## Document-feature matrix of: 3 documents, 20 features (58.33% sparse) and 0 docvars.
 ##        features
-## docs    truth universally acknowledged single man possession good fortune
-##   text1     1           1            1      1   1          1    1       1
-##   text2     0           0            0      0   1          0    0       0
-##   text3     0           0            0      0   0          0    0       0
-##        features
-## docs    must want
-##   text1    1    1
-##   text2    0    1
-##   text3    0    0
+## docs    truth universally acknowledged single man possession good fortune must want
+##   text1     1           1            1      1   1          1    1       1    1    1
+##   text2     0           0            0      0   1          0    0       0    0    1
+##   text3     0           0            0      0   0          0    0       0    0    0
 ## [ reached max_nfeat ... 10 more features ]</code></pre>
 <p>What do we see here?</p>
 <p>Well, it’s clear that <code>text2</code> and <code>text3</code> are not very similar to <code>text1</code> at all—they share few words. But we also see that <code>text2</code> does at least contain some words that are shared with <code>text1</code>, which is the original opening line of Jane Austen’s <em>Pride and Prejudice</em>.</p>
@@ -174,8 +169,8 @@
 <div class="sourceCode" id="cb96"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## correlation</span>
 <span class="fu"><a href="https://quanteda.io/reference/textstat_simil.html">textstat_simil</a></span><span class="op">(</span><span class="va">dfmat</span>, margin <span class="op">=</span> <span class="st">"documents"</span>, method <span class="op">=</span> <span class="st">"correlation"</span><span class="op">)</span></code></pre></div>
-<pre><code>## Warning: as(&lt;dsTMatrix&gt;, "dsyMatrix") is deprecated since Matrix 1.5-0; do
-## as(., "unpackedMatrix") instead</code></pre>
+<pre><code>## Warning: as(&lt;dsTMatrix&gt;, "dsyMatrix") is deprecated since Matrix 1.5-0; do as(., "unpackedMatrix")
+## instead</code></pre>
 <pre><code>## textstat_simil object; method = "correlation"
 ##         text1   text2  text3
 ## text1  1.0000 -0.0689 -0.811
@@ -343,7 +338,7 @@ This measure is regression equation D in McLaughlin’s original paper.}</p>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Computational Text Analysis</strong>" was written by Christopher Barrie. It was last built on 2023-02-07.</p>
+    <p>"<strong>Computational Text Analysis</strong>" was written by Christopher Barrie. It was last built on 2023-02-26.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

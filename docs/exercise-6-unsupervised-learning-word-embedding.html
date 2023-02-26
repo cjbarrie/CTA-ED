@@ -240,19 +240,19 @@
     <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">word1</span> <span class="op">==</span> <span class="st">"brexit"</span><span class="op">)</span> <span class="op"><a href="https://stringr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
     <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="op">-</span><span class="va">p_together</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 1,016 × 7
-##    word1  word2                      n           p      p1         p2 p_tog…¹
-##    &lt;chr&gt;  &lt;chr&gt;                  &lt;dbl&gt;       &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;   &lt;dbl&gt;
-##  1 brexit scotlandsplaceineurope    37 0.000000479 0.00278 0.00000186    92.6
-##  2 brexit preparedness              22 0.000000285 0.00278 0.00000149    68.8
-##  3 brexit dividend                 176 0.00000228  0.00278 0.0000127     64.8
-##  4 brexit brexit                 38517 0.000499    0.00278 0.00278       64.6
-##  5 brexit softer                    50 0.000000648 0.00278 0.00000410    56.9
-##  6 brexit botched                  129 0.00000167  0.00278 0.0000153     39.4
-##  7 brexit impasse                   53 0.000000687 0.00278 0.00000820    30.1
-##  8 brexit smooth                    30 0.000000389 0.00278 0.00000596    23.5
-##  9 brexit frustrate                 28 0.000000363 0.00278 0.00000559    23.4
-## 10 brexit deadlock                 120 0.00000155  0.00278 0.0000246     22.8
-## # … with 1,006 more rows, and abbreviated variable name ¹​p_together</code></pre>
+##    word1  word2                      n           p      p1         p2 p_together
+##    &lt;chr&gt;  &lt;chr&gt;                  &lt;dbl&gt;       &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;
+##  1 brexit scotlandsplaceineurope    37 0.000000479 0.00278 0.00000186       92.6
+##  2 brexit preparedness              22 0.000000285 0.00278 0.00000149       68.8
+##  3 brexit dividend                 176 0.00000228  0.00278 0.0000127        64.8
+##  4 brexit brexit                 38517 0.000499    0.00278 0.00278          64.6
+##  5 brexit softer                    50 0.000000648 0.00278 0.00000410       56.9
+##  6 brexit botched                  129 0.00000167  0.00278 0.0000153        39.4
+##  7 brexit impasse                   53 0.000000687 0.00278 0.00000820       30.1
+##  8 brexit smooth                    30 0.000000389 0.00278 0.00000596       23.5
+##  9 brexit frustrate                 28 0.000000363 0.00278 0.00000559       23.4
+## 10 brexit deadlock                 120 0.00000155  0.00278 0.0000246        22.8
+## # … with 1,006 more rows</code></pre>
 <p>Using this normalized probabilities, we then calculate the PMI or “Pointwise Mutual Information” value, which is simply the log of the joint probability we calculated above.</p>
 <p><strong>Definition time</strong>: “PMI is logarithm of the probability of finding two words together, normalized for the probability of finding each of the words alone.”</p>
 <p>We then cast our word pairs into a sparse matrix where values correspond to the PMI between two corresponding words.</p>
@@ -393,12 +393,12 @@ f(X_{ij}) =
 <span class="header-section-number">22.8</span> Implementation<a class="anchor" aria-label="anchor" href="#implementation-1"><i class="fas fa-link"></i></a>
 </h2>
 <p>We then need to set some of the choice parameters of the GloVe model. The first is the window size <code>WINDOW_SIZE</code>, which, as above, is arbitrary but normally set around 6-8. This means we are looking for word context of words up to 6 words around the target word. The image below illustrates this choice parameter for the word “cat” in a given sentence, with increase context window size:</p>
-<div class="figure">
-<img src="data/wordembed/window.png" style="width:50.0%" alt=""><p class="caption">Context window</p>
+<div class="float">
+<img src="data/wordembed/window.png" style="width:50.0%" alt="Context window"><div class="figcaption">Context window</div>
 </div>
 <p>And this will ultimately be understood in matrix format as:</p>
-<div class="figure">
-<img src="data/wordembed/matrix_context.png" style="width:50.0%" alt=""><p class="caption">Context window</p>
+<div class="float">
+<img src="data/wordembed/matrix_context.png" style="width:50.0%" alt="Context window"><div class="figcaption">Context window</div>
 </div>
 <p>The iterations parameter <code>ITERS</code> simply sets the maximum number of iterations to allow for model convergence. This number of iterations is relatively high and the model will likely converge before 100 iterations.</p>
 <p>The <code>DIM</code> parameter specifies the length of the word vector we want to result (i.e., just as we set a limit of 256 for the SVD approach above). Finally, <code>COUNT_MIN</code> is specifying the minimum count of words that we want to keep. In other words, if a word appears fewer than ten times, it is discarded. Again, this is the same as above where we discarded word pairings that appeared fewer than twenty times.</p>
@@ -456,7 +456,7 @@ f(X_{ij}) =
 </h2>
 <p>How do we explore these embeddings? Well, imagine that our embeddings will look something not dissimilar to this visualization of another embedding <a href="https://anvaka.github.io/pm/#/galaxy/word2vec-wiki?cx=-17&amp;cy=-237&amp;cz=-613&amp;lx=-0.0575&amp;ly=-0.9661&amp;lz=-0.2401&amp;lw=-0.0756&amp;ml=300&amp;s=1.75&amp;l=1&amp;v=d50_clean">here</a>. In other words, we are talking about something that doesn’t lend itself to projection in 2D space!</p>
 <p>But…</p>
-<p>All hope is not lost, space travellers. A smart technique by <span class="citation">McInnes, Healy, and Melville (<a href="references-2.html#ref-mcinnes_umap_2020" role="doc-biblioref">2020</a>)</span> linked <a href="https://arxiv.org/abs/1802.03426">here</a> describes a way to reduce the dimensionality of such embedding layers using what is called “Uniform Manifold Approximation and Projection.” How do we do this? Well, happily, with the <tt>umap</tt> package it is pretty straightforward!</p>
+<p>All hope is not lost, space travellers. A smart technique by <span class="citation">McInnes, Healy, and Melville (<a href="references-2.html#ref-mcinnes_umap_2020">2020</a>)</span> linked <a href="https://arxiv.org/abs/1802.03426">here</a> describes a way to reduce the dimensionality of such embedding layers using what is called “Uniform Manifold Approximation and Projection.” How do we do this? Well, happily, with the <tt>umap</tt> package it is pretty straightforward!</p>
 <div class="sourceCode" id="cb394"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># GloVe dimension reduction</span>
 <span class="va">glove_umap</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/umap/man/umap.html">umap</a></span><span class="op">(</span><span class="va">glove_embedding</span>, n_components <span class="op">=</span> <span class="fl">2</span>, metric <span class="op">=</span> <span class="st">"cosine"</span>, n_neighbors <span class="op">=</span> <span class="fl">25</span>, min_dist <span class="op">=</span> <span class="fl">0.1</span>, spread<span class="op">=</span><span class="fl">2</span><span class="op">)</span></code></pre></div>
@@ -545,7 +545,7 @@ f(X_{ij}) =
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Computational Text Analysis</strong>" was written by Christopher Barrie. It was last built on 2023-02-07.</p>
+    <p>"<strong>Computational Text Analysis</strong>" was written by Christopher Barrie. It was last built on 2023-02-26.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

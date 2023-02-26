@@ -115,8 +115,8 @@
 <li>Defining a context window (see figure below)</li>
 <li>Looking at probabilities of word appearing near another words</li>
 </ol>
-<div class="figure">
-<img src="data/wordembed/window.png" alt=""><p class="caption">Context window</p>
+<div class="float">
+<img src="data/wordembed/window.png" alt="Context window"><div class="figcaption">Context window</div>
 </div>
 <p>The implementation of this technique using the singular value decomposition approach requires the following data structure:</p>
 <ul>
@@ -127,20 +127,13 @@
 <li>and P(y) is the probability of word y appearing in the whole corpus</li>
 </ul>
 <pre><code>## 6 x 6 sparse Matrix of class "dgCMatrix"
-##                the          to          and          of      https
-## the    0.653259169 -0.01948121 -0.006446459  0.27136395 -0.5246159
-## to    -0.019481205  0.75498084 -0.065170433 -0.25694210 -0.5731182
-## and   -0.006446459 -0.06517043  1.027782342 -0.03974904 -0.4915159
-## of     0.271363948 -0.25694210 -0.039749043  1.02111517 -0.5045067
-## https -0.524615878 -0.57311817 -0.491515918 -0.50450674  0.5451841
-## a     -0.325575239 -0.04595798 -0.058629689  0.09829389 -0.5795640
-##                 a
-## the   -0.32557524
-## to    -0.04595798
-## and   -0.05862969
-## of     0.09829389
-## https -0.57956404
-## a      1.03048355</code></pre>
+##                the          to          and          of      https           a
+## the    0.653259169 -0.01948121 -0.006446459  0.27136395 -0.5246159 -0.32557524
+## to    -0.019481205  0.75498084 -0.065170433 -0.25694210 -0.5731182 -0.04595798
+## and   -0.006446459 -0.06517043  1.027782342 -0.03974904 -0.4915159 -0.05862969
+## of     0.271363948 -0.25694210 -0.039749043  1.02111517 -0.5045067  0.09829389
+## https -0.524615878 -0.57311817 -0.491515918 -0.50450674  0.5451841 -0.57956404
+## a     -0.325575239 -0.04595798 -0.058629689  0.09829389 -0.5795640  1.03048355</code></pre>
 <p>And the resulting matrix object will take the following format:</p>
 <pre><code>## Formal class 'dgCMatrix' [package "Matrix"] with 6 slots
 ##   ..@ i       : int [1:350700] 0 1 2 3 4 5 6 7 8 9 ...
@@ -207,7 +200,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Computational Text Analysis</strong>" was written by Christopher Barrie. It was last built on 2023-02-07.</p>
+    <p>"<strong>Computational Text Analysis</strong>" was written by Christopher Barrie. It was last built on 2023-02-26.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
