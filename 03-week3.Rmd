@@ -13,15 +13,16 @@ Questions:
 **Required reading**:
 
 -   @martins_rise_2020
--   @young_affective_2012
--   @krippendorff_content_2004 (pp.283-289)
+-   @voigt_language_2017
 
 **Further reading**:
 
 -   @tausczik_psychological_2010
+-   @krippendorff_content_2004 (pp.283-289)
 -   @brier_computer_2011
 -   @bonikowski2015
 -   @barbera_automated_2021
+-   @young_affective_2012
 
 **Slides**:
 

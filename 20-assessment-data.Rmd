@@ -124,6 +124,16 @@ The datasets are all listed and downloadable in ".csv" format if you scroll down
 
 You can download embeddings and online community scores used in this article the Github repo linked [here](https://github.com/CSSLab/social-dimensions).
 
+To get the community embeddings data in usable format we can do:
+
+```{r, eval = F}
+
+embeddings <- read.table("https://raw.githubusercontent.com/CSSLab/social-dimensions/main/data/embedding-vectors.tsv")
+
+embeddings_metadata <- read.table("https://raw.githubusercontent.com/CSSLab/social-dimensions/main/data/embedding-metadata.tsv", sep = "\t", fill = T, header = T)
+                    
+```
+
 ## R Markdown
 
 You can access a template R Markdown response for your code from the Github repo for this book by clicking this [link](https://raw.githubusercontent.com/cjbarrie/CTA-ED/main/data/assessment/CTA_example.Rmd?raw=true) and download the word document it outputs by clicking this [link](https://github.com/cjbarrie/CTA-ED/blob/main/data/assessment/CTA_example.docx?raw=true).

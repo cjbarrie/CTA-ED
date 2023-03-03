@@ -8,25 +8,26 @@ The article by @ying_topics_2021 provides a valuable overview and accompaniment 
 
 Questions:
 
-1. What assumptions underlie topic modelling approaches?
-2. Can we develop structural models of text?
-3. Is topic modelling a discovery or measurement strategy?
-4. How do we validate any model?
+1.  What assumptions underlie topic modelling approaches?
+2.  Can we develop structural models of text?
+3.  Is topic modelling a discovery or measurement strategy?
+4.  How do we validate any model?
 
 **Required reading**:
 
-- @nelson_computational_2020
-- @alrababah_authoritarian_2020
-- @ying_topics_2021
+-   @nelson_computational_2020
+-   @parthasarathy2019
+-   @ying_topics_2021
 
 **Further reading**:
 
-- @chang_reading_2009
-- @grimmer_general_2011
-- @denny_text_2018
-- @smith_automatic_2021
-- @boyd_characterizing_2018
+-   @chang_reading_2009
+-   @alrababah_authoritarian_2020
+-   @grimmer_general_2011
+-   @denny_text_2018
+-   @smith_automatic_2021
+-   @boyd_characterizing_2018
 
 **Slides**:
 
-- Week 6 [Slides](https://docs.google.com/presentation/d/1SeL25sA0a7OoJhPOy5lvYuvqOZAUJBkh17VRTG5_VAw/edit?usp=sharing)
+-   Week 6 [Slides](https://docs.google.com/presentation/d/1SeL25sA0a7OoJhPOy5lvYuvqOZAUJBkh17VRTG5_VAw/edit?usp=sharing)
