@@ -291,7 +291,7 @@ First we need to reformat our text into a `quanteda` corpus object.
 
 ```{r}
 
-# load in U.S. presidential inaugural speeches from Quanteda example data.
+# load in corpus of Tocequeville text data.
 corp <- corpus(tocq, text_field = "text")
 # use first 10 documents for example
 documents <- corp[sample(1:30000,1000)]
