@@ -300,7 +300,14 @@ brian
 <div class="sourceCode" id="cb471"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">embeddings</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.table</a></span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/CSSLab/social-dimensions/main/data/embedding-vectors.tsv"</span><span class="op">)</span>
 
-<span class="va">embeddings_metadata</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.table</a></span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/CSSLab/social-dimensions/main/data/embedding-metadata.tsv"</span>, sep <span class="op">=</span> <span class="st">"\t"</span>, fill <span class="op">=</span> <span class="cn">T</span>, header <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></code></pre></div>
+<span class="va">embeddings_metadata</span> <span class="op">&lt;-</span> <span class="fu">data.table</span><span class="fu">:::</span><span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/fread.html">fread</a></span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/CSSLab/social-dimensions/main/data/embedding-metadata.tsv"</span><span class="op">)</span>
+
+<span class="va">embeddings_scores</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/CSSLab/social-dimensions/main/data/scores.csv"</span><span class="op">)</span></code></pre></div>
+<p>Then to add in information on what each vector of dimensions 150 (i.e., here: columns), we can add in the community information to the embeddings with:</p>
+<div class="sourceCode" id="cb472"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">communities</span> <span class="op">&lt;-</span> <span class="va">embeddings_metadata</span><span class="op">$</span><span class="va">community</span>
+
+<span class="fu"><a href="https://tibble.tidyverse.org/reference/rownames.html">rownames</a></span><span class="op">(</span><span class="va">embeddings</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">communities</span></code></pre></div>
 </div>
 <div id="r-markdown" class="section level2" number="25.5">
 <h2>
@@ -340,7 +347,7 @@ brian
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Computational Text Analysis</strong>" was written by Christopher Barrie. It was last built on 2023-03-03.</p>
+    <p>"<strong>Computational Text Analysis</strong>" was written by Christopher Barrie. It was last built on 2023-03-06.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

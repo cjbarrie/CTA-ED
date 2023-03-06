@@ -15,6 +15,6 @@ sentence <- paste(sentences, sentences)
 
 toks_austen <- tokens(sentence)
 
-fcm(toks_austen, context = "window", window = 6, ordered = F, tri = F) #note that 
+fcm(toks_austen, context = "window", window = 6, ordered = F, tri =F)
 
 sentence

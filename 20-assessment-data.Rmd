@@ -130,8 +130,19 @@ To get the community embeddings data in usable format we can do:
 
 embeddings <- read.table("https://raw.githubusercontent.com/CSSLab/social-dimensions/main/data/embedding-vectors.tsv")
 
-embeddings_metadata <- read.table("https://raw.githubusercontent.com/CSSLab/social-dimensions/main/data/embedding-metadata.tsv", sep = "\t", fill = T, header = T)
+embeddings_metadata <- data.table:::fread("https://raw.githubusercontent.com/CSSLab/social-dimensions/main/data/embedding-metadata.tsv")
+
+embeddings_scores <- read.csv("https://raw.githubusercontent.com/CSSLab/social-dimensions/main/data/scores.csv")
+
                     
+```
+
+Then to add in information on what each vector of dimensions 150 (i.e., here: columns), we can add in the community information to the embeddings with:
+
+```{r, eval = F}
+communities <- embeddings_metadata$community
+
+rownames(embeddings) <- communities
 ```
 
 ## R Markdown
