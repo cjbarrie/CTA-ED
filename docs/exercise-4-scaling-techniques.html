@@ -187,24 +187,24 @@
 ## Estimated Document Positions:
 ##                    theta       se
 ## DailyMailUK      0.64904 0.012949
-## DailyMirror      1.18234 0.006726
+## DailyMirror      1.18235 0.006726
 ## EveningStandard -0.22616 0.016082
-## guardian        -0.95429 0.010563
+## guardian        -0.95428 0.010563
 ## MetroUK         -0.04625 0.022759
-## Telegraph       -1.05343 0.010641
-## TheSun           1.45043 0.006048
-## thetimes        -1.00169 0.014966
+## Telegraph       -1.05343 0.010640
+## TheSun           1.45044 0.006048
+## thetimes        -1.00168 0.014966
 ## 
 ## Estimated Feature Scores:
 ##         rt breaking coronavirus outbreak declared pandemic  world  health organisation genuinely interested
-## beta 0.537    0.191     0.06917  -0.2654 -0.06526  -0.2004 -0.317 -0.3277      -0.4119   -0.2873    -0.2546
+## beta 0.537    0.191     0.06919  -0.2654 -0.06524  -0.2004 -0.317 -0.3277      -0.4118   -0.2873    -0.2545
 ## psi  5.307    3.535     5.78715   3.1348  0.50705   3.1738  3.366  3.2041       0.5487   -0.5403    -1.4502
 ##            see      one     cos     fair  german    care system protect troubled children #covid19 anxiety
-## beta 0.0005016 -0.06314 -0.2788 -0.03079 -0.7424 -0.3252 -1.105 -0.1106  -0.4731  0.01204  -0.6742  0.4218
-## psi  2.7723966  3.85881 -1.4480  0.35480  1.1009  3.1042  1.259  1.8918  -0.0784  2.85004   2.9703  0.5917
-##       shows    sign    man  behind   app explains    tips
-## beta 0.4165 -0.1215 0.5112 0.05498 0.271   0.6687 -0.2083
-## psi  2.8370  1.9427 3.5777 2.43805 1.376   1.2749  1.5341</code></pre>
+## beta 0.0005232 -0.06311 -0.2788 -0.03077 -0.7424 -0.3251 -1.105 -0.1106  -0.4731  0.01206  -0.6742  0.4218
+## psi  2.7723963  3.85881 -1.4480  0.35480  1.1009  3.1042  1.259  1.8918  -0.0784  2.85004   2.9703  0.5917
+##       shows    sign    man behind   app explains    tips
+## beta 0.4165 -0.1215 0.5112  0.055 0.271   0.6687 -0.2083
+## psi  2.8370  1.9427 3.5777  2.438 1.376   1.2749  1.5341</code></pre>
 <p>We can then plot our estimates of the <span class="math inline">\(\theta\)</span>s—i.e., the estimates of the latent newspaper position—as so.</p>
 <div class="sourceCode" id="cb314"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/quanteda.textplots/man/textplot_scale1d.html">textplot_scale1d</a></span><span class="op">(</span><span class="va">dfm_newstweets_results</span><span class="op">)</span></code></pre></div>
@@ -244,7 +244,7 @@ betas
 ig
 </td>
 <td style="text-align:right;">
-8.961699
+8.961609
 </td>
 </tr>
 <tr>
@@ -252,7 +252,7 @@ ig
 🎥
 </td>
 <td style="text-align:right;">
-7.789206
+7.789141
 </td>
 </tr>
 <tr>
@@ -260,7 +260,7 @@ ig
 diver
 </td>
 <td style="text-align:right;">
-7.015301
+7.015262
 </td>
 </tr>
 <tr>
@@ -268,7 +268,7 @@ diver
 alien-looking
 </td>
 <td style="text-align:right;">
-6.054612
+6.054590
 </td>
 </tr>
 <tr>
@@ -276,7 +276,7 @@ alien-looking
 wwe
 </td>
 <td style="text-align:right;">
-5.304750
+5.304738
 </td>
 </tr>
 <tr>
@@ -284,7 +284,7 @@ wwe
 cutest
 </td>
 <td style="text-align:right;">
-5.304750
+5.304738
 </td>
 </tr>
 <tr>
@@ -292,7 +292,7 @@ cutest
 lad
 </td>
 <td style="text-align:right;">
-5.012239
+5.012231
 </td>
 </tr>
 <tr>
@@ -300,7 +300,7 @@ lad
 bargains
 </td>
 <td style="text-align:right;">
-4.835012
+4.834985
 </td>
 </tr>
 <tr>
@@ -308,7 +308,7 @@ bargains
 partner’s
 </td>
 <td style="text-align:right;">
-4.692457
+4.692453
 </td>
 </tr>
 <tr>
@@ -316,7 +316,7 @@ partner’s
 ronaldo
 </td>
 <td style="text-align:right;">
-4.495509
+4.495495
 </td>
 </tr>
 <tr>
@@ -324,7 +324,7 @@ ronaldo
 clever
 </td>
 <td style="text-align:right;">
-4.351131
+4.351110
 </td>
 </tr>
 <tr>
@@ -332,7 +332,7 @@ clever
 wheelchair
 </td>
 <td style="text-align:right;">
-4.340554
+4.340553
 </td>
 </tr>
 <tr>
@@ -340,7 +340,7 @@ wheelchair
 mcguinness
 </td>
 <td style="text-align:right;">
-4.340554
+4.340553
 </td>
 </tr>
 <tr>
@@ -348,7 +348,7 @@ mcguinness
 spider
 </td>
 <td style="text-align:right;">
-4.192182
+4.192171
 </td>
 </tr>
 <tr>
@@ -356,7 +356,7 @@ spider
 nails
 </td>
 <td style="text-align:right;">
-4.192182
+4.192171
 </td>
 </tr>
 <tr>
@@ -364,7 +364,7 @@ nails
 rides
 </td>
 <td style="text-align:right;">
-3.950628
+3.950630
 </td>
 </tr>
 <tr>
@@ -372,7 +372,7 @@ rides
 ghostly
 </td>
 <td style="text-align:right;">
-3.950628
+3.950630
 </td>
 </tr>
 <tr>
@@ -380,7 +380,7 @@ ghostly
 extensions
 </td>
 <td style="text-align:right;">
-3.950628
+3.950630
 </td>
 </tr>
 <tr>
@@ -388,7 +388,7 @@ extensions
 corrie’s
 </td>
 <td style="text-align:right;">
-3.950628
+3.950630
 </td>
 </tr>
 <tr>
@@ -396,7 +396,7 @@ corrie’s
 lion
 </td>
 <td style="text-align:right;">
-3.857089
+3.857059
 </td>
 </tr>
 </tbody>
@@ -472,7 +472,7 @@ lion
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Computational Text Analysis</strong>" was written by Christopher Barrie. It was last built on 2023-03-06.</p>
+    <p>"<strong>Computational Text Analysis</strong>" was written by Christopher Barrie. It was last built on 2023-03-15.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

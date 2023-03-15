@@ -78,283 +78,79 @@ There are, of course, many other sources you might go to for text information. I
 
 ## Using APIs
 
-To practice these skills, you might want to create a new account for your academic research. But you needn't create a new account to follow the steps below. You can simply use your own account---if you have one---as using the developer tools will not change anything about your public Twitter account. 
+In order to use the YouTube API, we'll first need to get our authorization token. These can be obtained by anybody, with or without an academic profile (i.e., unlike `academictwitteR`) in previous worksheets.
 
-![](data/sampling/twitterdev.png){width=100%}
+In order to get you authorization credentials, you can follow this [guide](https://developers.google.com/youtube/v3/getting-started). You will need to have an account on the Google Cloud console in order to do this. The main three steps are to:
 
-Before proceeding, we'll load the remaining packages we will need for this tutorial.
+1.  create a "Project" on the Google Cloud console;
+2.  to associate the YouTube API with this Project;
+3.  to enable the API keys for the API
 
-```{r, message=F}
-library(tidyverse) # loads dplyr, ggplot2, and others
-library(rtweet) # to query the Twitter API in R
+Once you have created a Project (here: called "tuberalt1" in my case) you will see a landing screen like this.
+
+![](data/sampling/Screenshot 2022-10-31 at 14.59.25.jpg)
+
+We can then get our credentials by navigating to the menu on the left hand side and selecting credentials:
+
+![](data/sampling/Screenshot 2022-10-31 at 14.59.41.jpg)
+
+Now we click on the name of our project ("tuberalt1") and we will be taken to a page containing two pieces of information: our "client ID" and "client secret". 
+
+![](data/sampling/Screenshot 2023-03-15 at 15.55.31.png)
+
+The client ID is referred to below as our "app ID" in the `tuber` packaage and the client secret is our "app secret" mentioned in the `tuber` package.
+
+![](data/sampling/Screenshot 2023-03-15 at 15.55.45.png)
+
+Once we have our credentials, we can log them in our R environment with the `yt_oauth` function in the `tuber` package. This function takes two arguments: an "app ID" and an "app secret". Both of these will be provided to you once you have associated the YouTube API with your Google Cloud console project.
+
+## Getting YouTube data
+
+In the paper by @haroon2022, the authors analyze the recommended videos for a particular used based on their watch history and on a seed video. In the below, we won't replicate the first step but we will look at the recommended videos that appear based on a seed video.
+
+In this case, our seed video is a video by Jordan Peterson predicting the death of mainstream media. This is fairly "alternative" content and is actively taking a stance against mainstream media. So does this mean YouTube will learn to recommend us *away* from mainstream content?
+
+```{r, eval = F}
+library(tidyverse)
+library(readxl)
+library(tuber)
+
+yt_oauth("431484860847-1THISISNOTMYREALKEY7jlembpo3off4hhor.apps.googleusercontent.com","2niTHISISMADEUPTOO-l9NPUS90fp")
+
+#get related videos
+startvid <- "1Gp7xNnW5n8"
+rel_vids <- get_related_videos(startvid, max_results = 50, safe_search = "none")
 ```
 
-Once you've create your new account, or have logged into your existing one, go to the Twitter developer portal log in page [here](https://developer.twitter.com/en).
+In the above, we first take the unique identifying code string for the video. You can find this in the url for the video as shown below.
 
-Click on Apply in the navigation bar on the top right of the page. You'll be asked "what best describes you?" For the purposes of this tutorial, select academic, and then select student. Fill in all the relevant information and submit your application. Your application will then be reviewed by Twitter before access is granted. This might take hours or days.
+![](data/sampling/Screenshot 2022-10-31 at 15.16.19.jpg)
 
-Once you have authorization, a new tab will appear in the navigation bar at the top of the develop portal, as below:
+We can then collect the videos recommended on the basis of having this video as the seed video. We store these as the data.frame object `rel_vids`.
 
-![](data/sampling/twitterdev2.png){width=100%}
+And we can have a look at the recommended videos on the basis of this seed video below.
 
-Navigate to the developer portal and you will there be able to create a new "app" to query the API. You see in my account that I have several apps for different purposes.
-
-![](data/sampling/twitterdev3.png){width=100%}
-We can create a new app on this page too. When we click "Create App" we will first be asked to name the app. Most importantly, we will then be given an "API key"; an "API secret key"; and a "Bearer token" as below.
-
-![](data/sampling/twitterdev4.png){width=30%}
-
-You **MUST** make a record of these. Once you have done so, you can then use these to access the API. Once you have recorded these, navigate to the App setting tabs for the App you've created now listed in the Overview tab on the left hand side navigation window.
-
-![](data/sampling/twitterdev5.png){width=50%}
-
-Navigate to "Keys and tokens" on this page, and click generate in the Access token & secret box as below:
-
-![](data/sampling/twitterdev6.png){width=50%}
-
-Record these as well. Once you have all of these keys and tokens recorded somewhere safe, you are ready to collect data!
-
-This is pretty simple using the <tt>rtweet</tt> package. Below, we'll collect the last 50 tweets of the founder of Twitter: Jack Dorsey. 
-
-```{r, eval=FALSE}
-api_key <-" XXXXXXXXXXXXXXXXXXXXXXX"
-api_key_secret <- "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
-access_token <- "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
-access_token_secret <- "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
-
-token <- create_token(
-  app = "NAME YOUR APP",
-  consumer_key = api_key,
-  consumer_secret = api_key_secret,
-  access_token = access_token,
-  access_secret = access_token_secret
-)
-
-user <- "@jack"
-jacktweets <- get_timeline(user, n = 50)
-
-head(jacktweets)
-
+```{r, echo = F, eval = T}
+library(rmarkdown)
+rel_vids <- readRDS("data/sampling/ytvids_recommended.rds")
+paged_table(rel_vids)
 ```
 
-Once you have enter your keys, tokens, and key/token secrets, store them with the `create_token()` function. Here, we are collecting the last 50 tweets for Jack Dorsey, though you can change this by specifying a higher n---be aware, though, that the maximum you are able to collect with the basic API access is 3200 tweets. 
+It seems YouTube recommends us back a lot of videos relating to Jordan Peterson. Some of these are from more mainstream outlets; others are from more obscure sources.
 
-```{r, echo=F, warning=-F, message=F}
+## Questions
 
-library(kableExtra)
+1.  Make your own request to the YouTube API for a different seed video.
 
-jacktweets <- readRDS("data/sampling/jacktweets.rds")
+2.  Collect one video ID for each of the channels included in the resulting data
 
-jacktweets <- jacktweets %>%
-  select(created_at, screen_name, text)
-
-kbl(jacktweets[1:10,]) %>%
-  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
-```
-
-Now you can play around with the different API calls possible with the <tt>rtweet</tt> package. See the full documentation [here](https://cran.r-project.org/web/packages/rtweet/rtweet.pdf) and [here](https://github.com/ropensci/rtweet).
-
-And for those interested, you can my package to collect tweets from the Academic Research Product Track API [here](https://github.com/cjbarrie/academictwitteR).
-
-Getting access to the Academic Research Product Track is a bit more complicated but for more information on how to apply see [here](https://developer.twitter.com/en/solutions/academic-research/products-for-researchers).
-
-In order to use the Twitter Academic Research Product Track you will first need to obtain an authorization token. You will find details about the process of obtaining authorization [here](https://developer.twitter.com/en/solutions/academic-research/application-info). 
-
-**In order to gain authorization you first need a Twitter account.**
-
-First, Twitter will ask for details about your academic profile. Per the documentation linked above, they will ask for the following:
-
-> Your full name as it is appears on your institution’s documentation
-> 
->   Links to webpages that help establish your identity; provide one or more of the following:
-> 
->   - A link to your profile in your institution’s faculty or student directory
->   - A link to your Google Scholar profile
->   - A link to your research group, lab or departmental website where you are listed
-> 
->   Information about your academic institution: its name, country, state, and city
-> 
->   Your department, school, or lab name
-> 
->   Your academic field of study or discipline at this institution
-> 
->   Your current role as an academic (whether you are a graduate student, doctoral candidate,       post-doc, professor, research scientist, or other faculty member)
-
-Twitter will then ask for details of the proposed research project. Here, questions include:
-
-> 1. What is the name of your research project?
->
-> 2. Does this project receive funding from outside your academic institution? If yes, please list all your sources of funding.
->
-> 3. In English, describe your research project. Minimum 200 characters.
->
-> 4. In English, describe how Twitter data via the Twitter API will be used in your research project. Minimum 200 characters.
->
-> 5. In English, describe your methodology for analyzing Twitter data, Tweets, and/or Twitter users. Minimum 200 characters.
->
-> 6. Will your research present Twitter data individually or in aggregate?
->
-> 7. In English, describe how you will share the outcomes of your research (include tools, data, and/or other resources you hope to build and share). Minimum 200 characters.
->
-> 8. Will your analysis make Twitter content or derived information available to a government entity?
-
-Once you have gained authorization for your project you will be able to see the new project on your Twitter developer portal.
-
-The Academic Research Product Track permits the user to access larger volumes of data, over a far longer time range, than was previously possible. From the Twitter [documentation](https://developer.twitter.com/en/solutions/academic-research/application-info):
-
-> "The Academic Research product track includes full-archive search, as well as increased access and other v2 endpoints and functionality designed to get more precise and complete data for analyzing the public conversation, at no cost for qualifying researchers. Since the Academic Research track includes specialized, greater levels of access, it is reserved solely for non-commercial use".
-
-The new "v2 endpoints" refer to the v2 API, introduced around the same time as the new Academic Research Product Track. Full details of the v2 endpoints are available [here](https://developer.twitter.com/en/docs/twitter-api/early-access).
-
-In summary the Academic Research product track allows the authorized user:
-
-1. Access to the full archive of (as-yet-undeleted) tweets published on Twitter
-2. A higher monthly tweet cap (10m--or 20x what was previously possible with the standard v1.1 API)
-3. Ability to access these data with more precise filters permitted by the v2 API
-
-If you do get authorization for using the Twitter Academic API, you can then follow the next steps to begin collecting data. Instead of four different keys or secrets, we will have one "bearer token" that we use, associated with one of the apps that we created as above. This is all we then need to begin collecting data. 
-
-First we need to load the package into memory as follows.
-
-```{r}
-library(academictwitteR)
-```
-
-The first task is set authorization credentials with the `set_bearer()` function, which allows the user to store their bearer token in the .Renviron file.
-
-To do so, use:
-
-```{r, eval=F}
-set_bearer()
-```
-
-and enter authorization credentials as below:
-
-![](data/sampling/TWITTER_BEARER.gif)
-
-This will mean that the bearer token is automatically called during API calls. It also avoids the inadvisable practice of hard-coding authorization credentials into scripts. 
-
-The workhorse function is `get_all_tweets()`, which is able to collect tweets matching a specific search query or all tweets by a specific set of users.
-
-```{r, eval=F}
-
-tweets <-
-  get_all_tweets(
-    query = "#BlackLivesMatter",
-    start_tweets = "2020-01-01T00:00:00Z",
-    end_tweets = "2020-01-05T00:00:00Z",
-    file = "blmtweets",
-    data_path = "data/",
-    n = 1000000,
-  )
-  
-```
-
-Here, we are collecting tweets containing a hashtag related to the Black Lives Matter movement over the period January 1, 2020 to January 5, 2020. 
-
-We have also set an upper limit of one million tweets. When collecting large amounts of Twitter data we recommend including a `data_path` and setting `bind_tweets = FALSE` such that data is stored as JSON files and can be bound at a later stage upon completion of the API query.
-
-```{r, eval=F}
-
-tweets <-
-  get_all_tweets(
-    users = c("jack", "cbarrie"),
-    start_tweets = "2020-01-01T00:00:00Z",
-    end_tweets = "2020-01-05T00:00:00Z",
-    file = "blmtweets",
-    n = 1000
-  )
-  
-```
-
-Whereas here we are not specifying a search query and instead are requesting all tweets by users "jack" and "cbarrie" over the period January 1, 2020 to January 5, 2020. Here, we set an upper limit of 1000 tweets.
-
-The search query and user query arguments can be combined in a single API call as so:
-
-```{r, eval=F}
-
-get_all_tweets(
-  query = "twitter",
-  users = c("cbarrie", "jack"),
-  start_tweets = "2020-01-01T00:00:00Z",
-  end_tweets = "2020-05-01T00:00:00Z",
-  n = 1000
-)
-
-```
-
-Where here we would be collecting tweets by users "jack" and "cbarrrie" over the period January 1, 2020 to January 5, 2020 containing the word "twitter."
-
-```{r, eval=F}
-
-get_all_tweets(
-  query = c("twitter", "social"),
-  users = c("cbarrie", "jack"),
-  start_tweets = "2020-01-01T00:00:00Z",
-  end_tweets = "2020-05-01T00:00:00Z",
-  n = 1000
-)
-
-```
-
-While here we are collecting tweets by users "jack" and "cbarrrie" over the period January 1, 2020 to January 5, 2020 containing the words "twitter" or "social."
-
-Note that the "AND" operator is implicit when specifying more than one character string in the query. See [here](https://developer.twitter.com/en/docs/twitter-api/tweets/search/integrate/build-a-query) for information on building queries for search tweets. Thus, when searching for all elements of a character string, a call may look like:
-
-```{r, eval=F}
-
-get_all_tweets(
-  query = c("twitter social"),
-  users = c("cbarrie", "jack"),
-  start_tweets = "2020-01-01T00:00:00Z",
-  end_tweets = "2020-05-01T00:00:00Z",
-  n = 1000
-)
-
-```
-
-, which will capture tweets containing *both* the words "twitter" and "social." The same logics apply for hashtag queries.
-
-Whereas if we specify our query as separate elements of a character vector like this:
-
-```{r, eval=F}
-
-get_all_tweets(
-  query = c("twitter", "social"),
-  users = c("cbarrie", "jack"),
-  start_tweets = "2020-01-01T00:00:00Z",
-  end_tweets = "2020-05-01T00:00:00Z",
-  n = 1000
-)
-
-```
-, this will be capturing tweets by users "cbarrie" or "jack" containing the words "twitter" *or* social. 
-
-Finally, we may wish to query an exact phrase. To do so, we can either input the phrase in escape quotes, e.g., `query ="\"Black Lives Matter\""` or we can use the optional parameter `exact_phrase = T` to search for tweets containing the exact phrase string:
-
-```{r, eval=F}
-
-tweets <-
-  get_all_tweets(
-    query = "#BlackLivesMatter",
-    start_tweets = "2020-01-01T00:00:00Z",
-    end_tweets = "2020-01-05T00:00:00Z",
-    file = "blmtweets",
-    data_path = "data/",
-    n = 1000000,
-  )
-  
-```
-
-Here, we are collecting tweets containing a hashtag related to the Black Lives Matter movement over the period January 1, 2020 to January 5, 2020.
-
-And the Twitter API is, of course, not the only API out there!
+3.  Write a for loop to collect recommended videos for each of these video IDs
 
 ### Other APIs (R packages)
 
 - [https://cran.r-project.org/web/packages/manifestoR/index.html](https://cran.r-project.org/web/packages/manifestoR/index.html)
+- [https://cran.r-project.org/web/packages/academictwitteR/index.html](https://cran.r-project.org/web/packages/academictwitteR/index.html)
 - [https://cran.r-project.org/web/packages/vkR/vkR.pdf](https://cran.r-project.org/web/packages/vkR/vkR.pdf)
-- [https://cran.r-project.org/web/packages/tuber/index.html](https://cran.r-project.org/web/packages/tuber/index.html)
 
 ## Scraping
 

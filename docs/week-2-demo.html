@@ -107,7 +107,7 @@
 <code class="sourceCode R"><span class="va">lipsum_text</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>text <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/stringi/man/stri_rand_lipsum.html">stri_rand_lipsum</a></span><span class="op">(</span><span class="fl">1</span>, start_lipsum <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">lipsum_text</span><span class="op">$</span><span class="va">text</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] "Lorem ipsum dolor sit amet, litora inceptos semper sed in enim felis nullam velit. Nunc sem congue in penatibus non malesuada augue porttitor sed. Erat vehicula ut. Inceptos, interdum arcu ut sed ac, habitant tempus fames donec. Risus aliquam in tellus dui sed. Felis ligula purus, non sagittis dolor. Enim quis platea amet, sed pellentesque eu senectus ut id suspendisse."</code></pre>
+<pre><code>## [1] "Lorem ipsum dolor sit amet, tempus mauris semper. Sed integer magnis, nulla erat, aliquet, velit bibendum augue euismod dui. Dui ipsum vivamus blandit velit at volutpat nisl. Sollicitudin imperdiet litora commodo dis sed. Mollis turpis eu, in tristique lacus consectetur magna. Et ut sodales pellentesque tincidunt. Nunc, dictum amet ac sed, pretium turpis, semper! Elementum sed sem sociosqu rhoncus ullamcorper nulla, libero. Non vestibulum et. Leo in ut purus velit montes amet sapien nulla eu. Habitant sociosqu nulla egestas mollis volutpat leo. In tempus, justo amet porta efficitur nec pellentesque, duis aliquet mi et. Vestibulum luctus malesuada lectus ut, morbi aenean imperdiet? In urna."</code></pre>
 <p>We can then tokenize with the <code><a href="https://rdrr.io/pkg/tidytext/man/unnest_tokens.html">unnest_tokens()</a></code> function in <code>tidytext</code>.</p>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tokens</span> <span class="op">&lt;-</span> <span class="va">lipsum_text</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
@@ -120,7 +120,7 @@
 ## 3  dolor
 ## 4    sit
 ## 5   amet
-## 6 litora</code></pre>
+## 6 tempus</code></pre>
 <p>Now we’ll get some larger data, simulating 5000 observations (rows) of random Latin text strings.</p>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Varying total words example</span>
@@ -203,7 +203,7 @@ n
 lipsum
 </td>
 <td style="text-align:right;">
-72472
+72756
 </td>
 </tr>
 <tr>
@@ -211,7 +211,7 @@ lipsum
 more
 </td>
 <td style="text-align:right;">
-72472
+72756
 </td>
 </tr>
 <tr>
@@ -219,7 +219,7 @@ more
 words
 </td>
 <td style="text-align:right;">
-67681
+67976
 </td>
 </tr>
 <tr>
@@ -227,7 +227,7 @@ words
 sed
 </td>
 <td style="text-align:right;">
-17789
+17753
 </td>
 </tr>
 <tr>
@@ -235,7 +235,7 @@ sed
 in
 </td>
 <td style="text-align:right;">
-12644
+12360
 </td>
 </tr>
 </tbody>
@@ -407,7 +407,7 @@ is not a decimal digit.</li>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Computational Text Analysis</strong>" was written by Christopher Barrie. It was last built on 2023-03-06.</p>
+    <p>"<strong>Computational Text Analysis</strong>" was written by Christopher Barrie. It was last built on 2023-03-15.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

@@ -107,6 +107,8 @@ online-corpora
 replication-datasets
 curated-corpora
 using-apis
+getting-youtube-data
+questions
 other-apis-r-packages
 scraping
 speech-to-text
