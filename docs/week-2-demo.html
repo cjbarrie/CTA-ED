@@ -107,20 +107,20 @@
 <code class="sourceCode R"><span class="va">lipsum_text</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>text <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/stringi/man/stri_rand_lipsum.html">stri_rand_lipsum</a></span><span class="op">(</span><span class="fl">1</span>, start_lipsum <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">lipsum_text</span><span class="op">$</span><span class="va">text</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] "Lorem ipsum dolor sit amet, tempus mauris semper. Sed integer magnis, nulla erat, aliquet, velit bibendum augue euismod dui. Dui ipsum vivamus blandit velit at volutpat nisl. Sollicitudin imperdiet litora commodo dis sed. Mollis turpis eu, in tristique lacus consectetur magna. Et ut sodales pellentesque tincidunt. Nunc, dictum amet ac sed, pretium turpis, semper! Elementum sed sem sociosqu rhoncus ullamcorper nulla, libero. Non vestibulum et. Leo in ut purus velit montes amet sapien nulla eu. Habitant sociosqu nulla egestas mollis volutpat leo. In tempus, justo amet porta efficitur nec pellentesque, duis aliquet mi et. Vestibulum luctus malesuada lectus ut, morbi aenean imperdiet? In urna."</code></pre>
+<pre><code>## [1] "Lorem ipsum dolor sit amet, nulla ornare ut. Hac vehicula sed. In arcu, a in ullamcorper, a leo. Gravida cum accumsan lacus semper potenti inceptos tellus euismod dui. Duis sapien augue ultrices egestas amet phasellus lobortis amet sed nisl. Curabitur ut, diam id, malesuada mauris facilisi amet sed sapien ac vulputate eu sed. Ligula non, volutpat euismod lobortis. Sollicitudin mollis quisque a, lectus dolor et nam non at. Nunc tincidunt blandit a inceptos et. Donec per inceptos gravida ligula eu diam hendrerit sagittis, ante auctor scelerisque metus. Natoque leo a id, pellentesque id magnis lorem suspendisse. Congue eu eleifend porta ad aliquam montes sodales at."</code></pre>
 <p>We can then tokenize with the <code><a href="https://rdrr.io/pkg/tidytext/man/unnest_tokens.html">unnest_tokens()</a></code> function in <code>tidytext</code>.</p>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tokens</span> <span class="op">&lt;-</span> <span class="va">lipsum_text</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://rdrr.io/pkg/tidytext/man/unnest_tokens.html">unnest_tokens</a></span><span class="op">(</span><span class="va">word</span>, <span class="va">text</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">tokens</span><span class="op">)</span></code></pre></div>
-<pre><code>##     word
-## 1  lorem
-## 2  ipsum
-## 3  dolor
-## 4    sit
-## 5   amet
-## 6 tempus</code></pre>
+<pre><code>##    word
+## 1 lorem
+## 2 ipsum
+## 3 dolor
+## 4   sit
+## 5  amet
+## 6 nulla</code></pre>
 <p>Now we’ll get some larger data, simulating 5000 observations (rows) of random Latin text strings.</p>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Varying total words example</span>
@@ -203,7 +203,7 @@ n
 lipsum
 </td>
 <td style="text-align:right;">
-72756
+72387
 </td>
 </tr>
 <tr>
@@ -211,7 +211,7 @@ lipsum
 more
 </td>
 <td style="text-align:right;">
-72756
+72387
 </td>
 </tr>
 <tr>
@@ -219,7 +219,7 @@ more
 words
 </td>
 <td style="text-align:right;">
-67976
+67587
 </td>
 </tr>
 <tr>
@@ -227,7 +227,7 @@ words
 sed
 </td>
 <td style="text-align:right;">
-17753
+17642
 </td>
 </tr>
 <tr>
@@ -235,7 +235,7 @@ sed
 in
 </td>
 <td style="text-align:right;">
-12360
+12401
 </td>
 </tr>
 </tbody>
@@ -407,7 +407,7 @@ is not a decimal digit.</li>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Computational Text Analysis</strong>" was written by Christopher Barrie. It was last built on 2023-03-15.</p>
+    <p>"<strong>Computational Text Analysis</strong>" was written by Christopher Barrie. It was last built on 2023-03-21.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

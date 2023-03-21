@@ -148,31 +148,20 @@
 <p>Note as well that we don’t have to search out specific datasets that we already know about. We can also use the <code>dataverse</code> package to search datasets or dataverses. We can do this very simply in the following way.</p>
 <div class="sourceCode" id="cb403"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">search_results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://iqss.github.io/dataverse-client-r/reference/dataverse_search.html">dataverse_search</a></span><span class="op">(</span><span class="st">"corpus politics text"</span>, type <span class="op">=</span> <span class="st">"dataset"</span>, per_page <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></code></pre></div>
-<pre><code>## 10 of 41992 results retrieved</code></pre>
+<pre><code>## 10 of 42004 results retrieved</code></pre>
 <div class="sourceCode" id="cb405"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">search_results</span><span class="op">[</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span></code></pre></div>
-<pre><code>##                                                                                                  name    type
-## 1                             "A Deeper Look at Interstate War Data: Interstate War Data Version 1.1" dataset
-## 2                                                            "Birth Legacies, State Making, and War." dataset
-## 3                                "CBS Morning News" Shopping Habits and Lifestyles Poll, January 1989 dataset
-## 4                        "Common Sense" for Ontario: Defining the New Government's Mandate: June 1995 dataset
-## 5                                          "Cuadro histórico del General Santa Anna. 2a. parte," 1857 dataset
-## 6         "Don't Know" Means "Don't Know": DK Responses and the Public's Level of Political Knowledge dataset
-## 7                   "El déspota Santa-Anna ante los veteranos de la Independencia," 1844 Diciembre 09 dataset
-## 8                    "European mood" bi-annual data, EU27 member states (1973-2014), Replication Data dataset
-## 9  "Government Partisanship and Electoral Accountability" Political Research Quarterly 72(3): 727-743 dataset
-## 10                      "I Didn't Lie, I Misspoke": Voters' Responses to Questionable Campaign Claims dataset
-##                                      url
-## 1     https://doi.org/10.7910/DVN/E2CEP5
-## 2     https://doi.org/10.7910/DVN/EP7DXB
-## 3  https://doi.org/10.3886/ICPSR09230.v1
-## 4     https://doi.org/10.5683/SP2/OKNWMZ
-## 5     https://doi.org/10.18738/T8/Z0JH2C
-## 6     https://doi.org/10.7910/DVN/G9NOQO
-## 7     https://doi.org/10.18738/T8/U71QSD
-## 8     https://doi.org/10.7910/DVN/V42M9J
-## 9     https://doi.org/10.7910/DVN/5OG9VV
-## 10    https://doi.org/10.7910/DVN/GE3E8R</code></pre>
+<pre><code>##                                                                                                  name    type                                   url
+## 1                             "A Deeper Look at Interstate War Data: Interstate War Data Version 1.1" dataset    https://doi.org/10.7910/DVN/E2CEP5
+## 2                                                            "Birth Legacies, State Making, and War." dataset    https://doi.org/10.7910/DVN/EP7DXB
+## 3                                "CBS Morning News" Shopping Habits and Lifestyles Poll, January 1989 dataset https://doi.org/10.3886/ICPSR09230.v1
+## 4                        "Common Sense" for Ontario: Defining the New Government's Mandate: June 1995 dataset    https://doi.org/10.5683/SP2/OKNWMZ
+## 5                                          "Cuadro histórico del General Santa Anna. 2a. parte," 1857 dataset    https://doi.org/10.18738/T8/Z0JH2C
+## 6         "Don't Know" Means "Don't Know": DK Responses and the Public's Level of Political Knowledge dataset    https://doi.org/10.7910/DVN/G9NOQO
+## 7                   "El déspota Santa-Anna ante los veteranos de la Independencia," 1844 Diciembre 09 dataset    https://doi.org/10.18738/T8/U71QSD
+## 8                    "European mood" bi-annual data, EU27 member states (1973-2014), Replication Data dataset    https://doi.org/10.7910/DVN/V42M9J
+## 9  "Government Partisanship and Electoral Accountability" Political Research Quarterly 72(3): 727-743 dataset    https://doi.org/10.7910/DVN/5OG9VV
+## 10                      "I Didn't Lie, I Misspoke": Voters' Responses to Questionable Campaign Claims dataset    https://doi.org/10.7910/DVN/GE3E8R</code></pre>
 </div>
 <div id="curated-corpora" class="section level3" number="23.2.2">
 <h3>
@@ -291,7 +280,7 @@
 <div class="sourceCode" id="cb409"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">pamphdata</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/sampling/pamphlets_formatted_gsheets.csv"</span><span class="op">)</span></code></pre></div>
 <pre><code>## Rows: 523 Columns: 8
-## ── Column specification ───────────────────────────────────────────────────────────────────────────────────────
+## ── Column specification ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 ## Delimiter: ","
 ## chr  (6): title, text, tags, imageurl, imgID, image
 ## dbl  (1): year
@@ -307,14 +296,14 @@
 <div class="sourceCode" id="cb412"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">pamphdata</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 8
-##   title                                                date        year text          tags  image…¹ imgID image
-##   &lt;chr&gt;                                                &lt;date&gt;     &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;
-## 1 The Season of Anger Sets in Among the Arab Peoples   2011-03-30  2011 The Season o… Soli… https:… imgI… =Arr…
-## 2 The Most Important Workers’ Protests                 2011-03-30  2011 [Voice of th… Soli… https:… imgI… &lt;NA&gt; 
-## 3 Yes it’s the Workers’ and Employees’ Right to Strike 2011-03-30  2011 [Voice of th… Soli… https:… imgI… &lt;NA&gt; 
-## 4 The Revolution is Still Ongoing                      2011-03-30  2011 [Voice of th… Revo… https:… imgI… &lt;NA&gt; 
-## 5 Voice of the Revolution, #3                          2011-03-30  2011 February 18 … Revo… https:… imgI… &lt;NA&gt; 
-## 6 We Are Still Continuing Until Victory                2011-03-29  2011 We Are Still… Dema… https:… imgI… &lt;NA&gt; 
+##   title                                                date        year text                                                                                            tags  image…¹ imgID image
+##   &lt;chr&gt;                                                &lt;date&gt;     &lt;dbl&gt; &lt;chr&gt;                                                                                           &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;
+## 1 The Season of Anger Sets in Among the Arab Peoples   2011-03-30  2011 The Season of Anger Sets in Among the Arab Peoples,,A member of the Algerian opposition warned… Soli… https:… imgI… =Arr…
+## 2 The Most Important Workers’ Protests                 2011-03-30  2011 [Voice of the Revolution, #3, Page 2],The most important workers’ protests,,The strikes that t… Soli… https:… imgI… &lt;NA&gt; 
+## 3 Yes it’s the Workers’ and Employees’ Right to Strike 2011-03-30  2011 [Voice of the Revolution, #3, Page 2],Yes it’s the workers’ and employees’ right to strike,,Su… Soli… https:… imgI… &lt;NA&gt; 
+## 4 The Revolution is Still Ongoing                      2011-03-30  2011 [Voice of the Revolution, #3, Page 1],Thanks to the great Egyptian people’s resistance, the re… Revo… https:… imgI… &lt;NA&gt; 
+## 5 Voice of the Revolution, #3                          2011-03-30  2011 February 18 Change…freedom…social justice Third Issue,Printed by a group of socialists Contact… Revo… https:… imgI… &lt;NA&gt; 
+## 6 We Are Still Continuing Until Victory                2011-03-29  2011 We Are Still Continuing Until Victory,,Our path and revolution are still continuing until the … Dema… https:… imgI… &lt;NA&gt; 
 ## # … with abbreviated variable name ¹​imageurl</code></pre>
 <p>We are going to return to the Internet Archived webpages to see how we can produce this final formatted dataset. The archived Tahrir Documents webpages can be accessed <a href="https://wayback.archive-it.org/2358/20120130143023/http://www.tahrirdocuments.org/">here</a>.</p>
 <p>We first want to expect how the contents of each webpage is stored.</p>
@@ -330,8 +319,8 @@
 <span class="va">html</span></code></pre></div>
 <pre><code>## {html_document}
 ## &lt;html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US"&gt;
-## [1] &lt;head profile="http://gmpg.org/xfn/11"&gt;\n&lt;!-- Start Wayback Rewrite JS Include --&gt;&lt;script type="text/jav ...
-## [2] &lt;body&gt;             \n&lt;!--\n     FILE ARCHIVED ON 16:13:41 Jan 30, 2012 AND RETRIEVED FROM THE\n     INTE ...</code></pre>
+## [1] &lt;head profile="http://gmpg.org/xfn/11"&gt;\n&lt;!-- Start Wayback Rewrite JS Include --&gt;&lt;script type="text/javascript" src="/static/js/wombat.js?v=KvsibFE5" charset="utf-8"&gt;&lt;/script&gt;&lt;script ty ...
+## [2] &lt;body&gt;             \n&lt;!--\n     FILE ARCHIVED ON 16:13:41 Jan 30, 2012 AND RETRIEVED FROM THE\n     INTERNET ARCHIVE ON 12:58:23 Mar 21, 2023.\n     JAVASCRIPT APPENDED BY WAYBACK MACHIN ...</code></pre>
 <p>Well, this isn’t particularly useful. Let’s now see how we can extract the text contained inside.</p>
 <div class="sourceCode" id="cb416"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">pagetext</span> <span class="op">&lt;-</span> <span class="va">html</span> <span class="op"><a href="https://stringr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
@@ -641,7 +630,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Computational Text Analysis</strong>" was written by Christopher Barrie. It was last built on 2023-03-15.</p>
+    <p>"<strong>Computational Text Analysis</strong>" was written by Christopher Barrie. It was last built on 2023-03-21.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

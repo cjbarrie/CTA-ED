@@ -151,30 +151,24 @@
 <div class="sourceCode" id="cb221"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">tweets</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 31
-##   tweet_id   user_…¹ text  lang  autho…² source possi…³ conve…⁴ creat…⁵ user_…⁶ user_…⁷ user_…⁸ user_…⁹ user_…˟
-##   &lt;chr&gt;      &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;  &lt;lgl&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;lgl&gt;   &lt;lgl&gt;   &lt;chr&gt;  
-## 1 121233440… DailyM… "Sec… en    168871… Tweet… FALSE   121233… 2020-0… https:… UK      FALSE   TRUE    The Mi…
-## 2 121233416… DailyM… "RT … en    168871… Tweet… FALSE   121233… 2020-0… https:… UK      FALSE   TRUE    The Mi…
-## 3 121233319… thetim… "A c… en    6107422 Echob… FALSE   121233… 2020-0… http:/… London  FALSE   TRUE    The Ti…
-## 4 121233319… TheSun  "Way… en    346556… Echob… FALSE   121233… 2020-0… https:… London  FALSE   TRUE    The Sun
-## 5 121233292… DailyM… "Stu… en    111556… Socia… FALSE   121233… 2020-0… https:… London… FALSE   TRUE    Daily …
-## 6 121233264… TheSun  "Dad… en    346556… Twitt… FALSE   121233… 2020-0… https:… London  FALSE   TRUE    The Sun
-## # … with 17 more variables: user_profile_image_url &lt;chr&gt;, user_description &lt;chr&gt;, user_created_at &lt;chr&gt;,
-## #   user_pinned_tweet_id &lt;chr&gt;, retweet_count &lt;int&gt;, like_count &lt;int&gt;, quote_count &lt;int&gt;,
-## #   user_tweet_count &lt;int&gt;, user_list_count &lt;int&gt;, user_followers_count &lt;int&gt;, user_following_count &lt;int&gt;,
-## #   sourcetweet_type &lt;chr&gt;, sourcetweet_id &lt;chr&gt;, sourcetweet_text &lt;chr&gt;, sourcetweet_lang &lt;chr&gt;,
-## #   sourcetweet_author_id &lt;chr&gt;, in_reply_to_user_id &lt;chr&gt;, and abbreviated variable names ¹​user_username,
-## #   ²​author_id, ³​possibly_sensitive, ⁴​conversation_id, ⁵​created_at, ⁶​user_url, ⁷​user_location,
-## #   ⁸​user_protected, ⁹​user_verified, ˟​user_name</code></pre>
+##   tweet_id     user_…¹ text  lang  autho…² source possi…³ conve…⁴ creat…⁵ user_…⁶ user_…⁷ user_…⁸ user_…⁹ user_…˟ user_…˟ user_…˟ user_…˟ user_…˟ retwe…˟ like_…˟ quote…˟ user_…˟ user_…˟ user_…˟
+##   &lt;chr&gt;        &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;  &lt;lgl&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;lgl&gt;   &lt;lgl&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;     &lt;int&gt;   &lt;int&gt;   &lt;int&gt;   &lt;int&gt;   &lt;int&gt;   &lt;int&gt;
+## 1 12123344022… DailyM… "Sec… en    168871… Tweet… FALSE   121233… 2020-0… https:… UK      FALSE   TRUE    The Mi… https:… "The o… 2008-1… &lt;NA&gt;          1       3       0  878152    6642 1299566
+## 2 12123341694… DailyM… "RT … en    168871… Tweet… FALSE   121233… 2020-0… https:… UK      FALSE   TRUE    The Mi… https:… "The o… 2008-1… &lt;NA&gt;          5       0       0  878152    6642 1299566
+## 3 12123331958… thetim… "A c… en    6107422 Echob… FALSE   121233… 2020-0… http:/… London  FALSE   TRUE    The Ti… https:… "The b… 2007-0… &lt;NA&gt;          4      16       0  244069   13102 1631475
+## 4 12123331948… TheSun  "Way… en    346556… Echob… FALSE   121233… 2020-0… https:… London  FALSE   TRUE    The Sun https:… "Never… 2009-0… 148025…       1      10       0  646841    8384 1925258
+## 5 12123329205… DailyM… "Stu… en    111556… Socia… FALSE   121233… 2020-0… https:… London… FALSE   TRUE    Daily … https:… "For t… 2010-0… &lt;NA&gt;         17      31       0  351446    4091  613474
+## 6 12123326405… TheSun  "Dad… en    346556… Twitt… FALSE   121233… 2020-0… https:… London  FALSE   TRUE    The Sun https:… "Never… 2009-0… 148025…      36     204       4  646841    8384 1925258
+## # … with 7 more variables: user_following_count &lt;int&gt;, sourcetweet_type &lt;chr&gt;, sourcetweet_id &lt;chr&gt;, sourcetweet_text &lt;chr&gt;, sourcetweet_lang &lt;chr&gt;, sourcetweet_author_id &lt;chr&gt;,
+## #   in_reply_to_user_id &lt;chr&gt;, and abbreviated variable names ¹​user_username, ²​author_id, ³​possibly_sensitive, ⁴​conversation_id, ⁵​created_at, ⁶​user_url, ⁷​user_location, ⁸​user_protected,
+## #   ⁹​user_verified, ˟​user_name, ˟​user_profile_image_url, ˟​user_description, ˟​user_created_at, ˟​user_pinned_tweet_id, ˟​retweet_count, ˟​like_count, ˟​quote_count, ˟​user_tweet_count,
+## #   ˟​user_list_count, ˟​user_followers_count</code></pre>
 <div class="sourceCode" id="cb223"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">tweets</span><span class="op">)</span></code></pre></div>
-<pre><code>##  [1] "tweet_id"               "user_username"          "text"                   "lang"                  
-##  [5] "author_id"              "source"                 "possibly_sensitive"     "conversation_id"       
-##  [9] "created_at"             "user_url"               "user_location"          "user_protected"        
-## [13] "user_verified"          "user_name"              "user_profile_image_url" "user_description"      
-## [17] "user_created_at"        "user_pinned_tweet_id"   "retweet_count"          "like_count"            
-## [21] "quote_count"            "user_tweet_count"       "user_list_count"        "user_followers_count"  
-## [25] "user_following_count"   "sourcetweet_type"       "sourcetweet_id"         "sourcetweet_text"      
+<pre><code>##  [1] "tweet_id"               "user_username"          "text"                   "lang"                   "author_id"              "source"                 "possibly_sensitive"    
+##  [8] "conversation_id"        "created_at"             "user_url"               "user_location"          "user_protected"         "user_verified"          "user_name"             
+## [15] "user_profile_image_url" "user_description"       "user_created_at"        "user_pinned_tweet_id"   "retweet_count"          "like_count"             "quote_count"           
+## [22] "user_tweet_count"       "user_list_count"        "user_followers_count"   "user_following_count"   "sourcetweet_type"       "sourcetweet_id"         "sourcetweet_text"      
 ## [29] "sourcetweet_lang"       "sourcetweet_author_id"  "in_reply_to_user_id"</code></pre>
 <p>Each row here is a tweets produced by one of the news outlets detailed above over a five month period, January–May 2020. Note also that each tweets has a particular date. We can therefore use these to look at any over time changes.</p>
 <p>We won’t need all of these variables so let’s just keep those that are of interest to us:</p>
@@ -687,7 +681,7 @@ The Guardian
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Computational Text Analysis</strong>" was written by Christopher Barrie. It was last built on 2023-03-15.</p>
+    <p>"<strong>Computational Text Analysis</strong>" was written by Christopher Barrie. It was last built on 2023-03-21.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

@@ -125,11 +125,9 @@
 <pre><code>## New names:
 ## Rows: 5938 Columns: 12
 ## ── Column specification
-## ─────────────────────────────────────────────────────────────────────────────────────── Delimiter: "," chr
-## (8): festival_id, title, sub_title, artist, description, genre, age_category, ID dbl (4): ...1, year,
-## latitude, longitude
-## ℹ Use `spec()` to retrieve the full column specification for this data. ℹ Specify the column types or set
-## `show_col_types = FALSE` to quiet this message.
+## ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── Delimiter: "," chr
+## (8): festival_id, title, sub_title, artist, description, genre, age_category, ID dbl (4): ...1, year, latitude, longitude
+## ℹ Use `spec()` to retrieve the full column specification for this data. ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 ## • `` -&gt; `...1`</code></pre>
 <p>As ever, if you’re working on this document from your own computer (“locally”) you can download the Edinburgh Fringe data in the following way:</p>
 <div class="sourceCode" id="cb447"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb447-1"><a href="exercise-9-validation.html#cb447-1" tabindex="-1"></a>edbfdata <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://github.com/cjbarrie/CTA-ED/blob/main/data/wordfreq/edbookfestall.csv"</span></span></code></pre></div>
@@ -193,10 +191,8 @@
 <div class="sourceCode" id="cb453"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="fu"><a href="https://quanteda.io/reference/docvars.html">docvars</a></span><span class="op">(</span><span class="va">kaneko_dfm</span>, <span class="st">"Newspaper"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## 
-##       Asahi     Chugoku    Chunichi    Hokkaido      Kahoku    Mainichi      Nikkei Nishinippon      Sankei 
-##          38          24          47          46          18          26          13          27          14 
-##     Yomiuri 
-##          30</code></pre>
+##       Asahi     Chugoku    Chunichi    Hokkaido      Kahoku    Mainichi      Nikkei Nishinippon      Sankei     Yomiuri 
+##          38          24          47          46          18          26          13          27          14          30</code></pre>
 <div class="sourceCode" id="cb455"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## prepare the newspaper-level document-feature matrix</span>
 <span class="co"># compress the document-feature matrix at the newspaper level</span>
@@ -315,7 +311,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Computational Text Analysis</strong>" was written by Christopher Barrie. It was last built on 2023-03-15.</p>
+    <p>"<strong>Computational Text Analysis</strong>" was written by Christopher Barrie. It was last built on 2023-03-21.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

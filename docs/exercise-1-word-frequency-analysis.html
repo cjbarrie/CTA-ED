@@ -125,11 +125,9 @@
 <pre><code>## New names:
 ## Rows: 5938 Columns: 12
 ## ── Column specification
-## ─────────────────────────────────────────────────────────────────────────────────────── Delimiter: "," chr
-## (8): festival_id, title, sub_title, artist, description, genre, age_category, ID dbl (4): ...1, year,
-## latitude, longitude
-## ℹ Use `spec()` to retrieve the full column specification for this data. ℹ Specify the column types or set
-## `show_col_types = FALSE` to quiet this message.
+## ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── Delimiter: "," chr
+## (8): festival_id, title, sub_title, artist, description, genre, age_category, ID dbl (4): ...1, year, latitude, longitude
+## ℹ Use `spec()` to retrieve the full column specification for this data. ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 ## • `` -&gt; `...1`</code></pre>
 <p>If you’re working on this document from your own computer (“locally”) you can download the Edinburgh Fringe data in the following way:</p>
 <div class="sourceCode" id="cb176"><pre class="downlit sourceCode r">
@@ -142,25 +140,24 @@
 <p>Our next job is to cut down this dataset to size, including only those columns that we need. But first we can inspect it to see what the existing column names are, and how each variable is coded. To do this we can first call:</p>
 <div class="sourceCode" id="cb177"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">edbfdata</span><span class="op">)</span></code></pre></div>
-<pre><code>##  [1] "...1"         "festival_id"  "title"        "sub_title"    "artist"       "year"         "description" 
-##  [8] "genre"        "latitude"     "longitude"    "age_category" "ID"</code></pre>
+<pre><code>##  [1] "...1"         "festival_id"  "title"        "sub_title"    "artist"       "year"         "description"  "genre"        "latitude"     "longitude"    "age_category" "ID"</code></pre>
 <p>And then:</p>
 <div class="sourceCode" id="cb179"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">edbfdata</span><span class="op">)</span></code></pre></div>
 <pre><code>## Rows: 5,938
 ## Columns: 12
-## $ ...1         &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 2…
-## $ festival_id  &lt;chr&gt; "book", "book", "book", "book", "book", "book", "book", "book", "book", "book", "book", …
-## $ title        &lt;chr&gt; "Denise Mina", "Alex T Smith", "Challenging Expectations with Peter Cocks &amp; Simon Mason"…
-## $ sub_title    &lt;chr&gt; "HARD MEN AND CARDBOARD GANGSTERS", NA, NA, "WHAT CAUSED THE 2011 REVOLUTIONS?", NA, NA,…
-## $ artist       &lt;chr&gt; "Denise Mina", "Alex T Smith", "Peter Cocks", "Paul Mason", "Chris d'Lacey", "Kristina S…
-## $ year         &lt;dbl&gt; 2012, 2012, 2012, 2012, 2012, 2012, 2012, 2012, 2012, 2012, 2012, 2012, 2012, 2012, 2012…
-## $ description  &lt;chr&gt; "&lt;p&gt;\n\tAs the grande dame of Scottish crime fiction, Denise Mina places a deep understa…
-## $ genre        &lt;chr&gt; "Literature", "Children", "Children", "Literature", "Children", "Children", "Children", …
-## $ latitude     &lt;dbl&gt; 55.9519, 55.9519, 55.9519, 55.9519, 55.9519, 55.9519, 55.9519, 55.9519, 55.9519, 55.9519…
-## $ longitude    &lt;dbl&gt; -3.206913, -3.206913, -3.206913, -3.206913, -3.206913, -3.206913, -3.206913, -3.206913, …
-## $ age_category &lt;chr&gt; NA, "AGE 4 - 7", "AGE 11 - 14", NA, "AGE 10 - 14", "AGE 6 - 10", "AGE 6 - 10", NA, NA, N…
-## $ ID           &lt;chr&gt; "Denise Mina2012", "Alex T Smith2012", "Peter Cocks2012", "Paul Mason2012", "Chris d'Lac…</code></pre>
+## $ ...1         &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45,…
+## $ festival_id  &lt;chr&gt; "book", "book", "book", "book", "book", "book", "book", "book", "book", "book", "book", "book", "book", "book", "book", "book", "book", "book", "book", "book", "book", "b…
+## $ title        &lt;chr&gt; "Denise Mina", "Alex T Smith", "Challenging Expectations with Peter Cocks &amp; Simon Mason", "Ian Black &amp; Paul Mason", "The Last Dragon Chronicles with Chris d'Lacey", "Sir …
+## $ sub_title    &lt;chr&gt; "HARD MEN AND CARDBOARD GANGSTERS", NA, NA, "WHAT CAUSED THE 2011 REVOLUTIONS?", NA, NA, NA, "MAKING BROADCAST HISTORY", "PRESENTING LIFE WRITING", "ARE THERE ANY ALTERNA…
+## $ artist       &lt;chr&gt; "Denise Mina", "Alex T Smith", "Peter Cocks", "Paul Mason", "Chris d'Lacey", "Kristina Stephenson", "Annie Dalton", "Mike Shaw", "Alison Baverstock", "Ferdinand Mount", "…
+## $ year         &lt;dbl&gt; 2012, 2012, 2012, 2012, 2012, 2012, 2012, 2012, 2012, 2012, 2012, 2012, 2012, 2012, 2012, 2012, 2012, 2012, 2012, 2012, 2012, 2012, 2012, 2012, 2012, 2012, 2012, 2012, 20…
+## $ description  &lt;chr&gt; "&lt;p&gt;\n\tAs the grande dame of Scottish crime fiction, Denise Mina places a deep understanding of the social fabric of Glasgow at the heart of her blistering Alex Morrow s…
+## $ genre        &lt;chr&gt; "Literature", "Children", "Children", "Literature", "Children", "Children", "Children", "Literature", "Literature", "Literature", "Literature", "Children", "Literature", …
+## $ latitude     &lt;dbl&gt; 55.9519, 55.9519, 55.9519, 55.9519, 55.9519, 55.9519, 55.9519, 55.9519, 55.9519, 55.9519, 55.9519, 55.9519, 55.9519, 55.9519, 55.9519, 55.9519, 55.9519, 55.9519, 55.9519,…
+## $ longitude    &lt;dbl&gt; -3.206913, -3.206913, -3.206913, -3.206913, -3.206913, -3.206913, -3.206913, -3.206913, -3.206913, -3.206913, -3.206913, -3.206913, -3.206913, -3.206913, -3.206913, -3.20…
+## $ age_category &lt;chr&gt; NA, "AGE 4 - 7", "AGE 11 - 14", NA, "AGE 10 - 14", "AGE 6 - 10", "AGE 6 - 10", NA, NA, NA, NA, NA, NA, "AGE 14 - 16", "AGE 7 - 10", "AGE 8 - 13", "AGE 14 - 16", NA, NA, "…
+## $ ID           &lt;chr&gt; "Denise Mina2012", "Alex T Smith2012", "Peter Cocks2012", "Paul Mason2012", "Chris d'Lacey2012", "Kristina Stephenson2012", "Annie Dalton2012", "Mike Shaw2012", "Alison B…</code></pre>
 <p>We can see that the description of each event is included in a column named “description” and the year of that event as “year.” So for now we’ll just keep these two. Remember: we’re interested in this tutorial firstly in the representation of gender and feminism in forms of cultural production given a platform at the Edinburgh International Book Festival. Given this, we are first and foremost interested in the reported content of each artist’s event.</p>
 <p>We use pipe <code>%&gt;%</code> functions in the tidyverse package to quickly and efficiently select the columns we want from the edbfdata data.frame object. We pass this data to a new data.frame object, which we call “evdes.”</p>
 <div class="sourceCode" id="cb181"><pre class="downlit sourceCode r">
@@ -170,14 +167,14 @@
 
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">evdes</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 2
-##   description                                                                                              year
-##   &lt;chr&gt;                                                                                                   &lt;dbl&gt;
-## 1 "&lt;p&gt;\n\tAs the grande dame of Scottish crime fiction, Denise Mina places a deep understanding of the s…  2012
-## 2 "&lt;p&gt;\n\tWhen Alex T Smith was a little boy he wanted to be a chef, a rabbit or a children&amp;rsquo;s book…  2012
-## 3 "&lt;p&gt;\n\tPeter Cocks is known for his fantasy series Triskellion written with Mark Billingham; Simon Ma…  2012
-## 4 "&lt;p&gt;\n\tTwo books by influential journalists are among the first to look at the factors that caused a …  2012
-## 5 "&lt;p&gt;\n\tChris d&amp;rsquo;Lacey tells you all about The Fire Ascending, the next exciting instalment in hi…  2012
-## 6 "&lt;p&gt;\n\tIt&amp;rsquo;s time for the honourable, feisty and courageous young hero, Sir Charlie Stinky Socks…  2012</code></pre>
+##   description                                                                                                                                                                                year
+##   &lt;chr&gt;                                                                                                                                                                                     &lt;dbl&gt;
+## 1 "&lt;p&gt;\n\tAs the grande dame of Scottish crime fiction, Denise Mina places a deep understanding of the social fabric of Glasgow at the heart of her blistering Alex Morrow series. In the …  2012
+## 2 "&lt;p&gt;\n\tWhen Alex T Smith was a little boy he wanted to be a chef, a rabbit or a children&amp;rsquo;s book illustrator. Guess which path he chose? Let Alex introduce you to Ella, the ladyb…  2012
+## 3 "&lt;p&gt;\n\tPeter Cocks is known for his fantasy series Triskellion written with Mark Billingham; Simon Mason is the creator of The Quigleys series about an eccentric family, but both tack…  2012
+## 4 "&lt;p&gt;\n\tTwo books by influential journalists are among the first to look at the factors that caused a wave of protests across the world in 2011. BBC Newsnight Economics Editor Paul Mas…  2012
+## 5 "&lt;p&gt;\n\tChris d&amp;rsquo;Lacey tells you all about The Fire Ascending, the next exciting instalment in his breathtaking The Last Dragon Chronicles series. Get to know more about hero Davi…  2012
+## 6 "&lt;p&gt;\n\tIt&amp;rsquo;s time for the honourable, feisty and courageous young hero, Sir Charlie Stinky Socks to return to Edinburgh and this time to discover the secret of the pitiful sobbin…  2012</code></pre>
 <p>And let’s take a quick look at how many events there were over time at the festival. To do this, we first calculate the number of individual events (row observations) by year (column variable).</p>
 <div class="sourceCode" id="cb183"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">evtsperyr</span> <span class="op">&lt;-</span> <span class="va">evdes</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
@@ -496,36 +493,23 @@
 <span class="va">names2</span> <span class="op">&lt;-</span> <span class="va">gendes</span><span class="op">$</span><span class="va">name</span>
 <span class="va">diffs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/setops.html">setdiff</a></span><span class="op">(</span><span class="va">names2</span>, <span class="va">names1</span><span class="op">)</span>
 <span class="va">diffs</span></code></pre></div>
-<pre><code>##   [1] "L"             "Kapka"         "Menzies"       "Ros"           "G"             "Pankaj"       
-##   [7] "Uzodinma"      "Rodge"         "A"             "Zoë"           "László"        "Sadakat"      
-##  [13] "Michèle"       "Maajid"        "Yrsa"          "Ahdaf"         "Noo"           "Dilip"        
-##  [19] "Sjón"          "François"      "J"             "K"             "Aonghas"       "S"            
-##  [25] "Bashabi"       "Kjartan"       "Romesh"        "T"             "Chibundu"      "Yiyun"        
-##  [31] "Fiammetta"     "W"             "Sindiwe"       "Cat"           "Jez"           "Fi"           
-##  [37] "Sunder"        "Saci"          "C.J"           "Halik"         "Niccolò"       "Sifiso"       
-##  [43] "C.S."          "DBC"           "Phyllida"      "R"             "Struan"        "C.J."         
-##  [49] "SF"            "Nadifa"        "Jérome"        "D"             "Xiaolu"        "Ramita"       
-##  [55] "John-Paul"     "Ha-Joon"       "Niq"           "Andrés"        "Sasenarine"    "Frane"        
-##  [61] "Alev"          "Gruff"         "Line"          "Zakes"         "Pip"           "Witi"         
-##  [67] "Halsted"       "Ziauddin"      "J."            "Åsne"          "Alecos"        "."            
-##  [73] "Julián"        "Sunjeev"       "A.C.S"         "Etgar"         "Hyeonseo"      "Jaume"        
-##  [79] "A."            "Jesús"         "Jón"           "Helle"         "M"             "Jussi"        
-##  [85] "Aarathi"       "Shappi"        "Macastory"     "Odafe"         "Chimwemwe"     "Hrefna"       
-##  [91] "Bidisha"       "Packie"        "Tahmima"       "Sara-Jane"     "Tahar"         "Lemn"         
-##  [97] "Neu!"          "Jürgen"        "Barroux"       "Jan-Philipp"   "Non"           "Metaphrog"    
-## [103] "Wilko"         "Álvaro"        "Stef"          "Erlend"        "Grinagog"      "Norma-Ann"    
-## [109] "Fuchsia"       "Giddy"         "Joudie"        "Sav"           "Liu"           "Jayne-Anne"   
-## [115] "Wioletta"      "Sinéad"        "Katherena"     "Siân"          "Dervla"        "Teju"         
-## [121] "Iosi"          "Daša"          "Cosey"         "Bettany"       "Thordis"       "Uršuľa"       
-## [127] "Limmy"         "Meik"          "Zindzi"        "Dougie"        "Ngugi"         "Inua"         
-## [133] "Ottessa"       "Bjørn"         "Novuyo"        "Rhidian"       "Sibéal"        "Hsiao-Hung"   
-## [139] "Audur"         "Sadek"         "Özlem"         "Zaffar"        "Jean-Pierre"   "Lalage"       
-## [145] "Yaba"          "H"             "DJ"            "Sigitas"       "Clémentine"    "Celeste-Marie"
-## [151] "Marawa"        "Ghillie"       "Ahdam"         "Suketu"        "Goenawan"      "Niviaq"       
-## [157] "Steinunn"      "Shoo"          "Ibram"         "Venki"         "DeRay"         "Diarmaid"     
-## [163] "Serhii"        "Harkaitz"      "Adélaïde"      "Agustín"       "Jérôme"        "Siobhán"      
-## [169] "Nesrine"       "Jokha"         "Gulnar"        "Uxue"          "Taqralik"      "Tayi"         
-## [175] "E"             "Dapo"          "Dunja"         "Maaza"         "Wayétu"        "Shokoofeh"</code></pre>
+<pre><code>##   [1] "L"             "Kapka"         "Menzies"       "Ros"           "G"             "Pankaj"        "Uzodinma"      "Rodge"         "A"             "Zoë"           "László"       
+##  [12] "Sadakat"       "Michèle"       "Maajid"        "Yrsa"          "Ahdaf"         "Noo"           "Dilip"         "Sjón"          "François"      "J"             "K"            
+##  [23] "Aonghas"       "S"             "Bashabi"       "Kjartan"       "Romesh"        "T"             "Chibundu"      "Yiyun"         "Fiammetta"     "W"             "Sindiwe"      
+##  [34] "Cat"           "Jez"           "Fi"            "Sunder"        "Saci"          "C.J"           "Halik"         "Niccolò"       "Sifiso"        "C.S."          "DBC"          
+##  [45] "Phyllida"      "R"             "Struan"        "C.J."          "SF"            "Nadifa"        "Jérome"        "D"             "Xiaolu"        "Ramita"        "John-Paul"    
+##  [56] "Ha-Joon"       "Niq"           "Andrés"        "Sasenarine"    "Frane"         "Alev"          "Gruff"         "Line"          "Zakes"         "Pip"           "Witi"         
+##  [67] "Halsted"       "Ziauddin"      "J."            "Åsne"          "Alecos"        "."             "Julián"        "Sunjeev"       "A.C.S"         "Etgar"         "Hyeonseo"     
+##  [78] "Jaume"         "A."            "Jesús"         "Jón"           "Helle"         "M"             "Jussi"         "Aarathi"       "Shappi"        "Macastory"     "Odafe"        
+##  [89] "Chimwemwe"     "Hrefna"        "Bidisha"       "Packie"        "Tahmima"       "Sara-Jane"     "Tahar"         "Lemn"          "Neu!"          "Jürgen"        "Barroux"      
+## [100] "Jan-Philipp"   "Non"           "Metaphrog"     "Wilko"         "Álvaro"        "Stef"          "Erlend"        "Grinagog"      "Norma-Ann"     "Fuchsia"       "Giddy"        
+## [111] "Joudie"        "Sav"           "Liu"           "Jayne-Anne"    "Wioletta"      "Sinéad"        "Katherena"     "Siân"          "Dervla"        "Teju"          "Iosi"         
+## [122] "Daša"          "Cosey"         "Bettany"       "Thordis"       "Uršuľa"        "Limmy"         "Meik"          "Zindzi"        "Dougie"        "Ngugi"         "Inua"         
+## [133] "Ottessa"       "Bjørn"         "Novuyo"        "Rhidian"       "Sibéal"        "Hsiao-Hung"    "Audur"         "Sadek"         "Özlem"         "Zaffar"        "Jean-Pierre"  
+## [144] "Lalage"        "Yaba"          "H"             "DJ"            "Sigitas"       "Clémentine"    "Celeste-Marie" "Marawa"        "Ghillie"       "Ahdam"         "Suketu"       
+## [155] "Goenawan"      "Niviaq"        "Steinunn"      "Shoo"          "Ibram"         "Venki"         "DeRay"         "Diarmaid"      "Serhii"        "Harkaitz"      "Adélaïde"     
+## [166] "Agustín"       "Jérôme"        "Siobhán"       "Nesrine"       "Jokha"         "Gulnar"        "Uxue"          "Taqralik"      "Tayi"          "E"             "Dapo"         
+## [177] "Dunja"         "Maaza"         "Wayétu"        "Shokoofeh"</code></pre>
 <p>Do we notice anything about these names? What does this tell us about the potential biases of using such sources as US baby names data as a foundation for gender prediction? What are alternative ways we might go about this task?</p>
 </div>
 <div id="exercises" class="section level2" number="17.11">
@@ -580,7 +564,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Computational Text Analysis</strong>" was written by Christopher Barrie. It was last built on 2023-03-15.</p>
+    <p>"<strong>Computational Text Analysis</strong>" was written by Christopher Barrie. It was last built on 2023-03-21.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

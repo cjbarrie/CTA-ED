@@ -452,8 +452,7 @@
 <span class="va">documents</span> <span class="op">&lt;-</span> <span class="va">corp</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">30000</span>,<span class="fl">1000</span><span class="op">)</span><span class="op">]</span>
 <span class="co"># take a look at the document names</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">documents</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code>##  [1] "text26803" "text25102" "text28867" "text2986"  "text1842"  "text25718" "text3371"  "text29925"
-##  [9] "text29940" "text29710"</code></pre>
+<pre><code>##  [1] "text26803" "text25102" "text28867" "text2986"  "text1842"  "text25718" "text3371"  "text29925" "text29940" "text29710"</code></pre>
 <p>And now we are ready to preprocess in different ways. Here, we are including n-grams so we are preprocessing the text in 128 different ways. This takes about ten minutes to run on a machine with 8GB RAM.</p>
 <div class="sourceCode" id="cb359"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">preprocessed_documents</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/preText/man/factorial_preprocessing.html">factorial_preprocessing</a></span><span class="op">(</span>
@@ -520,7 +519,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Computational Text Analysis</strong>" was written by Christopher Barrie. It was last built on 2023-03-15.</p>
+    <p>"<strong>Computational Text Analysis</strong>" was written by Christopher Barrie. It was last built on 2023-03-21.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
