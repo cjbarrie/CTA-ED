@@ -7,7 +7,7 @@
 <title>Chapter 5 Week 3 Demo | Computational Text Analysis</title>
 <meta name="author" content="Christopher Barrie">
 <meta name="description" content="In this section, we’ll have a quick overview of how we’re processing text data when conducting basic sentiment analyses.  5.1 Setup We’ll first load the packages we need. library(stringi)...">
-<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta name="generator" content="bookdown 0.33 with bs4_book()">
 <meta property="og:title" content="Chapter 5 Week 3 Demo | Computational Text Analysis">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://cjbarrie.github.io/CTA-ED/week-3-demo.html">
@@ -17,12 +17,37 @@
 <meta name="twitter:title" content="Chapter 5 Week 3 Demo | Computational Text Analysis">
 <meta name="twitter:description" content="In this section, we’ll have a quick overview of how we’re processing text data when conducting basic sentiment analyses.  5.1 Setup We’ll first load the packages we need. library(stringi)...">
 <meta name="twitter:image" content="https://cjbarrie.github.io/CTA-ED/coverb.png">
-<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.2/transition.js"></script><script src="libs/bs3compat-0.4.2/tabs.js"></script><script src="libs/bs3compat-0.4.2/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 <link href="libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
-<script src="libs/pagedtable-1.1/js/pagedtable.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS -->
+<script src="libs/pagedtable-1.1/js/pagedtable.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -90,12 +115,12 @@
 <span class="header-section-number">5.1</span> Setup<a class="anchor" aria-label="anchor" href="#setup-1"><i class="fas fa-link"></i></a>
 </h2>
 <p>We’ll first load the packages we need.</p>
-<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://stringi.gagolewski.com/">stringi</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/juliasilge/tidytext">tidytext</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://scales.r-lib.org">scales</a></span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://stringi.gagolewski.com/">stringi</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/juliasilge/tidytext">tidytext</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://scales.r-lib.org">scales</a></span><span class="op">)</span></span></code></pre></div>
 </div>
 <div id="happy-words" class="section level2" number="5.2">
 <h2>
@@ -104,42 +129,42 @@
 <p>As we discussed in the lectures, we might find in our text of the class’s collective thoughts that there was an increase in “happy” words over time.</p>
 <p>I have simulated a dataset of text split by weeks, students, and words plus whether or not the word is the word “happy” where <code>0</code> means it is not the word “happy” and <code>1</code> means it is.</p>
 <p>We have three datasets: one with a constant number of “happy” words; one with an increasing number of “happy” words; and one with a decreasing number of “happy” words. These are called: <code>happyn</code>, <code>happyu</code>, and <code>happyd</code> respectively.</p>
-<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">happyn</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">happyn</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## # A tibble: 6 × 4
 ## # Groups:   week, student [1]
 ##    week student word  happy
 ##   &lt;int&gt;   &lt;int&gt; &lt;chr&gt; &lt;int&gt;
-## 1     1      21 lorem     0
-## 2     1      21 ipsum     0
-## 3     1      21 dolor     0
-## 4     1      21 sit       0
-## 5     1      21 amet      0
-## 6     1      21 mus       0</code></pre>
-<div class="sourceCode" id="cb63"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">happyu</span><span class="op">)</span></code></pre></div>
+## 1     1      18 lorem     0
+## 2     1      18 ipsum     0
+## 3     1      18 dolor     0
+## 4     1      18 sit       0
+## 5     1      18 amet      0
+## 6     1      18 hac       0</code></pre>
+<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">happyu</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## # A tibble: 6 × 4
 ## # Groups:   week, student [1]
 ##    week student word  happy
 ##   &lt;int&gt;   &lt;int&gt; &lt;chr&gt; &lt;int&gt;
-## 1     1      21 lorem     0
-## 2     1      21 ipsum     0
-## 3     1      21 dolor     0
-## 4     1      21 sit       0
-## 5     1      21 amet      0
-## 6     1      21 mus       0</code></pre>
-<div class="sourceCode" id="cb65"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">happyd</span><span class="op">)</span></code></pre></div>
+## 1     1      18 lorem     0
+## 2     1      18 ipsum     0
+## 3     1      18 dolor     0
+## 4     1      18 sit       0
+## 5     1      18 amet      0
+## 6     1      18 hac       0</code></pre>
+<div class="sourceCode" id="cb62"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">happyd</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## # A tibble: 6 × 4
 ## # Groups:   week, student [1]
 ##    week student word  happy
 ##   &lt;int&gt;   &lt;int&gt; &lt;chr&gt; &lt;int&gt;
-## 1     1      21 lorem     0
-## 2     1      21 ipsum     0
-## 3     1      21 dolor     0
-## 4     1      21 sit       0
-## 5     1      21 amet      0
-## 6     1      21 mus       0</code></pre>
+## 1     1      18 lorem     0
+## 2     1      18 ipsum     0
+## 3     1      18 dolor     0
+## 4     1      18 sit       0
+## 5     1      18 amet      0
+## 6     1      18 hac       0</code></pre>
 <p>We can then see the trend in “happy” words over by week and student.</p>
 <p>First, the dataset where we have a constant number of happy words over time.</p>
 <pre><code>## Warning: Returning more (or less) than 1 row per `summarise()` group was deprecated in dplyr 1.1.0.
@@ -176,54 +201,54 @@
 <p>I join these data with three other datasets: <code>happylipsumn</code>, <code>happylipsumu</code>, and <code>happylipsumd</code>. These are datasets of random text, with the <em>same</em> number of happy words.</p>
 <p>The first of these also has the <em>same</em> number of total words each week. The second two, however, have <em>differing</em> number of <em>total</em> words each week: <code>happylipsumu</code> has an increasing number of total words each week; <code>happylipsumd</code> has a decreasing number of total words each week.</p>
 <p>Again, as you see below, we’re splitting by week, student, word, and whether or not it is a “happy” word.</p>
-<div class="sourceCode" id="cb73"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">happylipsumn</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb70"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">happylipsumn</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## # A tibble: 6 × 4
 ## # Groups:   week, student [1]
 ##    week student word  happy
 ##   &lt;int&gt;   &lt;int&gt; &lt;chr&gt; &lt;int&gt;
-## 1     1      21 lorem     0
-## 2     1      21 ipsum     0
-## 3     1      21 dolor     0
-## 4     1      21 sit       0
-## 5     1      21 amet      0
-## 6     1      21 ac        0</code></pre>
-<div class="sourceCode" id="cb75"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">happylipsumu</span><span class="op">)</span></code></pre></div>
+## 1     1      18 lorem     0
+## 2     1      18 ipsum     0
+## 3     1      18 dolor     0
+## 4     1      18 sit       0
+## 5     1      18 amet      0
+## 6     1      18 eget      0</code></pre>
+<div class="sourceCode" id="cb72"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">happylipsumu</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## # A tibble: 6 × 4
+## # Groups:   week, student [1]
+##    week student word   happy
+##   &lt;int&gt;   &lt;int&gt; &lt;chr&gt;  &lt;int&gt;
+## 1     1      18 lorem      0
+## 2     1      18 ipsum      0
+## 3     1      18 dolor      0
+## 4     1      18 sit        0
+## 5     1      18 amet       0
+## 6     1      18 mauris     0</code></pre>
+<div class="sourceCode" id="cb74"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">happylipsumd</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## # A tibble: 6 × 4
 ## # Groups:   week, student [1]
 ##    week student word  happy
 ##   &lt;int&gt;   &lt;int&gt; &lt;chr&gt; &lt;int&gt;
-## 1     1      21 lorem     0
-## 2     1      21 ipsum     0
-## 3     1      21 dolor     0
-## 4     1      21 sit       0
-## 5     1      21 amet      0
-## 6     1      21 nec       0</code></pre>
-<div class="sourceCode" id="cb77"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">happylipsumd</span><span class="op">)</span></code></pre></div>
-<pre><code>## # A tibble: 6 × 4
-## # Groups:   week, student [1]
-##    week student word  happy
-##   &lt;int&gt;   &lt;int&gt; &lt;chr&gt; &lt;int&gt;
-## 1     1      21 lorem     0
-## 2     1      21 ipsum     0
-## 3     1      21 dolor     0
-## 4     1      21 sit       0
-## 5     1      21 amet      0
-## 6     1      21 hac       0</code></pre>
+## 1     1      18 lorem     0
+## 2     1      18 ipsum     0
+## 3     1      18 dolor     0
+## 4     1      18 sit       0
+## 5     1      18 amet      0
+## 6     1      18 eros      0</code></pre>
 <p>Then if we plot the number of happy words <em>divided</em> by the number of total words each week for each student in each of these datasets, we get the below.</p>
 <p>To get this normalized sentiment score–or “happy” score–we need to create a variable (column) in our dataframe that is the sum of happy words divided by the total number of words in the dataframe.</p>
 <p>We can do this in the following way.</p>
-<div class="sourceCode" id="cb79"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">happylipsumn</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">week</span>, <span class="va">student</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>index_total <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">happy</span><span class="op">==</span><span class="fl">1</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>sum_hap <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">happy</span><span class="op">)</span>,
-              index_total <span class="op">=</span> <span class="va">index_total</span>,
-              prop_hap <span class="op">=</span> <span class="va">sum_hap</span><span class="op">/</span><span class="va">index_total</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb76"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">happylipsumn</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">week</span>, <span class="va">student</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>index_total <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">happy</span><span class="op">==</span><span class="fl">1</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>sum_hap <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">happy</span><span class="op">)</span>,</span>
+<span>              index_total <span class="op">=</span> <span class="va">index_total</span>,</span>
+<span>              prop_hap <span class="op">=</span> <span class="va">sum_hap</span><span class="op">/</span><span class="va">index_total</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## Warning: Returning more (or less) than 1 row per `summarise()` group was deprecated in dplyr 1.1.0.
 ## ℹ Please use `reframe()` instead.
 ## ℹ When switching from `summarise()` to `reframe()`, remember that `reframe()` always returns an ungrouped data frame and adjust accordingly.
@@ -233,16 +258,16 @@
 ## # Groups:   week, student [300]
 ##     week student sum_hap index_total prop_hap
 ##    &lt;int&gt;   &lt;int&gt;   &lt;int&gt;       &lt;int&gt;    &lt;dbl&gt;
-##  1     1       1     563        3522    0.160
-##  2     1       2     796        3722    0.214
-##  3     1       3     530        2865    0.185
-##  4     1       4     723        3815    0.190
-##  5     1       5    1377        6396    0.215
-##  6     1       6     870        4149    0.210
-##  7     1       7     737        3472    0.212
-##  8     1       8     963        3990    0.241
-##  9     1       9    1138        5894    0.193
-## 10     1      10     842        4104    0.205
+##  1     1       1     954        4788    0.199
+##  2     1       2     576        3398    0.170
+##  3     1       3     847        3361    0.252
+##  4     1       4     859        4156    0.207
+##  5     1       5    1008        5860    0.172
+##  6     1       6     816        4307    0.189
+##  7     1       7    1047        4575    0.229
+##  8     1       8     714        3659    0.195
+##  9     1       9     892        4112    0.217
+## 10     1      10     914        4540    0.201
 ## # … with 290 more rows</code></pre>
 <p>Then if we repeat this for each of our datasets and plot we see the following.</p>
 <div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-42-1.png" width="672"></div>
@@ -293,7 +318,7 @@
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

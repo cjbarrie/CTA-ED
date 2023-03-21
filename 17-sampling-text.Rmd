@@ -113,6 +113,7 @@ In this case, our seed video is a video by Jordan Peterson predicting the death 
 ```{r, eval = F}
 library(tidyverse)
 library(readxl)
+devtools::install_github("soodoku/tuber") # need to install development version is there is problem with CRAN versions of the package functions
 library(tuber)
 
 yt_oauth("431484860847-1THISISNOTMYREALKEY7jlembpo3off4hhor.apps.googleusercontent.com","2niTHISISMADEUPTOO-l9NPUS90fp")
