@@ -132,16 +132,16 @@
 <span class="header-section-number">23.2.1</span> Replication datasets<a class="anchor" aria-label="anchor" href="#replication-datasets"><i class="fas fa-link"></i></a>
 </h3>
 <p>There are large numbers of online corpora and replication datasets available to access freely online. We will first access such an example using the <code>dataverse</code> package in R, which allows us to download directly from replication data repositories stored at the <a href="https://dataverse.harvard.edu/">Harvard Dataverse</a>.</p>
-<div class="sourceCode" id="cb393"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb394"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://iqss.github.io/dataverse-client-r/">dataverse</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span></code></pre></div>
 <p>Let’s take an example dataset in which we might be interested: the UK parliamentary speech data from</p>
 <p>We first need to set an en environment variable as so.</p>
-<div class="sourceCode" id="cb394"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb395"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Sys.setenv.html">Sys.setenv</a></span><span class="op">(</span><span class="st">"DATAVERSE_SERVER"</span> <span class="op">=</span> <span class="st">"dataverse.harvard.edu"</span><span class="op">)</span></span></code></pre></div>
 <p>We can then search out the files that we want by specifying the DOI of the publication data in question. We can find this as a series of numbers and letters that come after “<a href="https://doi.org/" class="uri">https://doi.org/</a>” as shown below.</p>
 <div class="inline-figure"><img src="data/sampling/doi.png" style="width:100.0%"></div>
-<div class="sourceCode" id="cb395"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb396"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dataset</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://iqss.github.io/dataverse-client-r/reference/get_dataset.html">get_dataset</a></span><span class="op">(</span><span class="st">"10.7910/DVN/QDTLYV"</span><span class="op">)</span></span>
 <span><span class="va">dataset</span><span class="op">$</span><span class="va">files</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"filename"</span>, <span class="st">"contentType"</span><span class="op">)</span><span class="op">]</span></span></code></pre></div>
 <pre><code>##                  filename                                                             contentType
@@ -164,29 +164,40 @@
 ## 17            README.docx application/vnd.openxmlformats-officedocument.wordprocessingml.document
 ## 18            uk_data.csv                                                                text/csv</code></pre>
 <p>We choose to get the UK data from these files, which is listed under “UK_data.csv.” We can then download this directly in the following way (this will take some time as the file size is &gt;1GB).</p>
-<div class="sourceCode" id="cb397"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb398"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://iqss.github.io/dataverse-client-r/reference/get_dataframe.html">get_dataframe_by_name</a></span><span class="op">(</span></span>
 <span>  <span class="st">"uk_data.csv"</span>,</span>
 <span>  <span class="st">"10.7910/DVN/QDTLYV"</span>,</span>
 <span>  .f <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.delim</a></span><span class="op">(</span><span class="va">x</span>, sep <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>Of course, we could also download these data manually, by clicking the buttons at the relevant <a href="https://dataverse.harvard.edu/">Harvard Dataverse</a>—but it is sometimes useful to build in every step of your data collection to your code documentation, making the analysis entirely programatically reproducible from start to finish.</p>
 <p>Note as well that we don’t have to search out specific datasets that we already know about. We can also use the <code>dataverse</code> package to search datasets or dataverses. We can do this very simply in the following way.</p>
-<div class="sourceCode" id="cb398"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb399"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">search_results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://iqss.github.io/dataverse-client-r/reference/dataverse_search.html">dataverse_search</a></span><span class="op">(</span><span class="st">"corpus politics text"</span>, type <span class="op">=</span> <span class="st">"dataset"</span>, per_page <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code></pre></div>
-<pre><code>## 10 of 42004 results retrieved</code></pre>
-<div class="sourceCode" id="cb400"><pre class="downlit sourceCode r">
+<pre><code>## 10 of 42025 results retrieved</code></pre>
+<div class="sourceCode" id="cb401"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">search_results</span><span class="op">[</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span></span></code></pre></div>
-<pre><code>##                                                                                                  name    type                                   url
-## 1                             "A Deeper Look at Interstate War Data: Interstate War Data Version 1.1" dataset    https://doi.org/10.7910/DVN/E2CEP5
-## 2                                                            "Birth Legacies, State Making, and War." dataset    https://doi.org/10.7910/DVN/EP7DXB
-## 3                                "CBS Morning News" Shopping Habits and Lifestyles Poll, January 1989 dataset https://doi.org/10.3886/ICPSR09230.v1
-## 4                        "Common Sense" for Ontario: Defining the New Government's Mandate: June 1995 dataset    https://doi.org/10.5683/SP2/OKNWMZ
-## 5                                          "Cuadro histórico del General Santa Anna. 2a. parte," 1857 dataset    https://doi.org/10.18738/T8/Z0JH2C
-## 6         "Don't Know" Means "Don't Know": DK Responses and the Public's Level of Political Knowledge dataset    https://doi.org/10.7910/DVN/G9NOQO
-## 7                   "El déspota Santa-Anna ante los veteranos de la Independencia," 1844 Diciembre 09 dataset    https://doi.org/10.18738/T8/U71QSD
-## 8                    "European mood" bi-annual data, EU27 member states (1973-2014), Replication Data dataset    https://doi.org/10.7910/DVN/V42M9J
-## 9  "Government Partisanship and Electoral Accountability" Political Research Quarterly 72(3): 727-743 dataset    https://doi.org/10.7910/DVN/5OG9VV
-## 10                      "I Didn't Lie, I Misspoke": Voters' Responses to Questionable Campaign Claims dataset    https://doi.org/10.7910/DVN/GE3E8R</code></pre>
+<pre><code>##                                                                                                  name    type
+## 1                             "A Deeper Look at Interstate War Data: Interstate War Data Version 1.1" dataset
+## 2                                                            "Birth Legacies, State Making, and War." dataset
+## 3                                "CBS Morning News" Shopping Habits and Lifestyles Poll, January 1989 dataset
+## 4                        "Common Sense" for Ontario: Defining the New Government's Mandate: June 1995 dataset
+## 5                                          "Cuadro histórico del General Santa Anna. 2a. parte," 1857 dataset
+## 6         "Don't Know" Means "Don't Know": DK Responses and the Public's Level of Political Knowledge dataset
+## 7                   "El déspota Santa-Anna ante los veteranos de la Independencia," 1844 Diciembre 09 dataset
+## 8                    "European mood" bi-annual data, EU27 member states (1973-2014), Replication Data dataset
+## 9  "Government Partisanship and Electoral Accountability" Political Research Quarterly 72(3): 727-743 dataset
+## 10                      "I Didn't Lie, I Misspoke": Voters' Responses to Questionable Campaign Claims dataset
+##                                      url
+## 1     https://doi.org/10.7910/DVN/E2CEP5
+## 2     https://doi.org/10.7910/DVN/EP7DXB
+## 3  https://doi.org/10.3886/ICPSR09230.v1
+## 4     https://doi.org/10.5683/SP2/OKNWMZ
+## 5     https://doi.org/10.18738/T8/Z0JH2C
+## 6     https://doi.org/10.7910/DVN/G9NOQO
+## 7     https://doi.org/10.18738/T8/U71QSD
+## 8     https://doi.org/10.7910/DVN/V42M9J
+## 9     https://doi.org/10.7910/DVN/5OG9VV
+## 10    https://doi.org/10.7910/DVN/GE3E8R</code></pre>
 </div>
 <div id="curated-corpora" class="section level3" number="23.2.2">
 <h3>
@@ -247,7 +258,7 @@
 </h2>
 <p>In the paper by <span class="citation">(<a href="#ref-haroon2022"><strong>haroon2022?</strong></a>)</span>, the authors analyze the recommended videos for a particular used based on their watch history and on a seed video. In the below, we won’t replicate the first step but we will look at the recommended videos that appear based on a seed video.</p>
 <p>In this case, our seed video is a video by Jordan Peterson predicting the death of mainstream media. This is fairly “alternative” content and is actively taking a stance against mainstream media. So does this mean YouTube will learn to recommend us <em>away</em> from mainstream content?</p>
-<div class="sourceCode" id="cb402"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb403"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readxl.tidyverse.org">readxl</a></span><span class="op">)</span></span>
 <span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"soodoku/tuber"</span><span class="op">)</span> <span class="co"># need to install development version is there is problem with CRAN versions of the package functions</span></span>
@@ -296,17 +307,17 @@
 <p>To practice this skill, we will use a series of webpages on the Internet Archive that host material collected at the Arab Spring protests in Egypt in 2011. The original website can be seen <a href="https://www.tahrirdocuments.org/">here</a> and below.</p>
 <div class="inline-figure"><img src="data/sampling/tahrir_page.png" style="width:100.0%"></div>
 <p>Before proceeding, we’ll load the remaining packages we will need for this tutorial.</p>
-<div class="sourceCode" id="cb403"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb404"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span> <span class="co"># loads dplyr, ggplot2, and others</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jrnold/ggthemes">ggthemes</a></span><span class="op">)</span> <span class="co"># includes a set of themes to make your visualizations look nice!</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readr.tidyverse.org">readr</a></span><span class="op">)</span> <span class="co"># more informative and easy way to import data</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://stringr.tidyverse.org">stringr</a></span><span class="op">)</span> <span class="co"># to handle text elements</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rvest.tidyverse.org/">rvest</a></span><span class="op">)</span> <span class="co">#for scraping</span></span></code></pre></div>
 <p>We can download the final dataset we will produce with:</p>
-<div class="sourceCode" id="cb404"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb405"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pamphdata</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/sampling/pamphlets_formatted_gsheets.csv"</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## Rows: 523 Columns: 8
-## ── Column specification ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+## ── Column specification ───────────────────────────────────────────────────────────────────────────────────────
 ## Delimiter: ","
 ## chr  (6): title, text, tags, imageurl, imgID, image
 ## dbl  (1): year
@@ -316,20 +327,20 @@
 ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 <p>You can also view the formatted output of this scraping exercise, alongside images of the documents in question, in Google Sheets <a href="https://docs.google.com/spreadsheets/d/1rg2VTV6uuknpu6u-L5n7kvQ2cQ6e6Js7IHp7CaSKe90/edit?usp=sharing">here</a>.</p>
 <p>If you’re working on this document from your own computer (“locally”) you can download the Tahrir documents data in the following way:</p>
-<div class="sourceCode" id="cb406"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb407"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pamphdata</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"https://github.com/cjbarrie/CTA-ED/blob/main/data/sampling/pamphlets_formatted_gsheets.csv"</span><span class="op">)</span></span></code></pre></div>
 <p>Let’s have a look at what we will end up producing:</p>
-<div class="sourceCode" id="cb407"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb408"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">pamphdata</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## # A tibble: 6 × 8
-##   title                                                date        year text                                                                                             tags  image…¹ imgID image
-##   &lt;chr&gt;                                                &lt;date&gt;     &lt;dbl&gt; &lt;chr&gt;                                                                                            &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;
-## 1 The Season of Anger Sets in Among the Arab Peoples   2011-03-30  2011 The Season of Anger Sets in Among the Arab Peoples,,A member of the Algerian opposition warned … Soli… https:… imgI… =Arr…
-## 2 The Most Important Workers’ Protests                 2011-03-30  2011 [Voice of the Revolution, #3, Page 2],The most important workers’ protests,,The strikes that th… Soli… https:… imgI… &lt;NA&gt; 
-## 3 Yes it’s the Workers’ and Employees’ Right to Strike 2011-03-30  2011 [Voice of the Revolution, #3, Page 2],Yes it’s the workers’ and employees’ right to strike,,Sud… Soli… https:… imgI… &lt;NA&gt; 
-## 4 The Revolution is Still Ongoing                      2011-03-30  2011 [Voice of the Revolution, #3, Page 1],Thanks to the great Egyptian people’s resistance, the rev… Revo… https:… imgI… &lt;NA&gt; 
-## 5 Voice of the Revolution, #3                          2011-03-30  2011 February 18 Change…freedom…social justice Third Issue,Printed by a group of socialists Contact:… Revo… https:… imgI… &lt;NA&gt; 
-## 6 We Are Still Continuing Until Victory                2011-03-29  2011 We Are Still Continuing Until Victory,,Our path and revolution are still continuing until the r… Dema… https:… imgI… &lt;NA&gt; 
+##   title                                                date        year text          tags  image…¹ imgID image
+##   &lt;chr&gt;                                                &lt;date&gt;     &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;
+## 1 The Season of Anger Sets in Among the Arab Peoples   2011-03-30  2011 The Season o… Soli… https:… imgI… =Arr…
+## 2 The Most Important Workers’ Protests                 2011-03-30  2011 [Voice of th… Soli… https:… imgI… &lt;NA&gt; 
+## 3 Yes it’s the Workers’ and Employees’ Right to Strike 2011-03-30  2011 [Voice of th… Soli… https:… imgI… &lt;NA&gt; 
+## 4 The Revolution is Still Ongoing                      2011-03-30  2011 [Voice of th… Revo… https:… imgI… &lt;NA&gt; 
+## 5 Voice of the Revolution, #3                          2011-03-30  2011 February 18 … Revo… https:… imgI… &lt;NA&gt; 
+## 6 We Are Still Continuing Until Victory                2011-03-29  2011 We Are Still… Dema… https:… imgI… &lt;NA&gt; 
 ## # … with abbreviated variable name ¹​imageurl</code></pre>
 <p>We are going to return to the Internet Archived webpages to see how we can produce this final formatted dataset. The archived Tahrir Documents webpages can be accessed <a href="https://wayback.archive-it.org/2358/20120130143023/http://www.tahrirdocuments.org/">here</a>.</p>
 <p>We first want to expect how the contents of each webpage is stored.</p>
@@ -337,7 +348,7 @@
 <div class="inline-figure"><img src="data/sampling/tahrir_archives.png"></div>
 <p>We will click through the documents stored for March and then click on the top listed pamphlet entitled “The Season of Anger Sets in Among the Arab Peoples.” You can access this <a href="https://wayback.archive-it.org/2358/20120130161341/http://www.tahrirdocuments.org/2011/03/voice-of-the-revolution-3-page-2/">here</a>.</p>
 <p>We will store this url to inspect the HTML it contains as follows:</p>
-<div class="sourceCode" id="cb409"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb410"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">url</span> <span class="op">&lt;-</span> <span class="st">"https://wayback.archive-it.org/2358/20120130161341/http://www.tahrirdocuments.org/2011/03/voice-of-the-revolution-3-page-2/"</span></span>
 <span></span>
 <span><span class="va">html</span> <span class="op">&lt;-</span> <span class="fu"><a href="http://xml2.r-lib.org/reference/read_xml.html">read_html</a></span><span class="op">(</span><span class="va">url</span><span class="op">)</span></span>
@@ -345,10 +356,10 @@
 <span><span class="va">html</span></span></code></pre></div>
 <pre><code>## {html_document}
 ## &lt;html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US"&gt;
-## [1] &lt;head profile="http://gmpg.org/xfn/11"&gt;\n&lt;!-- Start Wayback Rewrite JS Include --&gt;&lt;script type="text/javascript" src="/static/js/wombat.js?v=KvsibFE5" charset="utf-8"&gt;&lt;/script&gt;&lt;script typ ...
-## [2] &lt;body&gt;             \n&lt;!--\n     FILE ARCHIVED ON 16:13:41 Jan 30, 2012 AND RETRIEVED FROM THE\n     INTERNET ARCHIVE ON 14:39:09 Mar 21, 2023.\n     JAVASCRIPT APPENDED BY WAYBACK MACHINE ...</code></pre>
+## [1] &lt;head profile="http://gmpg.org/xfn/11"&gt;\n&lt;!-- Start Wayback Rewrite JS Include --&gt;&lt;script type="text/jav ...
+## [2] &lt;body&gt;             \n&lt;!--\n     FILE ARCHIVED ON 16:13:41 Jan 30, 2012 AND RETRIEVED FROM THE\n     INTE ...</code></pre>
 <p>Well, this isn’t particularly useful. Let’s now see how we can extract the text contained inside.</p>
-<div class="sourceCode" id="cb411"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb412"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pagetext</span> <span class="op">&lt;-</span> <span class="va">html</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_text.html">html_text</a></span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
@@ -360,7 +371,7 @@
 <p>We can do this with our Tahrir documents as below:</p>
 <div class="inline-figure"><img src="data/sampling/gifcap4.gif" style="width:100.0%"></div>
 <p>So now we know that the main text of the translated document is contained between “p” HTML tags. To identify the text between these HTML tags we can run:</p>
-<div class="sourceCode" id="cb413"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb414"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pagetext</span> <span class="op">&lt;-</span> <span class="va">html</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_element.html">html_elements</a></span><span class="op">(</span><span class="st">"p"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_text.html">html_text</a></span><span class="op">(</span>trim<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
@@ -397,7 +408,7 @@
 <p>So this gives us one way of capturing the text, but what about if we wanted to get other elements of the document, for example the date or the tags attributed to each document? Well we can do the same thing here too. Let’s take the example of getting the date:</p>
 <div class="inline-figure"><img src="data/sampling/gifcap5.gif" style="width:100.0%"></div>
 <p>We see here that the date is identified by the “.calendar” CSS selector and so we enter this into the same <code><a href="https://rvest.tidyverse.org/reference/html_element.html">html_elements()</a></code> function as before:</p>
-<div class="sourceCode" id="cb415"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb416"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pagedate</span> <span class="op">&lt;-</span> <span class="va">html</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_element.html">html_elements</a></span><span class="op">(</span><span class="st">".calendar"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_text.html">html_text</a></span><span class="op">(</span>trim<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
@@ -417,7 +428,7 @@
 <pre><code>https://wayback.archive-it.org/2358/20120130142014/http://www.tahrirdocuments.org/2012/01/</code></pre>
 <p>We notice that for each month, the URL changes with the addition of month and year between back slashes at the end or the URL. In the next section, we will go through how to efficiently create a set of URLs to loop through and retrieve the information contained in each individual webpage.</p>
 <p>We are going to want to retrieve the text of documents archived for each month. As such, our first task is to store each of these webpages as a series of strings. We could do this manually by, for example, pasting year and month strings to the end of each URL for each month from March, 2011 to January, 2012:</p>
-<div class="sourceCode" id="cb421"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb422"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">url</span> <span class="op">&lt;-</span> <span class="st">"https://wayback.archive-it.org/2358/20120130143023/http://www.tahrirdocuments.org/"</span></span>
 <span></span>
 <span><span class="va">url1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">url</span>,<span class="st">"2011/03/"</span><span class="op">)</span></span>
@@ -429,7 +440,7 @@
 <span><span class="va">urls</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">url1</span>, <span class="va">url2</span>, <span class="va">url3</span><span class="op">)</span></span></code></pre></div>
 <p>But this wouldn’t be particularly efficient…</p>
 <p>Instead, we can wrap all of this in a loop.</p>
-<div class="sourceCode" id="cb422"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb423"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">urls</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html">character</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span></span>
 <span><span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">3</span><span class="op">:</span><span class="fl">13</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="va">url</span> <span class="op">&lt;-</span> <span class="st">"https://wayback.archive-it.org/2358/20120130143023/http://www.tahrirdocuments.org/"</span></span>
@@ -439,7 +450,7 @@
 <span>  <span class="va">urls</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">urls</span>, <span class="va">newurl</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
 <p>What’s going on here? Well, we are first specifying the starting URL as above. We are then iterating through the numbers 3 to 13. And we are telling R to take the new URL and then, depending on the number in the loop we are on, to take the base starting url— <a href="https://wayback.archive-it.org/2358/20120130143023/http://www.tahrirdocuments.org/" class="uri">https://wayback.archive-it.org/2358/20120130143023/http://www.tahrirdocuments.org/</a> — and to paste on the end of it the string “2011/0”, then the number of the loop we are on, and then “/”. So, for the first “i” in the loop—the number 3—then we are effectively calling the equivalent of:</p>
-<div class="sourceCode" id="cb423"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb424"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">i</span> <span class="op">&lt;-</span> <span class="fl">3</span></span>
 <span></span>
 <span><span class="va">url</span> <span class="op">&lt;-</span> <span class="st">"https://wayback.archive-it.org/2358/20120130143023/http://www.tahrirdocuments.org/"</span></span>
@@ -464,7 +475,7 @@
 <pre><code>https://wayback.archive-it.org/2358/20120130163651/http://www.tahrirdocuments.org/2011/03/page/3/</code></pre>
 <p>We can see pretty clearly that as we navigate through each page, there appears appended to the URL the string “page/2/” and “page/3/”. So this shouldn’t be too tricky to add to our list of URLs. But we want to avoid having to manually click through the archive for each month to figure out how many pagination tabs are at the bottom of each page.</p>
 <p>Fortunately, we don’t have to. Using the “Selector Gadget” tool again we can automate this process by grabbing the highest number that appears in the pagination bar for each month’s pages. The code below achieves this:</p>
-<div class="sourceCode" id="cb428"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb429"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">urlpages_all</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html">character</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span> <span class="co">#create empty character string to deposit our final set of urls</span></span>
 <span><span class="va">urlpages</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html">character</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span> <span class="co">#create empty character string to deposit our urls for each page of each month</span></span>
 <span><span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_along</a></span><span class="op">(</span><span class="va">urls</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span> <span class="co">#for loop for each url stored above</span></span>
@@ -489,7 +500,7 @@
 <p>After this line, we are getting the pages as a character vector of page numbers by calling the <code><a href="https://rvest.tidyverse.org/reference/html_element.html">html_elements()</a></code> function on the “.page” tag. this gives a series of pages stored as e.g. “1” “2” “3”.</p>
 <p>In order to be able to see how many there are, we need to extract the highest number that appears in this string. To do this, we first need to reformat it as an “integer” object rather than a “character” object so that R can recognize that these are numbers. So we call <code>pageints &lt;- as.integer(pages)</code>. Then we get the maximum by simply calling: <code>npages &lt;- max(pageints, na.rm = T)</code>.</p>
 <p>In the next part of the loop, we are taking the new information we have stored as “npages,” i.e., the number of pagination tabs for each month, and telling R: for each of these pages, define a new url by adding “page/” then the number of the pagination tab “j”, and then “/”. After we’ve bound all of these together, we get a list of URLs that look like this:</p>
-<div class="sourceCode" id="cb429"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb430"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">urlpages_all</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] "https://wayback.archive-it.org/2358/20120130143023/http://www.tahrirdocuments.org/2011/03/"       
 ## [2] "https://wayback.archive-it.org/2358/20120130143023/http://www.tahrirdocuments.org/2011/03/page/2/"
@@ -503,7 +514,7 @@
 <p>We can again pass these tags through <code><a href="https://rvest.tidyverse.org/reference/html_element.html">html_elements()</a></code> to grab what’s contained inside. We can then grab what’s contained inside these by extracting the “children” of these classes. In essence, this just means a lower level tag: tags can have tags within tags and these flow downwards like a family tree (hence the name, I suppose).</p>
 <p>So one of the “children” of this HTML tag is the link contained inside, which we can get with calling <code><a href="https://rvest.tidyverse.org/reference/html_children.html">html_children()</a></code> followed by specifying that we want the specific attribute of the web link it encloses with <code>html_attr("href")</code>. The subsequent lines then just remove extraneous information.</p>
 <p>The complete loop, then, to retrieve the URL of the page for every leaflet contained on this website is:</p>
-<div class="sourceCode" id="cb431"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb432"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#GET URLS FOR EACH PAMPHLET</span></span>
 <span></span>
 <span><span class="va">pamlinks_all</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html">character</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span></span>
@@ -518,7 +529,7 @@
 <span>  <span class="va">pamlinks_all</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">pamlinks_all</span>, <span class="va">links</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
 <p>Which gives us:</p>
-<div class="sourceCode" id="cb432"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb433"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">pamlinks_all</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] "https://wayback.archive-it.org/2358/20120130143023/http://www.tahrirdocuments.org/2011/03/voice-of-the-revolution-3-page-2/"                       
 ## [2] "https://wayback.archive-it.org/2358/20120130143023/http://www.tahrirdocuments.org/2011/03/the-most-important-workers-protests/"                    
@@ -526,12 +537,12 @@
 ## [4] "https://wayback.archive-it.org/2358/20120130143023/http://www.tahrirdocuments.org/2011/03/the-revolution-is-still-ongoing-2/"                      
 ## [5] "https://wayback.archive-it.org/2358/20120130143023/http://www.tahrirdocuments.org/2011/03/voice-of-the-revolution-the-revolution-is-still-ongoing/"
 ## [6] "https://wayback.archive-it.org/2358/20120130143023/http://www.tahrirdocuments.org/2011/03/we-are-still-continuing-until-victory/"</code></pre>
-<div class="sourceCode" id="cb434"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb435"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">pamlinks_all</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 523</code></pre>
 <p>We see now that we have collected all 523 separate URLs for every revolutionary leaflet contained on these pages. Now we’re in a great position to be able to crawl each page and collect the information we need. This final loop is all we need to go through each URL we’re interested in and collect relevant information on document text, title, date, tags, and the URL to the image of the revolutionary literature itself.</p>
 <p>See if you can work out yourselves how each part of this is fitting together. NOTE: if you want to run the final loop on your own machines it will take several hours to complete.</p>
-<div class="sourceCode" id="cb436"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb437"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">df_empty</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_along</a></span><span class="op">(</span><span class="va">pamlinks_all</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="va">url</span> <span class="op">&lt;-</span> <span class="va">pamlinks_all</span><span class="op">[</span><span class="va">i</span><span class="op">]</span></span>
@@ -593,18 +604,18 @@
 <p>There are some R packages that allow the user to connect to the Google Speech-to-Text engine (billing information required to access). You can find such a package <a href="https://github.com/ropensci/googleLanguageR">here</a> but it doesn’t seem to be readily maintained. There is a far wider range of options if you are open to using Python: see, e.g.: <a href="https://realpython.com/python-speech-recognition/">here</a>.</p>
 <p>Here, we’re instead going to do the next best thing: capture text that has already been converted from speech. Here, we’re going to be collecting the automated English captioning from YouTube videos. For this, we will use the R package <code>youtubecaption</code>. Because this package connects to an already existing Python package under the hood, you’ll need to have a Conda environment installed. You can download Anaconda Individual Edition <a href="https://www.anaconda.com/products/individual">here</a>.</p>
 <p>And to grab the text from a video is as simple as below.</p>
-<div class="sourceCode" id="cb437"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb438"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jooyoungseo/youtubecaption">youtubecaption</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">url</span> <span class="op">&lt;-</span> <span class="st">"https://www.youtube.com/watch?v=cpbtcsGE0OA"</span></span>
 <span><span class="va">caption</span> <span class="op">&lt;-</span> <span class="fu">get_caption</span><span class="op">(</span><span class="va">url</span><span class="op">)</span></span>
 <span><span class="va">caption</span></span></code></pre></div>
 <p>And if you wanted to the same thing in Python you would do the following.</p>
-<div class="sourceCode" id="cb438"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb438-1"><a href="exercise-7-sampling-text-information.html#cb438-1" tabindex="-1"></a><span class="op">!</span>pip install youtube_transcript_api</span>
-<span id="cb438-2"><a href="exercise-7-sampling-text-information.html#cb438-2" tabindex="-1"></a></span>
-<span id="cb438-3"><a href="exercise-7-sampling-text-information.html#cb438-3" tabindex="-1"></a><span class="im">from</span> youtube_transcript_api <span class="im">import</span> YouTubeTranscriptApi</span>
-<span id="cb438-4"><a href="exercise-7-sampling-text-information.html#cb438-4" tabindex="-1"></a></span>
-<span id="cb438-5"><a href="exercise-7-sampling-text-information.html#cb438-5" tabindex="-1"></a>YouTubeTranscriptApi.get_transcript(<span class="st">"cpbtcsGE0OA"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb439"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb439-1"><a href="exercise-7-sampling-text-information.html#cb439-1" tabindex="-1"></a><span class="op">!</span>pip install youtube_transcript_api</span>
+<span id="cb439-2"><a href="exercise-7-sampling-text-information.html#cb439-2" tabindex="-1"></a></span>
+<span id="cb439-3"><a href="exercise-7-sampling-text-information.html#cb439-3" tabindex="-1"></a><span class="im">from</span> youtube_transcript_api <span class="im">import</span> YouTubeTranscriptApi</span>
+<span id="cb439-4"><a href="exercise-7-sampling-text-information.html#cb439-4" tabindex="-1"></a></span>
+<span id="cb439-5"><a href="exercise-7-sampling-text-information.html#cb439-5" tabindex="-1"></a>YouTubeTranscriptApi.get_transcript(<span class="st">"cpbtcsGE0OA"</span>)</span></code></pre></div>
 </div>
 <div id="ocr" class="section level2" number="23.8">
 <h2>
@@ -656,7 +667,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Computational Text Analysis</strong>" was written by Christopher Barrie. It was last built on 2023-03-21.</p>
+    <p>"<strong>Computational Text Analysis</strong>" was written by Christopher Barrie. It was last built on 2023-03-27.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

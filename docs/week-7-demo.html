@@ -114,7 +114,7 @@
 <span class="header-section-number">13.1</span> Setup<a class="anchor" aria-label="anchor" href="#setup-5"><i class="fas fa-link"></i></a>
 </h2>
 <p>First, we’ll load the packages we’ll be using in this week’s brief demo. here we are pre-loading an already-estimated PMI matrix and results from the singular value decomposition approach.</p>
-<div class="sourceCode" id="cb161"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb162"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://Matrix.R-forge.R-project.org/">Matrix</a></span><span class="op">)</span> <span class="co">#for handling matrices</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">irlba</span><span class="op">)</span> <span class="co"># for SVD</span></span>
@@ -171,15 +171,15 @@
 ##   ..@ factors : list()</code></pre>
 <p>We will then use the “Singular Value Decomposition” (SVD) techique. This is another multidimensional scaling technique, where the first axis of the resulting coordinates captures the most variance, the second the second-most etc…</p>
 <p>And to do this, we simply need to do the following.</p>
-<div class="sourceCode" id="cb164"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb165"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pmi_svd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/irlba/man/irlba.html">irlba</a></span><span class="op">(</span><span class="va">pmi_matrix</span>, <span class="fl">256</span>, maxit <span class="op">=</span> <span class="fl">500</span><span class="op">)</span></span></code></pre></div>
 <p>After which we can collect our vectors for each word and inspect them.</p>
-<div class="sourceCode" id="cb165"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb166"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">word_vectors</span> <span class="op">&lt;-</span> <span class="va">pmi_svd</span><span class="op">$</span><span class="va">u</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="va">word_vectors</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="va">pmi_matrix</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">word_vectors</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 21172   256</code></pre>
-<div class="sourceCode" id="cb167"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb168"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">word_vectors</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##               [,1]        [,2]        [,3]        [,4]        [,5]
 ## the    0.007810973  0.07024009  0.06377615  0.03139044 -0.12362108
@@ -225,7 +225,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Computational Text Analysis</strong>" was written by Christopher Barrie. It was last built on 2023-03-21.</p>
+    <p>"<strong>Computational Text Analysis</strong>" was written by Christopher Barrie. It was last built on 2023-03-27.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

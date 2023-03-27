@@ -48,7 +48,7 @@ edbfdata <- read_csv("data/wordfreq/edbookfestall.csv")
 As ever, if you're working on this document from your own computer ("locally") you can download the Edinburgh Fringe data in the following way:
 
 ```{r, eval = F}
-edbfdata <- read_csv("https://github.com/cjbarrie/CTA-ED/blob/main/data/wordfreq/edbookfestall.csv"
+edbfdata <- read_csv("https://raw.githubusercontent.com/cjbarrie/RDL-Ed/main/02-text-as-data/data/edbookfestall.csv")
 ```
 
 We'll get the data into tidy format as before, tagging individual words for whether or not they appear in our dictionary of woman- and gender-related terms. One addition here is that we're ascribing each event an individual ID, which will be useful in the next step. 
