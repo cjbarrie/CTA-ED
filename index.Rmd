@@ -1,6 +1,6 @@
 ---
 title: "Computational Text Analysis"
-author: "Christopher Barrie"
+author: "Marion Lieutaud"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 output: bookdown::bs4_book
@@ -16,7 +16,7 @@ github-repo: cjbarrie/CTA-ED
 
 # "Computational Text Analysis" (PGSP11584) {.unnumbered}
 
-![cover](coverb.png){.cover width="250"} This is the dedicated webpage for the course Computational Text Analysis" [(PGSP11584)](http://www.drps.ed.ac.uk/21-22/dpt/cxpgsp11584.htm) at the University of Edinburgh, taught by Christopher Barrie. Go to the Course Overview and Introduction tabs for a course overview and introduction to R.
+![cover](coverb.png){.cover width="250"} This is the dedicated webpage for the course Computational Text Analysis" [(PGSP11584)](http://www.drps.ed.ac.uk/23-24/dpt/cxpgsp11584.htm) at the University of Edinburgh, taught by Christopher Barrie. Go to the Course Overview and Introduction tabs for a course overview and introduction to R.
 
 We will be using this online book throughout the course. Each week has a set of essential and recommended readings. The essential readings must be consulted in full prior to the Lecture and Seminar for that week. In addition, you will find online Exercises and examples written in R. This is a "live" book and will be amended and updated during the course itself.
 
@@ -25,7 +25,7 @@ We will be using this online book throughout the course. Each week has a set of 
 The course is structured of alternating weeks of substantive and technical instruction.
 
 | Week | Focus                                        | Coding assignment(s)                                                                                                                                                              | Class activity                                                                                                             |
-|-----------------|-----------------|---------------------|-----------------|
+|------|----------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------|
 | 1    | Retrieving and analyzing text information    | [Introductory exercises](https://cjbarrie.github.io/CTA-ED/introduction-to-r.html) + [RTC Workshop by Ugur Ozdemir](https://research-training-centre.sps.ed.ac.uk/micro-methods/) | Seminar discussion                                                                                                         |
 | 2    | Tokenization and word frequencies            | [Demo](https://cjbarrie.github.io/CTA-ED/week-2-demo.html)                                                                                                                        | Seminar discussion                                                                                                         |
 | 3    | Dictionary-based techniques                  | [Demo](https://cjbarrie.github.io/CTA-ED/week-3-demo.html) + [Exercise 2](https://cjbarrie.github.io/CTA-ED/exercise-2-dictionary-based-methods.html)                             | Flash talk + [Exercise 1](https://cjbarrie.github.io/CTA-ED/exercise-1-word-frequency-analysis.html) group work            |

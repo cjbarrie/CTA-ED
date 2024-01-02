@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Chapter 25 Assessment data | Computational Text Analysis</title>
-<meta name="author" content="Christopher Barrie">
+<meta name="author" content="Marion Lieutaud">
 <meta name="description" content="25.1 Introduction Below you will find a series of datasets. You can choose to use these for the summative assessment. Alternatively, you can contact me with a suggestion of a dataset and a...">
 <meta name="generator" content="bookdown 0.33 with bs4_book()">
 <meta property="og:title" content="Chapter 25 Assessment data | Computational Text Analysis">
@@ -31,6 +31,7 @@
     div.csl-bib-body { }
     div.csl-entry {
       clear: both;
+          margin-bottom: 0em;
         }
     .hanging div.csl-entry {
       margin-left:2em;
@@ -121,16 +122,16 @@
 </h2>
 <p>We can access data from <span class="citation">Osnabrügge, Hobolt, and Rodon (<a href="references-2.html#ref-osnabrugge_playing_2021">2021</a>)</span> <a href="https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/QDTLYV">here</a></p>
 <p>To prepare these data, we can use the same code as used by the original authors:</p>
-<div class="sourceCode" id="cb460"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb459"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://ggplot2.tidyverse.org">"ggplot2"</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="http://had.co.nz/plyr">"plyr"</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st">"gdata"</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/r-gregmisc/gdata">"gdata"</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://stringr.tidyverse.org">"stringr"</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://r-datatable.com">"data.table"</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">## Prep Osnabrugge et al. </span></span>
 <span></span>
-<span><span class="va">data</span> <span class="op">=</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/fread.html">fread</a></span><span class="op">(</span><span class="st">"/Users/cbarrie6/Dropbox/Teaching/Edinburgh/teaching/CTA_21-22/assessment/data/uk_data.csv"</span>, encoding<span class="op">=</span><span class="st">"UTF-8"</span><span class="op">)</span></span>
+<span><span class="va">data</span> <span class="op">=</span> <span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/fread.html">fread</a></span><span class="op">(</span><span class="st">"/Users/cbarrie6/Dropbox/Teaching/Edinburgh/teaching/CTA_21-22/assessment/data/uk_data.csv"</span>, encoding<span class="op">=</span><span class="st">"UTF-8"</span><span class="op">)</span></span>
 <span></span>
 <span></span>
 <span><span class="va">data</span><span class="op">$</span><span class="va">date</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="va">data</span><span class="op">$</span><span class="va">date</span><span class="op">)</span></span>
@@ -187,7 +188,7 @@
 <span><span class="va">data</span><span class="op">$</span><span class="va">time</span><span class="op">[</span><span class="va">data</span><span class="op">$</span><span class="va">date</span><span class="op">&gt;=</span><span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="st">"2019-07-01"</span><span class="op">)</span> <span class="op">&amp;</span> <span class="va">data</span><span class="op">$</span><span class="va">date</span><span class="op">&lt;=</span><span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="st">"2019-12-31"</span><span class="op">)</span><span class="op">]</span> <span class="op">=</span> <span class="st">"19/2"</span></span>
 <span></span>
 <span><span class="va">data</span><span class="op">$</span><span class="va">time2</span> <span class="op">=</span> <span class="va">data</span><span class="op">$</span><span class="va">time</span></span>
-<span><span class="va">data</span><span class="op">$</span><span class="va">time2</span> <span class="op">=</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_replace.html">str_replace</a></span><span class="op">(</span><span class="va">data</span><span class="op">$</span><span class="va">time2</span>, <span class="st">"/"</span>, <span class="st">"_"</span><span class="op">)</span></span>
+<span><span class="va">data</span><span class="op">$</span><span class="va">time2</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/stringr/man/str_replace.html">str_replace</a></span><span class="op">(</span><span class="va">data</span><span class="op">$</span><span class="va">time2</span>, <span class="st">"/"</span>, <span class="st">"_"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">data</span><span class="op">$</span><span class="va">stage</span> <span class="op">=</span> <span class="fl">0</span></span>
 <span><span class="va">data</span><span class="op">$</span><span class="va">stage</span><span class="op">[</span><span class="va">data</span><span class="op">$</span><span class="va">m_questions</span><span class="op">==</span><span class="fl">1</span><span class="op">]</span><span class="op">=</span> <span class="fl">1</span></span>
@@ -305,7 +306,7 @@ brian
 </tbody>
 </table></div>
 <p>If the full dataset is too large for your machines, you can easily take a sample of it with:</p>
-<div class="sourceCode" id="cb461"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb460"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">data_samp</span> <span class="op">&lt;-</span> <span class="va">data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html">sample_n</a></span><span class="op">(</span><span class="fl">10000</span><span class="op">)</span></span></code></pre></div>
 </div>
@@ -322,14 +323,14 @@ brian
 </h2>
 <p>You can download embeddings and online community scores used in this article the Github repo linked <a href="https://github.com/CSSLab/social-dimensions">here</a>.</p>
 <p>To get the community embeddings data in usable format we can do:</p>
-<div class="sourceCode" id="cb462"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb461"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">embeddings</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.table</a></span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/CSSLab/social-dimensions/main/data/embedding-vectors.tsv"</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">embeddings_metadata</span> <span class="op">&lt;-</span> <span class="fu">data.table</span><span class="fu">:::</span><span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/fread.html">fread</a></span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/CSSLab/social-dimensions/main/data/embedding-metadata.tsv"</span><span class="op">)</span></span>
+<span><span class="va">embeddings_metadata</span> <span class="op">&lt;-</span> <span class="fu">data.table</span><span class="fu">:::</span><span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/fread.html">fread</a></span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/CSSLab/social-dimensions/main/data/embedding-metadata.tsv"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">embeddings_scores</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/CSSLab/social-dimensions/main/data/scores.csv"</span><span class="op">)</span></span></code></pre></div>
 <p>Then to add in information on what each vector of dimensions 150 (i.e., here: columns), we can add in the community information to the embeddings with:</p>
-<div class="sourceCode" id="cb463"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb462"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">communities</span> <span class="op">&lt;-</span> <span class="va">embeddings_metadata</span><span class="op">$</span><span class="va">community</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="va">embeddings</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">communities</span></span></code></pre></div>
@@ -372,7 +373,7 @@ brian
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Computational Text Analysis</strong>" was written by Christopher Barrie. It was last built on 2023-03-27.</p>
+    <p>"<strong>Computational Text Analysis</strong>" was written by Marion Lieutaud. It was last built on 2024-01-02.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
