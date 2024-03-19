@@ -127,3 +127,6 @@ twitter-transparency-data
 waller2021
 r-markdown
 references-2
+exercise-7-sampling-text-information-1
+data
+introduction-9

@@ -1,4 +1,4 @@
-# Exercise 7: Sampling text information
+# Exercise 8: Supervised learning
 
 ## Introduction
 
@@ -9,8 +9,12 @@ The hands-on exercise for this week focuses on how to classify a sample of text.
 
 We will be classifying the same tweets as discussed in @barrie2023did.
 
+```{r}
+library(dplyr)
+```
+
 ```{r, echo = F, eval = T}
-tweets_sample <- readRDS("data/tweets-ranked.rds")
+tweets_sample <- readRDS("data/supervised/tweets-ranked.rds")
 ```
 
 You can do this locally on your computers with:
@@ -18,4 +22,13 @@ You can do this locally on your computers with:
 ```{r, eval = F, echo = T}
 tweets_sample  <- readRDS(gzcon(url("https://github.com/cjbarrie/CS-ED/blob/main/data/tweets-ranked.rds?raw=true")))
 
+```
+
+```{r, echo = F, eval = T}
+tweets_sample_kable <- tweets_sample %>%
+  mutate(text = gsub("(@)(\\S)", "\\1 \\2", text),
+         sourcetweet_text = gsub("(@)(\\S)", "\\1 \\2", sourcetweet_text),
+         user_description = gsub("(@)(\\S)", "\\1 \\2", user_description))
+
+kableExtra::kable(head(tweets_sample_kable), format = "html")
 ```
