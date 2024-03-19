@@ -12,4 +12,7 @@
 
 - @denny_text_2018
 - @king_computer-assisted_2017
-- 
+
+**Slides**:
+
+-   Week 9 [Slides](https://docs.google.com/presentation/d/1_IXCTOpSIdsNLb92byIbWGFj4EDjIXzReE46u3wYpM4/edit?usp=sharing)
