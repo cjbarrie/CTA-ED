@@ -146,25 +146,44 @@
 <div class="sourceCode" id="cb395"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dataset</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://iqss.github.io/dataverse-client-r/reference/get_dataset.html">get_dataset</a></span><span class="op">(</span><span class="st">"10.7910/DVN/QDTLYV"</span><span class="op">)</span></span>
 <span><span class="va">dataset</span><span class="op">$</span><span class="va">files</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"filename"</span>, <span class="st">"contentType"</span><span class="op">)</span><span class="op">]</span></span></code></pre></div>
-<pre><code>##                  filename                                                             contentType
-## 1       emotive_cloud.tab                                               text/tab-separated-values
-## 2       neutral_cloud.tab                                               text/tab-separated-values
-## 3     neutral_ireland.tab                                               text/tab-separated-values
-## 4     emotive_ireland.tab                                               text/tab-separated-values
-## 5          neutral_uk.tab                                               text/tab-separated-values
-## 6          emotive_uk.tab                                               text/tab-separated-values
-## 7       commons_stats.tab                                               text/tab-separated-values
-## 8        ireland_data.csv                                                                text/csv
-## 9        3-word_clouds.py                                                           text/x-python
-## 10             4-trends.R                                                         type/x-r-syntax
-## 11          8-histogram.R                                                         type/x-r-syntax
-## 12                1-uk.do                                              application/x-stata-syntax
-## 13     6-barplot_topics.R                                                         type/x-r-syntax
-## 14         7-plot_media.R                                                         type/x-r-syntax
-## 15           2-ireland.do                                              application/x-stata-syntax
-## 16 5-predictive_margins.R                                                         type/x-r-syntax
-## 17            uk_data.csv                                                                text/csv
-## 18            README.docx application/vnd.openxmlformats-officedocument.wordprocessingml.document</code></pre>
+<pre><code>##                  filename
+## 1       emotive_cloud.tab
+## 2       neutral_cloud.tab
+## 3     neutral_ireland.tab
+## 4     emotive_ireland.tab
+## 5          neutral_uk.tab
+## 6          emotive_uk.tab
+## 7       commons_stats.tab
+## 8        ireland_data.csv
+## 9        3-word_clouds.py
+## 10             4-trends.R
+## 11          8-histogram.R
+## 12                1-uk.do
+## 13     6-barplot_topics.R
+## 14         7-plot_media.R
+## 15           2-ireland.do
+## 16 5-predictive_margins.R
+## 17            uk_data.csv
+## 18            README.docx
+##                                                                contentType
+## 1                                                text/tab-separated-values
+## 2                                                text/tab-separated-values
+## 3                                                text/tab-separated-values
+## 4                                                text/tab-separated-values
+## 5                                                text/tab-separated-values
+## 6                                                text/tab-separated-values
+## 7                                                text/tab-separated-values
+## 8                                                                 text/csv
+## 9                                                            text/x-python
+## 10                                                         type/x-r-syntax
+## 11                                                         type/x-r-syntax
+## 12                                              application/x-stata-syntax
+## 13                                                         type/x-r-syntax
+## 14                                                         type/x-r-syntax
+## 15                                              application/x-stata-syntax
+## 16                                                         type/x-r-syntax
+## 17                                                                text/csv
+## 18 application/vnd.openxmlformats-officedocument.wordprocessingml.document</code></pre>
 <p>We choose to get the UK data from these files, which is listed under “UK_data.csv.” We can then download this directly in the following way (this will take some time as the file size is &gt;1GB).</p>
 <div class="sourceCode" id="cb397"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://iqss.github.io/dataverse-client-r/reference/get_dataframe.html">get_dataframe_by_name</a></span><span class="op">(</span></span>
@@ -175,7 +194,7 @@
 <p>Note as well that we don’t have to search out specific datasets that we already know about. We can also use the <code>dataverse</code> package to search datasets or dataverses. We can do this very simply in the following way.</p>
 <div class="sourceCode" id="cb398"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">search_results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://iqss.github.io/dataverse-client-r/reference/dataverse_search.html">dataverse_search</a></span><span class="op">(</span><span class="st">"corpus politics text"</span>, type <span class="op">=</span> <span class="st">"dataset"</span>, per_page <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code></pre></div>
-<pre><code>## 10 of 38323 results retrieved</code></pre>
+<pre><code>## 10 of 38344 results retrieved</code></pre>
 <div class="sourceCode" id="cb400"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">search_results</span><span class="op">[</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span></span></code></pre></div>
 <pre><code>##                                                                                                  name
@@ -319,7 +338,7 @@
 <div class="sourceCode" id="cb404"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pamphdata</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/sampling/pamphlets_formatted_gsheets.csv"</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## Rows: 523 Columns: 8
-## ── Column specification ─────────────────────────────────────────────────────────────────────────────────
+## ── Column specification ─────────────────────────────────────────
 ## Delimiter: ","
 ## chr  (6): title, text, tags, imageurl, imgID, image
 ## dbl  (1): year
@@ -335,14 +354,14 @@
 <div class="sourceCode" id="cb407"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">pamphdata</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## # A tibble: 6 × 8
-##   title                                                date        year text   tags  imageurl imgID image
-##   &lt;chr&gt;                                                &lt;date&gt;     &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt;
-## 1 The Season of Anger Sets in Among the Arab Peoples   2011-03-30  2011 The S… Soli… https:/… imgI… =Arr…
-## 2 The Most Important Workers’ Protests                 2011-03-30  2011 [Voic… Soli… https:/… imgI… &lt;NA&gt; 
-## 3 Yes it’s the Workers’ and Employees’ Right to Strike 2011-03-30  2011 [Voic… Soli… https:/… imgI… &lt;NA&gt; 
-## 4 The Revolution is Still Ongoing                      2011-03-30  2011 [Voic… Revo… https:/… imgI… &lt;NA&gt; 
-## 5 Voice of the Revolution, #3                          2011-03-30  2011 Febru… Revo… https:/… imgI… &lt;NA&gt; 
-## 6 We Are Still Continuing Until Victory                2011-03-29  2011 We Ar… Dema… https:/… imgI… &lt;NA&gt;</code></pre>
+##   title         date        year text  tags  imageurl imgID image
+##   &lt;chr&gt;         &lt;date&gt;     &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt;
+## 1 The Season o… 2011-03-30  2011 The … Soli… https:/… imgI… =Arr…
+## 2 The Most Imp… 2011-03-30  2011 [Voi… Soli… https:/… imgI… &lt;NA&gt; 
+## 3 Yes it’s the… 2011-03-30  2011 [Voi… Soli… https:/… imgI… &lt;NA&gt; 
+## 4 The Revoluti… 2011-03-30  2011 [Voi… Revo… https:/… imgI… &lt;NA&gt; 
+## 5 Voice of the… 2011-03-30  2011 Febr… Revo… https:/… imgI… &lt;NA&gt; 
+## 6 We Are Still… 2011-03-29  2011 We A… Dema… https:/… imgI… &lt;NA&gt;</code></pre>
 <p>We are going to return to the Internet Archived webpages to see how we can produce this final formatted dataset. The archived Tahrir Documents webpages can be accessed <a href="https://wayback.archive-it.org/2358/20120130143023/http://www.tahrirdocuments.org/">here</a>.</p>
 <p>We first want to expect how the contents of each webpage is stored.</p>
 <p>When we scroll to the very bottom of the page, we see listed a number of hyperlinks to documents stored by month:</p>
@@ -357,8 +376,8 @@
 <span><span class="va">html</span></span></code></pre></div>
 <pre><code>## {html_document}
 ## &lt;html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US"&gt;
-## [1] &lt;head profile="http://gmpg.org/xfn/11"&gt;\n&lt;!-- Start Wayback Rewrite JS Include --&gt;&lt;script type="te ...
-## [2] &lt;body&gt;             \n&lt;!--\n     FILE ARCHIVED ON 16:13:41 Jan 30, 2012 AND RETRIEVED FROM THE\n    ...</code></pre>
+## [1] &lt;head profile="http://gmpg.org/xfn/11"&gt;\n&lt;!-- Start Waybac ...
+## [2] &lt;body&gt;             \n&lt;!--\n     FILE ARCHIVED ON 16:13:41  ...</code></pre>
 <p>Well, this isn’t particularly useful. Let’s now see how we can extract the text contained inside.</p>
 <div class="sourceCode" id="cb411"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pagetext</span> <span class="op">&lt;-</span> <span class="va">html</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>

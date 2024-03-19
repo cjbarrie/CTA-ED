@@ -116,6 +116,8 @@ ocr
 exercise-8-supervised-learning
 introduction-7
 data
+naïve-bayes
+alternatives-to-locally-trained-models
 exercise-9-validation
 introduction-8
 setup-11

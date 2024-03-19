@@ -6,16 +6,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Chapter 24 Exercise 8: Supervised learning | Computational Text Analysis</title>
 <meta name="author" content="Marion Lieutaud">
-<meta name="description" content="24.1 Introduction The hands-on exercise for this week focuses on how to classify a sample of text.  24.1.1 Data We will be classifying the same tweets as discussed in Barrie (2023). library(dplyr)...">
+<meta name="description" content="24.1 Introduction The hands-on exercise for this week focuses on how to classify a sample of text.  24.1.1 Data We will be classifying the same tweets as discussed in Barrie (2023). I benefited...">
 <meta name="generator" content="bookdown 0.33 with bs4_book()">
 <meta property="og:title" content="Chapter 24 Exercise 8: Supervised learning | Computational Text Analysis">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://cjbarrie.github.io/CTA-ED/exercise-8-supervised-learning.html">
 <meta property="og:image" content="https://cjbarrie.github.io/CTA-ED/coverb.png">
-<meta property="og:description" content="24.1 Introduction The hands-on exercise for this week focuses on how to classify a sample of text.  24.1.1 Data We will be classifying the same tweets as discussed in Barrie (2023). library(dplyr)...">
+<meta property="og:description" content="24.1 Introduction The hands-on exercise for this week focuses on how to classify a sample of text.  24.1.1 Data We will be classifying the same tweets as discussed in Barrie (2023). I benefited...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Chapter 24 Exercise 8: Supervised learning | Computational Text Analysis">
-<meta name="twitter:description" content="24.1 Introduction The hands-on exercise for this week focuses on how to classify a sample of text.  24.1.1 Data We will be classifying the same tweets as discussed in Barrie (2023). library(dplyr)...">
+<meta name="twitter:description" content="24.1 Introduction The hands-on exercise for this week focuses on how to classify a sample of text.  24.1.1 Data We will be classifying the same tweets as discussed in Barrie (2023). I benefited...">
 <meta name="twitter:image" content="https://cjbarrie.github.io/CTA-ED/coverb.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
@@ -121,6 +121,7 @@
 <span class="header-section-number">24.1.1</span> Data<a class="anchor" aria-label="anchor" href="#data"><i class="fas fa-link"></i></a>
 </h3>
 <p>We will be classifying the same tweets as discussed in <span class="citation">Barrie (<a href="references-2.html#ref-barrie2023did">2023</a>)</span>.</p>
+<p>I benefited form this <a href="https://uc-r.github.io/naive_bayes">worksheet</a> when preparing this tutorial.</p>
 <div class="sourceCode" id="cb439"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span></code></pre></div>
 <p>You can do this locally on your computers with:</p>
@@ -817,6 +818,267 @@ NA
 </tr>
 </tbody>
 </table></div>
+<p>Now, we need first to add some labels to these data. Specifically, we’re interested in the “toxicity” of tweet content.</p>
+<p>How can we do this?</p>
+<p>Well, I have provided you with already labelled data in the below:</p>
+<div class="sourceCode" id="cb441"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">tweets_sample</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html">readRDS</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/gzcon.html">gzcon</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/connections.html">url</a></span><span class="op">(</span><span class="st">"https://github.com/cjbarrie/CS-ED/blob/main/data/tweets-tox-ranked.rds?raw=true"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr>
+<th style="text-align:left;">
+tweet_id
+</th>
+<th style="text-align:left;">
+user_username
+</th>
+<th style="text-align:left;">
+text
+</th>
+<th style="text-align:right;">
+TOXICITY
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+1558572382947876865
+</td>
+<td style="text-align:left;">
+crabcrawler1
+</td>
+<td style="text-align:left;">
+RT @ Fire_fux: @ crabcrawler1 <a href="https://t.co/HcKNbVEQIP" class="uri">https://t.co/HcKNbVEQIP</a>
+</td>
+<td style="text-align:right;">
+0.1004571
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+1579236823527608321
+</td>
+<td style="text-align:left;">
+HankVenture5
+</td>
+<td style="text-align:left;">
+Blocked and reported <a href="https://t.co/18aKrUQy92" class="uri">https://t.co/18aKrUQy92</a>
+</td>
+<td style="text-align:right;">
+0.0673801
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+1591122529694818304
+</td>
+<td style="text-align:left;">
+krus_chiki
+</td>
+<td style="text-align:left;">
+@ eDonut_ Look i’ve said it before and i’ll say it again, Kruschiki supply co almost became a retro/vintage candy store
+</td>
+<td style="text-align:right;">
+0.0570059
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+1578034288842264582
+</td>
+<td style="text-align:left;">
+entelechiada
+</td>
+<td style="text-align:left;">
+gm <a href="https://t.co/5maKDeYAHV" class="uri">https://t.co/5maKDeYAHV</a>
+</td>
+<td style="text-align:right;">
+0.0138227
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+1573056421914382336
+</td>
+<td style="text-align:left;">
+EITC_Official
+</td>
+<td style="text-align:left;">
+RT @ EITC_Official: This 8th grade science teacher at @ RVKPanthers explains that one of her boy students wearing fingernail polish was “one…
+</td>
+<td style="text-align:right;">
+0.0426573
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+1583998206547226627
+</td>
+<td style="text-align:left;">
+MsAvaArmstrong
+</td>
+<td style="text-align:left;">
+RT @ RSBNetwork: President Donald J. Trump: "They’re coming after me because I am fighting for you, and that is true." Join us for the full…
+</td>
+<td style="text-align:right;">
+0.0451312
+</td>
+</tr>
+</tbody>
+</table></div>
+<p>These tweets were actually labelled by another machine learning engine (we’ll talk about this later). But for now, we’re going to pretend they were labelled by humans. And we’re going to take a subset of the data to train our own classifier to label the rest of the dataset.</p>
+<p>We’re going to say that anything above a score of .5 is “toxic.”</p>
+<div class="sourceCode" id="cb442"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/topepo/caret/">caret</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rsample.tidymodels.org">rsample</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Select just the columns we need</span></span>
+<span><span class="va">tweets_tox_select</span> <span class="op">&lt;-</span> <span class="va">tweets_tox_sample</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">tweet_id</span>, <span class="va">user_username</span>, <span class="va">text</span>, <span class="va">TOXICITY</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>toxbin <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">TOXICITY</span><span class="op">&gt;=</span><span class="fl">.5</span>, <span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
+<span><span class="va">split</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rsample.tidymodels.org/reference/initial_split.html">initial_split</a></span><span class="op">(</span><span class="va">tweets_tox_select</span>, prop <span class="op">=</span> <span class="fl">.7</span>, strata <span class="op">=</span> <span class="st">"TOXICITY"</span><span class="op">)</span></span>
+<span><span class="va">train</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rsample.tidymodels.org/reference/initial_split.html">training</a></span><span class="op">(</span><span class="va">split</span><span class="op">)</span></span>
+<span><span class="va">test</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rsample.tidymodels.org/reference/initial_split.html">testing</a></span><span class="op">(</span><span class="va">split</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">train</span><span class="op">$</span><span class="va">toxbin</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/proportions.html">prop.table</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## 
+##          0          1 
+## 0.95927602 0.04072398</code></pre>
+<div class="sourceCode" id="cb444"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">test</span><span class="op">$</span><span class="va">toxbin</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/proportions.html">prop.table</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## 
+##          0          1 
+## 0.95438596 0.04561404</code></pre>
+</div>
+</div>
+<div id="naïve-bayes" class="section level2" number="24.2">
+<h2>
+<span class="header-section-number">24.2</span> Naïve Bayes<a class="anchor" aria-label="anchor" href="#na%C3%AFve-bayes"><i class="fas fa-link"></i></a>
+</h2>
+<p>This section was adapted from <a href="https://uc-r.github.io/naive_bayes">here</a>. I thank Bradley Boehmke for providing these materials.</p>
+<p>Bayesian probability is built on the idea of <em>conditional probability</em>, the probability of event A given that event B has occurred [P(A|B)].</p>
+<p>For our Twitter data, this means we are interested in a tweet being “toxic” <span class="math inline">\(C_k\)</span> (where <span class="math inline">\(C_{yes} = \text{toxic}\)</span> and <span class="math inline">\(C_{no} = \text{non-toxic}\)</span>) given that its predictor values are <span class="math inline">\(x_1, x_2, ..., x_p\)</span>. This can be written as <span class="math inline">\(P(C_k|x_1, ..., x_p)\)</span>.</p>
+<p>The Bayesian formula for calculating this probability is</p>
+<p><span class="math display">\[ P(C_k|X) = \frac{P(C_k) \cdot P(X|C_k)}{P(X)} \quad (1) \]</span></p>
+<p>where:</p>
+<ul>
+<li><p><span class="math inline">\(P(C_k)\)</span> is the <em>prior probability</em> of the outcome. Essentially, based on the historical data, what is the probability of a tweet being toxic or not. And we know this is around 5%.</p></li>
+<li><p><span class="math inline">\(P(X)\)</span> is the probability of the predictor variables (same as <span class="math inline">\(P(C_k|x_1, ..., x_p)\)</span>). This will be the text of the tweets.</p></li>
+<li><p><span class="math inline">\(P(X|C_k)\)</span> is the <em>conditional probability or likelihood</em>. Essentially, for each class of the response variable (i.e. toxic or non-toxic), what is the probability of observing the predictor values.</p></li>
+<li><p><span class="math inline">\(P(C_k|X)\)</span> is called our <em>posterior probability</em>. By combining our observed information, we are updating our a priori information on probabilities to compute a posterior probability that an observation has class <span class="math inline">\(C_k\)</span>.</p></li>
+</ul>
+<div class="sourceCode" id="cb446"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/nalimilan/R.TeMiS">SnowballC</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/majkamichal/naivebayes">naivebayes</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tm.r-forge.r-project.org/">tm</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Preprocess the text data</span></span>
+<span><span class="co"># Create a Corpus from the text column</span></span>
+<span><span class="va">train_corpus</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/tm/man/Corpus.html">Corpus</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/tm/man/VectorSource.html">VectorSource</a></span><span class="op">(</span><span class="va">train</span><span class="op">$</span><span class="va">text</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">test_corpus</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/tm/man/Corpus.html">Corpus</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/tm/man/VectorSource.html">VectorSource</a></span><span class="op">(</span><span class="va">test</span><span class="op">$</span><span class="va">text</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Text preprocessing</span></span>
+<span><span class="va">preprocess</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">corpus</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">corpus</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/tm/man/tm_map.html">tm_map</a></span><span class="op">(</span><span class="va">corpus</span>, <span class="fu"><a href="https://rdrr.io/pkg/tm/man/content_transformer.html">content_transformer</a></span><span class="op">(</span><span class="va">tolower</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="va">corpus</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/tm/man/tm_map.html">tm_map</a></span><span class="op">(</span><span class="va">corpus</span>, <span class="va">removePunctuation</span><span class="op">)</span></span>
+<span>  <span class="va">corpus</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/tm/man/tm_map.html">tm_map</a></span><span class="op">(</span><span class="va">corpus</span>, <span class="va">removeNumbers</span><span class="op">)</span></span>
+<span>  <span class="va">corpus</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/tm/man/tm_map.html">tm_map</a></span><span class="op">(</span><span class="va">corpus</span>, <span class="va">removeWords</span>, <span class="fu"><a href="https://rdrr.io/pkg/tm/man/stopwords.html">stopwords</a></span><span class="op">(</span><span class="st">"english"</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="va">corpus</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/tm/man/tm_map.html">tm_map</a></span><span class="op">(</span><span class="va">corpus</span>, <span class="va">stemDocument</span><span class="op">)</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">corpus</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="va">train_corpus</span> <span class="op">&lt;-</span> <span class="fu">preprocess</span><span class="op">(</span><span class="va">train_corpus</span><span class="op">)</span></span>
+<span><span class="va">test_corpus</span> <span class="op">&lt;-</span> <span class="fu">preprocess</span><span class="op">(</span><span class="va">test_corpus</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Create a document-term matrix</span></span>
+<span><span class="va">train_dtm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/tm/man/matrix.html">DocumentTermMatrix</a></span><span class="op">(</span><span class="va">train_corpus</span><span class="op">)</span></span>
+<span><span class="va">test_dtm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/tm/man/matrix.html">DocumentTermMatrix</a></span><span class="op">(</span><span class="va">test_corpus</span>, control<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>dictionary<span class="op">=</span><span class="fu"><a href="https://rdrr.io/pkg/tm/man/Docs.html">Terms</a></span><span class="op">(</span><span class="va">train_dtm</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Convert dtm to matrix</span></span>
+<span><span class="va">train_matrix</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">train_dtm</span><span class="op">)</span></span>
+<span><span class="va">test_matrix</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">test_dtm</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Fit Naive Bayes model</span></span>
+<span><span class="co"># Ensure factors are factors, and predictors are in the correct format</span></span>
+<span><span class="va">train</span><span class="op">$</span><span class="va">toxbin</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">train</span><span class="op">$</span><span class="va">toxbin</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Use the train function from caret to train the model</span></span>
+<span><span class="va">trControl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/caret/man/trainControl.html">trainControl</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"cv"</span>, number <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
+<span><span class="va">nb_model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/caret/man/train.html">train</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">train_matrix</span>, y <span class="op">=</span> <span class="va">train</span><span class="op">$</span><span class="va">toxbin</span>, method <span class="op">=</span> <span class="st">"naive_bayes"</span>, trControl <span class="op">=</span> <span class="va">trControl</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Predict on test data</span></span>
+<span><span class="va">test</span><span class="op">$</span><span class="va">toxbin</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">test</span><span class="op">$</span><span class="va">toxbin</span><span class="op">)</span> <span class="co"># Make sure the test labels are also factors</span></span>
+<span><span class="va">predictions</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">nb_model</span>, <span class="va">test_matrix</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Evaluate the model</span></span>
+<span><span class="va">conf_matrix</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/caret/man/confusionMatrix.html">confusionMatrix</a></span><span class="op">(</span><span class="va">predictions</span>, <span class="va">test</span><span class="op">$</span><span class="va">toxbin</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">conf_matrix</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## Confusion Matrix and Statistics
+## 
+##           Reference
+## Prediction   0   1
+##          0 272  13
+##          1   0   0
+##                                           
+##                Accuracy : 0.9544          
+##                  95% CI : (0.9233, 0.9755)
+##     No Information Rate : 0.9544          
+##     P-Value [Acc &gt; NIR] : 0.5730645       
+##                                           
+##                   Kappa : 0               
+##                                           
+##  Mcnemar's Test P-Value : 0.0008741       
+##                                           
+##             Sensitivity : 1.0000          
+##             Specificity : 0.0000          
+##          Pos Pred Value : 0.9544          
+##          Neg Pred Value :    NaN          
+##              Prevalence : 0.9544          
+##          Detection Rate : 0.9544          
+##    Detection Prevalence : 1.0000          
+##       Balanced Accuracy : 0.5000          
+##                                           
+##        'Positive' Class : 0               
+## </code></pre>
+<p>Great! We have 95% accuracy. That’s good, right? WRONG.</p>
+<p>This is a common issue in imbalanced datasets where one class is significantly more prevalent than the other. Here are some key terms to remember regarding the model’s performance:</p>
+<ul>
+<li>The <code>Kappa</code> statistic is 0, which indicates that the model is no better than random chance when taking into account the imbalance of the classes.</li>
+<li>The <code>Sensitivity</code> (also known as Recall or True Positive Rate) is 1, which means that the model correctly identified all non-toxic tweets (class 0) as such. However, this is not informative since there are almost no toxic tweets (class 1) to begin with.</li>
+<li>The <code>Specificity</code> is 0, indicating that the model did not correctly identify any toxic tweets (class 1). This means the model failed to identify the minority class entirely.</li>
+<li>The <code>Pos Pred Value</code> (or Precision) for the non-toxic class is the same as the accuracy, which is again not informative due to the lack of true positives for the toxic class.</li>
+<li>
+<code>Balanced Accuracy</code> is 0.5, which is the average of sensitivity and specificity. Since specificity is 0, this metric shows that the model is ineffective for the minority class.</li>
+</ul>
+<div id="alternatives-to-locally-trained-models" class="section level3" number="24.2.1">
+<h3>
+<span class="header-section-number">24.2.1</span> Alternatives to locally trained models<a class="anchor" aria-label="anchor" href="#alternatives-to-locally-trained-models"><i class="fas fa-link"></i></a>
+</h3>
+<p>We can then use the following code to classify this content. This code connects to the Google Perspective classifying engine.</p>
+<p>All we need to do is tell it which features of text we want it to classify. We can do so using the <code>peRspective</code> library in R.</p>
+<div class="sourceCode" id="cb448"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://favstats.github.io/peRspective/">peRspective</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">models</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu">peRspective</span><span class="fu">::</span><span class="va"><a href="https://favstats.github.io/peRspective/reference/prsp_models.html">prsp_models</a></span><span class="op">)</span></span>
+<span><span class="va">models_subset</span> <span class="op">&lt;-</span> <span class="va">models</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, <span class="fl">7</span>, <span class="fl">9</span><span class="op">:</span><span class="fl">10</span>, <span class="fl">12</span>, <span class="fl">14</span><span class="op">)</span><span class="op">]</span></span>
+<span><span class="va">models_subset</span></span>
+<span></span>
+<span><span class="va">toxtwts</span> <span class="op">&lt;-</span> <span class="va">tweets_sample</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://favstats.github.io/peRspective/reference/prsp_stream.html">prsp_stream</a></span><span class="op">(</span>text <span class="op">=</span> <span class="va">text</span>,</span>
+<span>              text_id <span class="op">=</span> <span class="va">tweet_id</span>, </span>
+<span>              score_model <span class="op">=</span> <span class="va">models_subset</span>,</span>
+<span>              verbose <span class="op">=</span> <span class="cn">T</span>,</span>
+<span>              safe_output <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">toxtwts</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"tweet_id"</span>, <span class="st">"error"</span>, <span class="va">models_subset</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">tweets_sample_tox_r</span> <span class="op">&lt;-</span> <span class="va">tweets_sample</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">toxtwts</span>, by <span class="op">=</span> <span class="st">"tweet_id"</span><span class="op">)</span></span></code></pre></div>
+<p>And then we’re back to the data we started with!</p>
+
 </div>
 </div>
 </div>
@@ -829,6 +1091,9 @@ NA
 <li><a class="nav-link" href="#exercise-8-supervised-learning"><span class="header-section-number">24</span> Exercise 8: Supervised learning</a></li>
 <li>
 <a class="nav-link" href="#introduction-7"><span class="header-section-number">24.1</span> Introduction</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#data"><span class="header-section-number">24.1.1</span> Data</a></li></ul>
+</li>
+<li>
+<a class="nav-link" href="#na%C3%AFve-bayes"><span class="header-section-number">24.2</span> Naïve Bayes</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#alternatives-to-locally-trained-models"><span class="header-section-number">24.2.1</span> Alternatives to locally trained models</a></li></ul>
 </li>
 </ul>
 

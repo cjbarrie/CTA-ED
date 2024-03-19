@@ -149,22 +149,25 @@
 <div class="sourceCode" id="cb266"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">tweets</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## # A tibble: 6 × 3
-##   username   tweet                                                                             date      
-##   &lt;chr&gt;      &lt;chr&gt;                                                                             &lt;date&gt;    
-## 1 aluncairns "A good luck message to Chris Coleman’s squad @FAWales ahead of tonight’s crucia… 2017-10-09
-## 2 aluncairns ".@AlunCairns “The close relationship between industry and government stand only… 2017-10-09
-## 3 aluncairns "@BarclaysCorp &amp;amp; @SPTS_Tech \"voice of Welsh Manufacturing\" event with @Alu… 2017-10-09
-## 4 aluncairns "Today we announced plans to ban the sale of ivory in the UK.\nThe cruel poachin… 2017-10-06
-## 5 aluncairns "Unbeaten Wales overcome Georgia to boost their @FIFAWorldCup qualification hope… 2017-10-06
-## 6 aluncairns ".@GutoAberconwy marks 25 years of engine production @toyotafactory Deeside #str… 2017-10-06</code></pre>
+##   username   tweet                                     date      
+##   &lt;chr&gt;      &lt;chr&gt;                                     &lt;date&gt;    
+## 1 aluncairns "A good luck message to Chris Coleman’s … 2017-10-09
+## 2 aluncairns ".@AlunCairns “The close relationship be… 2017-10-09
+## 3 aluncairns "@BarclaysCorp &amp;amp; @SPTS_Tech \"voice … 2017-10-09
+## 4 aluncairns "Today we announced plans to ban the sal… 2017-10-06
+## 5 aluncairns "Unbeaten Wales overcome Georgia to boos… 2017-10-06
+## 6 aluncairns ".@GutoAberconwy marks 25 years of engin… 2017-10-06</code></pre>
 <p>And there are 24 MPs whose tweets we’re examining.</p>
 <div class="sourceCode" id="cb268"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">tweets</span><span class="op">$</span><span class="va">username</span><span class="op">)</span></span></code></pre></div>
-<pre><code>##  [1] "aluncairns"      "amberrudduk"     "andrealeadsom"   "borisjohnson"    "brandonlewis"   
-##  [6] "damiangreen"     "damianhinds"     "daviddavismp"    "davidgauke"      "davidmundelldct"
-## [11] "dlidington"      "gavinwilliamson" "gregclarkmp"     "jbrokenshire"    "jeremy_hunt"    
-## [16] "juliansmithuk"   "justinegreening" "liamfox"         "michaelgove"     "pennymordaunt"  
-## [21] "philiphammonduk" "sajidjavid"      "theresa_may"     "trussliz"</code></pre>
+<pre><code>##  [1] "aluncairns"      "amberrudduk"     "andrealeadsom"  
+##  [4] "borisjohnson"    "brandonlewis"    "damiangreen"    
+##  [7] "damianhinds"     "daviddavismp"    "davidgauke"     
+## [10] "davidmundelldct" "dlidington"      "gavinwilliamson"
+## [13] "gregclarkmp"     "jbrokenshire"    "jeremy_hunt"    
+## [16] "juliansmithuk"   "justinegreening" "liamfox"        
+## [19] "michaelgove"     "pennymordaunt"   "philiphammonduk"
+## [22] "sajidjavid"      "theresa_may"     "trussliz"</code></pre>
 <div class="sourceCode" id="cb270"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">tweets</span><span class="op">$</span><span class="va">username</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 24</code></pre>
@@ -208,19 +211,28 @@
 <code class="sourceCode R"><span><span class="va">dfmat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://quanteda.io/reference/dfm.html">dfm</a></span><span class="op">(</span><span class="fu"><a href="https://quanteda.io/reference/tokens.html">tokens</a></span><span class="op">(</span><span class="va">tweets_corpus</span><span class="op">)</span>,</span>
 <span>             remove_punct <span class="op">=</span> <span class="cn">TRUE</span>, </span>
 <span>             remove <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/stopwords/man/stopwords.html">stopwords</a></span><span class="op">(</span><span class="st">"english"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<pre><code>## Warning: '...' should not be used for tokens() arguments; use 'tokens()' first.</code></pre>
+<pre><code>## Warning: '...' should not be used for tokens() arguments; use
+## 'tokens()' first.</code></pre>
 <pre><code>## Warning: 'remove' is deprecated; use dfm_remove() instead</code></pre>
 <div class="sourceCode" id="cb277"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dfmat</span></span></code></pre></div>
 <pre><code>## Document-feature matrix of: 10,321 documents, 26,956 features (99.95% sparse) and 2 docvars.
 ##        features
-## docs    good luck message chris coleman’s squad @fawales ahead tonight’s crucial
-##   text1    1    1       1     1         1     1        1     1         1       1
-##   text2    0    0       0     0         0     0        0     0         0       0
-##   text3    0    0       0     0         0     0        0     0         0       0
-##   text4    0    0       0     0         0     0        0     0         0       0
-##   text5    0    0       0     0         0     0        0     0         0       0
-##   text6    0    0       0     0         0     0        0     0         0       0
+## docs    good luck message chris coleman’s squad @fawales ahead
+##   text1    1    1       1     1         1     1        1     1
+##   text2    0    0       0     0         0     0        0     0
+##   text3    0    0       0     0         0     0        0     0
+##   text4    0    0       0     0         0     0        0     0
+##   text5    0    0       0     0         0     0        0     0
+##   text6    0    0       0     0         0     0        0     0
+##        features
+## docs    tonight’s crucial
+##   text1         1       1
+##   text2         0       0
+##   text3         0       0
+##   text4         0       0
+##   text5         0       0
+##   text6         0       0
 ## [ reached max_ndoc ... 10,315 more documents, reached max_nfeat ... 26,946 more features ]</code></pre>
 <p>Note that when we do this we need to have tokenized our corpus object first. We can do this by wrapping the <code>tokens</code> function inside the <code><a href="https://quanteda.io/reference/dfm.html">dfm()</a></code> function as above.</p>
 <p>So what is this object? Well the documents here are tweets. And the matrix is a sparse (i.e., mostly zeroes) matrix of 1s and 0s for whether a given word appears in the document (tweet) in question.</p>
@@ -239,12 +251,18 @@
 <span></span>
 <span><span class="va">corrmat</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></span></code></pre></div>
 <pre><code>## 5 x 5 Matrix of class "dspMatrix"
-##               aluncairns amberrudduk andrealeadsom borisjohnson brandonlewis
-## aluncairns     1.0000000   0.3610579     0.4717627    0.4137785    0.4815319
-## amberrudduk    0.3610579   1.0000000     0.4746674    0.4657415    0.5866139
-## andrealeadsom  0.4717627   0.4746674     1.0000000    0.5605795    0.6905958
-## borisjohnson   0.4137785   0.4657415     0.5605795    1.0000000    0.6685258
-## brandonlewis   0.4815319   0.5866139     0.6905958    0.6685258    1.0000000</code></pre>
+##               aluncairns amberrudduk andrealeadsom borisjohnson
+## aluncairns     1.0000000   0.3610579     0.4717627    0.4137785
+## amberrudduk    0.3610579   1.0000000     0.4746674    0.4657415
+## andrealeadsom  0.4717627   0.4746674     1.0000000    0.5605795
+## borisjohnson   0.4137785   0.4657415     0.5605795    1.0000000
+## brandonlewis   0.4815319   0.5866139     0.6905958    0.6685258
+##               brandonlewis
+## aluncairns       0.4815319
+## amberrudduk      0.5866139
+## andrealeadsom    0.6905958
+## borisjohnson     0.6685258
+## brandonlewis     1.0000000</code></pre>
 <p>Note that here we’re using the <code><a href="https://quanteda.io/reference/dfm_group.html">dfm_group()</a></code> function, which allows you to take a document feature matrix and make calculations while grouping by one of the document-level variables we specified above.</p>
 <p>There are many different measures of similarity, however, that we might think about using.</p>
 <p>In the below, we combine four different measures of similarity, and see how they compare to each other across MPs. Note that here we’re looking only at the similarity between an MP’s tweets and those of then Prime Minister, Theresa May.</p>
@@ -286,7 +304,7 @@
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="st">"MP username"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">"Cosine similarity score"</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-155-1.png" width="672"></div>
+<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-150-1.png" width="672"></div>
 <p>Combining these steps into a single <code>for</code> loop, we can see how our different similarity measures of interest compare.</p>
 <div class="sourceCode" id="cb286"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#specify different similarity measures to explore</span></span>
@@ -336,7 +354,7 @@
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="st">"MP username"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">"Similarity score"</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-156-1.png" width="672"></div>
+<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-151-1.png" width="672"></div>
 </div>
 <div id="complexity-1" class="section level2" number="19.6">
 <h2>
@@ -408,7 +426,7 @@
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">"Mean Complexity"</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html">ylim</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">20</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-163-1.png" width="672"></div>
+<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-158-1.png" width="672"></div>
 </div>
 <div id="exercises-2" class="section level2" number="19.7">
 <h2>

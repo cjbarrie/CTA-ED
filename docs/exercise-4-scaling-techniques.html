@@ -166,22 +166,30 @@
 <code class="sourceCode R"><span><span class="co">## number of tweets per newspaper</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="fu"><a href="https://quanteda.io/reference/docvars.html">docvars</a></span><span class="op">(</span><span class="va">dfm_tweets</span>, <span class="st">"newspaper"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
-##     DailyMailUK     DailyMirror EveningStandard        guardian         MetroUK       Telegraph 
-##            2052            5834            2182            2939             966            1519 
-##          TheSun        thetimes 
-##            3840             668</code></pre>
+##     DailyMailUK     DailyMirror EveningStandard        guardian 
+##            2052            5834            2182            2939 
+##         MetroUK       Telegraph          TheSun        thetimes 
+##             966            1519            3840             668</code></pre>
 <p>And this is what our document feature matrix looks like, where each word has a count for each of our eight newspapers.</p>
 <div class="sourceCode" id="cb303"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dfm_tweets</span></span></code></pre></div>
 <pre><code>## Document-feature matrix of: 20,000 documents, 48,967 features (99.98% sparse) and 31 docvars.
 ##        features
-## docs    rt @standardnews breaking coronavirus outbreak declared pandemic world health organisation
-##   text1  1             1        1           1        1        1        1     1      1            1
-##   text2  1             0        0           0        0        0        0     0      0            0
-##   text3  0             0        0           0        0        0        0     0      0            0
-##   text4  0             0        0           0        0        0        0     0      0            0
-##   text5  0             0        0           0        0        0        0     0      0            0
-##   text6  0             0        0           0        0        0        0     0      0            0
+## docs    rt @standardnews breaking coronavirus outbreak declared
+##   text1  1             1        1           1        1        1
+##   text2  1             0        0           0        0        0
+##   text3  0             0        0           0        0        0
+##   text4  0             0        0           0        0        0
+##   text5  0             0        0           0        0        0
+##   text6  0             0        0           0        0        0
+##        features
+## docs    pandemic world health organisation
+##   text1        1     1      1            1
+##   text2        0     0      0            0
+##   text3        0     0      0            0
+##   text4        0     0      0            0
+##   text5        0     0      0            0
+##   text6        0     0      0            0
 ## [ reached max_ndoc ... 19,994 more documents, reached max_nfeat ... 48,957 more features ]</code></pre>
 </div>
 <div id="estimate-wordfish-model" class="section level2" number="20.4">
@@ -223,24 +231,30 @@
 ## thetimes        -1.00168 0.014966
 ## 
 ## Estimated Feature Scores:
-##         rt breaking coronavirus outbreak declared pandemic  world  health organisation genuinely
-## beta 0.537    0.191     0.06918  -0.2654 -0.06525  -0.2004 -0.317 -0.3277      -0.4118   -0.2873
-## psi  5.307    3.535     5.78715   3.1348  0.50705   3.1738  3.366  3.2041       0.5487   -0.5403
-##      interested       see      one     cos     fair  german    care system protect troubled children
-## beta    -0.2545 0.0005127 -0.06313 -0.2788 -0.03078 -0.7424 -0.3251 -1.105 -0.1106  -0.4731  0.01205
-## psi     -1.4502 2.7723965  3.85881 -1.4480  0.35480  1.1009  3.1042  1.259  1.8918  -0.0784  2.85004
-##      #covid19 anxiety  shows    sign    man  behind   app explains    tips
-## beta  -0.6742  0.4218 0.4165 -0.1215 0.5112 0.05499 0.271   0.6687 -0.2083
-## psi    2.9703  0.5917 2.8370  1.9427 3.5777 2.43805 1.376   1.2749  1.5341</code></pre>
+##         rt breaking coronavirus outbreak declared pandemic
+## beta 0.537    0.191     0.06918  -0.2654 -0.06526  -0.2004
+## psi  5.307    3.535     5.78715   3.1348  0.50705   3.1738
+##       world  health organisation genuinely interested       see
+## beta -0.317 -0.3277      -0.4118   -0.2873    -0.2545 0.0005114
+## psi   3.366  3.2041       0.5487   -0.5403    -1.4502 2.7723965
+##           one     cos     fair  german    care system protect
+## beta -0.06313 -0.2788 -0.03078 -0.7424 -0.3251 -1.105 -0.1106
+## psi   3.85881 -1.4480  0.35480  1.1009  3.1042  1.259  1.8918
+##      troubled children #covid19 anxiety  shows    sign    man
+## beta  -0.4731  0.01205  -0.6742  0.4218 0.4165 -0.1215 0.5112
+## psi   -0.0784  2.85004   2.9703  0.5917 2.8370  1.9427 3.5777
+##       behind   app explains    tips
+## beta 0.05499 0.271   0.6687 -0.2083
+## psi  2.43805 1.376   1.2749  1.5341</code></pre>
 <p>We can then plot our estimates of the <span class="math inline">\(\theta\)</span>s—i.e., the estimates of the latent newspaper position—as so.</p>
 <div class="sourceCode" id="cb310"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/quanteda.textplots/man/textplot_scale1d.html">textplot_scale1d</a></span><span class="op">(</span><span class="va">dfm_newstweets_results</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-175-1.png" width="672"></div>
+<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-170-1.png" width="672"></div>
 <p>Interestingly, we seem not to have captured ideology but some other tonal dimension. We see that the tabloid newspapers are scored similarly, and grouped toward the right hand side of this latent dimension; whereas the broadsheet newspapers have an estimated theta further to the left.</p>
 <p>Plotting the “features,” i.e., the word-level betas shows how words are positioned along this dimension, and which words help discriminate between news outlets.</p>
 <div class="sourceCode" id="cb311"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/quanteda.textplots/man/textplot_scale1d.html">textplot_scale1d</a></span><span class="op">(</span><span class="va">dfm_newstweets_results</span>, margin <span class="op">=</span> <span class="st">"features"</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-176-1.png" width="672"></div>
+<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-171-1.png" width="672"></div>
 <p>And we can also look at these features.</p>
 <div class="sourceCode" id="cb312"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">features</span> <span class="op">&lt;-</span> <span class="va">dfm_newstweets_results</span><span class="op">[[</span><span class="st">"features"</span><span class="op">]</span><span class="op">]</span></span>
@@ -271,7 +285,7 @@ betas
 ig
 </td>
 <td style="text-align:right;">
-8.961659
+8.961660
 </td>
 </tr>
 <tr>
@@ -279,7 +293,7 @@ ig
 🎥
 </td>
 <td style="text-align:right;">
-7.789176
+7.789177
 </td>
 </tr>
 <tr>
@@ -287,7 +301,7 @@ ig
 diver
 </td>
 <td style="text-align:right;">
-7.015284
+7.015285
 </td>
 </tr>
 <tr>
@@ -319,7 +333,7 @@ cutest
 lad
 </td>
 <td style="text-align:right;">
-5.012237
+5.012236
 </td>
 </tr>
 <tr>
@@ -391,7 +405,7 @@ nails
 rides
 </td>
 <td style="text-align:right;">
-3.950630
+3.950629
 </td>
 </tr>
 <tr>
@@ -399,7 +413,7 @@ rides
 ghostly
 </td>
 <td style="text-align:right;">
-3.950630
+3.950629
 </td>
 </tr>
 <tr>
@@ -407,7 +421,7 @@ ghostly
 extensions
 </td>
 <td style="text-align:right;">
-3.950630
+3.950629
 </td>
 </tr>
 <tr>
@@ -415,7 +429,7 @@ extensions
 corrie’s
 </td>
 <td style="text-align:right;">
-3.950630
+3.950629
 </td>
 </tr>
 <tr>
@@ -444,10 +458,10 @@ lion
 <div class="sourceCode" id="cb316"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="fu"><a href="https://quanteda.io/reference/docvars.html">docvars</a></span><span class="op">(</span><span class="va">kaneko_dfm</span>, <span class="st">"Newspaper"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
-##       Asahi     Chugoku    Chunichi    Hokkaido      Kahoku    Mainichi      Nikkei Nishinippon 
-##          38          24          47          46          18          26          13          27 
-##      Sankei     Yomiuri 
-##          14          30</code></pre>
+##       Asahi     Chugoku    Chunichi    Hokkaido      Kahoku 
+##          38          24          47          46          18 
+##    Mainichi      Nikkei Nishinippon      Sankei     Yomiuri 
+##          26          13          27          14          30</code></pre>
 <div class="sourceCode" id="cb318"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## prepare the newspaper-level document-feature matrix</span></span>
 <span><span class="co"># compress the document-feature matrix at the newspaper level</span></span>

@@ -9,6 +9,8 @@ The hands-on exercise for this week focuses on how to classify a sample of text.
 
 We will be classifying the same tweets as discussed in @barrie2023did.
 
+I benefited form this [worksheet](https://uc-r.github.io/naive_bayes) when preparing this tutorial.
+
 ```{r}
 library(dplyr)
 ```
@@ -32,3 +34,163 @@ tweets_sample_kable <- tweets_sample %>%
 
 kableExtra::kable(head(tweets_sample_kable), format = "html")
 ```
+
+Now, we need first to add some labels to these data. Specifically, we're interested in the "toxicity" of tweet content. 
+
+How can we do this?
+
+Well, I have provided you with already labelled data in the below:
+
+```{r, eval = F, echo = T}
+tweets_sample  <- readRDS(gzcon(url("https://github.com/cjbarrie/CS-ED/blob/main/data/tweets-tox-ranked.rds?raw=true")))
+
+```
+
+```{r, echo = F, eval = T}
+tweets_tox_sample <- readRDS("data/supervised/tweets-tox-ranked.rds")
+```
+
+```{r, echo = F, eval = T}
+tweets_tox_sample_kable <- tweets_tox_sample %>%
+  mutate(text = gsub("(@)(\\S)", "\\1 \\2", text),
+         sourcetweet_text = gsub("(@)(\\S)", "\\1 \\2", sourcetweet_text),
+         user_description = gsub("(@)(\\S)", "\\1 \\2", user_description)) %>%
+  select(tweet_id, user_username, text, TOXICITY)
+
+kableExtra::kable(head(tweets_tox_sample_kable), format = "html")
+```
+
+These tweets were actually labelled by another machine learning engine (we'll talk about this later). But for now, we're going to pretend they were labelled by humans. And we're going to take a subset of the data to train our own classifier to label the rest of the dataset. 
+
+We're going to say that anything above a score of .5 is "toxic."
+
+```{r}
+library(caret)
+library(rsample)
+
+# Select just the columns we need
+tweets_tox_select <- tweets_tox_sample %>%
+  select(tweet_id, user_username, text, TOXICITY) %>%
+  mutate(toxbin = ifelse(TOXICITY>=.5, 1, 0))
+
+set.seed(123)
+split <- initial_split(tweets_tox_select, prop = .7, strata = "TOXICITY")
+train <- training(split)
+test  <- testing(split)
+
+table(train$toxbin) %>% prop.table()
+table(test$toxbin) %>% prop.table()
+
+```
+
+## Naïve Bayes
+
+This section was adapted from [here](https://uc-r.github.io/naive_bayes). I thank Bradley Boehmke for providing these materials.
+
+Bayesian probability is built on the idea of *conditional probability*, the probability of event A given that event B has occurred [P(A|B)]. 
+
+For our Twitter data, this means we are interested in a tweet being "toxic" \( C_k \) (where \( C_{yes} = \text{toxic} \) and \( C_{no} = \text{non-toxic} \)) given that its predictor values are \( x_1, x_2, ..., x_p \). This can be written as \( P(C_k|x_1, ..., x_p) \).
+
+The Bayesian formula for calculating this probability is
+
+\[ P(C_k|X) = \frac{P(C_k) \cdot P(X|C_k)}{P(X)} \quad (1) \]
+
+where:
+
+- \( P(C_k) \) is the *prior probability* of the outcome. Essentially, based on the historical data, what is the probability of a tweet being toxic or not. And we know this is around 5%. 
+
+- \( P(X) \) is the probability of the predictor variables (same as \( P(C_k|x_1, ..., x_p) \)). This will be the text of the tweets.
+
+- \( P(X|C_k) \) is the *conditional probability or likelihood*. Essentially, for each class of the response variable (i.e. toxic or non-toxic), what is the probability of observing the predictor values.
+
+- \( P(C_k|X) \) is called our *posterior probability*. By combining our observed information, we are updating our a priori information on probabilities to compute a posterior probability that an observation has class \( C_k \).
+
+```{r, message = F, warning = F}
+library(SnowballC)
+library(naivebayes)
+library(tm)
+
+# Preprocess the text data
+# Create a Corpus from the text column
+train_corpus <- Corpus(VectorSource(train$text))
+test_corpus <- Corpus(VectorSource(test$text))
+
+# Text preprocessing
+preprocess <- function(corpus) {
+  corpus <- tm_map(corpus, content_transformer(tolower))
+  corpus <- tm_map(corpus, removePunctuation)
+  corpus <- tm_map(corpus, removeNumbers)
+  corpus <- tm_map(corpus, removeWords, stopwords("english"))
+  corpus <- tm_map(corpus, stemDocument)
+  return(corpus)
+}
+
+train_corpus <- preprocess(train_corpus)
+test_corpus <- preprocess(test_corpus)
+
+# Create a document-term matrix
+train_dtm <- DocumentTermMatrix(train_corpus)
+test_dtm <- DocumentTermMatrix(test_corpus, control=list(dictionary=Terms(train_dtm)))
+
+# Convert dtm to matrix
+train_matrix <- as.matrix(train_dtm)
+test_matrix <- as.matrix(test_dtm)
+
+# Fit Naive Bayes model
+# Ensure factors are factors, and predictors are in the correct format
+train$toxbin <- factor(train$toxbin)
+
+# Use the train function from caret to train the model
+trControl <- trainControl(method = "cv", number = 10)
+nb_model <- train(x = train_matrix, y = train$toxbin, method = "naive_bayes", trControl = trControl)
+
+# Predict on test data
+test$toxbin <- factor(test$toxbin) # Make sure the test labels are also factors
+predictions <- predict(nb_model, test_matrix)
+
+# Evaluate the model
+conf_matrix <- confusionMatrix(predictions, test$toxbin)
+print(conf_matrix)
+
+```
+
+Great! We have 95% accuracy. That's good, right? WRONG. 
+
+This is a common issue in imbalanced datasets where one class is significantly more prevalent than the other. Here are some key terms to remember regarding the model's performance:
+
+- The `Kappa` statistic is 0, which indicates that the model is no better than random chance when taking into account the imbalance of the classes.
+- The `Sensitivity` (also known as Recall or True Positive Rate) is 1, which means that the model correctly identified all non-toxic tweets (class 0) as such. However, this is not informative since there are almost no toxic tweets (class 1) to begin with.
+- The `Specificity` is 0, indicating that the model did not correctly identify any toxic tweets (class 1). This means the model failed to identify the minority class entirely.
+- The `Pos Pred Value` (or Precision) for the non-toxic class is the same as the accuracy, which is again not informative due to the lack of true positives for the toxic class.
+- `Balanced Accuracy` is 0.5, which is the average of sensitivity and specificity. Since specificity is 0, this metric shows that the model is ineffective for the minority class.
+
+### Alternatives to locally trained models
+
+We can then use the following code to classify this content. This code connects to the Google Perspective classifying engine. 
+
+All we need to do is tell it which features of text we want it to classify. We can do so using the `peRspective` library in R.
+
+```{r, eval = F, echo = T}
+library(peRspective)
+library(dplyr)
+library(ggplot2)
+
+models <- c(peRspective::prsp_models)
+models_subset <- models[c(1:5, 7, 9:10, 12, 14)]
+models_subset
+
+toxtwts <- tweets_sample %>%
+  prsp_stream(text = text,
+              text_id = tweet_id, 
+              score_model = models_subset,
+              verbose = T,
+              safe_output = T)
+
+colnames(toxtwts) <- c("tweet_id", "error", models_subset)
+
+tweets_sample_tox_r <- tweets_sample %>%
+  left_join(toxtwts, by = "tweet_id")
+
+```
+
+And then we're back to the data we started with!

@@ -262,18 +262,18 @@
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">word1</span> <span class="op">==</span> <span class="st">"brexit"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="op">-</span><span class="va">p_together</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## # A tibble: 1,016 × 7
-##    word1  word2                      n           p      p1         p2 p_together
-##    &lt;chr&gt;  &lt;chr&gt;                  &lt;dbl&gt;       &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;
-##  1 brexit scotlandsplaceineurope    37 0.000000479 0.00278 0.00000186       92.6
-##  2 brexit preparedness              22 0.000000285 0.00278 0.00000149       68.8
-##  3 brexit dividend                 176 0.00000228  0.00278 0.0000127        64.8
-##  4 brexit brexit                 38517 0.000499    0.00278 0.00278          64.6
-##  5 brexit softer                    50 0.000000648 0.00278 0.00000410       56.9
-##  6 brexit botched                  129 0.00000167  0.00278 0.0000153        39.4
-##  7 brexit impasse                   53 0.000000687 0.00278 0.00000820       30.1
-##  8 brexit smooth                    30 0.000000389 0.00278 0.00000596       23.5
-##  9 brexit frustrate                 28 0.000000363 0.00278 0.00000559       23.4
-## 10 brexit deadlock                 120 0.00000155  0.00278 0.0000246        22.8
+##    word1  word2              n       p      p1      p2 p_together
+##    &lt;chr&gt;  &lt;chr&gt;          &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;
+##  1 brexit scotlandsplac…    37 4.79e-7 0.00278 1.86e-6       92.6
+##  2 brexit preparedness      22 2.85e-7 0.00278 1.49e-6       68.8
+##  3 brexit dividend         176 2.28e-6 0.00278 1.27e-5       64.8
+##  4 brexit brexit         38517 4.99e-4 0.00278 2.78e-3       64.6
+##  5 brexit softer            50 6.48e-7 0.00278 4.10e-6       56.9
+##  6 brexit botched          129 1.67e-6 0.00278 1.53e-5       39.4
+##  7 brexit impasse           53 6.87e-7 0.00278 8.20e-6       30.1
+##  8 brexit smooth            30 3.89e-7 0.00278 5.96e-6       23.5
+##  9 brexit frustrate         28 3.63e-7 0.00278 5.59e-6       23.4
+## 10 brexit deadlock         120 1.55e-6 0.00278 2.46e-5       22.8
 ## # ℹ 1,006 more rows</code></pre>
 <p>Using this normalized probabilities, we then calculate the PMI or “Pointwise Mutual Information” value, which is simply the log of the joint probability we calculated above.</p>
 <p><strong>Definition time</strong>: “PMI is logarithm of the probability of finding two words together, normalized for the probability of finding each of the words alone.”</p>
@@ -375,7 +375,7 @@
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_fill_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"#336B87"</span>, <span class="st">"#2A3132"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_tufte.html">theme_tufte</a></span><span class="op">(</span>base_family <span class="op">=</span> <span class="st">"Helvetica"</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-210-1.png" width="672"></div>
+<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-205-1.png" width="672"></div>
 </div>
 <div id="glove-embeddings" class="section level2" number="22.6">
 <h2>
@@ -496,7 +496,7 @@ f(X_{ij}) =
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">UMAP1</span>, y <span class="op">=</span> <span class="va">UMAP2</span><span class="op">)</span>, colour <span class="op">=</span> <span class="st">'blue'</span>, size <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html">annotate</a></span><span class="op">(</span><span class="st">"rect"</span>, xmin <span class="op">=</span> <span class="op">-</span><span class="fl">3</span>, xmax <span class="op">=</span> <span class="op">-</span><span class="fl">2</span>, ymin <span class="op">=</span> <span class="fl">5</span>, ymax <span class="op">=</span> <span class="fl">7</span>,alpha <span class="op">=</span> <span class="fl">.2</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"GloVe word embedding in 2D using UMAP"</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-222-1.png" width="672"></div>
+<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-217-1.png" width="672"></div>
 <div class="sourceCode" id="cb391"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Plot the shaded part of the GloVe word embedding with labels</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">df_glove_umap</span><span class="op">[</span><span class="va">df_glove_umap</span><span class="op">$</span><span class="va">UMAP1</span> <span class="op">&lt;</span> <span class="op">-</span><span class="fl">2.5</span> <span class="op">&amp;</span> <span class="va">df_glove_umap</span><span class="op">$</span><span class="va">UMAP1</span> <span class="op">&gt;</span> <span class="op">-</span><span class="fl">3</span> <span class="op">&amp;</span> <span class="va">df_glove_umap</span><span class="op">$</span><span class="va">UMAP2</span> <span class="op">&gt;</span> <span class="fl">5</span> <span class="op">&amp;</span> <span class="va">df_glove_umap</span><span class="op">$</span><span class="va">UMAP2</span> <span class="op">&lt;</span> <span class="fl">6.5</span>,<span class="op">]</span><span class="op">)</span> <span class="op">+</span></span>
@@ -504,7 +504,7 @@ f(X_{ij}) =
 <span>      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">UMAP1</span>, <span class="va">UMAP2</span>, label <span class="op">=</span> <span class="va">word</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">2.5</span>, vjust<span class="op">=</span><span class="op">-</span><span class="fl">1</span>, hjust<span class="op">=</span><span class="fl">0</span><span class="op">)</span> <span class="op">+</span></span>
 <span>      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"GloVe word embedding in 2D using UMAP - partial view"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>plot.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>hjust <span class="op">=</span> <span class="fl">.5</span>, size <span class="op">=</span> <span class="fl">14</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-222-2.png" width="672"></div>
+<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-217-2.png" width="672"></div>
 <div class="sourceCode" id="cb392"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Plot the word embedding of words that are related for the GloVe model</span></span>
 <span><span class="va">word</span> <span class="op">&lt;-</span> <span class="va">glove_embedding</span><span class="op">[</span><span class="st">"economy"</span>,, drop <span class="op">=</span> <span class="cn">FALSE</span><span class="op">]</span></span>
@@ -520,7 +520,7 @@ f(X_{ij}) =
 <span>      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">UMAP1</span>, <span class="va">UMAP2</span>, label <span class="op">=</span> <span class="va">word</span><span class="op">)</span>, show.legend <span class="op">=</span> <span class="cn">FALSE</span>, size <span class="op">=</span> <span class="fl">2.5</span>, vjust<span class="op">=</span><span class="op">-</span><span class="fl">1.5</span>, hjust<span class="op">=</span><span class="fl">0</span><span class="op">)</span> <span class="op">+</span></span>
 <span>      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"GloVe word embedding of words related to 'economy'"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>plot.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>hjust <span class="op">=</span> <span class="fl">.5</span>, size <span class="op">=</span> <span class="fl">14</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-222-3.png" width="672"></div>
+<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-217-3.png" width="672"></div>
 <p>We can see, here, then that our embeddings seem to make sense. We zoomed in first on that little outgrowth of our 2D mapping, which seemed to correspond to numbers and number words. Then we looked at words around “economy” and we see other related terms like “growth” and “jobs.”</p>
 </div>
 <div id="exercises-5" class="section level2" number="22.10">

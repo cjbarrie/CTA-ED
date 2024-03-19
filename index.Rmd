@@ -25,7 +25,7 @@ We will be using this online book throughout the course. Each week has a set of 
 The course is structured of alternating weeks of substantive and technical instruction.
 
 | Week | Focus                                        | Coding assignment(s)                                                                                                                                                              | Class activity                                                                                                             |
-|------|----------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------|
+|------------|------------|-----------------------------|-------------------|
 | 1    | Retrieving and analyzing text information    | [Introductory exercises](https://cjbarrie.github.io/CTA-ED/introduction-to-r.html) + [RTC Workshop by Ugur Ozdemir](https://research-training-centre.sps.ed.ac.uk/micro-methods/) | Seminar discussion                                                                                                         |
 | 2    | Tokenization and word frequencies            | [Demo](https://cjbarrie.github.io/CTA-ED/week-2-demo.html)                                                                                                                        | Seminar discussion                                                                                                         |
 | 3    | Dictionary-based techniques                  | [Demo](https://cjbarrie.github.io/CTA-ED/week-3-demo.html) + [Exercise 2](https://cjbarrie.github.io/CTA-ED/exercise-2-dictionary-based-methods.html)                             | Flash talk + [Exercise 1](https://cjbarrie.github.io/CTA-ED/exercise-1-word-frequency-analysis.html) group work            |
@@ -39,4 +39,4 @@ The course is structured of alternating weeks of substantive and technical instr
 
 ## Acknowledgments {.unnumbered}
 
-When compiling this course, I benefited from syllabus materials shared online by Margaret Roberts, Alexandra Siegel, and Arthur Spirling. Thanks also to Justin Grimmer, Margaret Roberts, and Brandon Stewart for providing early view access to their forthcoming [*Text as Data*](https://press.princeton.edu/books/hardcover/9780691207544/text-as-data) book.
+When compiling this course, I benefited from syllabus materials shared online by Bradley Boehmke, Margaret Roberts, Alexandra Siegel, and Arthur Spirling. Thanks also to Justin Grimmer, Margaret Roberts, and Brandon Stewart for providing early view access to their forthcoming [*Text as Data*](https://press.princeton.edu/books/hardcover/9780691207544/text-as-data) book.

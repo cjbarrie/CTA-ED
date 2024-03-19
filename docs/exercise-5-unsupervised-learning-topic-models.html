@@ -179,9 +179,13 @@
 ## Weighting          : term frequency (tf)
 ## Sample             :
 ##       Terms
-## Docs   country democratic government laws nations people power society time united
-##   DiA1     357        212        556  397     233    516   543     290  311    554
-##   DiA2     167        561        162  133     313    360   263     241  309    227</code></pre>
+## Docs   country democratic government laws nations people power
+##   DiA1     357        212        556  397     233    516   543
+##   DiA2     167        561        162  133     313    360   263
+##       Terms
+## Docs   society time united
+##   DiA1     290  311    554
+##   DiA2     241  309    227</code></pre>
 <p>We see here that the data are now stored as a “DocumentTermMatrix.” In this format, the matrix records the term (as equivalent of a column) and the document (as equivalent of row), and the number of times the term appears in the given document. Many terms will not appear in the document, meaning that the matrix will be stored as “sparse,” meaning there will be a preponderance of zeroes. Here, since we are looking only at two documents that both come from a single volume set, the sparsity is relatively low (only 27%). In most applications, the sparsity will be a lot higher, approaching 99% or more.</p>
 <p>Estimating our topic model is then relatively simple. All we need to do if specify how many topics that we want to search for, and we can also set our seed, which is needed to reproduce the same results each time (as the model is a generative probabilistic one, meaning different random iterations will produce different results).</p>
 <div class="sourceCode" id="cb328"><pre class="downlit sourceCode r">
@@ -220,7 +224,7 @@
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span> <span class="va">topic</span>, scales <span class="op">=</span> <span class="st">"free"</span>, ncol <span class="op">=</span> <span class="fl">4</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/tidytext/man/reorder_within.html">scale_y_reordered</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_tufte.html">theme_tufte</a></span><span class="op">(</span>base_family <span class="op">=</span> <span class="st">"Helvetica"</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-188-1.png" width="672"></div>
+<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-183-1.png" width="672"></div>
 <p>But how do we actually evaluate these topics? Here, the topics all seem pretty similar.</p>
 </div>
 <div id="evaluating-topic-model" class="section level2" number="21.3">
@@ -281,9 +285,11 @@
 <span>        strip.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Tocqueville DiA 2"</span>, y <span class="op">=</span> <span class="st">"Tocqueville DiA 1"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_fixed.html">coord_equal</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<pre><code>## Warning: Removed 6173 rows containing missing values (`geom_point()`).</code></pre>
-<pre><code>## Warning: Removed 6174 rows containing missing values (`geom_text()`).</code></pre>
-<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-189-1.png" width="672"></div>
+<pre><code>## Warning: Removed 6173 rows containing missing values
+## (`geom_point()`).</code></pre>
+<pre><code>## Warning: Removed 6174 rows containing missing values
+## (`geom_text()`).</code></pre>
+<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-184-1.png" width="672"></div>
 <p>We see that there do seem to be some marked distinguishing characteristics. In the plot above, for example, we see that more abstract notions of state systems appear with greater frequency in Volume 1 while Volume 2 seems to contain words specific to America (e.g., “north” and “south”) with greater frequency. The way to read the above plot is that words positioned further away from the diagonal line appear with greater frequency in one volume versus the other.</p>
 </div>
 <div id="split-into-chapter-documents" class="section level3" number="21.3.2">
@@ -344,17 +350,29 @@
 ## Weighting          : term frequency (tf)
 ## Sample             :
 ##          Terms
-## Docs      country democratic government laws nations people power public time united
-##   DiA1_11      10          0         23   19       7     13    19     15    6     13
-##   DiA1_13      13          5         34    9      12     17    37     15    6     19
-##   DiA1_20       9          0         25   13       2     14    32     13   10     21
-##   DiA1_21       4          0         20   29       6     12    20      5    5     23
-##   DiA1_23      10          0         35    9      24     20    13      4    8     15
-##   DiA1_31       7         12         10   13       4     30    18     31    6     11
-##   DiA1_32      10         14         25    6       9     25    11     43    8     14
-##   DiA1_47      12          2          5    3       3      6     8      0    3      8
-##   DiA1_56      12          0          3    7      19      3     8      3   22     25
-##   DiA2_76      11         10         24   39      12     31    27     27   50     88</code></pre>
+## Docs      country democratic government laws nations people
+##   DiA1_11      10          0         23   19       7     13
+##   DiA1_13      13          5         34    9      12     17
+##   DiA1_20       9          0         25   13       2     14
+##   DiA1_21       4          0         20   29       6     12
+##   DiA1_23      10          0         35    9      24     20
+##   DiA1_31       7         12         10   13       4     30
+##   DiA1_32      10         14         25    6       9     25
+##   DiA1_47      12          2          5    3       3      6
+##   DiA1_56      12          0          3    7      19      3
+##   DiA2_76      11         10         24   39      12     31
+##          Terms
+## Docs      power public time united
+##   DiA1_11    19     15    6     13
+##   DiA1_13    37     15    6     19
+##   DiA1_20    32     13   10     21
+##   DiA1_21    20      5    5     23
+##   DiA1_23    13      4    8     15
+##   DiA1_31    18     31    6     11
+##   DiA1_32    11     43    8     14
+##   DiA1_47     8      0    3      8
+##   DiA1_56     8      3   22     25
+##   DiA2_76    27     27   50     88</code></pre>
 <p>We then re-estimate the topic model with this new DocumentTermMatrix object, specifying k equal to 2. This will enable us to evaluate whether a topic model is able to generatively assign to volume with accuracy.</p>
 <div class="sourceCode" id="cb345"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tocq_chapters_lda</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/topicmodels/man/lda.html">LDA</a></span><span class="op">(</span><span class="va">tocq_chapters_dtm</span>, k <span class="op">=</span> <span class="fl">2</span>, control <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>seed <span class="op">=</span> <span class="fl">1234</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -461,7 +479,7 @@
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Book words assigned to"</span>,</span>
 <span>       y <span class="op">=</span> <span class="st">"Book words came from"</span>,</span>
 <span>       fill <span class="op">=</span> <span class="st">"% of assignments"</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-193-1.png" width="672"></div>
+<div class="inline-figure"><img src="main_files/figure-html/unnamed-chunk-188-1.png" width="672"></div>
 <p>Not bad! We see that the model estimated with accuracy 91% of chapters in Volume 2 and 79% of chapters in Volume 1</p>
 </div>
 </div>
@@ -479,8 +497,8 @@
 <span><span class="va">documents</span> <span class="op">&lt;-</span> <span class="va">corp</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">30000</span>,<span class="fl">1000</span><span class="op">)</span><span class="op">]</span></span>
 <span><span class="co"># take a look at the document names</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">documents</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<pre><code>##  [1] "text26803" "text25102" "text28867" "text2986"  "text1842"  "text25718" "text3371"  "text29925"
-##  [9] "text29940" "text29710"</code></pre>
+<pre><code>##  [1] "text26803" "text25102" "text28867" "text2986"  "text1842" 
+##  [6] "text25718" "text3371"  "text29925" "text29940" "text29710"</code></pre>
 <p>And now we are ready to preprocess in different ways. Here, we are including n-grams so we are preprocessing the text in 128 different ways. This takes about ten minutes to run on a machine with 8GB RAM.</p>
 <div class="sourceCode" id="cb355"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">preprocessed_documents</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/preText/man/factorial_preprocessing.html">factorial_preprocessing</a></span><span class="op">(</span></span>
