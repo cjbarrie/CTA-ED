@@ -1,0 +1,21 @@
+# Exercise 7: Sampling text information
+
+## Introduction
+
+The hands-on exercise for this week focuses on how to classify a sample of text. 
+
+
+### Data
+
+We will be classifying the same tweets as discussed in @barrie2023did.
+
+```{r, echo = F, eval = T}
+tweets_sample <- readRDS("data/tweets-ranked.rds")
+```
+
+You can do this locally on your computers with:
+
+```{r, eval = F, echo = T}
+tweets_sample  <- readRDS(gzcon(url("https://github.com/cjbarrie/CS-ED/blob/main/data/tweets-ranked.rds?raw=true")))
+
+```

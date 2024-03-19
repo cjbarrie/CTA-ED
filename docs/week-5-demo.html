@@ -115,7 +115,7 @@
 <span class="header-section-number">9.1</span> Setup<a class="anchor" aria-label="anchor" href="#setup-3"><i class="fas fa-link"></i></a>
 </h2>
 <p>First, we’ll load the packages we’ll be using in this week’s brief demo.</p>
-<div class="sourceCode" id="cb134"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb135"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"conjugateprior/austin"</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://conjugateprior.github.io/austin">austin</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://quanteda.io">quanteda</a></span><span class="op">)</span></span>
@@ -126,7 +126,7 @@
 <span class="header-section-number">9.2</span> Wordscores<a class="anchor" aria-label="anchor" href="#wordscores"><i class="fas fa-link"></i></a>
 </h2>
 <p>We can inspect the function for the wordscores model by <span class="citation">Laver, Benoit, and Garry (<a href="references-2.html#ref-laver_extracting_2003">2003</a>)</span> in the following way:</p>
-<div class="sourceCode" id="cb135"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb136"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">classic.wordscores</span></span></code></pre></div>
 <pre><code>## function (wfm, scores) 
 ## {
@@ -150,14 +150,14 @@
 ##     class(val) &lt;- c("classic.wordscores", "wordscores", class(val))
 ##     return(val)
 ## }
-## &lt;bytecode: 0x127746ca0&gt;
+## &lt;bytecode: 0x2d4acbca8&gt;
 ## &lt;environment: namespace:austin&gt;</code></pre>
 <p>We can then take some example data included in the <code>austin</code> package.</p>
-<div class="sourceCode" id="cb137"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb138"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">lbg</span><span class="op">)</span></span>
 <span><span class="va">ref</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://conjugateprior.github.io/austin/reference/getdocs.html">getdocs</a></span><span class="op">(</span><span class="va">lbg</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span></span></code></pre></div>
 <p>And here our reference documents are all those documents marked with an “R” for reference; i.e., columns one to five.</p>
-<div class="sourceCode" id="cb138"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb139"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ref</span></span></code></pre></div>
 <pre><code>##      docs
 ## words  R1  R2  R3  R4  R5
@@ -200,7 +200,7 @@
 ##    ZK   0   0   0   0   2</code></pre>
 <p>This matrix is simply a series of words (here: letters) and reference texts with word counts for each of them.</p>
 <p>We can then look at the wordscores for each of the words, calculated using the reference dimensions for each of the reference documents.</p>
-<div class="sourceCode" id="cb140"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb141"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ws</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://conjugateprior.github.io/austin/reference/classic.wordscores.html">classic.wordscores</a></span><span class="op">(</span><span class="va">ref</span>, scores<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1.5</span>,<span class="fl">1.5</span>,by<span class="op">=</span><span class="fl">0.75</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">ws</span></span></code></pre></div>
 <pre><code>## $pi
@@ -294,7 +294,7 @@
 ## [1] "classic.wordscores" "wordscores"         "list"</code></pre>
 <p>And here we see the thetas contained in this wordscores object, i.e., the reference dimensions for each of the reference documents and the pis, i.e., the estimated wordscores for each word.</p>
 <p>We can now use these to score the so-called “virgin” texts as follows.</p>
-<div class="sourceCode" id="cb142"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb143"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#get "virgin" documents</span></span>
 <span><span class="va">vir</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://conjugateprior.github.io/austin/reference/getdocs.html">getdocs</a></span><span class="op">(</span><span class="va">lbg</span>, <span class="st">'V1'</span><span class="op">)</span></span>
 <span><span class="va">vir</span></span></code></pre></div>
@@ -337,7 +337,7 @@
 ##    ZI   0
 ##    ZJ   0
 ##    ZK   0</code></pre>
-<div class="sourceCode" id="cb144"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb145"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># predict textscores for the virgin documents</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">ws</span>, newdata<span class="op">=</span><span class="va">vir</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 37 of 37 words (100%) are scorable
@@ -350,40 +350,40 @@
 <span class="header-section-number">9.3</span> Wordfish<a class="anchor" aria-label="anchor" href="#wordfish"><i class="fas fa-link"></i></a>
 </h2>
 <p>If we wish, we can inspect the function for the wordscores model by <span class="citation">Slapin and Proksch (<a href="references-2.html#ref-slapin_scaling_2008">2008</a>)</span> in the following way. This is a much more complex algorithm, which is not printed here, but you can inspect on your own devices.</p>
-<div class="sourceCode" id="cb146"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb147"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">wordfish</span></span></code></pre></div>
 <p>We can then simulate some data, formatted appropriately for wordfiash estimation in the following way:</p>
-<div class="sourceCode" id="cb147"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb148"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://conjugateprior.github.io/austin/reference/sim.wordfish.html">sim.wordfish</a></span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">dd</span></span></code></pre></div>
 <pre><code>## $Y
 ##      docs
 ## words D01 D02 D03 D04 D05 D06 D07 D08 D09 D10
-##   W01  17  19  22  13  17  11  16  12   6   3
-##   W02  18  21  18  16  12  19  11   7  10   4
-##   W03  22  21  22  19  11  14  11   3   6   1
-##   W04  22  19  18  15  16  13  18   6   2   8
-##   W05  28  21  12  10  13  10   5  14   1   3
-##   W06   5   7  12  13  15   8  12  13  23  19
-##   W07  13   9   5  16  11  17  15  11  35  30
-##   W08   8   7   7  10   9  15  18  23  21  23
-##   W09   4  12   8  10   9  13  18  25  15  19
-##   W10   5   3   7  11  19  16  13  18  17  18
-##   W11  66  55  49  48  38  37  27  24  21   6
-##   W12  53  56  47  39  49  28  22  15  12  14
-##   W13  63  55  47  49  48  31  24  16  17  16
-##   W14  57  64  48  51  27  36  24  27  11  12
-##   W15  58  48  57  44  36  39  29  27  16   5
-##   W16  17  13  24  28  24  32  41  56  67  61
-##   W17   9  19  16  36  30  34  53  34  58  57
-##   W18  11  19  34  27  42  38  48  58  49  66
-##   W19  10  18  27  22  37  52  59  60  60  69
-##   W20  14  14  20  23  37  37  36  51  53  66
+##   W01  21  18  24  15  11   8  12  10   4   3
+##   W02  21  28  16  14  13  10  14   5   7   9
+##   W03  21  28  16  14  18   8  14   6   5   7
+##   W04  19  22  18  14  20  12   4   8   4   4
+##   W05  22  17  20  13  11  12  14   5   3   2
+##   W06  10   6   9  12   6  14  18  19  20  18
+##   W07   6   5   7   7  14  16  15  30  27  23
+##   W08   4   6  13  16   7  14  14  16  13  18
+##   W09   6   5   9   5  16  12  15  15  16  20
+##   W10   3   5   8   8   8  13  16  23  18  15
+##   W11  64  60  55  47  29  37  22  19  23  17
+##   W12  56  50  47  54  38  36  39  28  25  14
+##   W13  51  44  53  45  42  40  20  18  24  12
+##   W14  63  58  38  68  39  25  32  24  15   8
+##   W15  53  60  55  37  64  32  26  23  21   8
+##   W16  16  22  21  35  32  37  35  45  51  60
+##   W17  15  14  33  17  38  47  52  73  56  58
+##   W18  17  20  17  27  31  46  48  48  56  82
+##   W19  19  12  16  34  33  49  48  41  57  51
+##   W20  13  20  25  18  30  32  42  44  55  71
 ## 
 ## $theta
-##  [1] -1.4863011 -1.1560120 -0.8257228 -0.4954337 -0.1651446  0.1651446  0.4954337
-##  [8]  0.8257228  1.1560120  1.4863011
+##  [1] -1.4863011 -1.1560120 -0.8257228 -0.4954337 -0.1651446  0.1651446  0.4954337  0.8257228  1.1560120
+## [10]  1.4863011
 ## 
 ## $doclen
 ## D01 D02 D03 D04 D05 D06 D07 D08 D09 D10 
@@ -399,24 +399,24 @@
 ## [1] "wordfish.simdata" "list"</code></pre>
 <p>Here we can see the document and word-level FEs, as well as the specified range of the thetas to be estimates.</p>
 <p>Then estimating the document positions is simply a matter of implementing this algorithm.</p>
-<div class="sourceCode" id="cb149"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb150"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">wf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://conjugateprior.github.io/austin/reference/wordfish.html">wordfish</a></span><span class="op">(</span><span class="va">dd</span><span class="op">$</span><span class="va">Y</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">wf</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## Call:
 ##  wordfish(wfm = dd$Y)
 ## 
 ## Document Positions:
-##     Estimate Std. Error   Lower    Upper
-## D01  -1.4243    0.10560 -1.6313 -1.21736
-## D02  -1.1483    0.09747 -1.3394 -0.95727
-## D03  -0.7701    0.08954 -0.9456 -0.59455
-## D04  -0.4878    0.08591 -0.6562 -0.31942
-## D05  -0.1977    0.08414 -0.3626 -0.03279
-## D06   0.0313    0.08411 -0.1336  0.19616
-## D07   0.4346    0.08704  0.2640  0.60517
-## D08   0.7163    0.09140  0.5372  0.89546
-## D09   1.2277    0.10447  1.0229  1.43243
-## D10   1.6166    0.11933  1.3827  1.85046</code></pre>
+##     Estimate Std. Error    Lower   Upper
+## D01  -1.2969    0.10795 -1.50847 -1.0853
+## D02  -1.2275    0.10600 -1.43526 -1.0198
+## D03  -0.7890    0.09633 -0.97783 -0.6002
+## D04  -0.6234    0.09382 -0.80729 -0.4395
+## D05  -0.2888    0.09059 -0.46640 -0.1113
+## D06   0.2406    0.09040  0.06343  0.4178
+## D07   0.4246    0.09174  0.24477  0.6044
+## D08   0.8938    0.09850  0.70075  1.0869
+## D09   1.0553    0.10198  0.85546  1.2552
+## D10   1.6109    0.11878  1.37805  1.8437</code></pre>
 </div>
 <div id="using-quanteda" class="section level2" number="9.4">
 <h2>
@@ -454,7 +454,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Computational Text Analysis</strong>" was written by Marion Lieutaud. It was last built on 2024-01-02.</p>
+    <p>"<strong>Computational Text Analysis</strong>" was written by Marion Lieutaud. It was last built on 2024-03-19.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
